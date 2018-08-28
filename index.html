@@ -11,16 +11,37 @@
 
 <body>
 
-  <header id="header">
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <header id="header">
+    <div class="flex">
+      <div>
+        <h2 class="draftstone-text">DraftStone</h2>
+      </div>
+      <div>
+        <div class="flex">
+          <button class="instructions-btn flex-end">Instructions</button>
+        </div>
+      </div>
+    </div>
   </header>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <main id="main" class="flex">
       <div class="x-squish"></div>
+
+      <!-- ~~ CONTAINER ~~ -->
+
       <div id="container" class="flex">
+
+        <!-- ~~ LEFT CARD ~~ -->
+
         <div id="left">
           <div class="y-squish">
           </div>
+
+          <!-- ~~ CARD DISPLAY ~~ -->
 
           <div id="card-display" class="card-deck flex">
 
@@ -58,19 +79,31 @@
             </div>
 
           </div>
-
           <div class="y-squish">
           </div>
         </div>
+
+        <!-- ~~ RIGHT CARD ~~ -->
 
         <div id="right">
           <div class="y-squish">
           </div>
 
+          <!-- ~~ DECK DISPLAY ~~ -->
+
           <div id="deck-display" class="card-deck flex">
+            <div id="card-cost">
+              <!-- <div class="flex">
 
+              </div> -->
+            </div>
+
+            <div id="card-name">
+              <!-- <div class="flex">
+
+              </div> -->
+            </div>
           </div>
-
         </div>
       </div>
     </main>

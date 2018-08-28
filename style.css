@@ -1,7 +1,48 @@
-#header {
-  background-color: #c1bbae;
+/****************************** GENERAL ******************************/
+
+.responsive {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.y-squish {
   height: 10vh;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.x-squish {
+  width: 10vw;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+/****************************** LAYOUT ******************************/
+
+body {
+  background-color: #f7f7f7;
+}
+
+main {
+  background-color: #f7f7f7;
+  height: 75vh;
 }
 
 #main {
@@ -14,84 +55,47 @@
   /* border: solid red 2px; */
 }
 
-#card-display {
-  /* width: 80vw; */
-  background-color: #ddd8cc;
-  margin: 0 40px;
-  min-height: 60vh;
-  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+/****************************** HEADER ******************************/
+
+#header {
+  background-color: #c1bbae;
+  height: 10vh;
+  width: 100vw;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
 }
 
-#deck-display {
-  /* width: 80vw; */
-  background-color: #ddd8cc;
-  margin: 0 10px;
-  min-height: 60vh;
-  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+.draftstone-text {
+  margin-top: 0px;
+  padding: 18px 40px;
 }
+
+.instructions-text {
+  margin-top: 0px;
+  padding-top: 25px;
+  padding-left: 1080%;
+}
+
+.instructions-btn {
+  background-color: #c1bbae;
+  border: solid black 2px;
+  border-radius: 4px;
+  margin-top: 22px;
+  margin-left: 1060px;
+}
+
+/****************************** LEFT CARD ******************************/
 
 #left {
   flex-basis: 75%;
   /* border: solid green 2px; */
 }
 
-#right {
-  flex-basis: 25%;
-  /* border: solid green 2px; */
-}
-
-.y-squish {
-  height: 10vh;
-}
-
-.x-squish {
-  width: 10vw;
-}
-
-main {
-  background-color: #f7f7f7;
-  height: 75vh;
-}
-
-/* footer {
-  background-color: #706c67;
-  height: 6vh;
-} */
-
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-text {
-  color: white;
-  padding-top: 10px;
-  padding-left: 40px;
-}
-
-
-.center {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-}
-
-#box {
-  margin: 20px 60px;
-  border: solid black 2px;
-  height: 30vh;
-  background-color: #f4f2ef;
-  overflow: scroll;
-}
-
-.responsive {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
+#card-display {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  margin: 0 40px;
+  min-height: 60vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
 .xbtn {
@@ -105,4 +109,34 @@ main {
 .imgbtn {
   background-color: #ddd8cc;
   border: none;
+}
+
+/****************************** RIGHT CARD ******************************/
+
+#right {
+  flex-basis: 25%;
+  /* border: solid green 2px; */
+}
+
+#deck-display {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  margin: 0 10px;
+  margin-bottom: 40px;
+  min-height: 607px;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#card-cost {
+  width: 12%;
+  border-right: solid 2px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  padding-left: 4%;
+  margin-right: 0px;
+}
+
+#card-name {
+  width: 88%;
+  padding-left: 2%;
+  margin-left: 0px;
 }

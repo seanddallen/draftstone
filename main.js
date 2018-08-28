@@ -1,9 +1,4 @@
-let img1 = document.getElementById('img1');
-let img2 = document.getElementById('img2');
-let img3 = document.getElementById('img3');
-let cardDisplay = document.getElementById('cardDisplay');
-
-//Load 3 random album images
+///////////////////////// GET DATA /////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
   axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
@@ -12,21 +7,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }).then(response => {
     // let data = response.data;
-    console.log('hello');
-
-    // for (let i = 1; i <= 3; i++){
-    //   if (i === 1){
-    //     img1.setAttribute("src", `./images/${data[Math.floor(Math.random() * data.length)].cover_art}`)
-    //   } else if (i === 2){
-    //     img2.setAttribute("src", `./images/${data[Math.floor(Math.random() * data.length)].cover_art}`)
-    //   } else if (i === 3){
-    //     img3.insertAdjacentHTML("beforeend", `
-    //       <img src="${card.img}">
-    //     `);
-    //   }
-    // }
+    console.log(response);
   });
 });
+
+///////////////////////// RENDER PICK /////////////////////////
+
+function renderPick(array) {
+  
+}
+
+///////////////////////// RENDER DECK /////////////////////////
+
+function renderDeck(array) {
+  cardName = document.getElementById('card-name');
+  cardCost = document.getElementById('card-cost');
+
+  array.forEach(function(card) {
+    cardName.innerHTML += `
+      <div class="flex">
+        ${card.name}
+      </div>
+    `
+  })
+
+  array.forEach(function(card) {
+    cardCost.innerHTML += `
+      <div class="flex">
+        ${card.cost}
+      </div>
+    `
+  })
+}
+
 
 
 // axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
