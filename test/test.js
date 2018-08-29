@@ -1,68 +1,48 @@
-///////////////////////// GLOBAL VARIABLES /////////////////////////
-
+// Global variables
 const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
 let selectedClass = ''; // User selected class
 let filteredPool = []; // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
+
 const cardDisplay = document.getElementById('card-display');
 
 
-///////////////////////// GET DATA /////////////////////////
-
 document.addEventListener('DOMContentLoaded', () => {
- axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
-   headers: {
-     'X-Mashape-Key': 'gAeuReVzM3mshLLX97GlEfieDYDep1H5yDOjsn5z5VlqqZie5Q'
-   }
- }).then(response => {
+  axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
+    headers: {
+      'X-Mashape-Key': 'gAeuReVzM3mshLLX97GlEfieDYDep1H5yDOjsn5z5VlqqZie5Q'
+    }
+  }).then(response => {
 
-   // First nine cards of data are the heroes. Add them to heroes array
-   for (let i = 0; i < 9; i++) {
-     heroes.push(response.data.Basic[i]);
-   }
+    // First nine cards of data are the heroes. Add them to heroes array
+    for (let i = 0; i < 9; i++) {
+      heroes.push(response.data.Basic[i]);
+    }
 
-   // Iterate through all cards in data and push non-Hero cards to the master pool
-   for (const set in response.data) {
-     for (const card of response.data[set]) {
-       if (card.type !== "Hero") {
-         masterPool.push(card);
-       }
-     }
-   }
+    // Iterate through all cards in data and push non-Hero cards to the master pool
+    for (const set in response.data) {
+      for (const card of response.data[set]) {
+        if (card.type !== "Hero") {
+          masterPool.push(card);
+        }
+      }
+    }
 
-   // Once the data has been processed, move on to the draft, starting with class
-   classPick();
- });
+    // Once the data has been processed, move on to the draft, starting with class
+    classPick();
+  });
 });
-
-
-///////////////////////// PICK CLASS /////////////////////////
-
-
-function renderPick(array) {
-  img0 = document.getElementById('img0');
-  img1 = document.getElementById('img1');
-  img2 = document.getElementById('img2');
-
-  //append 3 images
-  img0.innerHTML = `<img id="img0" class="responsive" src="${array[0].img}" alt="">`
-  img1.innerHTML = `<img id="img1" class="responsive" src="${array[1].img}" alt="">`
-  img2.innerHTML = `<img id="img2" class="responsive" src="${array[2].img}" alt="">`
-}
-
-// const sampleDeck3 = [{"cardId":"EX1_162","dbfId":"985","name":"Dire Wolf Alpha","cardSet":"Classic","type":"Minion","faction":"Neutral","rarity":"Common","cost":2,"collectible":true,"playerClass":"Neutral","img":"http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_162.png"},{"cardId":"EX1_044","dbfId":"791","name":"QuestingAdventurer","cardSet":"Classic","type":"Minion","faction":"Alliance","rarity":"Rare","cost":3,"attack":2,"health":2,"text":"Whenever you play a card, gain +1/+1.","flavor":"\"Does anyone have some extra Boar Pelts?\"","artist":"Attila Adorjany","collectible":true,"playerClass":"Neutral","img":"http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_044.png"},{"cardId":"OG_161","dbfId":"38545","name":"Corrupted Seer","cardSet":"Whispers of the Old Gods","type":"Minion","rarity":"Rare","cost":6,"collectible":true,"race":"Murloc","playerClass":"Neutral","img":"http://media.services.zam.com/v1/media/byName/hs/cards/enus/OG_161.png"}];
-//
-// renderPick(sampleDeck3);
 
 // User chooses class
 function classPick() {
   pickOptions = [];
+
   const selectedIndices = []; // To log indices and avoid duplicates
   let currentSelection = 0;
 
- // Build array of options for pick
+  // Build array of options for pick
   for (let i = 0; i < 3; i++) {
     do {
       currentSelection = Math.floor(Math.random() * 9);
@@ -80,8 +60,7 @@ function classPick() {
 
 function classPickHandler(e) {
   // Ensure target is a card image
-  if (e.target && e.target.id.includes("img")) {
-
+  if (e.target && e.target.classList.contains("imgbtn")) {
     // Remove event listener so it only triggers once
     cardDisplay.removeEventListener('click', classPickHandler);
 
@@ -98,7 +77,6 @@ function classPickHandler(e) {
   }
 }
 
-///////////////////////// PICK DECK /////////////////////////
 
 // User chooses a card
 function cardPick() {
@@ -136,10 +114,9 @@ function twoAlready(proposedCard) {
   return false;
 }
 
-
 function cardPickHandler(e) {
   // Ensure target is a card image
-  if (e.target && e.target.id.includes("img")) {
+  if (e.target && e.target.classList.contains("imgbtn")) {
     // Remove event listener to avoid multiple triggers
     cardDisplay.removeEventListener('click', cardPickHandler);
 
@@ -150,7 +127,7 @@ function cardPickHandler(e) {
     deck.push(pickOptions[position]);
 
     sortDeck();
-    renderDeck(deck);
+    // renderDeck();
 
     // Restart card pick process until 30 picks are made
     if (deck.length < 30) {
@@ -170,9 +147,6 @@ function cardPickHandler(e) {
   }
 }
 
-
-
-
 // Sort first by cost, and then alphabetically by card name
 function sortDeck() {
   deck.sort((cardA, cardB) => {
@@ -186,34 +160,19 @@ function sortDeck() {
   });
 }
 
-function renderDeck(array) {
-  cardName = document.getElementById('card-name');
-  cardCost = document.getElementById('card-cost');
-  cardName.innerHTML = '';
-  cardCost.innerHTML = '';
-
-  array.forEach(function(card) {
-    cardName.innerHTML += `
-      <div class="flex name-style">
-        ${card.name}
-      </div>
-    `
-  })
-
-  array.forEach(function(card) {
-    cardCost.innerHTML += `
-      <div class="flex cost-style">
-        ${card.cost}
-      </div>
-    `
-  })
-}
-
-
-
-///////////////////////// COMPLETE DECK /////////////////////////
-
-function deckComplete() {
+function  deckComplete() {
   console.log('Deck Complete');
   console.log(deck);
 }
+
+
+
+
+function renderPick(pickOptions) {
+  for (let i = 0; i < 3; i++) {
+    document.getElementById(`img${i}`).src = pickOptions[i].img;
+  }
+}
+
+document.getElementById('choose-class').addEventListener('click', classPick);
+document.getElementById('choose-card').addEventListener('click', cardPick);
