@@ -43,6 +43,10 @@
   padding-top: 20px;
 }
 
+.hidden {
+  display: none;
+}
+
 /****************************** LAYOUT ******************************/
 
 body {
@@ -103,6 +107,11 @@ main {
   margin-top: 0px;
   padding-top: 18px;
   padding-left: 12.5vw;
+  color: rgba(0,0,0,0.6);
+}
+
+a:link {
+  text-decoration: none;
 }
 
 /****************************** LEFT CARD ******************************/
@@ -118,6 +127,13 @@ main {
   margin: 0 40px;
   min-height: 60vh;
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+.card-display {
+  background-color: #ddd8cc;
+  margin: 0 40px;
+  padding-left: 3%; 
+  min-height: 60vh;
 }
 
 .xbtn {
@@ -212,7 +228,7 @@ main {
 }
 
 .type-filter {
-  margin: 20px auto;   
+  margin: 20px auto;
 }
 
 /****************************** DRAFT PAGE ******************************/

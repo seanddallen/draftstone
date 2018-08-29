@@ -72,6 +72,8 @@ function classPick() {
     // Add randomly selected hero to pick
     pickOptions.push(heroes[currentSelection]);
   }
+  hide = document.getElementById('hide');
+  hide.classList.remove('hidden'); 
 
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', classPickHandler);
