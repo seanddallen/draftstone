@@ -173,3 +173,23 @@ main {
 .cost-style {
   font-weight: bold;
 }
+
+/****************************** MODAL ******************************/
+
+.modal-btn {
+  background-color: #8e8770;
+  border: 2px solid #8e8770;
+}
+
+.modal-btn:hover {
+  background-color: green;
+  border: 2px solid rgba(0,0,0,0.4);
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-title {
+  display: inline-block;
+}
