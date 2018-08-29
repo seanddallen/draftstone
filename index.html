@@ -11,37 +11,49 @@
 
 <body>
 
-  <header id="header">
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ STICKY HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <header id="header">
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+      <div class="row flex">
+        <div class="col-xs-6">
+          <h2 class="draftstone-text">DraftStone</h2>
+        </div>
+        <div class="col-xs-6 flex-end flex-col">
+          <button type="button" class="btn btn-default navbar-btn nav-btn flex-end" data-toggle="modal" data-target="#exampleModalLong">Instructions</button>
+        </div>
+      </div>
+    </nav>
   </header>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <main id="main" class="flex">
       <div class="x-squish"></div>
+
+      <!-- ~~ CONTAINER ~~ -->
+
       <div id="container" class="flex">
+
+        <!-- ~~ LEFT CARD ~~ -->
+
         <div id="left">
           <div class="y-squish">
           </div>
+
+          <!-- ~~ CARD DISPLAY ~~ -->
 
           <div id="card-display" class="card-deck flex">
 
             <div class="card center">
               <div class="card-body flex-col">
                 <button class="imgbtn">
-                  <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  <div id="img0">
+                    <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  </div>
                 </button>
-                <button class="xbtn center">
-                  <img id="xbtn1" src="redbtn.png" class="responsive" alt="">
-                </button>
-              </div>
-            </div>
-
-            <div class="card center">
-              <div class="card-body flex-col">
-                <button class="imgbtn">
-                  <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
-                </button>
-                <button class="xbtn center">
-                  <img id="xbtn2" src="redbtn.png" class="responsive" alt="">
+                <button id="xbtn1" class="xbtn center">
+                    <img src="redbtn.png" class="responsive" alt="">
                 </button>
               </div>
             </div>
@@ -49,35 +61,103 @@
             <div class="card center">
               <div class="card-body flex-col">
                 <button class="imgbtn">
-                  <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  <div id="img1">
+                    <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  </div>
                 </button>
-                <button class="xbtn center">
-                  <img id="xbtn3" src="redbtn.png" class="responsive" alt="">
+                <button id="xbtn2" class="xbtn center">
+                  <img src="redbtn.png" class="responsive" alt="">
+                </button>
+              </div>
+            </div>
+
+            <div class="card center">
+              <div class="card-body flex-col">
+                <button class="imgbtn">
+                  <div id="img2">
+                    <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  </div>
+                </button>
+                <button id="xbtn3" class="xbtn center">
+                  <img src="redbtn.png" class="responsive" alt="">
                 </button>
               </div>
             </div>
 
           </div>
-
           <div class="y-squish">
           </div>
         </div>
+
+        <!-- ~~ RIGHT CARD ~~ -->
 
         <div id="right">
           <div class="y-squish">
           </div>
 
+          <!-- ~~ DECK DISPLAY ~~ -->
+
           <div id="deck-display" class="card-deck flex">
+            <div id="card-cost">
+              <!-- <div class="flex">
 
+              </div> -->
+            </div>
+
+            <div id="card-name">
+              <!-- <div class="flex">
+
+              </div> -->
+            </div>
           </div>
-
         </div>
       </div>
     </main>
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script type="text/javascript" src="main.js"></script>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-.
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Draftstone Instructions</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>General</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Setup Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Start Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Send Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
