@@ -37,6 +37,10 @@
   margin-top: 5%;
 }
 
+.flow-text {
+  width: 200px; 
+}
+
 /****************************** LAYOUT ******************************/
 
 body {
@@ -84,6 +88,7 @@ main {
   border: solid black 2px;
   border-radius: 4px;
   font-weight: bold;
+  outline: none;
 }
 
 .nav-btn:hover {
@@ -119,16 +124,19 @@ main {
   max-height: 60px;
   max-width: 60px;
   cursor: grab;
+  outline: none;
 }
 
 .imgbtn {
   background-color: #ddd8cc;
   border: none;
+  outline: none;
 }
 
 .draft-btn {
   width: 250px;
   background-color: green;
+  outline: none;
 }
 
 .draft-btn:hover {
@@ -179,6 +187,7 @@ main {
 .modal-btn {
   background-color: #8e8770;
   border: 2px solid #8e8770;
+  outline: none;
 }
 
 .modal-btn:hover {
