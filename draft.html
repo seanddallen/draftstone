@@ -11,20 +11,20 @@
 
 <body>
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ STICKY HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<header id="header">
-  <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="row flex">
-      <div class="col-xs-6">
-        <h2 class="draftstone-text">DraftStone</h2>
+  <header id="header">
+    <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
+      <div class="row flex">
+        <div class="col-xs-6">
+          <h2 class="draftstone-text">DraftStone</h2>
+        </div>
+        <div class="col-xs-6 flex-end flex-col">
+          <button type="button" class="btn btn-default navbar-btn nav-btn flex-end" data-toggle="modal" data-target="#exampleModalLong">Instructions</button>
+        </div>
       </div>
-      <div class="col-xs-6 flex-end flex-col">
-        <button type="button" class="btn btn-default navbar-btn nav-btn flex-end" data-toggle="modal" data-target="#exampleModalLong">Instructions</button>
-      </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -41,20 +41,50 @@
           <div class="y-squish">
           </div>
 
-          <!-- ~~ DRAFT DISPLAY ~~ -->
+          <!-- ~~ CARD DISPLAY ~~ -->
 
-          <div id="card-display" class="card-deck flex-col">
-            <div class="text-center">
-              <h3>Draft Hearthstone decks to play against friends!</h3>
-              <br>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ratione voluptatibus omnis aliquam labore possimus iste, aliquid veniam, tenetur amet exercitationem doloribus dicta dolore harum enim sed provident, incidunt ex quod est quas earum nemo eum itaque! Tempore enim voluptatibus facere aliquid quasi perspiciatis voluptatem, aut, impedit est optio iusto ab officia fugit? Assumenda illo incidunt fugiat similique, esse eum unde, laudantium nam sint asperiores perferendis, mollitia, consectetur! Veniam, officia culpa maxime, est reprehenderit consectetur laborum nulla quisquam placeat voluptas repudiandae nemo laudantium deserunt odio, perferendis ducimus saepe voluptate libero quasi mollitia fuga voluptatibus cumque dolorum. Dolores accusamus saepe, repudiandae.</p>
+          <div id="card-display" class="card-deck flex">
+
+            <div class="card center">
+              <div class="card-body flex-col">
+                <button class="imgbtn">
+                  <div id="img0">
+                    <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  </div>
+                </button>
+                <button class="xbtn center">
+                    <img id="xbtn1" src="redbtn.png" class="responsive" alt="">
+                </button>
+              </div>
             </div>
-            <div class="flex-col flex-justify center">
-              <button type="button" class="btn btn-primary btn-lg draft-btn">Setup Draft</button>
-              <p class="center">click button to setup your custom draft</p>
+
+            <div class="card center">
+              <div class="card-body flex-col">
+                <button class="imgbtn">
+                  <div id="img1">
+                    <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  </div>
+                </button>
+                <button class="xbtn center">
+                  <img id="xbtn2" src="redbtn.png" class="responsive" alt="">
+                </button>
+              </div>
             </div>
+
+            <div class="card center">
+              <div class="card-body flex-col">
+                <button class="imgbtn">
+                  <div id="img2">
+                    <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                  </div>
+                </button>
+                <button class="xbtn center">
+                  <img id="xbtn3" src="redbtn.png" class="responsive" alt="">
+                </button>
+              </div>
+            </div>
+
           </div>
-
           <div class="y-squish">
           </div>
         </div>
@@ -84,8 +114,50 @@
       </div>
     </main>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Draftstone Instructions</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>General</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Setup Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Start Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Send Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

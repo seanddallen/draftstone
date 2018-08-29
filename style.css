@@ -38,7 +38,9 @@
 }
 
 .flow-text {
-  width: 200px; 
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
 /****************************** LAYOUT ******************************/
@@ -202,3 +204,19 @@ main {
 .modal-title {
   display: inline-block;
 }
+
+/****************************** SETUP PAGE ******************************/
+
+.rarity-filter {
+  margin: 20px auto;
+}
+
+.type-filter {
+  margin: 20px auto;   
+}
+
+/****************************** DRAFT PAGE ******************************/
+
+
+
+/****************************** EXPORT PAGE ******************************/

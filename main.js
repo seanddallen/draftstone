@@ -111,7 +111,7 @@ function cardPick() {
   for (let i = 0; i < 3; i++) {
     do {
       currentSelection = Math.floor(Math.random() * filteredPool.length);
-    } while (selectedIndices.includes(currentSelection) && !twoAlready(filteredPool[currentSelection])); // Verify index has not already been selected and that two copies of card are not already in deck
+    } while (selectedIndices.includes(currentSelection) || twoAlready(filteredPool[currentSelection])); // Verify index has not already been selected and that two copies of card are not already in deck
     selectedIndices.push(currentSelection);
 
     // Add randomly selected card to pick
@@ -164,10 +164,17 @@ function cardPickHandler(e) {
   }
 
   // If user clicks red x indicating they don't own the card
-  if (e.target && e.target.classList.contains("xbtn")) {
-    // Removed unowned card and replace with new random card
-    pickOptions.splice(+e.target.id.slice(-1) - 1, 1, filteredPool[Math.floor(Math.random() * filteredPool.length)]);
-  }
+    if (e.target && e.target.id.includes("xbtn")) {
+      // Removed unowned card and replace with new random card
+      let newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
+
+      // TODO: Ensure that the newOption is not the same as one of the curent options
+      while (twoAlready(newOption)) {
+        newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
+      }
+      pickOptions.splice(+e.target.id.slice(-1) - 1, 1, newOption);
+      renderPick(pickOptions);
+    }
 }
 
 
