@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }).then(response => {
     // let data = response.data;
-    console.log(response);
+    console.log(response.data);
   });
 });
 
 ///////////////////////// RENDER PICK /////////////////////////
 
 function renderPick(array) {
-  
+  //append 3 images. Add 3 Ids (img0-img2)
 }
 
 ///////////////////////// RENDER DECK /////////////////////////
@@ -25,7 +25,7 @@ function renderDeck(array) {
 
   array.forEach(function(card) {
     cardName.innerHTML += `
-      <div class="flex">
+      <div class="flex name-style">
         ${card.name}
       </div>
     `
@@ -33,14 +33,22 @@ function renderDeck(array) {
 
   array.forEach(function(card) {
     cardCost.innerHTML += `
-      <div class="flex">
+      <div class="flex cost-style">
         ${card.cost}
       </div>
     `
   })
 }
 
+// const sampleDeck30 = [{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"},{"cost":"2","name":"current card"}];
+//
+// renderDeck(sampleDeck30);
 
+
+
+
+
+///////////////////////// FIND DATA /////////////////////////
 
 // axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
 //   headers: {

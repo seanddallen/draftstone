@@ -4,7 +4,6 @@
     width: 100%;
     max-width: 200px;
     height: auto;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
 }
 
 .flex {
@@ -18,6 +17,10 @@
 
 .flex-end {
   justify-content: flex-end;
+}
+
+.flex-justify {
+  justify-content: center;
 }
 
 .y-squish {
@@ -58,7 +61,7 @@ main {
 /****************************** HEADER ******************************/
 
 #header {
-  background-color: #c1bbae;
+  background-color: #8e8770;
   height: 10vh;
   width: 100vw;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
@@ -76,7 +79,7 @@ main {
 }
 
 .instructions-btn {
-  background-color: #c1bbae;
+  background-color: #8e8770;
   border: solid black 2px;
   border-radius: 4px;
   margin-top: 22px;
@@ -111,6 +114,16 @@ main {
   border: none;
 }
 
+.draft-btn {
+  width: 250px;
+  background-color: green;
+}
+
+.draft-btn:hover {
+  background-color: #8e8770;
+  border: 1px dashed black;
+}
+
 /****************************** RIGHT CARD ******************************/
 
 #right {
@@ -139,4 +152,12 @@ main {
   width: 88%;
   padding-left: 2%;
   margin-left: 0px;
+}
+
+.name-style {
+  font-weight: bold;
+}
+
+.cost-style {
+  font-weight: bold;
 }
