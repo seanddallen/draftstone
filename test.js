@@ -114,7 +114,6 @@ function twoAlready(proposedCard) {
   return false;
 }
 
-
 function cardPickHandler(e) {
   // Ensure target is a card image
   if (e.target && e.target.classList.contains("imgbtn")) {

@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
  });
 });
 
-///////////////////////// PICK CLASS /////////////////////////
+///////////////////////// PICK CLASS /////////////////////////Render Progress FunctionRender Progress Function
 
 function renderPick(array) {
   img0 = document.getElementById('img0');
@@ -77,7 +77,8 @@ function classPick() {
 
 function classPickHandler(e) {
   // Ensure target is a card image
-  if (e.target && e.target.classList.contains("imgbtn")) {
+  if (e.target && e.target.id.includes("img")) {
+
     // Remove event listener so it only triggers once
     cardDisplay.removeEventListener('click', classPickHandler);
 
@@ -135,7 +136,7 @@ function twoAlready(proposedCard) {
 
 function cardPickHandler(e) {
   // Ensure target is a card image
-  if (e.target && e.target.classList.contains("imgbtn")) {
+  if (e.target && e.target.id.includes("img")) {
     // Remove event listener to avoid multiple triggers
     cardDisplay.removeEventListener('click', cardPickHandler);
 
@@ -143,31 +144,10 @@ function cardPickHandler(e) {
     const position = +e.target.id.slice(-1);
 
     // Add choosen card to deck
-    function renderDeck(array) {
-      cardName = document.getElementById('card-name');
-      cardCost = document.getElementById('card-cost');
-
-      array.forEach(function(card) {
-        cardName.innerHTML += `
-          <div class="flex name-style">
-            ${card.name}
-          </div>
-        `
-      })
-
-      array.forEach(function(card) {
-        cardCost.innerHTML += `
-          <div class="flex cost-style">
-            ${card.cost}
-          </div>
-        `
-      })
-    }
-
     deck.push(pickOptions[position]);
 
     sortDeck();
-    renderDeck();
+    renderDeck(deck);
 
     // Restart card pick process until 30 picks are made
     if (deck.length < 30) {
@@ -187,6 +167,9 @@ function cardPickHandler(e) {
   }
 }
 
+
+
+
 // Sort first by cost, and then alphabetically by card name
 function sortDeck() {
   deck.sort((cardA, cardB) => {
@@ -199,6 +182,31 @@ function sortDeck() {
     return cardA.name.localeCompare(cardB.name);
   });
 }
+
+function renderDeck(array) {
+  cardName = document.getElementById('card-name');
+  cardCost = document.getElementById('card-cost');
+  cardName.innerHTML = '';
+  cardCost.innerHTML = '';
+
+  array.forEach(function(card) {
+    cardName.innerHTML += `
+      <div class="flex name-style">
+        ${card.name}
+      </div>
+    `
+  })
+
+  array.forEach(function(card) {
+    cardCost.innerHTML += `
+      <div class="flex cost-style">
+        ${card.cost}
+      </div>
+    `
+  })
+}
+
+
 
 ///////////////////////// COMPLETE DECK /////////////////////////
 
