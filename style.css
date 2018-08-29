@@ -23,6 +23,10 @@
   justify-content: space-between;
 }
 
+.flex-center {
+  align-self: center;
+}
+
 .y-squish {
   height: 10vh;
 }
@@ -45,6 +49,10 @@
 
 .hidden {
   display: none;
+}
+
+.inline {
+  display: inline;
 }
 
 /****************************** LAYOUT ******************************/
@@ -94,13 +102,23 @@ main {
   border: solid black 2px;
   border-radius: 4px;
   font-weight: bold;
-  outline: none;
+  outline-color: green;
 }
 
 .nav-btn:hover {
   background-color: green;
   border: dashed rgba(0,0,0,0.4) 2px;
   color: white;
+  outline-color: green;
+}
+
+.nav-btn:focus {
+  background-color: #8e8770;
+  border: solid black 2px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: black;
+  outline-color: green;
 }
 
 .draftstone-text {
@@ -131,8 +149,8 @@ a:link {
 
 .card-display {
   background-color: #ddd8cc;
-  margin: 0 40px;
-  padding-left: 3%; 
+  margin: 0 auto;
+  padding-left: 0px;
   min-height: 60vh;
 }
 
@@ -151,16 +169,17 @@ a:link {
   outline: none;
 }
 
-.draft-btn {
+.flow-btn {
   width: 250px;
   background-color: green;
   outline: none;
 }
 
-.draft-btn:hover {
+.flow-btn:hover {
   background-color: #8e8770;
   border: 2px dashed black;
 }
+
 
 /****************************** RIGHT CARD ******************************/
 
@@ -221,7 +240,13 @@ a:link {
   display: inline-block;
 }
 
+
 /****************************** SETUP PAGE ******************************/
+
+#select {
+  margin: 5% auto;
+  outline-color: green;
+}
 
 .rarity-filter {
   margin: 20px auto;
@@ -229,6 +254,19 @@ a:link {
 
 .type-filter {
   margin: 20px auto;
+}
+
+.output-value {
+  padding-left: 7px;
+  padding-bottom: 7px;
+}
+
+.input-value {
+  margin-left: 10px;
+}
+
+.start-btn {
+  margin: 0 auto;
 }
 
 /****************************** DRAFT PAGE ******************************/

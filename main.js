@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Once the data has been processed, move on to the draft, starting with class
-
    filterPoolBySet(setArray);
    classPick();
  });
@@ -74,7 +73,7 @@ function classPick() {
     pickOptions.push(heroes[currentSelection]);
   }
   hide = document.getElementById('hide');
-  hide.classList.remove('hidden'); 
+  hide.classList.remove('hidden');
 
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', classPickHandler);
