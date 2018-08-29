@@ -3,10 +3,11 @@
 const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
 let selectedClass = ''; // User selected class
-let filteredPool = []; // Pool of only Neutral and class cards matching selected class
+let filteredPool = masterPool; // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
+const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
 
 
 ///////////////////////// GET DATA /////////////////////////
@@ -33,13 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Once the data has been processed, move on to the draft, starting with class
+
+   filterPoolBySet(setArray);
    classPick();
  });
 });
 
+function filterPoolBySet(setArray) {
+  filteredPool =  filteredPool.filter(card => setArray.includes(card.cardSet));
+}
 
 ///////////////////////// PICK CLASS /////////////////////////
-
 
 function renderPick(array) {
   img0 = document.getElementById('img0');
@@ -87,7 +92,7 @@ function classPickHandler(e) {
     selectedClass = pickOptions[position].playerClass;
 
     // Filter the master pool down to exclude all class cards that are not of chosen class
-    filteredPool = masterPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
+    filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
 
     // Move flow of program to card picking stage
     cardPick();
