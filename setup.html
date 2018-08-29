@@ -48,21 +48,58 @@
               <div class="rarity-filter">
                 <h4>Filter By Rarity</h4>
                 <br>
-                <h5>Legendary</h5>
-                <h5>Epic</h5>
-                <h5>Rare</h5>
-                <h5>Common</h5>
+
+                <form name="raritySlider">
+                    <label for="legend-range">Legendary</label>
+                    <div class="flex">
+                      <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="legendOutput.value = legendInput.value">
+                      <output name="legendOutput" id="legendOutput" class="output-value">0</output>
+                    </div>
+                </form>
+
+                <form name="raritySlider">
+                    <label for="epic-range">Epic</label>
+                    <div class="flex">
+                      <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="epicOutput.value = epicInput.value">
+                      <output name="epicOutput" id="epicOutput" class="output-value">0</output>
+                    </div>
+                </form>
+
+                <form name="raritySlider">
+                    <label for="rare-range">Rare</label>
+                    <div class="flex">
+                      <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="rareOutput.value = rareInput.value">
+                      <output name="rareOutput" id="rareOutput" class="output-value">0</output>
+                    </div>
+                </form>
+
               </div>
+
               <div class="type-filter">
                 <h4>Filter By Type</h4>
                 <br>
-                <h5>Minion</h5>
-                <h5>Spell</h5>
-                <h5>Weapon</h5>
+
+                <form name="typeSlider">
+                    <label for="minion-range">Minion</label>
+                    <div class="flex">
+                      <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="minionOutput.value = minionInput.value">
+                      <output name="minionOutput" id="minionOutput" class="output-value">0</output>
+                    </div>
+                </form>
+
+                <form name="typeSlider">
+                    <label for="spell-range">Spell</label>
+                    <div class="flex">
+                      <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="spellOutput.value = spellInput.value">
+                      <output name="spellOutput" id="spellOutput" class="output-value">0</output>
+                    </div>
+                </form>
+
               </div>
             </div>
-            <div class="flex-col flex-justify center">
-              <a href="./draft.html"><button type="button" class="btn btn-primary btn-lg draft-btn">Start Draft</button></a>
+
+            <div class="flex-col flex-justify start-btn">
+              <a href="./draft.html"><button type="button" class="btn btn-primary btn-lg flow-btn">Start Draft</button></a>
               <p class="center">click button to start your custom draft</p>
             </div>
           </div>
@@ -79,25 +116,78 @@
 
           <!-- ~~ DECK DISPLAY ~~ -->
 
-          <div id="deck-display" class="card-deck flex">
-            <div id="card-cost">
-              <!-- <div class="flex">
-
-              </div> -->
-            </div>
-
-            <div id="card-name">
-              <!-- <div class="flex">
-
-              </div> -->
-            </div>
+          <div id="deck-display" class="card-deck flex-col text-center">
+            <br>
+            <br>
+            <h4>Filter by Set</h4>
+            <h6>(select multiple: cmnd/cntr + click)</h6>
+            <select id="select" class="custom-select" multiple size="14">
+              <option selected>All</option>
+              <option value="Basic">Basic</option>
+              <option value="Classic">Classic</option>
+              <option value="Hall of Fame">Hall of Fame</option>
+              <option value="Naxxramas">Naxxramas</option>
+              <option value="Goblins vs Gnomes">Goblins vs Gnomes</option>
+              <option value="Blackrock Mountain">Blackrock Mountain</option>
+              <option value="The Grand Tournament">The Grand Tournament</option>
+              <option value="The League of Explorers">The League of Explorers</option>
+              <option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
+              <option value="One Night in Karazhan">One Night in Karazhan</option>
+              <option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
+              <option value="Journey to Un'Goro">Journey to Un'Goro</option>
+              <option value="Knights of the Frozen Throne">Knights of the Frozen Throne</option>
+              <option value="Kobolds & Catacombs">Kobolds & Catacombs</option>
+              <option value="The Witchwood">The Witchwood</option>
+              <option value="The Boomsday Project">The Boomsday Project</option>
+            </select>
           </div>
         </div>
       </div>
     </main>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Draftstone Instructions</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>General</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Setup Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Start Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Send Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <script type="text/javascript" src="main.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
