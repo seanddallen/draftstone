@@ -8,6 +8,7 @@ const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
 
+
 ///////////////////////// GET DATA /////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
    classPick();
  });
 });
+
 
 ///////////////////////// PICK CLASS /////////////////////////
 
