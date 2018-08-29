@@ -3,10 +3,11 @@
 const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
 let selectedClass = ''; // User selected class
-let filteredPool = []; // Pool of only Neutral and class cards matching selected class
+let filteredPool = masterPool; // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
+const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
 
 
 ///////////////////////// GET DATA /////////////////////////
@@ -33,13 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 
    // Once the data has been processed, move on to the draft, starting with class
+
+   filterPoolBySet(setArray);
    classPick();
  });
 });
 
+function filterPoolBySet(setArray) {
+  filteredPool =  filteredPool.filter(card => setArray.includes(card.cardSet));
+}
 
 ///////////////////////// PICK CLASS /////////////////////////
-
 
 function renderPick(array) {
   img0 = document.getElementById('img0');
@@ -51,10 +56,6 @@ function renderPick(array) {
   img1.innerHTML = `<img id="img1" class="responsive" src="${array[1].img}" alt="">`
   img2.innerHTML = `<img id="img2" class="responsive" src="${array[2].img}" alt="">`
 }
-
-// const sampleDeck3 = [{"cardId":"EX1_162","dbfId":"985","name":"Dire Wolf Alpha","cardSet":"Classic","type":"Minion","faction":"Neutral","rarity":"Common","cost":2,"collectible":true,"playerClass":"Neutral","img":"http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_162.png"},{"cardId":"EX1_044","dbfId":"791","name":"QuestingAdventurer","cardSet":"Classic","type":"Minion","faction":"Alliance","rarity":"Rare","cost":3,"attack":2,"health":2,"text":"Whenever you play a card, gain +1/+1.","flavor":"\"Does anyone have some extra Boar Pelts?\"","artist":"Attila Adorjany","collectible":true,"playerClass":"Neutral","img":"http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_044.png"},{"cardId":"OG_161","dbfId":"38545","name":"Corrupted Seer","cardSet":"Whispers of the Old Gods","type":"Minion","rarity":"Rare","cost":6,"collectible":true,"race":"Murloc","playerClass":"Neutral","img":"http://media.services.zam.com/v1/media/byName/hs/cards/enus/OG_161.png"}];
-//
-// renderPick(sampleDeck3);
 
 // User chooses class
 function classPick() {
@@ -93,7 +94,7 @@ function classPickHandler(e) {
     selectedClass = pickOptions[position].playerClass;
 
     // Filter the master pool down to exclude all class cards that are not of chosen class
-    filteredPool = masterPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
+    filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
 
     // Move flow of program to card picking stage
     cardPick();
@@ -113,7 +114,7 @@ function cardPick() {
   for (let i = 0; i < 3; i++) {
     do {
       currentSelection = Math.floor(Math.random() * filteredPool.length);
-    } while (selectedIndices.includes(currentSelection) || twoAlready(filteredPool[currentSelection])); // Verify index has not already been selected and that two copies of card are not already in deck
+    } while (selectedIndices.includes(currentSelection) || maxxedAlready(filteredPool[currentSelection])); // Verify index has not already been selected and that two copies of card are not already in deck
     selectedIndices.push(currentSelection);
 
     // Add randomly selected card to pick
@@ -125,12 +126,12 @@ function cardPick() {
 }
 
 // Function that determines if given card is already a 2-of in the deck
-function twoAlready(proposedCard) {
+function maxxedAlready(proposedCard) {
   let numInDeck = 0;
   for (const card of deck) {
     if (card.cardId === proposedCard.cardId) {
       numInDeck++;
-      if (numInDeck === 2) {
+      if (numInDeck === 2 || (card.rarity === "Legendary" && numInDeck === 1)) {
         return true;
       }
     }
@@ -171,15 +172,13 @@ function cardPickHandler(e) {
       let newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
 
       // TODO: Ensure that the newOption is not the same as one of the curent options
-      while (twoAlready(newOption)) {
+      while (maxxedAlready(newOption)) {
         newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
       }
       pickOptions.splice(+e.target.id.slice(-1) - 1, 1, newOption);
       renderPick(pickOptions);
     }
 }
-
-
 
 
 // Sort first by cost, and then alphabetically by card name
