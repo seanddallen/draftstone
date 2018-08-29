@@ -16,11 +16,11 @@
 }
 
 .flex-end {
-  justify-content: flex-end;
+  align-self: flex-end;
 }
 
-.flex-justify {
-  justify-content: center;
+.flex-between {
+  justify-content: space-between;
 }
 
 .y-squish {
@@ -67,23 +67,35 @@ main {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
 }
 
-.draftstone-text {
-  margin-top: 0px;
-  padding: 18px 40px;
+#navbar {
+  background-color: #8e8770;
+  height: 10vh;
+  width: 100vw;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  border: none;
+  margin: 0 auto;
 }
 
-.instructions-text {
-  margin-top: 0px;
-  padding-top: 25px;
-  padding-left: 1080%;
-}
-
-.instructions-btn {
+.nav-btn {
+  margin-right: 10.5vw;
+  min-width: 80px;
+  text-align: center;
   background-color: #8e8770;
   border: solid black 2px;
   border-radius: 4px;
-  margin-top: 22px;
-  margin-left: 1060px;
+  font-weight: bold;
+}
+
+.nav-btn:hover {
+  background-color: green;
+  border: dashed rgba(0,0,0,0.4) 2px;
+  color: white;
+}
+
+.draftstone-text {
+  margin-top: 0px;
+  padding-top: 18px;
+  padding-left: 12.5vw;
 }
 
 /****************************** LEFT CARD ******************************/
