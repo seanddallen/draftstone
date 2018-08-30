@@ -95,6 +95,7 @@ function classPickHandler(e) {
     // Filter the master pool down to exclude all class cards that are not of chosen class
     filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
 
+    renderClassName()
     // Move flow of program to card picking stage
     cardPick();
   }
@@ -151,6 +152,7 @@ function cardPickHandler(e) {
     // Add choosen card to deck
     deck.push(pickOptions[position]);
 
+    updateProgress()
     sortDeck();
     renderDeck(deck);
 
@@ -200,8 +202,12 @@ function renderDeck(array) {
   cardCost.innerHTML = '';
 
   array.forEach(function(card) {
+    counter = 0;
+    // if (counter < 10) {
+
+  // }
     cardName.innerHTML += `
-      <div class="flex name-style">
+      <div id="cards00" class="flex name-style">
         ${card.name}
       </div>
     `
@@ -214,6 +220,7 @@ function renderDeck(array) {
       </div>
     `
   })
+  counter++
 }
 
 
@@ -223,4 +230,63 @@ function renderDeck(array) {
 function deckComplete() {
   console.log('Deck Complete');
   console.log(deck);
+}
+
+
+
+///////////////////////// RECENTLY ADDED /////////////////////////
+
+
+//Display Image on hover
+
+const deckCon = document.getElementById('deck-display');
+
+deckCon.addEventListener('mouseover', (e) => {
+  if (e.target && e.target.id.includes("cards")) {
+    // Use id of target to determine which option was selected
+    const position = +e.target.id.slice(-2);
+
+    // console.log(e.target.id)
+    // console.log(position)
+    // console.log(deck[position].img)
+    // deck[position].img
+  };
+})
+
+//Update Progress Function
+function updateProgress(){
+  deckDiv = document.getElementById('deck-div');
+
+  deckDiv.innerHTML = `
+    <div class="render-above text-muted flex-end">
+      <h4>${deck.length}/30</h4>
+    </div>
+  `
+};
+
+//Render Class Name Function
+function renderClassName(){
+  classDiv = document.getElementById('class-div');
+
+  classDiv.innerHTML = `
+    <div class="render-above text-muted flex-end">
+      <h4>Class: ${selectedClass}</h4>
+    </div>
+  `
+};
+
+//Multi-Select Click Function
+window.onmousedown = function (e) {
+    var el = e.target;
+    if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
+        e.preventDefault();
+
+        // toggle selection
+        if (el.hasAttribute('selected')) el.removeAttribute('selected');
+        else el.setAttribute('selected', '');
+
+        // hack to correct buggy behavior
+        var select = el.parentNode.cloneNode(true);
+        el.parentNode.parentNode.replaceChild(select, el.parentNode);
+    }
 }

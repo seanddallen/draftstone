@@ -45,6 +45,28 @@
 
           <div id="card-display" class="card-deck flex-col">
             <div class="text-center flow-text flex">
+
+              <div class="type-filter">
+                <h4>Filter By Class</h4>
+                <br>
+
+                <form name="classSlider">
+                    <label for="class-range">Class</label>
+                    <div class="flex">
+                      <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="classOutput.value = classInput.value">
+                      <output name="classOutput" id="classOutput" class="output-value">0</output>
+                    </div>
+                </form>
+
+                <form name="classSlider">
+                    <label for="neutral-range">Neutral</label>
+                    <div class="flex">
+                      <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="neutralOutput.value = neutralInput.value">
+                      <output name="neutralOutput" id="neutralOutput" class="output-value">0</output>
+                    </div>
+                </form>
+              </div>
+
               <div class="rarity-filter">
                 <h4>Filter By Rarity</h4>
                 <br>
@@ -120,8 +142,7 @@
             <br>
             <br>
             <h4>Filter by Set</h4>
-            <h6>(select multiple: cmnd/cntr + click)</h6>
-            <select id="select" class="custom-select" multiple size="14">
+            <select id="select" class="custom-select" multiple size="16">
               <option selected>All</option>
               <option value="Basic">Basic</option>
               <option value="Classic">Classic</option>

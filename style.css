@@ -142,6 +142,7 @@ a:link {
 #card-display {
   /* width: 80vw; */
   background-color: #ddd8cc;
+  padding-top: 0px;
   margin: 0 40px;
   min-height: 60vh;
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
@@ -271,6 +272,12 @@ a:link {
 
 /****************************** DRAFT PAGE ******************************/
 
+.render-above {
+  margin: 0 auto;
+  padding: 0 auto;
+  z-index: 2;
+  text-align: center;
+}
 
 
 /****************************** EXPORT PAGE ******************************/
