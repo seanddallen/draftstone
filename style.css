@@ -36,6 +36,10 @@
   justify-content: flex-start;
 }
 
+.flex-just-center {
+  justify-content:center;
+}
+
 .flex-center {
   align-self: center;
 }
@@ -286,12 +290,22 @@ a:link {
   outline-color: green;
 }
 
+#main-fieldset {
+  margin-top: -30px;
+}
+
 .rarity-filter {
   margin: 20px auto;
+  padding-top: 2%;
 }
 
 .type-filter {
   margin: 20px auto;
+  padding-top: 2%;
+}
+
+.set-filter {
+  margin-top: 23px;
 }
 
 .output-value {
@@ -310,6 +324,46 @@ a:link {
 .inactive {
  opacity: 0.2;
 }
+
+.faded {
+  opacity: 0.2;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+.checkboxOne {
+    width: 40px;
+    height: 10px;
+    background: #d3d3d3;
+    margin: 0px 80px;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+}
+
+.checkboxOne label {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+
+    background: #8e8770;
+}
+
+.checkboxOne input[type=checkbox]:checked + label {
+    left: 27px;
+    background: green;
+
+}
+
 
 /****************************** DRAFT PAGE ******************************/
 
@@ -348,6 +402,29 @@ a:link {
 
 .divider {
   border-right: 2px dashed rgba(0,0,0,0.6);
+}
+
+.cost-column {
+  border: 1px solid rgba(0,0,0,0.6);
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 20px;
+}
+
+.cost-bar {
+  border: 1px solid rgba(0,0,0,0.6);
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 20px;
+  background-color: green;
+}
+
+.stat-box {
+  width: 25px;
+  height: 25px;
+  margin-top: 6px;
+  margin-right: -10px;
+  border: 2px solid rgba(0,0,0,0.6);
 }
 
 

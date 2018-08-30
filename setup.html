@@ -44,81 +44,98 @@
           <!-- ~~ DRAFT DISPLAY ~~ -->
 
           <div id="card-display" class="card-deck flex-col">
-            <div class="text-center flow-text flex">
 
-              <div class="type-filter">
-                <h4>Filter By Class</h4>
-                <br>
+            <form action="" type="">
+              <div class="pad">
+              </div>
+              <div class="flex flex-just-center">
+                <div class="checkboxOne flex-center">
+                  <input type="checkbox" value="1" id="checkboxOneInput" name="" />
+                  <label for="checkboxOneInput"></label>
+                </div>
+              </div>
+              <fieldset id="main-fieldset" disabled>
+                <div class="text-center flow-text flex">
 
-                <form name="classSlider">
-                    <label for="class-range">Class</label>
-                    <div class="flex">
-                      <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="classOutput.value = classInput.value">
-                      <output name="classOutput" id="classOutput" class="output-value">0</output>
-                    </div>
-                </form>
+                  <div class="type-filter">
+                    <h4>Filter By Class</h4>
+                    <br>
+                    <fieldset>
+                      <form name="classSlider">
+                          <label for="class-range">Class</label>
+                          <div class="flex">
+                            <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="classOutput.value = classInput.value">
+                            <output name="classOutput" id="classOutput" class="output-value">0</output>
+                          </div>
+                      </form>
 
-                <form name="classSlider">
-                    <label for="neutral-range">Neutral</label>
-                    <div class="flex">
-                      <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="neutralOutput.value = neutralInput.value">
-                      <output name="neutralOutput" id="neutralOutput" class="output-value">0</output>
-                    </div>
+                      <form name="classSlider">
+                          <label for="neutral-range">Neutral</label>
+                          <div class="flex">
+                            <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="neutralOutput.value = neutralInput.value">
+                            <output name="neutralOutput" id="neutralOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+                    </fieldset>
+                  </div>
+
+                  <div class="rarity-filter">
+                    <h4>Filter By Rarity</h4>
+                    <br>
+
+                    <fieldset>
+                      <form name="raritySlider">
+                          <label for="legend-range">Legendary</label>
+                          <div class="flex">
+                            <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="legendOutput.value = legendInput.value">
+                            <output name="legendOutput" id="legendOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="raritySlider">
+                          <label for="epic-range">Epic</label>
+                          <div class="flex">
+                            <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="epicOutput.value = epicInput.value">
+                            <output name="epicOutput" id="epicOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="raritySlider">
+                          <label for="rare-range">Rare</label>
+                          <div class="flex">
+                            <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="rareOutput.value = rareInput.value">
+                            <output name="rareOutput" id="rareOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+                    </fieldset>
+                  </div>
+
+                  <div class="type-filter">
+                    <h4>Filter By Type</h4>
+                    <br>
+
+                    <fieldset>
+                      <form name="typeSlider">
+                          <label for="minion-range">Minion</label>
+                          <div class="flex">
+                            <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="minionOutput.value = minionInput.value">
+                            <output name="minionOutput" id="minionOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="typeSlider">
+                          <label for="spell-range">Spell</label>
+                          <div class="flex">
+                            <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="spellOutput.value = spellInput.value">
+                            <output name="spellOutput" id="spellOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+                    <fieldset disabled>
+                  </div>
+
                 </form>
               </div>
-
-              <div class="rarity-filter">
-                <h4>Filter By Rarity</h4>
-                <br>
-
-                <form name="raritySlider">
-                    <label for="legend-range">Legendary</label>
-                    <div class="flex">
-                      <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="legendOutput.value = legendInput.value">
-                      <output name="legendOutput" id="legendOutput" class="output-value">0</output>
-                    </div>
-                </form>
-
-                <form name="raritySlider">
-                    <label for="epic-range">Epic</label>
-                    <div class="flex">
-                      <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="epicOutput.value = epicInput.value">
-                      <output name="epicOutput" id="epicOutput" class="output-value">0</output>
-                    </div>
-                </form>
-
-                <form name="raritySlider">
-                    <label for="rare-range">Rare</label>
-                    <div class="flex">
-                      <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="rareOutput.value = rareInput.value">
-                      <output name="rareOutput" id="rareOutput" class="output-value">0</output>
-                    </div>
-                </form>
-
-              </div>
-
-              <div class="type-filter">
-                <h4>Filter By Type</h4>
-                <br>
-
-                <form name="typeSlider">
-                    <label for="minion-range">Minion</label>
-                    <div class="flex">
-                      <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="minionOutput.value = minionInput.value">
-                      <output name="minionOutput" id="minionOutput" class="output-value">0</output>
-                    </div>
-                </form>
-
-                <form name="typeSlider">
-                    <label for="spell-range">Spell</label>
-                    <div class="flex">
-                      <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="spellOutput.value = spellInput.value">
-                      <output name="spellOutput" id="spellOutput" class="output-value">0</output>
-                    </div>
-                </form>
-
-              </div>
-            </div>
+            </fieldset>
 
             <div class="flex-col flex-justify start-btn">
               <button id="draft-btn" type="button" class="btn btn-primary btn-lg flow-btn inactive">Start Draft</button>
@@ -138,10 +155,10 @@
 
           <!-- ~~ DECK DISPLAY ~~ -->
 
-          <div id="deck-display" class="card-deck flex-col text-center">
+          <div id="deck-display" class="card-deck flex-col text-center set-filter">
             <br>
             <br>
-            <h4>Filter by Set</h4>
+            <h4 class="set-filter">Filter by Set</h4>
             <select id="select" class="custom-select" multiple size="16">
               <option selected>All</option>
               <option value="Basic">Basic</option>
