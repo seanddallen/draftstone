@@ -231,6 +231,7 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
+  setTimeout(function(){window.open("./export.html", "_self");}, 2000); 
   console.log('Deck Complete');
   console.log(deck);
 

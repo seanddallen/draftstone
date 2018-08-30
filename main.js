@@ -228,10 +228,10 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
-  console.log('Deck Complete');
-  console.log(deck);
+  // console.log(window.open("./export.html", "_self"));
+  // console.log('Deck Complete');
+  // console.log(deck);
 }
-
 
 
 ///////////////////////// RECENTLY ADDED /////////////////////////
