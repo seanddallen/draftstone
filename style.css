@@ -307,6 +307,10 @@ a:link {
   margin: 0 auto;
 }
 
+.inactive {
+ opacity: 0.2;
+}
+
 /****************************** DRAFT PAGE ******************************/
 
 #stat-display {

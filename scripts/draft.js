@@ -1,44 +1,30 @@
 // import { encode, decode, FormatType } from "deckstrings";
+
+const masterPool = JSON.parse(localStorage.getItem("masterPool"));
+const heroes = JSON.parse(localStorage.getItem("heroes"));
+const formatRules = JSON.parse(localStorage.getItem("formatRules"));
+
 ///////////////////////// GLOBAL VARIABLES /////////////////////////
 
-const masterPool = []; // All collectible cards
-const heroes = []; // The nine original heroes to represent classes
+// const masterPool = []; // All collectible cards
+// const heroes = []; // The nine original heroes to represent classes
 let heroCard = {};
 let selectedClass = ''; // User selected class
 let filteredPool = masterPool; // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
-const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
+//const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
 
-
-///////////////////////// GET DATA /////////////////////////
+///////////////////////// START DRAFT /////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
- axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
-   headers: {
-     'X-Mashape-Key': 'gAeuReVzM3mshLLX97GlEfieDYDep1H5yDOjsn5z5VlqqZie5Q'
-   }
- }).then(response => {
 
-   // First nine cards of data are the heroes. Add them to heroes array
-   for (let i = 0; i < 9; i++) {
-     heroes.push(response.data.Basic[i]);
-   }
+ if (formatRules.setArray[0] !== "All") {
+   filterPoolBySet(formatRules.setArray);
 
-   // Iterate through all cards in data and push non-Hero cards to the master pool
-   for (const set in response.data) {
-     for (const card of response.data[set]) {
-       if (card.type !== "Hero") {
-         masterPool.push(card);
-       }
-     }
-   }
-
-   // Once the data has been processed, move on to the draft, starting with class
-   filterPoolBySet(setArray);
-   classPick();
- });
+ }
+  classPick();
 });
 
 function filterPoolBySet(setArray) {
@@ -231,7 +217,7 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
-  setTimeout(function(){window.open("./export.html", "_self");}, 2000); 
+  setTimeout(function(){window.open("./export.html", "_self");}, 2000);
   console.log('Deck Complete');
   console.log(deck);
 
@@ -298,19 +284,3 @@ function renderClassName(){
     </div>
   `
 };
-
-//Multi-Select Click Function
-window.onmousedown = function (e) {
-    var el = e.target;
-    if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
-        e.preventDefault();
-
-        // toggle selection
-        if (el.hasAttribute('selected')) el.removeAttribute('selected');
-        else el.setAttribute('selected', '');
-
-        // hack to correct buggy behavior
-        var select = el.parentNode.cloneNode(true);
-        el.parentNode.parentNode.replaceChild(select, el.parentNode);
-    }
-}
