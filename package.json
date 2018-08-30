@@ -1,0 +1,22 @@
+{
+  "name": "draftstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seantayler/draftstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seantayler/draftstone/issues"
+  },
+  "homepage": "https://github.com/seantayler/draftstone#readme"
+}

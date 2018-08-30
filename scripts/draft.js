@@ -1,7 +1,9 @@
+// import { encode, decode, FormatType } from "deckstrings";
 ///////////////////////// GLOBAL VARIABLES /////////////////////////
 
 const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
+let heroCard = {};
 let selectedClass = ''; // User selected class
 let filteredPool = masterPool; // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
@@ -90,7 +92,8 @@ function classPickHandler(e) {
     // Use id of target to determine which option was selected
     const position = +e.target.id.slice(-1);
 
-    selectedClass = pickOptions[position].playerClass;
+    heroCard = pickOptions[position];
+    selectedClass = heroCard.playerClass;
 
     // Filter the master pool down to exclude all class cards that are not of chosen class
     filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
@@ -230,6 +233,26 @@ function renderDeck(array) {
 function deckComplete() {
   console.log('Deck Complete');
   console.log(deck);
+
+
+  // const cards = [];
+  // for (let i = 0; i < 30; i++) {
+  //   if (i < 29 && deck[i].dbfId === deck[i + 1].dbfId) {
+  //     cards.push([deck[i].dbfId, 2]);
+  //     i++;
+  //   }
+  //   else {
+  //     cards.push([deck[i].dbfId, 1]);
+  //   }
+  // }
+  // const encodableDeck = {
+  //   'cards': cards,
+  //   heroes: [heroCard.dbfId],
+  //   format: 1
+  // };
+  //
+  // const deckstring = encode(encodableDeck);
+  // console.log(deckstring);
 }
 
 
