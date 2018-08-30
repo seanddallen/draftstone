@@ -15,6 +15,10 @@
   flex-direction: column;
 }
 
+.flex-start {
+  align-self: flex-start;
+}
+
 .flex-end {
   align-self: flex-end;
 }
@@ -25,6 +29,10 @@
 
 .flex-center {
   align-self: center;
+}
+
+.y-squish-min {
+  height: 2vh;
 }
 
 .y-squish {
@@ -272,11 +280,24 @@ a:link {
 
 /****************************** DRAFT PAGE ******************************/
 
+#stat-display {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  min-height: 22vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
 .render-above {
   margin: 0 auto;
   padding: 0 auto;
   z-index: 2;
   text-align: center;
+}
+
+.divider {
+  border-right: 2px dashed rgba(0,0,0,0.6);
 }
 
 
