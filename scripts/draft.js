@@ -226,8 +226,8 @@ function renderDeck(array) {
 function deckComplete() {
   console.log('Deck Complete');
   console.log(deck);
-  //
-  //
+
+
   // const cards = [];
   // for (let i = 0; i < 30; i++) {
   //   if (i < 29 && deck[i].dbfId === deck[i + 1].dbfId) {
