@@ -184,6 +184,13 @@ a:link {
   min-height: 60vh;
 }
 
+.transparent {
+  position:absolute;
+  z-index:5;
+  left:0;
+  background: rgba(255,255,255,.5);
+}
+
 .xbtn {
   background-color: #ddd8cc;
   border: none;
@@ -393,7 +400,7 @@ input[type=checkbox] {
 
 .card-position {
   position: absolute;
-  left: 214.5px;
+  left: 208px;
   top: 60px;
   z-index: 99;
   min-height: 200px;
@@ -418,8 +425,12 @@ input[type=checkbox] {
 }
 
 .pad {
+  padding-top: 8%;
+  padding-left: 15%;
+}
+
+.pad-slider {
   padding-top: 5%;
-  padding-left: 10%;
 }
 
 .margin {
@@ -450,6 +461,7 @@ input[type=checkbox] {
   height: 25px;
   margin-top: 6px;
   margin-right: -10px;
+  margin-left: 10px;
   border: 2px solid rgba(0,0,0,0.6);
 }
 

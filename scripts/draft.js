@@ -119,9 +119,17 @@ function renderPick(array) {
   img1 = document.getElementById('img1');
   img2 = document.getElementById('img2');
   //append 3 images
-  img0.innerHTML = `<img id="img0" class="responsive" src="${array[0].img}" alt="">`;
-  img1.innerHTML = `<img id="img1" class="responsive" src="${array[1].img}" alt="">`;
-  img2.innerHTML = `<img id="img2" class="responsive" src="${array[2].img}" alt="">`;
+
+  img0.childNodes[1].setAttribute('src', array[0].img);
+  img1.childNodes[1].setAttribute('src', array[1].img);
+  img2.childNodes[1].setAttribute('src', array[2].img);
+  img0.childNodes[1].setAttribute('id', 'img0');
+  img1.childNodes[1].setAttribute('id', 'img1');
+  img2.childNodes[1].setAttribute('id', 'img2');
+
+  // img0.innerHTML = `<img id="img0" class="responsive" src="${array[0].img}" alt="">`;
+  // img1.innerHTML = `<img id="img1" class="responsive" src="${array[1].img}" alt="">`;
+  // img2.innerHTML = `<img id="img2" class="responsive" src="${array[2].img}" alt="">`;
 }
 // User chooses class
 function classPick() {
@@ -281,7 +289,11 @@ function renderDeck(array) {
 
   document.getElementById('statBattlecry').textContent = 0;
   document.getElementById('statDeathrattle').textContent = 0;
+  document.getElementById('statDiscover').textContent = 0;
+
   document.getElementById('statTaunt').textContent = 0;
+  document.getElementById('statCharge').textContent = 0;
+  document.getElementById('statSecret').textContent = 0;
 
   for (let i = 1; i <= 8; i++) {
       document.getElementById(`cost-bar${i}`).style.height = "0px";
@@ -311,13 +323,13 @@ function renderDeck(array) {
     element.textContent = Number(element.textContent) + 1;
 
     if (card.hasOwnProperty("mechanics")) {
-        for (const i in card.mechanics) {
-          const mechanic = document.getElementById(`stat${card.mechanics[i].name}`);
-          if (card.mechanics[i].name === "Battlecry" || card.mechanics[i].name === "Deathrattle" || card.mechanics[i].name === "Taunt") {
-            mechanic.textContent = Number(mechanic.textContent) + 1;
-          }
+      for (const i in card.mechanics) {
+        const mechanic = document.getElementById(`stat${card.mechanics[i].name}`);
+        if (card.mechanics[i].name === "Battlecry" || card.mechanics[i].name === "Deathrattle" || card.mechanics[i].name === "Taunt" || card.mechanics[i].name === "Discover" || card.mechanics[i].name === "Secret" || card.mechanics[i].name === "Charge") {
+          mechanic.textContent = Number(mechanic.textContent) + 1;
         }
       }
+    }
 
 
     //Update Mana Curve
@@ -349,7 +361,6 @@ function deckComplete() {
 const deckCon = document.getElementById('deck-display');
 const hiddenCard = document.getElementById('hidden-card');
 
-
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {
     // Use id of target to determine which option was selected
@@ -358,6 +369,7 @@ deckCon.addEventListener('mouseover', (e) => {
     // console.log(deck[position].img)
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
     hiddenCard.childNodes[1].classList.remove('hidden-card');
+
   };
 })
 
@@ -403,4 +415,4 @@ function renderClassName(){
 ////////////////////////////////////////////////////////////
 
 
-//img0.childNodes[1].setAttribute('src', array[0].img);
+// img0.childNodes[1].setAttribute('src', array[0].img);
