@@ -283,15 +283,22 @@ function renderDeck(array) {
   document.getElementById('statDeathrattle').textContent = 0;
   document.getElementById('statTaunt').textContent = 0;
 
+  for (let i = 1; i <= 8; i++) {
+      document.getElementById(`cost-bar${i}`).style.height = "0px";
+    }
+
+  let hackyNumber = 0;
+
   array.forEach(function(card) {
 
     // console.log(array)
 
     cardName.innerHTML += `
-      <div id="cards00" class="flex name-style">
+      <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
         ${card.name}
       </div>
     `;
+    hackyNumber++
 
     cardCost.innerHTML += `
       <div class="flex cost-style">
@@ -303,17 +310,22 @@ function renderDeck(array) {
     const element = document.getElementById(`stat${card.type}`);
     element.textContent = Number(element.textContent) + 1;
 
-    const mechanic = document.getElementById(`stat${card.mechanics[0].name}`);
-    if (card.mechanics[0].name === "Battlecry" || card.mechanics[0].name === "Deathrattle" || card.mechanics[0].name === "Taunt") {
-      mechanic.textContent = Number(mechanic.textContent) + 1;
-    } else {
-      console.log(card.mechanics[0].name)
-    }
+    if (card.hasOwnProperty("mechanics")) {
+        for (const i in card.mechanics) {
+          const mechanic = document.getElementById(`stat${card.mechanics[i].name}`);
+          if (card.mechanics[i].name === "Battlecry" || card.mechanics[i].name === "Deathrattle" || card.mechanics[i].name === "Taunt") {
+            mechanic.textContent = Number(mechanic.textContent) + 1;
+          }
+        }
+      }
+
 
     //Update Mana Curve
     // NEEDS TO BE NUMBER OF CARDS AT THAT COST (NOT SIMPLY CARD.COST)
-    document.getElementById(`cost-bar${card.cost}`).style.height = card.cost * 10 + ‘%’;
-
+    if (card.cost > 0) {
+      let currentHeight = document.getElementById(`cost-bar${card.cost > 8 ? 8 : card.cost}`).style.height;
+      document.getElementById(`cost-bar${card.cost > 8 ? 8 : card.cost}`).style.height = (+currentHeight.slice(0,-2) + 8) + 'px';
+    }
   });
 }
 
@@ -321,12 +333,9 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
+  // localStorage.setItem('deck', JSON.stringify(deck));
+  // localStorage.setItem('heroCard', JSON.stringify(heroCard));
   setTimeout(function(){window.open("./export.html", "_self");}, 2000);
-  console.log('Deck Complete');
-  console.log(deck);
-
-  localStorage.setIem('deck', JSON.stringify(deck));
-  localStorage.setIem('heroCard', JSON.stringify(heroCard));
 
 }
 
@@ -346,8 +355,6 @@ deckCon.addEventListener('mouseover', (e) => {
     // Use id of target to determine which option was selected
     const position = +e.target.id.slice(-2);
 
-    console.log(e.target.id)
-    console.log(position)
     // console.log(deck[position].img)
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
     hiddenCard.childNodes[1].classList.remove('hidden-card');

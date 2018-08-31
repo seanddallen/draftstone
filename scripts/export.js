@@ -21,3 +21,7 @@
 //
 // const deckstring = encode(encodableDeck);
 // console.log(deckstring);
+
+// copy code to clipboard
+// in hearthstone, create new deck while code is in clipboard
+// hearthstone will automatically detect the code and offer to craete deck
