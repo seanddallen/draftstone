@@ -128,7 +128,7 @@ main {
   min-width: 80px;
   text-align: center;
   background-color: #8e8770;
-  border: solid black 2px;
+  border: 2px solid rgba(0,0,0,0.6);
   border-radius: 4px;
   font-weight: bold;
   outline-color: green;
@@ -376,6 +376,32 @@ input[type=checkbox] {
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
+#hidden-card {
+  position: absolute;
+  left: 214.5px;
+  top: 60px;
+  z-index: 99;
+  min-height: 200px;
+  min-width: 307px;
+  outline: none;
+  border: none;
+}
+
+.hidden-card {
+  display: none;
+}
+
+.card-position {
+  position: absolute;
+  left: 214.5px;
+  top: 60px;
+  z-index: 99;
+  min-height: 200px;
+  min-width: 307px;
+  outline: none;
+  border: none;
+}
+
 .render-above {
   margin: 0 auto;
   padding: 0 auto;
@@ -409,12 +435,12 @@ input[type=checkbox] {
   min-height: 80px;
   max-height: 80px;
   min-width: 20px;
+  justify-content: flex-end;
 }
 
 .cost-bar {
   border: 1px solid rgba(0,0,0,0.6);
-  min-height: 80px;
-  max-height: 80px;
+  height: 20px;
   min-width: 20px;
   background-color: green;
 }

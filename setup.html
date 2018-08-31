@@ -64,7 +64,7 @@
                       <form name="classSlider">
                           <label for="class-range">Class</label>
                           <div class="flex">
-                            <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="classOutput.value = classInput.value">
+                            <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="handleClassInput()" onchange="handleClassInput()">
                             <output name="classOutput" id="classOutput" class="output-value">0</output>
                           </div>
                       </form>
@@ -72,7 +72,7 @@
                       <form name="classSlider">
                           <label for="neutral-range">Neutral</label>
                           <div class="flex">
-                            <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="neutralOutput.value = neutralInput.value">
+                            <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="handleNeutralInput()" onchange="handleNeutralInput()">
                             <output name="neutralOutput" id="neutralOutput" class="output-value">0</output>
                           </div>
                       </form>
@@ -118,15 +118,15 @@
                       <form name="typeSlider">
                           <label for="minion-range">Minion</label>
                           <div class="flex">
-                            <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="minionOutput.value = minionInput.value">
+                            <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="handleMinionInput()" onchange="handleMinionInput()">
                             <output name="minionOutput" id="minionOutput" class="output-value">0</output>
                           </div>
                       </form>
 
                       <form name="typeSlider">
-                          <label for="spell-range">Spell</label>
+                          <label for="spell-range">Spell/Weapon</label>
                           <div class="flex">
-                            <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="spellOutput.value = spellInput.value">
+                            <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="handleSpellInput()" onchange="handleSpellInput()">
                             <output name="spellOutput" id="spellOutput" class="output-value">0</output>
                           </div>
                       </form>
