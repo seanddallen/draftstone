@@ -57,6 +57,8 @@
               <fieldset id="main-fieldset" disabled>
                 <div class="text-center flow-text flex">
 
+                  <!-- ~~ Class Filter ~~ -->
+
                   <div class="type-filter">
                     <h4>Filter By Class</h4>
                     <br>
@@ -78,6 +80,8 @@
                       </form>
                     </fieldset>
                   </div>
+
+                  <!-- ~~ Rarity Filter ~~ -->
 
                   <div class="rarity-filter">
                     <h4>Filter By Rarity</h4>
@@ -107,8 +111,19 @@
                             <output name="rareOutput" id="rareOutput" class="output-value">0</output>
                           </div>
                       </form>
+
+                      <form name="raritySlider">
+                          <label for="common-range">Common</label>
+                          <div class="flex">
+                            <input type="range" name="commonInput" id="commonInput" class="input-value" value="0" min="0" max="30" oninput="commonOutput.value = commonInput.value">
+                            <output name="commonOutput" id="commonOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
                     </fieldset>
                   </div>
+
+                  <!-- ~~ Type Filter ~~ -->
 
                   <div class="type-filter">
                     <h4>Filter By Type</h4>
@@ -160,7 +175,7 @@
             <br>
             <h4 class="set-filter">Filter by Set</h4>
             <select id="select" class="custom-select" multiple size="16">
-              <option selected>All</option>
+              <option value="All">All</option>
               <option value="Basic">Basic</option>
               <option value="Classic">Classic</option>
               <option value="Hall of Fame">Hall of Fame</option>
