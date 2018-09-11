@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
      let valid = true;
 
      const setArray = [];
-     let setOptions = document.getElementById('select').options;
+     let setOptions = document.getElementById('select-set').options;
      for (const set of setOptions) {
        if(set.selected) {
          setArray.push(set.value);

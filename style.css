@@ -292,9 +292,23 @@ a:link {
 
 /****************************** SETUP PAGE ******************************/
 
-#select {
+#select-set {
   margin: 5% auto;
-  outline-color: green;
+  /* outline-color: green; */
+}
+
+#select-cost {
+  margin: 5% auto;
+  /* outline-color: green; */
+  width: 60px;
+  text-align: center;
+}
+
+#select-hero {
+  margin: 5% auto;
+  /* outline-color: green; */
+  width: 60px;
+  text-align: center;
 }
 
 #main-fieldset {
