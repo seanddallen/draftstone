@@ -75,12 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (setArray[0] !== "All") {
     filterPoolBySet(setArray);
   }
+
   classPick();
 });
+
+
 function filterPoolBySet(setArray) {
   filteredPool =  filteredPool.filter(card => setArray.includes(card.cardSet));
 }
+
 function setupCustom() {
+
+    // Go through each card in the filteredPool and place it in the appropriate sub-pool
     for (let i = 0, numCards = filteredPool.length; i < numCards; i++) {
       const currentCard = filteredPool[0];
       const cardClass = currentCard.playerClass === "Neutral" ? 'neutral' : 'class';
@@ -88,18 +94,25 @@ function setupCustom() {
       const cardRarity = currentCard.rarity === "Free" ? 'Common' : currentCard.rarity;
       pools[cardClass][cardType][cardRarity].push(filteredPool.shift());
     }
+
+    // Fill an array with the appropriate number of "class" and "neutral"
     for (let i = 0; i < customRules.classCount; i++) {
       randomClass.push("class");
     }
     while (randomClass.length < 30) {
       randomClass.push("neutral");
     }
+
+    // Fill an array with the appropriate number of "spell" and "minion"
+
     for (let i = 0; i < customRules.spellCount; i++) {
       randomType.push("spell");
     }
     while (randomType.length < 30) {
       randomType.push("minion");
     }
+
+    // Fill an array with the appropriate number of each rarity
     for (let i = 0; i < customRules.legendaryCount; i++) {
       randomRarity.push("Legendary");
     }
@@ -150,6 +163,7 @@ function classPick() {
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', classPickHandler);
 }
+
 function classPickHandler(e) {
   // Ensure target is a card image
   if (e.target && e.target.id.includes("img")) {
@@ -169,11 +183,15 @@ function classPickHandler(e) {
   }
 }
 ///////////////////////// PICK DECK /////////////////////////
+
+// For a single pick, randomly decide the parameters of that pick based on the remaining possibilities (uses the "random" arrays).
 function randomPickSettings() {
   const settingsArray = [];
   settingsArray.push(randomClass.splice(Math.floor(Math.random() * randomClass.length), 1)[0]);
   settingsArray.push(randomType.splice(Math.floor(Math.random() * randomType.length), 1)[0]);
   settingsArray.push(randomRarity.splice(Math.floor(Math.random() * randomRarity.length), 1)[0]);
+
+  // Ensure that neutral and spell aren't parameters at the same time
   if (settingsArray[0] === "neutral" && settingsArray[1] === "spell") {
     let randomTypeIndex = randomType.indexOf("minion");
     if (randomTypeIndex === -1) {
@@ -185,6 +203,7 @@ function randomPickSettings() {
   }
   return settingsArray;
 }
+
 // User chooses a card
 function cardPick() {
   if (custom) {

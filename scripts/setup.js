@@ -24,17 +24,23 @@ document.addEventListener('DOMContentLoaded', () => {
      }
    }
 
+   // Save both arrays to local storage in order to be accessed by draft page
+   // eventually this will be placed in the server and the API call won't be necessary at all
    localStorage.setItem("masterPool", JSON.stringify(masterPool));
    localStorage.setItem("heroes", JSON.stringify(heroes));
 
+   // The "Start Draft" button is faded (low opacity) at first, but becomes fully "active" once the data from the API is processed
+   // this too will probably become unnecessary once we have our own server
    const draftBtn =  document.getElementById('draft-btn');
    draftBtn.classList.remove("inactive");
 
-
+   // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
+   // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
    draftBtn.addEventListener('click', e => {
-     //new
+     // Flag for representing validity of chosen settings. Assume true to start
      let valid = true;
 
+     // Retrieve and store sets chosen by user
      const setArray = [];
      let setOptions = document.getElementById('select').options;
      for (const set of setOptions) {
@@ -44,25 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
      }
      localStorage.setItem("chosenSets", JSON.stringify(setArray));
 
+     // When page loads, the custom slector is inactive, so initiate custom flag to be false
      let custom = false;
      //get value of custom checkbox
      if (document.getElementById('checkboxOneInput').checked === true) {
        custom = true;
      }
      localStorage.setItem("custom", custom);
-     let customRules = {};
 
+
+     // Read, build object and store custom rules
+     let customRules = {};
      if (custom) {
        let classCount = document.getElementById('classInput').value;
 
        let legendaryCount = document.getElementById('legendInput').value;
        let epicCount = document.getElementById('epicInput').value;
        let rareCount = document.getElementById('rareInput').value;
-
-       //new
-       if((Number(legendaryCount) + Number(epicCount) + Number(rareCount)) > 30) {
-         valid = false;
-       }
 
        let spellCount = document.getElementById('spellInput').value;
 
@@ -73,12 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
          'rareCount': rareCount,
          'spellCount': spellCount
        };
+
+       // Check if rarity choices exceed 30 and set validity to false if so
+       // This will go away once we add the logic to tie all the rarity sliders together
+       if((Number(legendaryCount) + Number(epicCount) + Number(rareCount)) > 30) {
+         valid = false;
+       }
      }
      localStorage.setItem("customRules", JSON.stringify(customRules));
 
 
 
-     //new
+     // If invalid, alert the user and stop the button from pointing to draft page
+     // This too will disappear once the rarity sliders are fixed, but a similar logic will be useful for checking if there are enough cards for a full draft
      if (!valid) {
        alert("Legendary, Epic, and Rare cards add up to more than 30. Nice try!");
      } else {
@@ -119,6 +130,9 @@ checkbox.addEventListener('change', () => {
 });
 
 
+
+
+// Make sliders resposive to each other within each filter category
 const classInput = document.getElementById('classInput');
 const classOutput = document.getElementById('classOutput');
 const neutralInput = document.getElementById('neutralInput');
