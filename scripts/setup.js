@@ -117,17 +117,17 @@ window.onmousedown = function (e) {
 };
 
 //Enable Sliders when checkbox selected
-checkbox = document.getElementById("checkboxOneInput");
-fieldSet = document.getElementById("main-fieldset");
-
-checkbox.addEventListener('change', () => {
-  console.log('change')
-  if (checkbox.checked === true){
-    fieldSet.disabled = false;
-  } else {
-    fieldSet.disabled = true;
-  }
-});
+// checkbox = document.getElementById("checkboxOneInput");
+// fieldSet = document.getElementById("main-fieldset");
+//
+// checkbox.addEventListener('change', () => {
+//   console.log('change')
+//   if (checkbox.checked === true){
+//     fieldSet.disabled = false;
+//   } else {
+//     fieldSet.disabled = true;
+//   }
+// });
 
 
 

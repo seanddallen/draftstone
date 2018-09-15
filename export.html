@@ -28,54 +28,41 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <main id="main" class="flex">
-      <div class="x-squish"></div>
+<main id="main" class="flex">
+    <div class="x-squish"></div>
 
-      <!-- ~~ CONTAINER ~~ -->
+    <!-- ~~ CONTAINER ~~ -->
 
-      <div id="container" class="flex">
+    <div id="full-container" class="flex">
 
-        <!-- ~~ LEFT CARD ~~ -->
+      <!-- ~~ LEFT CARD ~~ -->
 
-        <div id="left">
-          <div class="y-squish">
+      <div id="full-card">
+        <div class="y-squish">
+        </div>
+
+        <!-- ~~ DRAFT DISPLAY ~~ -->
+
+        <div id="full-display" class="card-deck flex-col">
+          <div class="text-center flow-text">
+            <br>
+            <h3>You're done, go have some fun!</h3>
+            <br>
           </div>
-
-          <!-- ~~ DRAFT DISPLAY ~~ -->
-
-          <div id="card-display" class="card-deck flex-col">
-            <div class="text-center flow-text">
-              <br>
-              <h3>You're done, go have some fun!</h3>
-              <br>
-            </div>
-            <div class="flex-col flex-justify center">
-              <br>
-              <a href="#" class="flex-col">
-                <button type="button" class="btn btn-primary btn-lg flow-btn flex-center">Send Draft</button>
-              </a>
-              <p class="center">click button to export your custom draft to Hearthstone!</p>
-            </div>
-          </div>
-
-          <div class="y-squish">
+          <div class="flex-col flex-justify center">
+            <br>
+            <a href="#" class="flex-col">
+              <button type="button" class="btn btn-primary btn-lg flow-btn flex-center">Send Draft</button>
+            </a>
+            <p class="center">click button to export your custom draft to Hearthstone!</p>
           </div>
         </div>
 
-        <!-- ~~ RIGHT CARD ~~ -->
-
-        <div id="right">
-          <div class="y-squish">
-          </div>
-
-          <!-- ~~ DECK DISPLAY ~~ -->
-
-          <div id="deck-display" class="card-deck flex">
-
-          </div>
+        <div class="y-squish">
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 

@@ -1,3 +1,6 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+
+
 /****************************** GENERAL ******************************/
 
 .responsive {
@@ -57,7 +60,7 @@
 }
 
 .x-squish {
-  width: 10vw;
+  width: 6vw;
 }
 
 .center {
@@ -101,7 +104,13 @@ main {
 }
 
 #container {
-  width: 80vw;
+  width: 86vw;
+  /* border: solid red 2px; */
+}
+
+#full-container {
+  width: 88vw;
+  height: 80vh;
   /* border: solid red 2px; */
 }
 
@@ -168,12 +177,37 @@ a:link {
   /* border: solid green 2px; */
 }
 
+#full-card {
+  width: 88vw;
+  /* flex-basis: 100%;   */
+  /* border: solid green 2px; */
+}
+
 #card-display {
   /* width: 80vw; */
   background-color: #ddd8cc;
   padding-top: 0px;
   margin: 0 40px;
   min-height: 60vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#full-display-top {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  min-height: 70vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#full-display-bottom {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  margin-top: 5vh;
+  min-height: 70vh;
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
@@ -297,37 +331,50 @@ a:link {
   /* outline-color: green; */
 }
 
-#select-cost {
-  margin: 5% auto;
-  /* outline-color: green; */
-  width: 60px;
-  text-align: center;
-}
-
 #select-hero {
-  margin: 5% auto;
+  margin: 10% auto;
   /* outline-color: green; */
   width: 60px;
   text-align: center;
 }
 
-#main-fieldset {
-  margin-top: -30px;
+#select-cost {
+  margin: 10% auto;
+  /* outline-color: green; */
+  width: 60px;
+  text-align: center;
+}
+
+#main-fieldset-top {
+  margin-top: -120px;
+}
+
+#main-fieldset-bottom {
+  margin-top: -120px;
 }
 
 .rarity-filter {
-  margin: 20px auto;
+  margin: 5% auto;
   padding-top: 2%;
 }
 
 .type-filter {
-  margin: 20px auto;
+  margin: 5% auto;
   padding-top: 2%;
 }
 
 .set-filter {
-  margin-top: 23px;
+  margin: 5% auto;
+  padding-top: 2%;
 }
+
+.hero-filter {
+  margin: 5% auto;
+  padding-top: 5%;}
+
+.cost-filter {
+  margin: 5% auto;
+  padding-top: 5%;}
 
 .output-value {
   padding-left: 7px;
@@ -350,11 +397,76 @@ a:link {
   opacity: 0.2;
 }
 
-input[type=checkbox] {
-    visibility: hidden;
+hr{
+  border: 0;
+  height: 1.3px;
+  width: 10vw;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 128, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
-.checkboxOne {
+option:active, option:hover {
+  color: green;
+}
+
+
+/* input[type=checkbox]{
+  cursor: pointer;
+} */
+
+
+
+
+
+label {
+  cursor: pointer;
+  color: rgba(0,0,0,0.7);
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + .label-text:before {
+  content: "\f096";
+  font-family: "FontAwesome";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  width: 1em;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+input[type=checkbox]:checked + .label-text:before {
+  content: "\f14a";
+  color: green;
+  animation: 150ms ease-in;
+  transition: 0.4s;
+  transform: scale(1.5);
+}
+
+input[type=checkbox]:disabled + .label-text:before {
+  content: "\f0c8";
+  color: #ccc;
+}
+
+input[type=checkbox] + label {
+
+}
+
+input[type=checkbox] + keyframes(tick) {
+  transform: scale(0);
+} */
+
+/* input[type=checkbox] + label:active:before {
+  transform: scale(0);
+} */ */
+
+/* .checkboxOne {
     width: 40px;
     height: 10px;
     background: #d3d3d3;
@@ -383,7 +495,7 @@ input[type=checkbox] {
     left: 27px;
     background: green;
 
-}
+} */
 
 
 /****************************** DRAFT PAGE ******************************/
@@ -428,6 +540,12 @@ input[type=checkbox] {
   padding: 0 auto;
   z-index: 2;
   text-align: center;
+}
+
+.deck-pick{
+  height: 100%;
+  width: 40%;
+  float: right !important;
 }
 
 .costs {

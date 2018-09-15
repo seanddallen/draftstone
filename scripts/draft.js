@@ -324,9 +324,17 @@ function renderDeck(array) {
 
     // console.log(array)
 
+    // cardName.innerHTML += `
+    //   <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
+    //     ${card.name}
+    //   </div>
+    // `;
+
     cardName.innerHTML += `
       <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-        ${card.name}
+        <div class="deck-pick" style="background: url('${card.img}'); background-repeat: no-repeat; background-position: -55px -45px;">
+          ${card.name}
+        </div>
       </div>
     `;
     hackyNumber++
