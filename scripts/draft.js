@@ -192,7 +192,6 @@ function classPick() {
 
   hide = document.getElementById('hide');
   hide.classList.remove('hidden');
-  console.log(pickOptions);
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', classPickHandler);
 }
@@ -205,6 +204,7 @@ function classPickHandler(e) {
     // Use id of target to determine which option was selected
     const position = +e.target.id.slice(-1);
     selectedClass = pickOptions[position].playerClass;
+    heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
     filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
     if (custom) {
@@ -397,8 +397,8 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
-  // localStorage.setItem('deck', JSON.stringify(deck));
-  // localStorage.setItem('heroCard', JSON.stringify(heroCard));
+  localStorage.setItem('deck', JSON.stringify(deck));
+  localStorage.setItem('heroCard', JSON.stringify(heroCard));
   setTimeout(function(){window.open("./export.html", "_self");}, 2000);
 
 }

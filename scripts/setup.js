@@ -166,8 +166,8 @@ const commonOutput = document.getElementById('commonOutput');
 legendInput.value = 0;
 epicInput.value = 0;
 rareInput.value = 0;
-commonInput.value = 0;
-
+commonInput.value = 30;
+commonOutput.value = 30;
 function handleLegendInput() {
   const remainingSlots = 30 - (Number(epicInput.value) + Number(rareInput.value));
   if (legendInput.value > remainingSlots) {

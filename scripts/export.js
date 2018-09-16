@@ -1,26 +1,21 @@
-//
-//
-// const deck = JSON.parse(localStorage.getItem('deck'));
-// const heroCard = JSON.parse(localStorage.getItem('heroCard'));
-//
-// const cards = [];
-// for (let i = 0; i < 30; i++) {
-//   if (i < 29 && deck[i].dbfId === deck[i + 1].dbfId) {
-//     cards.push([deck[i].dbfId, 2]);
-//     i++;
-//   }
-//   else {
-//     cards.push([deck[i].dbfId, 1]);
-//   }
-// }
-// const encodableDeck = {
-//   'cards': cards,
-//   heroes: [heroCard.dbfId],
-//   format: 1
-// };
-//
-// const deckstring = encode(encodableDeck);
-// console.log(deckstring);
+const deck = JSON.parse(localStorage.getItem('deck'));
+const heroCard = JSON.parse(localStorage.getItem('heroCard'));
+
+const url = "http://localhost:8000/encodeDeck";
+const data = {
+  "deck": deck,
+  "heroCard": heroCard
+};
+
+console.log(JSON.stringify(data));
+console.log(data.heroCard);
+fetch(url, {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(data)
+}).then(response => response.JSON).then(deckstring => console.log(deckstring));
+
+
 
 // copy code to clipboard
 // in hearthstone, create new deck while code is in clipboard
