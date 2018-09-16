@@ -87,6 +87,10 @@
   display: inline;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 /****************************** LAYOUT ******************************/
 
 body {
@@ -96,6 +100,7 @@ body {
 main {
   background-color: #f7f7f7;
   height: 75vh;
+  font-family: Playfair Display;
 }
 
 #main {
@@ -161,7 +166,8 @@ main {
 
 .draftstone-text {
   /* font-family: 'Permanent Marker', cursive; */
-  font-family: 'Trade Winds', cursive;
+  font-family: 'Piedra';
+  font-size: 2.5em;
   margin-top: 0px;
   padding-top: 18px;
   padding-left: 12.5vw;
@@ -266,11 +272,12 @@ a:link {
 }
 
 .flow-btn {
-  width: 250px;
+  width: 16vw;
   background-color: green;
   outline: green;
   margin: 0 auto;
   margin-top: 5vh;
+  align-content:center;
 }
 
 .flow-btn:hover {
@@ -298,7 +305,7 @@ a:link {
 }
 
 #save-btn {
-  width: 250px;
+  width: 16vw;
   background-color: #8e8770;
   border: 2px solid green;
   margin: 0 auto;
@@ -330,7 +337,7 @@ a:link {
 }
 
 #import-btn {
-  width: 250px;
+  width: 16vw;
   background-color: #8e8770;
   border: 2px solid green;
   margin: 0 auto;
@@ -546,6 +553,7 @@ input[type=checkbox] + .label-text:before {
   width: 1em;
   margin-right: 5px;
   display: inline-block;
+
 }
 
 input[type=checkbox]:checked + .label-text:before {
