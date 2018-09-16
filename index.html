@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DraftStone</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,7 +18,7 @@
   <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="row flex">
       <div class="col-xs-6">
-        <a class="draftstone-link" href="./index.html"><h2 class="draftstone-text draftstone-link">DraftStone</h2></a>
+        <a class="draftstone-link" href="./index.html"><h2 class="draftstone-text draftstone-link">Draftstone</h2></a>
       </div>
       <div class="col-xs-6 flex-end flex-col">
         <button type="button" class="btn btn-default navbar-btn nav-btn flex-end" data-toggle="modal" data-target="#exampleModalLong">Instructions</button>
@@ -33,51 +34,40 @@
 
       <!-- ~~ CONTAINER ~~ -->
 
-      <div id="container" class="flex">
+      <div id="full-container" class="flex">
 
         <!-- ~~ LEFT CARD ~~ -->
 
-        <div id="left">
+        <div id="full-card">
           <div class="y-squish">
           </div>
 
           <!-- ~~ DRAFT DISPLAY ~~ -->
 
-          <div id="card-display" class="card-deck flex-col">
+          <div id="full-display" class="card-deck flex-col">
             <div class="flow-text text-center">
-              <h3>Draft custom Hearthstone decks to play against friends!</h3>
+              <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Draft custom Hearthstone decks <br>to play against friends!</h3>
               <br>
-              <h4>Step 1: Setup Draft</h4>
+              <h4 class="bold">Step 1: Setup Draft</h4>
               <p>(Setup your own custom draft parameters)</p>
-              <h4>Step 2: Select Draft</h4>
+              <h4 class="bold">Step 2: Select Draft</h4>
               <p>(Select your custom 30 card deck)</p>
-              <h4>Step 3: Send Draft</h4>
+              <h4 class="bold">Step 3: Send Draft</h4>
               <p>(Send/export your custom draft directly to Hearthstone)</p>
             </div>
-            <div class="flex-col flex-justify center" style="margin-top:3%">
-              <a href="./setup.html"><button type="button" class="btn btn-primary btn-lg flow-btn">Setup Draft</button></a>
-              <p class="center">click button to setup your custom draft</p>
+            <div class="flex-col center" style="margin:0 auto;">
+              <a href="./setup.html">
+                <div class="center flex">
+                  <button type="button" class="btn btn-primary btn-lg flow-btn">Setup Draft</button>
+                </div>
+              </a>
+              <div class="flex" style="margin-bottom:30px;">
+                <p class="center">click button to setup your custom draft</p>
+              </div>
             </div>
           </div>
 
           <div class="y-squish">
-          </div>
-        </div>
-
-
-        <!-- ~~ RIGHT CARD ~~ -->
-
-        <div id="right">
-          <div class="y-squish">
-          </div>
-
-          <!-- ~~ DECK DISPLAY ~~ -->
-
-          <div id="deck-display" class="card-deck flex">
-            <div>
-            </div>
-            <div>
-            </div>
           </div>
         </div>
       </div>

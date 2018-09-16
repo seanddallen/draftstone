@@ -1,3 +1,6 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+
+
 /****************************** GENERAL ******************************/
 
 .responsive {
@@ -57,7 +60,7 @@
 }
 
 .x-squish {
-  width: 10vw;
+  width: 6vw;
 }
 
 .center {
@@ -84,6 +87,10 @@
   display: inline;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 /****************************** LAYOUT ******************************/
 
 body {
@@ -93,6 +100,7 @@ body {
 main {
   background-color: #f7f7f7;
   height: 75vh;
+  font-family: Playfair Display;
 }
 
 #main {
@@ -101,7 +109,13 @@ main {
 }
 
 #container {
-  width: 80vw;
+  width: 86vw;
+  /* border: solid red 2px; */
+}
+
+#full-container {
+  width: 88vw;
+  height: 80vh;
   /* border: solid red 2px; */
 }
 
@@ -151,6 +165,9 @@ main {
 }
 
 .draftstone-text {
+  /* font-family: 'Permanent Marker', cursive; */
+  font-family: 'Piedra';
+  font-size: 2.5em;
   margin-top: 0px;
   padding-top: 18px;
   padding-left: 12.5vw;
@@ -168,6 +185,12 @@ a:link {
   /* border: solid green 2px; */
 }
 
+#full-card {
+  width: 88vw;
+  /* flex-basis: 100%;   */
+  /* border: solid green 2px; */
+}
+
 #card-display {
   /* width: 80vw; */
   background-color: #ddd8cc;
@@ -177,12 +200,70 @@ a:link {
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
+#stat-display {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  margin-bottom: 40px;
+  min-height: 20vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#full-display {
+  /* width: 80vw; */
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  min-height: 70vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#full-display-top {
+  /* width: 80vw; */
+  font-family: Playfair Display;
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  min-height: 70vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#full-display-bottom {
+  /* width: 80vw; */
+  font-family: Playfair Display;
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 40px;
+  margin-top: 5vh;
+  min-height: 70vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+#full-display-buttons {
+  width: 40vw;
+  font-family: Playfair Display;
+  font-weight: bold;
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 0 auto;
+  margin-top: 5vh;
+  min-height: 50vh;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
 .card-display {
   background-color: #ddd8cc;
   margin: 0 auto;
   padding-left: 0px;
   min-height: 60vh;
 }
+
+/* #value-prop{
+  text-shadow: 0 0 36px green;
+  color: rgba(0,0,0,0.6);
+  /* text-shadow: 1px 1px 6px black, 0 0 60px rgba(0,128,0,1); */
+} */
 
 .transparent {
   position:absolute;
@@ -207,27 +288,100 @@ a:link {
 }
 
 .flow-btn {
-  width: 250px;
+  width: 16vw;
   background-color: green;
-  outline: none;
+  outline: green;
+  margin: 0 auto;
+  margin-top: 5vh;
+  align-content:center;
 }
 
 .flow-btn:hover {
   background-color: #8e8770;
   border: 2px dashed black;
   outline: none;
+  margin: 0 auto;
+  margin-top: 5vh;
 }
 
 .flow-btn:focus {
   background-color: #8e8770;
   border: 2px dashed black;
   outline-color: green;
+  margin: 0 auto;
+  margin-top: 5vh;
 }
 
 .flow-btn:active {
   background-color: green;
   border: 2px dashed black;
   outline-color: green;
+  margin: 0 auto;
+  margin-top: 5vh;
+}
+
+#save-btn {
+  width: 16vw;
+  background-color: #8e8770;
+  border: 2px solid green;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#save-btn:hover {
+  background-color: green;
+  border: 2px dashed black;
+  outline: none;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#save-btn:focus {
+  background-color: green;
+  border: 2px dashed black;
+  outline-color: green;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#save-btn:active {
+  background-color: green;
+  border: 2px dashed black;
+  outline-color: green;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#import-btn {
+  width: 16vw;
+  background-color: #8e8770;
+  border: 2px solid green;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#import-btn:hover {
+  background-color: green;
+  border: 2px dashed black;
+  outline: none;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#import-btn:focus {
+  background-color: green;
+  border: 2px dashed black;
+  outline-color: green;
+  margin: 0 auto;
+  margin-top: 3vh;
+}
+
+#import-btn:active {
+  background-color: green;
+  border: 2px dashed black;
+  outline-color: green;
+  margin: 0 auto;
+  margin-top: 3vh;
 }
 
 /****************************** RIGHT CARD ******************************/
@@ -292,41 +446,73 @@ a:link {
 
 /****************************** SETUP PAGE ******************************/
 
-#select-set {
+.custom-select {
   margin: 5% auto;
   /* outline-color: green; */
-}
-
-#select-cost {
-  margin: 5% auto;
-  /* outline-color: green; */
-  width: 60px;
-  text-align: center;
+  border: solid 2px green;
+  border-radius: 6px;
+  box-shadow: -1px 2px 8px 4px rgba(0,0,0,0.3);
 }
 
 #select-hero {
-  margin: 5% auto;
+  margin: 10% auto;
   /* outline-color: green; */
-  width: 60px;
+  width: 66px;
   text-align: center;
 }
 
-#main-fieldset {
-  margin-top: -30px;
+#select-cost {
+  margin: 10% auto;
+  /* outline-color: green; */
+  width: 66px;
+  text-align: center;
 }
 
-.rarity-filter {
-  margin: 20px auto;
-  padding-top: 2%;
+#main-fieldset-top {
+  margin-top: -120px;
 }
 
-.type-filter {
-  margin: 20px auto;
-  padding-top: 2%;
+#main-fieldset-bottom {
+  margin-top: -120px;
 }
 
 .set-filter {
-  margin-top: 23px;
+  margin: 5% auto;
+  padding-top: 2%;
+  font-weight: bold;
+}
+
+.hero-filter {
+  margin: 5% auto;
+  padding-top: 5%;
+  font-weight: bold;
+}
+
+.cost-filter {
+  margin: 5% auto;
+  padding-top: 5%;
+  font-weight: bold;
+}
+
+.class-filter {
+  margin: 5% auto;
+  padding-top: 2%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rarity-filter {
+  margin: 5% auto;
+  padding-top: 2%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.type-filter {
+  margin: 5% auto;
+  padding-top: 2%;
+  font-weight: bold;
+  text-align: center;
 }
 
 .output-value {
@@ -350,11 +536,81 @@ a:link {
   opacity: 0.2;
 }
 
-input[type=checkbox] {
-    visibility: hidden;
+hr{
+  border: 0;
+  height: 1.3px;
+  width: 10vw;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 128, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
-.checkboxOne {
+option:active, option:hover {
+  color: green;
+}
+
+label {
+  cursor: pointer;
+  color: rgba(0,0,0,0.7);
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + .label-text:before {
+  content: "\f096";
+  font-family: "FontAwesome";
+  speak: none;
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  width: 1em;
+  margin-right: 5px;
+  display: inline-block;
+
+}
+
+input[type=checkbox]:checked + .label-text:before {
+  content: "\f14a";
+  color: green;
+  animation: 150ms ease-in;
+  /* transition: 0.4s; */
+  transform: scale(1.3);
+  animation: scaler 0.2s ease;
+}
+
+@keyframes scaler {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(2.6);
+  }
+  100% {
+    transform: scale(1.3);
+  }
+}
+
+input[type=checkbox]:disabled + .label-text:before {
+  content: "\f0c8";
+  color: #ccc;
+}
+
+input[type=checkbox] + label {
+
+}
+
+input[type=checkbox] + keyframes(tick) {
+  transform: scale(0);
+} */
+
+/* input[type=checkbox] + label:active:before {
+  transform: scale(0);
+} */ */
+
+/* .checkboxOne {
     width: 40px;
     height: 10px;
     background: #d3d3d3;
@@ -383,7 +639,7 @@ input[type=checkbox] {
     left: 27px;
     background: green;
 
-}
+} */
 
 
 /****************************** DRAFT PAGE ******************************/
@@ -428,6 +684,12 @@ input[type=checkbox] {
   padding: 0 auto;
   z-index: 2;
   text-align: center;
+}
+
+.deck-pick{
+  height: 100%;
+  width: 40%;
+  float: right !important;
 }
 
 .costs {

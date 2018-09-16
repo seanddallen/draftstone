@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DraftStone</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,7 +19,7 @@
   <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="row flex">
       <div class="col-xs-6">
-        <a href="./index.html" class="draftstone-link"><h2 class="draftstone-text">DraftStone</h2></a>
+        <a href="./index.html" class="draftstone-link"><h2 class="draftstone-text">Draftstone</h2></a>
       </div>
       <div class="col-xs-6 flex-end flex-col">
         <button type="button" class="btn btn-default navbar-btn nav-btn flex-end" data-toggle="modal" data-target="#exampleModalLong">Instructions</button>
@@ -33,34 +35,183 @@
 
       <!-- ~~ CONTAINER ~~ -->
 
-      <div id="container" class="flex">
+      <div id="full-container" class="flex">
 
         <!-- ~~ LEFT CARD ~~ -->
 
-        <div id="left">
+        <div id="full-card">
           <div class="y-squish">
           </div>
 
           <!-- ~~ DRAFT DISPLAY ~~ -->
 
-          <div id="card-display" class="card-deck flex-col">
+          <div id="full-display-top" class="card-deck flex-col">
 
             <form action="" type="">
               <div class="pad-slider">
               </div>
-              <div class="flex flex-just-center">
-                <div class="checkboxOne flex-center">
-                  <input type="checkbox" value="1" id="checkboxOneInput" name="" />
-                  <label for="checkboxOneInput"></label>
-                </div>
+              <fieldset id="main-fieldset-top">
+                <div class="text-center flow-text flex">
+
+                  <!-- ~~ Multi-Selects ~~ -->
+
+                  <div class="flex-col type-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="custom" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="hero-filter">Filter by Hero</h4>
+                    <select id="select-hero" class="custom-select" size="11">
+                      <option value="warrior">Warrior</option>
+                      <option value="shaman">Shaman</option>
+                      <option value="rogue">Rogue</option>
+                      <option value="paladin">Paladin</option>
+                      <option value="hunter">Hunter</option>
+                      <option value="druid">Druid</option>
+                      <option value="warlock">Warlock</option>
+                      <option value="mage">Mage</option>
+                      <option value="priest">Priest</option>
+                    </select>
+
+                  </div>
+
+                  <div class="flex-col type-filter" style="text-align: left;">
+                    <div style="padding-left: 4vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="custom" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="set-filter">Filter by Set</h4>
+                    <select id="select-set" class="custom-select" multiple size="11">
+                      <option value="Basic">Basic</option>
+                      <option value="Classic">Classic</option>
+                      <option value="Hall of Fame">Hall of Fame</option>
+                      <option value="Naxxramas">Naxxramas</option>
+                      <option value="Goblins vs Gnomes">Goblins vs Gnomes</option>
+                      <option value="Blackrock Mountain">Blackrock Mountain</option>
+                      <option value="The Grand Tournament">The Grand Tournament</option>
+                      <option value="The League of Explorers">The League of Explorers</option>
+                      <option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
+                      <option value="One Night in Karazhan">One Night in Karazhan</option>
+                      <option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
+                      <option value="Journey to Un'Goro">Journey to Un'Goro</option>
+                      <option value="Knights of the Frozen Throne">Knights of the Frozen Throne</option>
+                      <option value="Kobolds & Catacombs">Kobolds & Catacombs</option>
+                      <option value="The Witchwood">The Witchwood</option>
+                      <option value="The Boomsday Project">The Boomsday Project</option>
+                    </select>
+
+                  </div>
+
+                  <div class="flex-col type-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="custom" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="cost-filter">Filter by Cost</h4>
+                    <select id="select-cost" class="custom-select" multiple size="11">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10+">10+</option>
+                    </select>
+                  </div>
+            </div>
+          </div>
+
+
+          <div id="full-display-bottom" class="card-deck flex-col">
+
+            <form action="" type="">
+              <div class="pad-slider">
               </div>
-              <fieldset id="main-fieldset" disabled>
+              <fieldset id="main-fieldset-bottom">
                 <div class="text-center flow-text flex">
 
                   <!-- ~~ Class Filter ~~ -->
 
-                  <div class="type-filter">
-                    <h4>Filter By Class</h4>
+                <div class="type-filter" style="text-align:left;">
+                    <br>
+                    <div style="padding-left: 2.6vw">
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="consistent" value="consistent">
+                          <span class="label-text">Consistent</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="custom" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="class-filter">Filter By Class</h4>
                     <br>
                     <fieldset>
                       <form name="classSlider">
@@ -83,8 +234,32 @@
 
                   <!-- ~~ Rarity Filter ~~ -->
 
-                  <div class="rarity-filter">
-                    <h4>Filter By Rarity</h4>
+                  <div class="rarity-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="consistent" value="consistent">
+                          <span class="label-text">Consistent</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="custom" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <h4 class="rarity-filter">Filter By Rarity</h4>
                     <br>
 
                     <fieldset>
@@ -125,8 +300,32 @@
 
                   <!-- ~~ Type Filter ~~ -->
 
-                  <div class="type-filter">
-                    <h4>Filter By Type</h4>
+                  <div class="type-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="consistent" value="consistent">
+                          <span class="label-text">Consistent</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="checkbox" id="" name="custom" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <h4 class="type-filter">Filter By Type</h4>
                     <br>
 
                     <fieldset>
@@ -151,79 +350,35 @@
                 </form>
               </div>
             </fieldset>
+          </div>
+
+
+          <div id="full-display-buttons" class="card-deck flex-col">
 
             <div class="flex-col flex-justify start-btn">
               <button id="draft-btn" type="button" class="btn btn-primary btn-lg flow-btn inactive">Start Draft</button>
-                <p class="center">click button to start your custom draft</p>
+              <div class="flex">
+                <p class="center">click to start your custom draft</p>
               </div>
             </div>
+            <div class="flex-col flex-justify start-btn">
+              <button id="save-btn" type="button" class="btn btn-primary btn-lg">Save Game Mode</button>
+              <div class="flex">
+                <p class="center">click to save your game mode to your account</p>
+              </div>            </div>
+            <div class="flex-col flex-justify start-btn">
+              <button id="import-btn" type="button" class="btn btn-primary btn-lg">Import Game Mode</button>
+              <div class="flex">
+                <p class="center">click to import your game mode to Draftstone</p>
+              </div>
+              <br>
+            </div>
+          </div>
+
+
 
           <div class="y-squish">
           </div>
-        </div>
-
-        <!-- ~~ RIGHT CARD ~~ -->
-
-        <div id="right">
-          <div class="y-squish">
-          </div>
-
-          <!-- ~~ DECK DISPLAY ~~ -->
-
-          <div id="deck-display" class="card-deck flex-col text-center set-filter">
-            <br>
-            <br>
-            <h4 class="set-filter">Filter by Set</h4>
-            <select id="select-set" class="custom-select" multiple size="10">
-              <option value="All">All</option>
-              <option value="Basic">Basic</option>
-              <option value="Classic">Classic</option>
-              <option value="Hall of Fame">Hall of Fame</option>
-              <option value="Naxxramas">Naxxramas</option>
-              <option value="Goblins vs Gnomes">Goblins vs Gnomes</option>
-              <option value="Blackrock Mountain">Blackrock Mountain</option>
-              <option value="The Grand Tournament">The Grand Tournament</option>
-              <option value="The League of Explorers">The League of Explorers</option>
-              <option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
-              <option value="One Night in Karazhan">One Night in Karazhan</option>
-              <option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
-              <option value="Journey to Un'Goro">Journey to Un'Goro</option>
-              <option value="Knights of the Frozen Throne">Knights of the Frozen Throne</option>
-              <option value="Kobolds & Catacombs">Kobolds & Catacombs</option>
-              <option value="The Witchwood">The Witchwood</option>
-              <option value="The Boomsday Project">The Boomsday Project</option>
-            </select>
-            <br>
-            <h4 class="set-hero">Filter by Hero</h4>
-            <select id="select-hero" class="custom-select" size="10">
-              <option value="Warrior">Warrior</option>
-              <option value="Shaman">Shaman</option>
-              <option value="Rogue">Rogue</option>
-              <option value="Paladin">Paladin</option>
-              <option value="Hunter">Hunter</option>
-              <option value="Druid">Druid</option>
-              <option value="Warlock">Warlock</option>
-              <option value="Mage">Mage</option>
-              <option value="Priest">Priest</option>
-            </select>
-            <br>
-            <h4 class="set-cost">Filter by Cost</h4>
-            <select id="select-cost" class="custom-select" multiple size="10">
-              <option value="All">All</option>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10+">10+</option>
-            </select>
-          </div>
-        </div>
       </div>
     </main>
 
