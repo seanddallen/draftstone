@@ -152,6 +152,58 @@ function handleNeutralInput() {
   classOutput.value = classInput.value;
 }
 
+
+const legendInput = document.getElementById('legendInput');
+const legendOutput = document.getElementById('legendOutput');
+const epicInput = document.getElementById('epicInput');
+const epicOutput = document.getElementById('epicOutput');
+const rareInput = document.getElementById('rareInput');
+const rareOutput = document.getElementById('rareOutput');
+const commonInput = document.getElementById('commonInput');
+const commonOutput = document.getElementById('commonOutput');
+legendInput.value = 0;
+epicInput.value = 0;
+rareInput.value = 0;
+commonInput.value = 0;
+
+function handleLegendInput() {
+  const remainingSlots = 30 - (Number(epicInput.value) + Number(rareInput.value));
+  if (legendInput.value > remainingSlots) {
+    legendInput.value = remainingSlots;
+  }
+  legendOutput.value = legendInput.value;
+
+  handleCommonInput();
+}
+
+function handleEpicInput() {
+  const remainingSlots = 30 - (Number(legendInput.value) + Number(rareInput.value));
+  if (epicInput.value > remainingSlots) {
+    epicInput.value = remainingSlots;
+  }
+  epicOutput.value = epicInput.value;
+
+  handleCommonInput();
+}
+
+function handleRareInput() {
+  const remainingSlots = 30 - (Number(legendInput.value) + Number(epicInput.value));
+  if (rareInput.value > remainingSlots) {
+    rareInput.value = remainingSlots;
+  }
+  rareOutput.value = rareInput.value;
+
+  handleCommonInput();
+}
+
+function handleCommonInput() {
+  const remainingSlots = 30 - (Number(legendInput.value) + Number(epicInput.value) + Number(rareInput.value));
+  commonInput.value = remainingSlots;
+  commonOutput.value = commonInput.value;
+}
+
+
+
 const minionInput = document.getElementById('minionInput');
 const minionOutput = document.getElementById('minionOutput');
 const spellInput = document.getElementById('spellInput');

@@ -91,7 +91,7 @@
                       <form name="raritySlider">
                           <label for="legend-range">Legendary</label>
                           <div class="flex">
-                            <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="legendOutput.value = legendInput.value">
+                            <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="handleLegendInput()" onchange="handleLegendInput()">
                             <output name="legendOutput" id="legendOutput" class="output-value">0</output>
                           </div>
                       </form>
@@ -99,7 +99,7 @@
                       <form name="raritySlider">
                           <label for="epic-range">Epic</label>
                           <div class="flex">
-                            <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="epicOutput.value = epicInput.value">
+                            <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="handleEpicInput()" onchange="handleEpicInput()">
                             <output name="epicOutput" id="epicOutput" class="output-value">0</output>
                           </div>
                       </form>
@@ -107,7 +107,7 @@
                       <form name="raritySlider">
                           <label for="rare-range">Rare</label>
                           <div class="flex">
-                            <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="rareOutput.value = rareInput.value">
+                            <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="handleRareInput()" onchange="handleRareInput()">
                             <output name="rareOutput" id="rareOutput" class="output-value">0</output>
                           </div>
                       </form>
@@ -115,7 +115,7 @@
                       <form name="raritySlider">
                           <label for="common-range">Common</label>
                           <div class="flex">
-                            <input type="range" name="commonInput" id="commonInput" class="input-value" value="0" min="0" max="30" oninput="commonOutput.value = commonInput.value">
+                            <input type="range" name="commonInput" id="commonInput" class="input-value" value="0" min="0" max="30" oninput="handleCommonInput()" onchange="handleCommonInput()">
                             <output name="commonOutput" id="commonOutput" class="output-value">0</output>
                           </div>
                       </form>
