@@ -50,6 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
      }
      localStorage.setItem("chosenSets", JSON.stringify(setArray));
 
+     const costArray = [];
+     let costOptions = document.getElementById('select-cost').options;
+     for (const cost of costOptions) {
+       if (cost.selected) {
+         costArray.push(cost.value);
+       }
+     }
+     localStorage.setItem("chosenCosts", JSON.stringify(costArray));
+
      // When page loads, the custom slector is inactive, so initiate custom flag to be false
      let custom = false;
      //get value of custom checkbox
@@ -70,31 +79,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
        let spellCount = document.getElementById('spellInput').value;
 
+       let specifiedClass = document.getElementById('select-hero').value;
+
+
+
        customRules = {
          'classCount': classCount,
          'legendaryCount': legendaryCount,
          'epicCount': epicCount,
          'rareCount': rareCount,
-         'spellCount': spellCount
+         'spellCount': spellCount,
+         'specifiedClass': specifiedClass
        };
 
-       // Check if rarity choices exceed 30 and set validity to false if so
-       // This will go away once we add the logic to tie all the rarity sliders together
-       if((Number(legendaryCount) + Number(epicCount) + Number(rareCount)) > 30) {
-         valid = false;
-       }
      }
      localStorage.setItem("customRules", JSON.stringify(customRules));
 
+     window.location.href = "draft.html";
 
-
-     // If invalid, alert the user and stop the button from pointing to draft page
-     // This too will disappear once the rarity sliders are fixed, but a similar logic will be useful for checking if there are enough cards for a full draft
-     if (!valid) {
-       alert("Legendary, Epic, and Rare cards add up to more than 30. Nice try!");
-     } else {
-       window.location.href = "draft.html";
-     }
 
    });
  });
@@ -151,6 +153,58 @@ function handleNeutralInput() {
   classInput.value = 30 - neutralInput.value;
   classOutput.value = classInput.value;
 }
+
+
+const legendInput = document.getElementById('legendInput');
+const legendOutput = document.getElementById('legendOutput');
+const epicInput = document.getElementById('epicInput');
+const epicOutput = document.getElementById('epicOutput');
+const rareInput = document.getElementById('rareInput');
+const rareOutput = document.getElementById('rareOutput');
+const commonInput = document.getElementById('commonInput');
+const commonOutput = document.getElementById('commonOutput');
+legendInput.value = 0;
+epicInput.value = 0;
+rareInput.value = 0;
+commonInput.value = 0;
+
+function handleLegendInput() {
+  const remainingSlots = 30 - (Number(epicInput.value) + Number(rareInput.value));
+  if (legendInput.value > remainingSlots) {
+    legendInput.value = remainingSlots;
+  }
+  legendOutput.value = legendInput.value;
+
+  handleCommonInput();
+}
+
+function handleEpicInput() {
+  const remainingSlots = 30 - (Number(legendInput.value) + Number(rareInput.value));
+  if (epicInput.value > remainingSlots) {
+    epicInput.value = remainingSlots;
+  }
+  epicOutput.value = epicInput.value;
+
+  handleCommonInput();
+}
+
+function handleRareInput() {
+  const remainingSlots = 30 - (Number(legendInput.value) + Number(epicInput.value));
+  if (rareInput.value > remainingSlots) {
+    rareInput.value = remainingSlots;
+  }
+  rareOutput.value = rareInput.value;
+
+  handleCommonInput();
+}
+
+function handleCommonInput() {
+  const remainingSlots = 30 - (Number(legendInput.value) + Number(epicInput.value) + Number(rareInput.value));
+  commonInput.value = remainingSlots;
+  commonOutput.value = commonInput.value;
+}
+
+
 
 const minionInput = document.getElementById('minionInput');
 const minionOutput = document.getElementById('minionOutput');

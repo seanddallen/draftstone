@@ -11,6 +11,7 @@ let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
 //const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
 const setArray = JSON.parse(localStorage.getItem("chosenSets"));
+const costArray = JSON.parse(localStorage.getItem("chosenCosts"));
 let pools = {
   'neutral': {
     'minion': {
@@ -66,14 +67,18 @@ const blankCard = {
             "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/LOE_077_premium.gif",
             "locale": "enUS",
             "mechanics": []
-        }
+        };
 
 
 ////////////////////////
 ///////////////////////// GET DATA /////////////////////////
 document.addEventListener('DOMContentLoaded', () => {
-  if (setArray[0] !== "All") {
+  if (setArray[0] && setArray[0] !== "All") {
     filterPoolBySet(setArray);
+  }
+
+  if (costArray[0] && costArray[0] !== "All") {
+    filterPoolByCost(costArray);
   }
 
   classPick();
@@ -82,6 +87,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function filterPoolBySet(setArray) {
   filteredPool =  filteredPool.filter(card => setArray.includes(card.cardSet));
+}
+
+function filterPoolByCost(costArray) {
+  filteredPool = filteredPool.filter(card => {
+    if (card.cost < 10) {
+      if (costArray.includes(card.cost.toString())) {
+        return true;
+      }
+    } else if (costArray[costArray.length - 1] == "10+") {
+      return true;
+    }
+    return false;
+  });
 }
 
 function setupCustom() {
@@ -147,19 +165,34 @@ function renderPick(array) {
 // User chooses class
 function classPick() {
   pickOptions = [];
-  const selectedIndices = []; // To log indices and avoid duplicates
-  let currentSelection = 0;
- // Build array of options for pick
-  for (let i = 0; i < 3; i++) {
-    do {
-      currentSelection = Math.floor(Math.random() * 9);
-    } while (selectedIndices.includes(currentSelection)); // Verify index has not already been selected
-    selectedIndices.push(currentSelection);
-    // Add randomly selected hero to pick
-    pickOptions.push(heroes[currentSelection]);
+
+  if (custom && customRules.specifiedClass) {
+    for (const hero of heroes) {
+      if (hero.playerClass === customRules.specifiedClass) {
+        for (let i = 0; i < 3; i++) {
+          pickOptions.push(hero);
+        }
+        break;
+      }
+    }
+  } else {
+    const selectedIndices = []; // To log indices and avoid duplicates
+    let currentSelection = 0;
+   // Build array of options for pick
+    for (let i = 0; i < 3; i++) {
+      do {
+        currentSelection = Math.floor(Math.random() * 9);
+      } while (selectedIndices.includes(currentSelection)); // Verify index has not already been selected
+      selectedIndices.push(currentSelection);
+      // Add randomly selected hero to pick
+      pickOptions.push(heroes[currentSelection]);
+    }
   }
+
+
   hide = document.getElementById('hide');
   hide.classList.remove('hidden');
+  console.log(pickOptions);
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', classPickHandler);
 }
@@ -337,7 +370,7 @@ function renderDeck(array) {
         </div>
       </div>
     `;
-    hackyNumber++
+    hackyNumber++;
 
     cardCost.innerHTML += `
       <div class="flex cost-style">
@@ -397,8 +430,8 @@ deckCon.addEventListener('mouseover', (e) => {
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
     hiddenCard.childNodes[1].classList.remove('hidden-card');
 
-  };
-})
+  }
+});
 
 deckCon.addEventListener('mouseout', (e) => {
   if (e.target && e.target.id.includes("cards")) {
@@ -411,8 +444,8 @@ deckCon.addEventListener('mouseout', (e) => {
     // console.log(hiddenCard.childNodes[1])
     // console.log(hiddenCard.childNodes[1].classList)
 
-  };
-})
+  }
+});
 
 //Update Progress Function
 function updateProgress(){
@@ -422,8 +455,8 @@ function updateProgress(){
     <div class="render-above text-muted flex-end">
       <h4>${deck.length}/30</h4>
     </div>
-  `
-};
+  `;
+}
 
 //Render Class Name Function
 function renderClassName(){
@@ -433,8 +466,8 @@ function renderClassName(){
     <div class="render-above text-muted flex-end">
       <h4>Class: ${selectedClass}</h4>
     </div>
-  `
-};
+  `;
+}
 
 
 
