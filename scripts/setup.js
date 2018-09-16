@@ -118,21 +118,159 @@ window.onmousedown = function (e) {
     }
 };
 
-//Enable Sliders when checkbox selected
-// checkbox = document.getElementById("checkboxOneInput");
-// fieldSet = document.getElementById("main-fieldset");
-//
-// checkbox.addEventListener('change', () => {
-//   console.log('change')
-//   if (checkbox.checked === true){
-//     fieldSet.disabled = false;
-//   } else {
-//     fieldSet.disabled = true;
-//   }
-// });
+// Enable/Disable Hero Checkbox/Multiselect
+const selectHero = document.getElementById("select-hero");
+const heroAllInput = document.getElementById("hero-all-input");
+const heroCustomInput = document.getElementById("hero-custom-input");
+
+
+heroCustomInput.addEventListener('change', () => {
+  console.log('changecustom')
+  if (heroCustomInput.checked === true){
+    selectHero.childNodes.forEach((node)=>{
+      node.disabled = false;
+    })
+  } else {
+    selectHero.childNodes.disabled = true;
+  }
+});
+
+heroAllInput.addEventListener('change', () => {
+  console.log('changechaos')
+  if (heroAllInput.checked === true){
+    selectHero.childNodes.forEach((node)=>{
+      node.disabled = true;
+      node.selected = false;
+      console.log(node)
+    })
+  }
+});
 
 
 
+
+
+// Enable/Disable Type Checkbox/Slider
+const typeFieldSet = document.getElementById("type-fieldset");
+const typeCustomInput = document.getElementById("type-custom-input");
+const typeChaosInput = document.getElementById("type-chaos-input");
+const typeConsistentInput = document.getElementById("type-consistent-input");
+
+
+typeCustomInput.addEventListener('change', () => {
+  console.log('changecustom')
+  if (typeCustomInput.checked === true){
+    typeFieldSet.disabled = false;
+  } else {
+    typeFieldSet.disabled = true;
+  }
+});
+
+typeChaosInput.addEventListener('change', () => {
+  console.log('changechaos')
+  if (typeChaosInput.checked === true){
+    typeFieldSet.disabled = true;
+    minionInput.value = 0;
+    spellInput.value = 0;
+    minionOutput.value = 0;
+    spellOutput.value = 0;
+  }
+});
+
+typeConsistentInput.addEventListener('change', () => {
+  console.log('changeconsistent')
+  if (typeConsistentInput.checked === true){
+    typeFieldSet.disabled = true;
+    minionInput.value = 0;
+    spellInput.value = 0;
+    minionOutput.value = 0;
+    spellOutput.value = 0;
+  }
+});
+
+// Enable/Disable Rarity Checkbox/Slider
+const classFieldSet = document.getElementById("class-fieldset");
+const classCustomInput = document.getElementById("class-custom-input");
+const classChaosInput = document.getElementById("class-chaos-input");
+const classConsistentInput = document.getElementById("class-consistent-input");
+
+
+classCustomInput.addEventListener('change', () => {
+  console.log('changecustom')
+  if (classCustomInput.checked === true){
+    classFieldSet.disabled = false;
+  } else {
+    classFieldSet.disabled = true;
+  }
+});
+
+classChaosInput.addEventListener('change', () => {
+  console.log('changechaos')
+  if (classChaosInput.checked === true){
+    classFieldSet.disabled = true;
+    classInput.value = 0;
+    neutralInput.value = 0;
+    classOutput.value = 0;
+    neutralOutput.value = 0;
+  }
+});
+
+classConsistentInput.addEventListener('change', () => {
+  console.log('changeconsistent')
+  if (classConsistentInput.checked === true){
+    classFieldSet.disabled = true;
+    classInput.value = 0;
+    neutralInput.value = 0;
+    classOutput.value = 0;
+    neutralOutput.value = 0;
+  }
+});
+
+
+// Enable/Disable Rarity Checkbox/Slider
+const rarityFieldSet = document.getElementById("rarity-fieldset");
+const rarityCustomInput = document.getElementById("rarity-custom-input");
+const rarityChaosInput = document.getElementById("rarity-chaos-input");
+const rarityConsistentInput = document.getElementById("rarity-consistent-input");
+
+rarityCustomInput.addEventListener('change', () => {
+  console.log('changecustom')
+  if (rarityCustomInput.checked === true){
+    rarityFieldSet.disabled = false;
+  } else {
+    rarityFieldSet.disabled = true;
+  }
+});
+
+rarityChaosInput.addEventListener('change', () => {
+  console.log('changechaos')
+  if (rarityChaosInput.checked === true){
+    rarityFieldSet.disabled = true;
+    legendInput.value = 0;
+    epicInput.value = 0;
+    rareInput.value = 0;
+    commonInput.value = 0;
+    legendOutput.value = 0;
+    epicOutput.value = 0;
+    rareOutput.value = 0;
+    commonOutput.value = 0;
+  }
+});
+
+rarityConsistentInput.addEventListener('change', () => {
+  console.log('changeconsistent')
+  if (rarityConsistentInput.checked === true){
+    rarityFieldSet.disabled = true;
+    legendInput.value = 0;
+    epicInput.value = 0;
+    rareInput.value = 0;
+    commonInput.value = 0;
+    legendOutput.value = 0;
+    epicOutput.value = 0;
+    rareOutput.value = 0;
+    commonOutput.value = 0;
+  }
+});
 
 // Make sliders resposive to each other within each filter category
 const classInput = document.getElementById('classInput');

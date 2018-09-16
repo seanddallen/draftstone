@@ -60,14 +60,13 @@
                       <br>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="chaos" value="chaos">
-                          <span class="label-text">Chaos</span>
+                          <input type="radio" id="hero-all-input" name="hero" value="all" checked>
+                          <span class="label-text">All</span>
                         </label>
                       </div>
-
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="custom" value="custom">
+                          <input type="radio" id="hero-custom-input" name="hero" value="custom">
                           <span class="label-text">Custom</span>
                         </label>
                       </div>
@@ -75,35 +74,34 @@
                     <br>
                     <hr>
                     <br>
-
                     <h4 class="hero-filter">Filter by Hero</h4>
-                    <select id="select-hero" class="custom-select" size="11">
-                      <option value="warrior">Warrior</option>
-                      <option value="shaman">Shaman</option>
-                      <option value="rogue">Rogue</option>
-                      <option value="paladin">Paladin</option>
-                      <option value="hunter">Hunter</option>
-                      <option value="druid">Druid</option>
-                      <option value="warlock">Warlock</option>
-                      <option value="mage">Mage</option>
-                      <option value="priest">Priest</option>
+                    <select id="select-hero" class="custom-select" multiple size="11">
+                      <option value="warrior" disabled>Warrior</option>
+                      <option value="shaman" disabled>Shaman</option>
+                      <option value="rogue" disabled>Rogue</option>
+                      <option value="paladin" disabled>Paladin</option>
+                      <option value="hunter" disabled>Hunter</option>
+                      <option value="druid" disabled>Druid</option>
+                      <option value="warlock" disabled>Warlock</option>
+                      <option value="mage" disabled>Mage</option>
+                      <option value="priest" disabled>Priest</option>
                     </select>
 
                   </div>
 
                   <div class="flex-col type-filter" style="text-align: left;">
-                    <div style="padding-left: 4vw">
+                    <div style="padding-left: 3vw">
                       <br>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="chaos" value="chaos">
-                          <span class="label-text">Chaos</span>
+                          <input type="radio" id="" name="set" value="all" checked>
+                          <span class="label-text">All</span>
                         </label>
                       </div>
 
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="custom" value="custom">
+                          <input type="radio" id="" name="set" value="custom">
                           <span class="label-text">Custom</span>
                         </label>
                       </div>
@@ -114,22 +112,22 @@
 
                     <h4 class="set-filter">Filter by Set</h4>
                     <select id="select-set" class="custom-select" multiple size="11">
-                      <option value="Basic">Basic</option>
-                      <option value="Classic">Classic</option>
-                      <option value="Hall of Fame">Hall of Fame</option>
-                      <option value="Naxxramas">Naxxramas</option>
-                      <option value="Goblins vs Gnomes">Goblins vs Gnomes</option>
-                      <option value="Blackrock Mountain">Blackrock Mountain</option>
-                      <option value="The Grand Tournament">The Grand Tournament</option>
-                      <option value="The League of Explorers">The League of Explorers</option>
-                      <option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
-                      <option value="One Night in Karazhan">One Night in Karazhan</option>
-                      <option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
-                      <option value="Journey to Un'Goro">Journey to Un'Goro</option>
-                      <option value="Knights of the Frozen Throne">Knights of the Frozen Throne</option>
-                      <option value="Kobolds & Catacombs">Kobolds & Catacombs</option>
-                      <option value="The Witchwood">The Witchwood</option>
-                      <option value="The Boomsday Project">The Boomsday Project</option>
+                      <option value="Basic" disabled>Basic</option>
+                      <option value="Classic" disabled>Classic</option>
+                      <option value="Hall of Fame" disabled>Hall of Fame</option>
+                      <option value="Naxxramas" disabled>Naxxramas</option>
+                      <option value="Goblins vs Gnomes" disabled>Goblins vs Gnomes</option>
+                      <option value="Blackrock Mountain" disabled>Blackrock Mountain</option>
+                      <option value="The Grand Tournament" disabled>The Grand Tournament</option>
+                      <option value="The League of Explorers" disabled>The League of Explorers</option>
+                      <option value="Whispers of the Old Gods" disabled>Whispers of the Old Gods</option>
+                      <option value="One Night in Karazhan" disabled>One Night in Karazhan</option>
+                      <option value="Mean Streets of Gadgetzan" disabled>Mean Streets of Gadgetzan</option>
+                      <option value="Journey to Un'Goro" disabled>Journey to Un'Goro</option>
+                      <option value="Knights of the Frozen Throne" disabled>Knights of the Frozen Throne</option>
+                      <option value="Kobolds & Catacombs" disabled>Kobolds & Catacombs</option>
+                      <option value="The Witchwood" disabled>The Witchwood</option>
+                      <option value="The Boomsday Project" disabled>The Boomsday Project</option>
                     </select>
 
                   </div>
@@ -139,14 +137,14 @@
                       <br>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="chaos" value="chaos">
-                          <span class="label-text">Chaos</span>
+                          <input type="radio" id="" name="cost" value="all" checked>
+                          <span class="label-text">All</span>
                         </label>
                       </div>
 
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="custom" value="custom">
+                          <input type="radio" id="" name="cost" value="custom">
                           <span class="label-text">Custom</span>
                         </label>
                       </div>
@@ -157,17 +155,17 @@
 
                     <h4 class="cost-filter">Filter by Cost</h4>
                     <select id="select-cost" class="custom-select" multiple size="11">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10+">10+</option>
+                      <option value="0" disabled>0</option>
+                      <option value="1" disabled>1</option>
+                      <option value="2" disabled>2</option>
+                      <option value="3" disabled>3</option>
+                      <option value="4" disabled>4</option>
+                      <option value="5" disabled>5</option>
+                      <option value="6" disabled>6</option>
+                      <option value="7" disabled>7</option>
+                      <option value="8" disabled>8</option>
+                      <option value="9" disabled>9</option>
+                      <option value="10+" disabled>10+</option>
                     </select>
                   </div>
             </div>
@@ -189,19 +187,19 @@
                     <div style="padding-left: 2.6vw">
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <input type="radio" id="class-chaos-input" name="class" value="chaos" checked>
                           <span class="label-text">Chaos</span>
                         </label>
                       </div>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="consistent" value="consistent">
+                          <input type="radio" id="class-consistent-input" name="class" value="consistent">
                           <span class="label-text">Consistent</span>
                         </label>
                       </div>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="custom" value="custom">
+                          <input type="radio" id="class-custom-input" name="class" value="custom">
                           <span class="label-text">Custom</span>
                         </label>
                       </div>
@@ -213,7 +211,7 @@
 
                     <h4 class="class-filter">Filter By Class</h4>
                     <br>
-                    <fieldset>
+                    <fieldset id="class-fieldset" disabled>
                       <form name="classSlider">
                           <label for="class-range">Class</label>
                           <div class="flex">
@@ -239,19 +237,19 @@
                       <br>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <input type="radio" id="rarity-chaos-input" name="rarity" value="chaos" checked>
                           <span class="label-text">Chaos</span>
                         </label>
                       </div>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="consistent" value="consistent">
+                          <input type="radio" id="rarity-consistent-input" name="rarity" value="consistent">
                           <span class="label-text">Consistent</span>
                         </label>
                       </div>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="custom" value="custom">
+                          <input type="radio" id="rarity-custom-input" name="rarity" value="custom">
                           <span class="label-text">Custom</span>
                         </label>
                       </div>
@@ -262,7 +260,7 @@
                     <h4 class="rarity-filter">Filter By Rarity</h4>
                     <br>
 
-                    <fieldset>
+                    <fieldset id="rarity-fieldset" disabled>
                       <form name="raritySlider">
                           <label for="legend-range">Legendary</label>
                           <div class="flex">
@@ -305,19 +303,19 @@
                       <br>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="chaos" value="chaos">
+                          <input type="radio" id="type-chaos-input" name="type" value="chaos" checked>
                           <span class="label-text">Chaos</span>
                         </label>
                       </div>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="consistent" value="consistent">
-                          <span class="label-text">Consistent</span>
+                          <input type="radio" id="type-consistent-input" name="type" value="consistent">
+                          <span class="label-text">Consistent</typespan>
                         </label>
                       </div>
                       <div>
                         <label>
-                          <input type="checkbox" id="" name="custom" value="custom">
+                          <input type="radio" id="type-custom-input" name="type" value="custom">
                           <span class="label-text">Custom</span>
                         </label>
                       </div>
@@ -328,7 +326,7 @@
                     <h4 class="type-filter">Filter By Type</h4>
                     <br>
 
-                    <fieldset>
+                    <fieldset id="type-fieldset" disabled>
                       <form name="typeSlider">
                           <label for="minion-range">Minion</label>
                           <div class="flex">
