@@ -1,8 +1,25 @@
+const customRules = {
+  'classSetting': "consistent",
+  'classCount': NaN,
+  'raritySetting': "custom",
+  'legendaryCount': 3,
+  'epicCount': 5,
+  'rareCount': 7,
+  'typeSetting': "chaos",
+  'spellCount': NaN,
+  'specifiedClass': "Mage"
+};
+
+const classSetting = customRules.classSetting;
+const raritySetting = customRules.raritySetting;
+const typeSetting = customRules.typeSetting;
+
+
 ///////////////////////// GLOBAL VARIABLES /////////////////////////
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
 const heroes = JSON.parse(localStorage.getItem("heroes"));
 const custom = JSON.parse(localStorage.getItem("custom"));
-const customRules = JSON.parse(localStorage.getItem("customRules"));
+//const customRules = JSON.parse(localStorage.getItem("customRules"));
 let heroCard = {};
 let selectedClass = ''; // User selected class
 let filteredPool = masterPool; // Pool of only Neutral and class cards matching selected class
@@ -18,13 +35,22 @@ let pools = {
       'Legendary': [],
       'Epic': [],
       'Rare': [],
-      'Common': []
+      'Common': [],
+      'chaos': []
     },
     'spell': {
       'Legendary': [],
       'Epic': [],
       'Rare': [],
-      'Common': []
+      'Common': [],
+      'chaos': []
+    },
+    'chaos': {
+      'Legendary': [],
+      'Epic': [],
+      'Rare': [],
+      'Common': [],
+      'chaos': []
     }
   },
   'class': {
@@ -32,13 +58,45 @@ let pools = {
       'Legendary': [],
       'Epic': [],
       'Rare': [],
-      'Common': []
+      'Common': [],
+      'chaos': []
     },
     'spell': {
       'Legendary': [],
       'Epic': [],
       'Rare': [],
-      'Common': []
+      'Common': [],
+      'chaos': []
+    },
+    'chaos': {
+      'Legendary': [],
+      'Epic': [],
+      'Rare': [],
+      'Common': [],
+      'chaos': []
+    }
+  },
+  'chaos': {
+    'minion': {
+      'Legendary': [],
+      'Epic': [],
+      'Rare': [],
+      'Common': [],
+      'chaos': []
+    },
+    'spell': {
+      'Legendary': [],
+      'Epic': [],
+      'Rare': [],
+      'Common': [],
+      'chaos': []
+    },
+    'chaos': {
+      'Legendary': [],
+      'Epic': [],
+      'Rare': [],
+      'Common': [],
+      'chaos': []
     }
   }
 };
@@ -107,42 +165,81 @@ function setupCustom() {
     // Go through each card in the filteredPool and place it in the appropriate sub-pool
     for (let i = 0, numCards = filteredPool.length; i < numCards; i++) {
       const currentCard = filteredPool[0];
-      const cardClass = currentCard.playerClass === "Neutral" ? 'neutral' : 'class';
-      const cardType = currentCard.type === "Minion" ? 'minion' : 'spell';
-      const cardRarity = currentCard.rarity === "Free" ? 'Common' : currentCard.rarity;
+      const cardClass = classSetting === "chaos" ? "chaos" : (currentCard.playerClass === "Neutral" ? 'neutral' : 'class');
+      const cardType = typeSetting === "chaos" ? "chaos": (currentCard.type === "Minion" ? 'minion' : 'spell');
+      const cardRarity = raritySetting === "chaos" ? "chaos" : (currentCard.rarity === "Free" ? 'Common' : currentCard.rarity);
       pools[cardClass][cardType][cardRarity].push(filteredPool.shift());
     }
 
     // Fill an array with the appropriate number of "class" and "neutral"
-    for (let i = 0; i < customRules.classCount; i++) {
-      randomClass.push("class");
+    if (classSetting === "custom") {
+      for (let i = 0; i < customRules.classCount; i++) {
+        randomClass.push("class");
+      }
+      while (randomClass.length < 30) {
+        randomClass.push("neutral");
+      }
+    } else if (classSetting === "consistent") {
+      for (let i = 0; i < 30; i++) {
+        const randomCard = masterPool[Math.floor(Math.random() * masterPool.length)];
+        console.log(randomCard);
+        randomClass.push(randomCard.playerClass === "Neutral" ? 'neutral' : 'class');
+        console.log(randomClass);
+      }
+    } else {
+      for (let i = 0; i < 30; i++) {
+        randomClass.push("chaos");
+      }
     }
-    while (randomClass.length < 30) {
-      randomClass.push("neutral");
-    }
+
 
     // Fill an array with the appropriate number of "spell" and "minion"
+    if (typeSetting === "custom") {
+      for (let i = 0; i < customRules.spellCount; i++) {
+        randomType.push("spell");
+      }
+      while (randomType.length < 30) {
+        randomType.push("minion");
+      }
+    } else if (typeSetting === "consistent") {
+      for (let i = 0; i < 30; i++) {
+        randomType.push(masterPool[Math.floor(Math.random() * masterPool.length)].rarity === "Minion" ? 'minion' : 'spell');
+      }
+    } else {
+      for (let i = 0; i < 30; i++) {
+        randomType.push("chaos");
+      }
+    }
 
-    for (let i = 0; i < customRules.spellCount; i++) {
-      randomType.push("spell");
-    }
-    while (randomType.length < 30) {
-      randomType.push("minion");
-    }
+
+
 
     // Fill an array with the appropriate number of each rarity
-    for (let i = 0; i < customRules.legendaryCount; i++) {
-      randomRarity.push("Legendary");
+    if (raritySetting === "custom") {
+      for (let i = 0; i < customRules.legendaryCount; i++) {
+        randomRarity.push("Legendary");
+      }
+      for (let i = 0; i < customRules.epicCount; i++) {
+        randomRarity.push("Epic");
+      }
+      for (let i = 0; i < customRules.rareCount; i++) {
+        randomRarity.push("Rare");
+      }
+      while (randomRarity.length < 30) {
+        randomRarity.push("Common");
+      }
+    } else if (raritySetting === "consistent") {
+      for (let i = 0; i < 30; i++) {
+        const randomCard = masterPool[Math.floor(Math.random() * masterPool.length)];
+        randomRarity.push(randomCard.rarity === "Free" ? 'Common' : randomCard.rarity);
+      }
+    } else {
+      for (let i = 0; i < 30; i++) {
+        randomClassType.push("chaos");
+      }
     }
-    for (let i = 0; i < customRules.epicCount; i++) {
-      randomRarity.push("Epic");
-    }
-    for (let i = 0; i < customRules.rareCount; i++) {
-      randomRarity.push("Rare");
-    }
-    while (randomRarity.length < 30) {
-      randomRarity.push("Common");
-    }
+
+
 }
 ///////////////////////// PICK CLASS /////////////////////////
 function renderPick(array) {
@@ -192,7 +289,6 @@ function classPick() {
 
   hide = document.getElementById('hide');
   hide.classList.remove('hidden');
-  console.log(pickOptions);
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', classPickHandler);
 }
@@ -205,11 +301,11 @@ function classPickHandler(e) {
     // Use id of target to determine which option was selected
     const position = +e.target.id.slice(-1);
     selectedClass = pickOptions[position].playerClass;
+    heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
     filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
-    if (custom) {
-      setupCustom();
-    }
+    setupCustom();
+
     renderClassName();
     // Move flow of program to card picking stage
     cardPick();
@@ -405,8 +501,8 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
-  // localStorage.setItem('deck', JSON.stringify(deck));
-  // localStorage.setItem('heroCard', JSON.stringify(heroCard));
+  localStorage.setItem('deck', JSON.stringify(deck));
+  localStorage.setItem('heroCard', JSON.stringify(heroCard));
   setTimeout(function(){window.open("./export.html", "_self");}, 2000);
 
 }
