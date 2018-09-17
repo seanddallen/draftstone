@@ -238,14 +238,13 @@ function setupCustom() {
         randomClassType.push("chaos");
       }
     }
-
-
 }
+
 ///////////////////////// PICK CLASS /////////////////////////
 function renderPick(array) {
-  img0 = document.getElementById('img0');
-  img1 = document.getElementById('img1');
-  img2 = document.getElementById('img2');
+  const img0 = document.getElementById('img0');
+  const img1 = document.getElementById('img1');
+  const img2 = document.getElementById('img2');
   //append 3 images
 
   img0.childNodes[1].setAttribute('src', array[0].img);
@@ -453,19 +452,19 @@ function renderDeck(array) {
 
     // console.log(array)
 
-    // cardName.innerHTML += `
-    //   <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-    //     ${card.name}
-    //   </div>
-    // `;
-
     cardName.innerHTML += `
       <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-        <div class="deck-pick" style="background: url('${card.img}'); background-repeat: no-repeat; background-position: -55px -45px;">
-          ${card.name}
-        </div>
+        ${card.name}
       </div>
     `;
+
+    // cardName.innerHTML += `
+    //   <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
+    //     <div class="deck-pick" style="background: url('${card.img}'); background-repeat: no-repeat; background-position: -55px -45px;">
+    //       ${card.name}
+    //     </div>
+    //   </div>
+    // `;
     hackyNumber++;
 
     cardCost.innerHTML += `
@@ -515,7 +514,12 @@ function deckComplete() {
 //Display Image on hover
 
 const deckCon = document.getElementById('deck-display');
+const pickDisplay = document.getElementById('card-display');
 const hiddenCard = document.getElementById('hidden-card');
+const pick1 = document.getElementById('img0');
+const pick2 = document.getElementById('img1');
+const pick3 = document.getElementById('img2');
+
 
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {
@@ -523,7 +527,13 @@ deckCon.addEventListener('mouseover', (e) => {
     const position = +e.target.id.slice(-2);
 
     // console.log(deck[position].img)
+    pick1.classList.toggle('faded');
+    pick2.classList.toggle('faded');
+    pick3.classList.toggle('faded');
+
+    // hiddenCard.childNodes[1].classList.remove('faded');
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
+    // hiddenCard.childNodes[1].setAttribute('style', 'opacity:1.0 !important;');
     hiddenCard.childNodes[1].classList.remove('hidden-card');
 
   }
@@ -535,6 +545,9 @@ deckCon.addEventListener('mouseout', (e) => {
     const position = +e.target.id.slice(-2);
 
     // hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
+    pick1.classList.toggle('faded');
+    pick2.classList.toggle('faded');
+    pick3.classList.toggle('faded');
     hiddenCard.childNodes[1].classList.add('hidden-card');
 
     // console.log(hiddenCard.childNodes[1])

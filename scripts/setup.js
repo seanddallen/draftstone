@@ -118,12 +118,13 @@ window.onmousedown = function (e) {
 };
 
 // Enable/Disable Hero Checkbox/Multiselect
-const selectHero = document.getElementById("select-hero");
+let selectHero = document.getElementById("select-hero");
 const heroAllInput = document.getElementById("hero-all-input");
 const heroCustomInput = document.getElementById("hero-custom-input");
 
 
 heroCustomInput.addEventListener('change', () => {
+  selectHero = document.getElementById("select-hero");
   if (heroCustomInput.checked === true){
     selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
@@ -136,13 +137,72 @@ heroCustomInput.addEventListener('change', () => {
 });
 
 heroAllInput.addEventListener('change', () => {
+  selectHero = document.getElementById("select-hero");
   if (heroAllInput.checked === true){
     selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
       node.disabled = true;
       node.selected = false;
     })
-    console.log(selectHero.classList)
+    console.log(selectHero.classList);
+  }
+});
+
+// Enable/Disable Set Checkbox/Multiselect
+let selectSet = document.getElementById("select-set");
+const setAllInput = document.getElementById("set-all-input");
+const setCustomInput = document.getElementById("set-custom-input");
+
+
+setCustomInput.addEventListener('change', () => {
+  selectSet = document.getElementById("select-set")
+  if (setCustomInput.checked === true){
+    selectSet.classList.toggle('faded');
+    selectSet.childNodes.forEach((node)=>{
+      node.disabled = false;
+    })
+  } else {
+    selectSet.childNodes.disabled = true;
+  }
+});
+
+setAllInput.addEventListener('change', () => {
+  selectSet = document.getElementById("select-set");
+  if (setAllInput.checked === true){
+    selectSet.classList.toggle('faded');
+    selectSet.childNodes.forEach((node)=>{
+      node.disabled = true;
+      node.selected = false;
+    })
+  }
+});
+
+// Enable/Disable Cost Checkbox/Multiselect
+let selectCost = document.getElementById("select-cost");
+const costAllInput = document.getElementById("cost-all-input");
+const costCustomInput = document.getElementById("cost-custom-input");
+
+
+costCustomInput.addEventListener('change', () => {
+  selectCost = document.getElementById("select-cost")
+  if (costCustomInput.checked === true){
+    selectCost.classList.toggle('faded');
+    selectCost.childNodes.forEach((node)=>{
+      node.disabled = false;
+    })
+  } else {
+    selectCost.childNodes.disabled = true;
+  }
+});
+
+costAllInput.addEventListener('change', () => {
+  selectCost = document.getElementById("select-cost");
+  if (costAllInput.checked === true){
+    selectCost.classList.toggle('faded');
+    selectCost.childNodes.forEach((node)=>{
+      node.disabled = true;
+      node.selected = false;
+    })
   }
 });
 
@@ -183,7 +243,7 @@ typeConsistentInput.addEventListener('change', () => {
   }
 });
 
-// Enable/Disable Rarity Checkbox/Slider
+// Enable/Disable Class Checkbox/Slider
 const classFieldSet = document.getElementById("class-fieldset");
 const classCustomInput = document.getElementById("class-custom-input");
 const classChaosInput = document.getElementById("class-chaos-input");
