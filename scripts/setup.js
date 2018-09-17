@@ -37,9 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
    draftBtn.addEventListener('click', e => {
-     // Flag for representing validity of chosen settings. Assume true to start
-     let valid = true;
-
      // Retrieve and store sets chosen by user
      const setArray = [];
      let setOptions = document.getElementById('select-set').options;
@@ -59,40 +56,42 @@ document.addEventListener('DOMContentLoaded', () => {
      }
      localStorage.setItem("chosenCosts", JSON.stringify(costArray));
 
-     // When page loads, the custom slector is inactive, so initiate custom flag to be false
-     let custom = false;
-     //get value of custom checkbox
-     if (document.getElementById('checkboxOneInput').checked === true) {
-       custom = true;
-     }
-     localStorage.setItem("custom", custom);
+     localStorage.setItem("custom", true);
 
 
      // Read, build object and store custom rules
      let customRules = {};
-     if (custom) {
-       let classCount = document.getElementById('classInput').value;
 
-       let legendaryCount = document.getElementById('legendInput').value;
-       let epicCount = document.getElementById('epicInput').value;
-       let rareCount = document.getElementById('rareInput').value;
+     //TODO change these once you can access radio buttons
+     const classSetting = "consistent";
+     const raritySetting = "custom";
+     const typeSetting = "chaos";
 
-       let spellCount = document.getElementById('spellInput').value;
+     let classCount = classSetting !== "custom" ? NaN : document.getElementById('classInput').value;
 
-       let specifiedClass = document.getElementById('select-hero').value;
+     let legendaryCount = raritySetting !== "custom" ? NaN : document.getElementById('legendInput').value;
+     let epicCount = raritySetting !== "custom" ? NaN : document.getElementById('epicInput').value;
+     let rareCount = raritySetting !== "custom" ? NaN : document.getElementById('rareInput').value;
+
+     let spellCount = typeSetting !== "custom" ? NaN : document.getElementById('spellInput').value;
+
+     let specifiedClass = document.getElementById('select-hero').value;
 
 
 
-       customRules = {
-         'classCount': classCount,
-         'legendaryCount': legendaryCount,
-         'epicCount': epicCount,
-         'rareCount': rareCount,
-         'spellCount': spellCount,
-         'specifiedClass': specifiedClass
-       };
+     customRules = {
+       'classSetting': classSetting,
+       'classCount': classCount,
+       'raritySetting': raritySetting,
+       'legendaryCount': legendaryCount,
+       'epicCount': epicCount,
+       'rareCount': rareCount,
+       'typeSetting': typeSetting,
+       'spellCount': spellCount,
+       'specifiedClass': specifiedClass
+     };
 
-     }
+
      localStorage.setItem("customRules", JSON.stringify(customRules));
 
      window.location.href = "draft.html";
