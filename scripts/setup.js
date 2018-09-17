@@ -37,6 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
    draftBtn.addEventListener('click', e => {
+
+     //if()
+
+     const heroArray = [];
+     let heroOptions = document.getElementById('select-hero').options;
+     for (const set of setOptions)
+
+
+
+
      // Retrieve and store sets chosen by user
      const setArray = [];
      let setOptions = document.getElementById('select-set').options;
@@ -94,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
      localStorage.setItem("customRules", JSON.stringify(customRules));
 
-     window.location.href = "draft.html";
+     //window.location.href = "draft.html";
 
 
    });

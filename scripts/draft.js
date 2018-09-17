@@ -1,28 +1,28 @@
-const customRules = {
-  'classSetting': "consistent",
-  'classCount': NaN,
-  'raritySetting': "custom",
-  'legendaryCount': 3,
-  'epicCount': 5,
-  'rareCount': 7,
-  'typeSetting': "chaos",
-  'spellCount': NaN,
-  'specifiedClass': "Mage"
-};
+// const customRules = {
+//   'classSetting': "consistent",
+//   'classCount': NaN,
+//   'raritySetting': "custom",
+//   'legendaryCount': 3,
+//   'epicCount': 5,
+//   'rareCount': 7,
+//   'typeSetting': "chaos",
+//   'spellCount': NaN,
+//   'specifiedClass': "Mage"
+// };
 
-const classSetting = customRules.classSetting;
-const raritySetting = customRules.raritySetting;
-const typeSetting = customRules.typeSetting;
+
 
 
 ///////////////////////// GLOBAL VARIABLES /////////////////////////
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
 const heroes = JSON.parse(localStorage.getItem("heroes"));
-const custom = JSON.parse(localStorage.getItem("custom"));
-//const customRules = JSON.parse(localStorage.getItem("customRules"));
+const customRules = JSON.parse(localStorage.getItem("customRules"));
+const classSetting = customRules.classSetting;
+const raritySetting = customRules.raritySetting;
+const typeSetting = customRules.typeSetting;
 let heroCard = {};
 let selectedClass = ''; // User selected class
-let filteredPool = masterPool; // Pool of only Neutral and class cards matching selected class
+let filteredPool = masterPool.slice(0); // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
@@ -135,9 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterPoolBySet(setArray);
   }
 
-  if (costArray[0] && costArray[0] !== "All") {
-    filterPoolByCost(costArray);
-  }
+
 
   classPick();
 });
@@ -182,9 +180,7 @@ function setupCustom() {
     } else if (classSetting === "consistent") {
       for (let i = 0; i < 30; i++) {
         const randomCard = masterPool[Math.floor(Math.random() * masterPool.length)];
-        console.log(randomCard);
-        randomClass.push(randomCard.playerClass === "Neutral" ? 'neutral' : 'class');
-        console.log(randomClass);
+        randomClass.push(Math.ceil(Math.random() * 10) > 4  ? 'neutral' : 'class');
       }
     } else {
       for (let i = 0; i < 30; i++) {
@@ -304,6 +300,9 @@ function classPickHandler(e) {
     heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
     filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
+    if (costArray[0] && costArray[0] !== "All") {
+      filterPoolByCost(costArray);
+    }
     setupCustom();
 
     renderClassName();
