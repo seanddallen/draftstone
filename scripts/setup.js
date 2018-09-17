@@ -125,28 +125,27 @@ const heroCustomInput = document.getElementById("hero-custom-input");
 
 
 heroCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (heroCustomInput.checked === true){
+    selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
       node.disabled = false;
     })
+    console.log(selectHero.classList)
   } else {
     selectHero.childNodes.disabled = true;
   }
 });
 
 heroAllInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (heroAllInput.checked === true){
+    selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
       node.disabled = true;
       node.selected = false;
-      console.log(node)
     })
+    console.log(selectHero.classList)
   }
 });
-
-
 
 
 
@@ -158,7 +157,6 @@ const typeConsistentInput = document.getElementById("type-consistent-input");
 
 
 typeCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (typeCustomInput.checked === true){
     typeFieldSet.disabled = false;
   } else {
@@ -167,7 +165,6 @@ typeCustomInput.addEventListener('change', () => {
 });
 
 typeChaosInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (typeChaosInput.checked === true){
     typeFieldSet.disabled = true;
     minionInput.value = 0;
@@ -178,7 +175,6 @@ typeChaosInput.addEventListener('change', () => {
 });
 
 typeConsistentInput.addEventListener('change', () => {
-  console.log('changeconsistent')
   if (typeConsistentInput.checked === true){
     typeFieldSet.disabled = true;
     minionInput.value = 0;
@@ -196,7 +192,6 @@ const classConsistentInput = document.getElementById("class-consistent-input");
 
 
 classCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (classCustomInput.checked === true){
     classFieldSet.disabled = false;
   } else {
@@ -205,7 +200,6 @@ classCustomInput.addEventListener('change', () => {
 });
 
 classChaosInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (classChaosInput.checked === true){
     classFieldSet.disabled = true;
     classInput.value = 0;
@@ -216,7 +210,6 @@ classChaosInput.addEventListener('change', () => {
 });
 
 classConsistentInput.addEventListener('change', () => {
-  console.log('changeconsistent')
   if (classConsistentInput.checked === true){
     classFieldSet.disabled = true;
     classInput.value = 0;
@@ -234,7 +227,6 @@ const rarityChaosInput = document.getElementById("rarity-chaos-input");
 const rarityConsistentInput = document.getElementById("rarity-consistent-input");
 
 rarityCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (rarityCustomInput.checked === true){
     rarityFieldSet.disabled = false;
   } else {
@@ -243,7 +235,6 @@ rarityCustomInput.addEventListener('change', () => {
 });
 
 rarityChaosInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (rarityChaosInput.checked === true){
     rarityFieldSet.disabled = true;
     legendInput.value = 0;
@@ -258,7 +249,6 @@ rarityChaosInput.addEventListener('change', () => {
 });
 
 rarityConsistentInput.addEventListener('change', () => {
-  console.log('changeconsistent')
   if (rarityConsistentInput.checked === true){
     rarityFieldSet.disabled = true;
     legendInput.value = 0;

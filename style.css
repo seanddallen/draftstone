@@ -533,13 +533,7 @@ a:link {
 }
 
 .faded {
-  opacity: 0.2;
-}
-
-.custom-enabled{
-  /* margin: -20px;
-  margin-left: -32px; */
-  /* padding: -20px;  */
+  opacity: 0.36;
 }
 
 hr{
