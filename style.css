@@ -536,6 +536,12 @@ a:link {
   opacity: 0.2;
 }
 
+.custom-enabled{
+  /* margin: -20px;
+  margin-left: -32px; */
+  /* padding: -20px;  */
+}
+
 hr{
   border: 0;
   height: 1.3px;
@@ -552,11 +558,11 @@ label {
   color: rgba(0,0,0,0.7);
 }
 
-input[type=checkbox] {
+input[type=radio] {
   display: none;
 }
 
-input[type=checkbox] + .label-text:before {
+input[type=radio] + .label-text:before {
   content: "\f096";
   font-family: "FontAwesome";
   speak: none;
@@ -572,7 +578,7 @@ input[type=checkbox] + .label-text:before {
 
 }
 
-input[type=checkbox]:checked + .label-text:before {
+input[type=radio]:checked + .label-text:before {
   content: "\f14a";
   color: green;
   animation: 150ms ease-in;
@@ -593,22 +599,10 @@ input[type=checkbox]:checked + .label-text:before {
   }
 }
 
-input[type=checkbox]:disabled + .label-text:before {
+input[type=radio]:disabled + .label-text:before {
   content: "\f0c8";
   color: #ccc;
 }
-
-input[type=checkbox] + label {
-
-}
-
-input[type=checkbox] + keyframes(tick) {
-  transform: scale(0);
-} */
-
-/* input[type=checkbox] + label:active:before {
-  transform: scale(0);
-} */ */
 
 /* .checkboxOne {
     width: 40px;
