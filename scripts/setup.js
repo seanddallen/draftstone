@@ -128,34 +128,93 @@ window.onmousedown = function (e) {
 };
 
 // Enable/Disable Hero Checkbox/Multiselect
-const selectHero = document.getElementById("select-hero");
+let selectHero = document.getElementById("select-hero");
 const heroAllInput = document.getElementById("hero-all-input");
 const heroCustomInput = document.getElementById("hero-custom-input");
 
 
 heroCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
+  selectHero = document.getElementById("select-hero");
   if (heroCustomInput.checked === true){
+    selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
       node.disabled = false;
     })
+    console.log(selectHero.classList)
   } else {
     selectHero.childNodes.disabled = true;
   }
 });
 
 heroAllInput.addEventListener('change', () => {
-  console.log('changechaos')
+  selectHero = document.getElementById("select-hero");
   if (heroAllInput.checked === true){
+    selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
       node.disabled = true;
       node.selected = false;
-      console.log(node)
+    })
+    console.log(selectHero.classList);
+  }
+});
+
+// Enable/Disable Set Checkbox/Multiselect
+let selectSet = document.getElementById("select-set");
+const setAllInput = document.getElementById("set-all-input");
+const setCustomInput = document.getElementById("set-custom-input");
+
+
+setCustomInput.addEventListener('change', () => {
+  selectSet = document.getElementById("select-set")
+  if (setCustomInput.checked === true){
+    selectSet.classList.toggle('faded');
+    selectSet.childNodes.forEach((node)=>{
+      node.disabled = false;
+    })
+  } else {
+    selectSet.childNodes.disabled = true;
+  }
+});
+
+setAllInput.addEventListener('change', () => {
+  selectSet = document.getElementById("select-set");
+  if (setAllInput.checked === true){
+    selectSet.classList.toggle('faded');
+    selectSet.childNodes.forEach((node)=>{
+      node.disabled = true;
+      node.selected = false;
     })
   }
 });
 
+// Enable/Disable Cost Checkbox/Multiselect
+let selectCost = document.getElementById("select-cost");
+const costAllInput = document.getElementById("cost-all-input");
+const costCustomInput = document.getElementById("cost-custom-input");
 
+
+costCustomInput.addEventListener('change', () => {
+  selectCost = document.getElementById("select-cost")
+  if (costCustomInput.checked === true){
+    selectCost.classList.toggle('faded');
+    selectCost.childNodes.forEach((node)=>{
+      node.disabled = false;
+    })
+  } else {
+    selectCost.childNodes.disabled = true;
+  }
+});
+
+costAllInput.addEventListener('change', () => {
+  selectCost = document.getElementById("select-cost");
+  if (costAllInput.checked === true){
+    selectCost.classList.toggle('faded');
+    selectCost.childNodes.forEach((node)=>{
+      node.disabled = true;
+      node.selected = false;
+    })
+  }
+});
 
 
 
@@ -167,7 +226,6 @@ const typeConsistentInput = document.getElementById("type-consistent-input");
 
 
 typeCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (typeCustomInput.checked === true){
     typeFieldSet.disabled = false;
   } else {
@@ -176,7 +234,6 @@ typeCustomInput.addEventListener('change', () => {
 });
 
 typeChaosInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (typeChaosInput.checked === true){
     typeFieldSet.disabled = true;
     minionInput.value = 0;
@@ -187,7 +244,6 @@ typeChaosInput.addEventListener('change', () => {
 });
 
 typeConsistentInput.addEventListener('change', () => {
-  console.log('changeconsistent')
   if (typeConsistentInput.checked === true){
     typeFieldSet.disabled = true;
     minionInput.value = 0;
@@ -197,7 +253,7 @@ typeConsistentInput.addEventListener('change', () => {
   }
 });
 
-// Enable/Disable Rarity Checkbox/Slider
+// Enable/Disable Class Checkbox/Slider
 const classFieldSet = document.getElementById("class-fieldset");
 const classCustomInput = document.getElementById("class-custom-input");
 const classChaosInput = document.getElementById("class-chaos-input");
@@ -205,7 +261,6 @@ const classConsistentInput = document.getElementById("class-consistent-input");
 
 
 classCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (classCustomInput.checked === true){
     classFieldSet.disabled = false;
   } else {
@@ -214,7 +269,6 @@ classCustomInput.addEventListener('change', () => {
 });
 
 classChaosInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (classChaosInput.checked === true){
     classFieldSet.disabled = true;
     classInput.value = 0;
@@ -225,7 +279,6 @@ classChaosInput.addEventListener('change', () => {
 });
 
 classConsistentInput.addEventListener('change', () => {
-  console.log('changeconsistent')
   if (classConsistentInput.checked === true){
     classFieldSet.disabled = true;
     classInput.value = 0;
@@ -243,7 +296,6 @@ const rarityChaosInput = document.getElementById("rarity-chaos-input");
 const rarityConsistentInput = document.getElementById("rarity-consistent-input");
 
 rarityCustomInput.addEventListener('change', () => {
-  console.log('changecustom')
   if (rarityCustomInput.checked === true){
     rarityFieldSet.disabled = false;
   } else {
@@ -252,7 +304,6 @@ rarityCustomInput.addEventListener('change', () => {
 });
 
 rarityChaosInput.addEventListener('change', () => {
-  console.log('changechaos')
   if (rarityChaosInput.checked === true){
     rarityFieldSet.disabled = true;
     legendInput.value = 0;
@@ -267,7 +318,6 @@ rarityChaosInput.addEventListener('change', () => {
 });
 
 rarityConsistentInput.addEventListener('change', () => {
-  console.log('changeconsistent')
   if (rarityConsistentInput.checked === true){
     rarityFieldSet.disabled = true;
     legendInput.value = 0;
