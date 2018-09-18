@@ -8,20 +8,34 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="spacing.css">
 </head>
 
 <body>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<header id="header">
-  <nav id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="row flex">
-      <div class="col-xs-6">
-        <a class="draftstone-link" href="./index.html"><h2 class="draftstone-text draftstone-link">Draftstone</h2></a>
+<header id="navbar" class="test">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="#">Draftstone</a>
       </div>
-      <div class="col-xs-6 flex-end flex-col">
-        <button type="button" class="btn btn-default navbar-btn nav-btn flex-end" data-toggle="modal" data-target="#exampleModalLong">Instructions</button>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav navbar-right">
+              <li><button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20">Game Modes</button></li>
+              <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#exampleModalLong">Instructions</button></li>
+              <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10">Sign In</button></li>
+          </ul>
       </div>
     </div>
   </nav>
@@ -29,7 +43,7 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <main id="main" class="flex">
+  <main id="main" class="flex mt-50">
       <div class="x-squish"></div>
 
       <!-- ~~ CONTAINER ~~ -->
@@ -114,6 +128,7 @@
     </div>
 
   <script type="text/javascript" src="./scripts/index.js"></script>
+  <script type="text/javascript" src="./scripts/header.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

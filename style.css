@@ -3,10 +3,14 @@
 
 /****************************** GENERAL ******************************/
 
+.null {
+  width: 100%;
+}
+
 .responsive {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
 }
 
 .flex {
@@ -121,7 +125,7 @@ main {
 
 /****************************** HEADER ******************************/
 
-#header {
+/* #header {
   background-color: #8e8770;
   height: 10vh;
   width: 100vw;
@@ -162,16 +166,143 @@ main {
   font-weight: bold;
   color: black;
   outline-color: green;
-}
+} */
 
 .draftstone-text {
-  /* font-family: 'Permanent Marker', cursive; */
   font-family: 'Piedra';
-  font-size: 2.5em;
+  color: rgba(0,0,0,0.6) !important;
+  font-size: 1.8em;
+  margin-top: 28px;
+  padding-top: 6px;
+}
+
+.draftstone-text-sticky {
+  font-family: 'Piedra';
+  font-size: 1.2em;
+  margin-top: 14px;
+  padding-top: 4px;
+  color: #ddd8cc !important;
+}
+
+header > nav {
+   position: fixed;
+   width: 100%;
+   text-align: center;
+   font-size: 36px;
+   line-height: 80px;
+   height: 80px;
+   background: #8e8770 !important;
+   outline: none !important;
+   border: none !important;
+   // set animation
+   -webkit-transition: all 0.6s ease;
+   transition: all 0.6s ease;
+}
+
+header.sticky > nav {
+   font-size: 24px;
+   line-height: 52px;
+   height: 52px;
+   background: #3d3934 !important;
+   text-align: left;
+   padding-left: 20px;
+}
+
+.modes-btn {
+  background-color: green;
+  font-weight: bold;
+  border: 2px solid rgba(0,0,0,0.8);
+  color: rgba(0,0,0,0.8);
+  outline: none;
   margin-top: 0px;
-  padding-top: 18px;
-  padding-left: 12.5vw;
+}
+
+.modes-btn:focus {
+  background-color: green;
+  font-weight: bold;
+  border: 2px solid rgba(0,0,0,0.6);
   color: rgba(0,0,0,0.6);
+  outline: none;
+}
+
+.modes-btn:active {
+  background-color: green;
+  font-weight: bold;
+  border: 2px solid rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6);
+  outline: none;
+}
+
+.modes-btn:hover {
+  background-color: #ddd8cc;
+  border: 2px dashed rgba(0,0,0,0.8);
+  color: rgba(0,0,0,0.8);
+  outline: none;
+}
+
+.instructions-btn {
+  background-color: green;
+  font-weight: bold;
+  border: 2px solid rgba(0,0,0,0.8);
+  color: rgba(0,0,0,0.8);
+  outline: none;
+  margin-top: 0px;
+}
+
+.instructions-btn:focus {
+  background-color: green;
+  font-weight: bold;
+  border: 2px solid rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6);
+  outline: none;
+}
+
+.instructions-btn:active {
+  background-color: green;
+  font-weight: bold;
+  border: 2px solid rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.6);
+  outline: none;
+}
+
+.instructions-btn:hover {
+  background-color: #ddd8cc;
+  border: 2px dashed rgba(0,0,0,0.8);
+  color: rgba(0,0,0,0.8);
+  outline: none;
+}
+
+.signin-btn{
+  background-color: transparent;
+  color: green;
+  font-weight: bold;
+  border: solid green 2px;
+  outline: none;
+  margin-top: 0px;
+}
+
+.signin-btn:active{
+  background-color: transparent;
+  color: green;
+  font-weight: bold;
+  border: solid green 2px;
+  outline: none;
+}
+
+.signin-btn:focus{
+  background-color: transparent;
+  color: green;
+  font-weight: bold;
+  border: solid green 2px;
+  outline: none;
+}
+
+.signin-btn:hover{
+  background-color: green;
+  color: rgba(0,0,0,0.8);
+  font-weight: bold;
+  border: 2px dashed rgba(0,0,0,0.6);
+  outline: none;
 }
 
 a:link {
@@ -192,11 +323,11 @@ a:link {
 }
 
 #card-display {
-  /* width: 80vw; */
+  /* width: 60vw; */
   background-color: #ddd8cc;
   padding-top: 0px;
   margin: 0 40px;
-  min-height: 60vh;
+  min-height: 66vh;
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
@@ -386,7 +517,7 @@ a:link {
 }
 
 #deck-display {
-  /* width: 80vw; */
+  width: 20vw;
   background-color: #ddd8cc;
   margin: 0 10px;
   margin-bottom: 40px;
@@ -527,8 +658,8 @@ a:link {
 }
 
 .faded {
-  background-color: white;
-  opacity: .6;
+  background-color: #ddd8cc;
+  opacity: .4;
 }
 
 hr{
@@ -638,8 +769,18 @@ input[type=radio]:disabled + .label-text:before {
 
 #hidden-card {
   position: absolute;
-  left: 214.5px;
   top: 60px;
+  z-index: 99;
+  min-height: 200px;
+  min-width: 307px;
+  outline: none;
+  border: none;
+}
+
+.card-position {
+  position: absolute;
+  left: -11%;
+  top: 28px;
   z-index: 99;
   min-height: 200px;
   min-width: 307px;
@@ -653,17 +794,6 @@ input[type=radio]:disabled + .label-text:before {
 
 .opaque{
   opacity: 1 !important;
-}
-
-.card-position {
-  position: absolute;
-  left: 208px;
-  top: 60px;
-  z-index: 99;
-  min-height: 200px;
-  min-width: 307px;
-  outline: none;
-  border: none;
 }
 
 .render-above {

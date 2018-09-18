@@ -465,6 +465,7 @@ function renderDeck(array) {
     //     </div>
     //   </div>
     // `;
+
     hackyNumber++;
 
     cardCost.innerHTML += `
@@ -519,6 +520,9 @@ const hiddenCard = document.getElementById('hidden-card');
 const pick1 = document.getElementById('img0');
 const pick2 = document.getElementById('img1');
 const pick3 = document.getElementById('img2');
+const xbtn01 = document.getElementById('xbtn1');
+const xbtn02 = document.getElementById('xbtn2');
+const xbtn03 = document.getElementById('xbtn3');
 
 
 deckCon.addEventListener('mouseover', (e) => {
@@ -530,6 +534,9 @@ deckCon.addEventListener('mouseover', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
+    xbtn01.classList.toggle('faded');
+    xbtn02.classList.toggle('faded');
+    xbtn03.classList.toggle('faded');
 
     // hiddenCard.childNodes[1].classList.remove('faded');
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
@@ -548,6 +555,9 @@ deckCon.addEventListener('mouseout', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
+    xbtn01.classList.toggle('faded');
+    xbtn02.classList.toggle('faded');
+    xbtn03.classList.toggle('faded');
     hiddenCard.childNodes[1].classList.add('hidden-card');
 
     // console.log(hiddenCard.childNodes[1])
