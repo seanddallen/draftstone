@@ -473,23 +473,36 @@ function renderDeck(array) {
   let hackyNumber = 0;
 
   array.forEach(function(card) {
-    cardName.innerHTML += `
-      <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-        ${card.name}
-      </div>
-    `;
+
+    // console.log(array)
 
     // cardName.innerHTML += `
     //   <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-    //     <div class="deck-pick" style="background: url('${card.img}'); background-repeat: no-repeat; background-position: -55px -45px;">
-    //       ${card.name}
-    //     </div>
+    //     ${card.name}
     //   </div>
     // `;
+
+    cardName.innerHTML += `
+      <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
+        <div id="cards" class="deck-pick" style="width:100%; height:24px;">
+          <div class="flex">
+            <div id="cardsname" style="width:60%;">
+              ${card.name}
+            </div>
+              <!--<img src="${card.img}" style="height:24px; width:40%; clip-path: inset(-45px -120px);">-->
+            <div id="cardsimg" style="background: url('${card.img}'); background-position: -62px -110px; height:30px; width:55%; background-repeat: no-repeat; zoom:80%; float:right; z-index:1;">
+              <div style="z-index:99; background: linear-gradient(to right, rgb(221,216,204) 6%, rgba(255, 255, 255, 0) 30%), linear-gradient(to left, rgb(221,216,204) -1%, rgba(255, 255, 255, 0) 30%), linear-gradient(to top, rgb(221,216,204) 0%, rgba(255, 255, 255, 0) 20%), linear-gradient(to bottom, rgb(221,216,204) 0%, rgba(255, 255, 255, 0) 20%); height: 30px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
     hackyNumber++;
 
     cardCost.innerHTML += `
-      <div class="flex cost-style">
+      <div class="flex cost-style" style="height:24px; font-weight: bold; text-shadow: -1px 0px rgb(0, 0, 0), 0px 1px rgb(0, 0, 0), 1px 0px rgb(0, 0, 0), 0px -1px rgb(0, 0, 0);">
         ${card.cost}
       </div>
     `;
@@ -540,6 +553,9 @@ const hiddenCard = document.getElementById('hidden-card');
 const pick1 = document.getElementById('img0');
 const pick2 = document.getElementById('img1');
 const pick3 = document.getElementById('img2');
+const xbtn01 = document.getElementById('xbtn1');
+const xbtn02 = document.getElementById('xbtn2');
+const xbtn03 = document.getElementById('xbtn3');
 
 
 deckCon.addEventListener('mouseover', (e) => {
@@ -551,6 +567,9 @@ deckCon.addEventListener('mouseover', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
+    xbtn01.classList.toggle('faded');
+    xbtn02.classList.toggle('faded');
+    xbtn03.classList.toggle('faded');
 
     // hiddenCard.childNodes[1].classList.remove('faded');
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
@@ -569,6 +588,9 @@ deckCon.addEventListener('mouseout', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
+    xbtn01.classList.toggle('faded');
+    xbtn02.classList.toggle('faded');
+    xbtn03.classList.toggle('faded');
     hiddenCard.childNodes[1].classList.add('hidden-card');
 
     // console.log(hiddenCard.childNodes[1])

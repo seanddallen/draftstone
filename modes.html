@@ -15,77 +15,89 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<header id="navbar" class="test">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="./index.html">Draftstone</a>
-      </div>
+  <header id="navbar" class="test">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="./index.html">Draftstone</a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navigation">
-          <ul class="nav navbar-nav navbar-right">
-              <li><button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20">Game Modes</button></li>
-              <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#exampleModalLong">Instructions</button></li>
-              <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10">Sign In</button></li>
-          </ul>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20">Game Modes</button></li>
+                <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#exampleModalLong">Instructions</button></li>
+                <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10">Sign In</button></li>
+            </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <main id="main" class="flex mt-50">
-      <div class="x-squish"></div>
 
-      <!-- ~~ CONTAINER ~~ -->
+    <!-- ~~ CONTAINER ~~ -->
 
-      <div id="full-container" class="flex">
+    <div id="modes-container" class="container flex mt-50">
+      <div class="col-md-4">
 
-        <!-- ~~ LEFT CARD ~~ -->
-
-        <div id="full-card">
-          <div class="y-squish">
-          </div>
-
-          <!-- ~~ DRAFT DISPLAY ~~ -->
-
-          <div id="full-display" class="card-deck flex-col">
-            <div class="flow-text text-center">
-              <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Draft custom Hearthstone decks <br>to play against friends!</h3>
-              <br>
-              <h4 class="bold">Step 1: Setup Draft</h4>
-              <p>(Setup your own custom draft parameters)</p>
-              <h4 class="bold">Step 2: Select Draft</h4>
-              <p>(Select your custom 30 card deck)</p>
-              <h4 class="bold">Step 3: Send Draft</h4>
-              <p>(Send/export your custom draft directly to Hearthstone)</p>
-            </div>
-            <div class="flex-col center" style="margin:0 auto;">
-              <a href="./setup.html">
-                <div class="center flex">
-                  <button type="button" class="btn btn-primary btn-lg flow-btn">Setup Draft</button>
-                </div>
-              </a>
-              <div class="flex" style="margin-bottom:30px;">
-                <p class="center">click button to setup your custom draft</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="y-squish">
+        <div class="panel panel-default mode-heading">
+          <div class="panel-body text-center">
+            Basic Game Modes
           </div>
         </div>
+
+
+        <div class="panel panel-default flex-col">
+          <div class="panel-heading">
+            <h3 class="panel-title bold">Wildest Dreams</h3>
+          </div>
+
+          <div class="panel-body">
+            <div>
+              Hero:
+            </div>
+            <div>
+              Set:
+            </div>
+            <div>
+              Cost:
+            </div>
+            <div>
+              Class:
+            </div>
+            <div>
+              Rarity:
+            </div>
+            <div>
+              Type:
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+
+        </div>
       </div>
-    </main>
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
+
+      </div>
+
+
+
+
+    </div>
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
