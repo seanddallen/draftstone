@@ -38,44 +38,46 @@ document.addEventListener('DOMContentLoaded', () => {
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
    draftBtn.addEventListener('click', e => {
 
-     //if()
-
+     // Retrieve and store heroes chosen by user
+     const heroFilterSetting = document.querySelector('input[name="hero"]:checked').value;
      const heroArray = [];
-     let heroOptions = document.getElementById('select-hero').options;
-     for (const set of setOptions)
-
-
-
+     if (heroFilterSetting === "custom") {
+       let heroOptions = document.getElementById('select-hero').options;
+       for (const hero of heroOptions) {
+         if (hero.selected) {
+           heroArray.push(hero.value);
+         }
+       }
+     }
 
      // Retrieve and store sets chosen by user
+     const setFilterSetting = document.querySelector('input[name="set"]:checked').value;
      const setArray = [];
-     let setOptions = document.getElementById('select-set').options;
-     for (const set of setOptions) {
-       if(set.selected) {
-         setArray.push(set.value);
+     if (setFilterSetting === "custom") {
+       let setOptions = document.getElementById('select-set').options;
+       for (const set of setOptions) {
+         if(set.selected) {
+           setArray.push(set.value);
+         }
        }
      }
-     localStorage.setItem("chosenSets", JSON.stringify(setArray));
 
+     // Retrieve and store sets chosen by user
+     const costFilterSetting = document.querySelector('input[name="cost"]:checked').value;
      const costArray = [];
-     let costOptions = document.getElementById('select-cost').options;
-     for (const cost of costOptions) {
-       if (cost.selected) {
-         costArray.push(cost.value);
+     if (costFilterSetting === "custom") {
+       let costOptions = document.getElementById('select-cost').options;
+       for (const cost of costOptions) {
+         if (cost.selected) {
+           costArray.push(cost.value);
+         }
        }
      }
-     localStorage.setItem("chosenCosts", JSON.stringify(costArray));
-
-     localStorage.setItem("custom", true);
 
 
-     // Read, build object and store custom rules
-     let customRules = {};
-
-     //TODO change these once you can access radio buttons
-     const classSetting = "consistent";
-     const raritySetting = "custom";
-     const typeSetting = "chaos";
+     const classSetting = document.querySelector('input[name="class"]:checked').value;
+     const raritySetting = document.querySelector('input[name="rarity"]:checked').value;
+     const typeSetting = document.querySelector('input[name="type"]:checked').value;
 
      let classCount = classSetting !== "custom" ? NaN : document.getElementById('classInput').value;
 
@@ -85,11 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
      let spellCount = typeSetting !== "custom" ? NaN : document.getElementById('spellInput').value;
 
-     let specifiedClass = document.getElementById('select-hero').value;
+     let specifiedClasses = document.getElementById('select-hero').value;
 
 
 
-     customRules = {
+     const customRules = {
+       'heroFilterSetting': heroFilterSetting,
+       'heroArray': heroArray,
+       'setFilterSetting': setFilterSetting,
+       'setArray': setArray,
+       'costFilterSetting': costFilterSetting,
+       'costArray': costArray,
        'classSetting': classSetting,
        'classCount': classCount,
        'raritySetting': raritySetting,
@@ -97,14 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
        'epicCount': epicCount,
        'rareCount': rareCount,
        'typeSetting': typeSetting,
-       'spellCount': spellCount,
-       'specifiedClass': specifiedClass
+       'spellCount': spellCount
      };
 
 
      localStorage.setItem("customRules", JSON.stringify(customRules));
 
-     //window.location.href = "draft.html";
+     window.location.href = "draft.html";
 
 
    });
@@ -139,8 +146,7 @@ heroCustomInput.addEventListener('change', () => {
     selectHero.classList.toggle('faded');
     selectHero.childNodes.forEach((node)=>{
       node.disabled = false;
-    })
-    console.log(selectHero.classList)
+    });
   } else {
     selectHero.childNodes.disabled = true;
   }
@@ -153,8 +159,7 @@ heroAllInput.addEventListener('change', () => {
     selectHero.childNodes.forEach((node)=>{
       node.disabled = true;
       node.selected = false;
-    })
-    console.log(selectHero.classList);
+    });
   }
 });
 
@@ -165,12 +170,12 @@ const setCustomInput = document.getElementById("set-custom-input");
 
 
 setCustomInput.addEventListener('change', () => {
-  selectSet = document.getElementById("select-set")
+  selectSet = document.getElementById("select-set");
   if (setCustomInput.checked === true){
     selectSet.classList.toggle('faded');
     selectSet.childNodes.forEach((node)=>{
       node.disabled = false;
-    })
+    });
   } else {
     selectSet.childNodes.disabled = true;
   }
@@ -183,7 +188,7 @@ setAllInput.addEventListener('change', () => {
     selectSet.childNodes.forEach((node)=>{
       node.disabled = true;
       node.selected = false;
-    })
+    });
   }
 });
 
@@ -194,12 +199,12 @@ const costCustomInput = document.getElementById("cost-custom-input");
 
 
 costCustomInput.addEventListener('change', () => {
-  selectCost = document.getElementById("select-cost")
+  selectCost = document.getElementById("select-cost");
   if (costCustomInput.checked === true){
     selectCost.classList.toggle('faded');
     selectCost.childNodes.forEach((node)=>{
       node.disabled = false;
-    })
+    });
   } else {
     selectCost.childNodes.disabled = true;
   }
@@ -212,7 +217,44 @@ costAllInput.addEventListener('change', () => {
     selectCost.childNodes.forEach((node)=>{
       node.disabled = true;
       node.selected = false;
-    })
+    });
+  }
+});
+
+
+
+// Enable/Disable Class Checkbox/Slider
+const classFieldSet = document.getElementById("class-fieldset");
+const classCustomInput = document.getElementById("class-custom-input");
+const classChaosInput = document.getElementById("class-chaos-input");
+const classConsistentInput = document.getElementById("class-consistent-input");
+
+
+classCustomInput.addEventListener('change', () => {
+  if (classCustomInput.checked === true){
+    classFieldSet.disabled = false;
+  } else {
+    classFieldSet.disabled = true;
+  }
+});
+
+classChaosInput.addEventListener('change', () => {
+  if (classChaosInput.checked === true){
+    classFieldSet.disabled = true;
+    classInput.value = 0;
+    neutralInput.value = 0;
+    classOutput.value = 0;
+    neutralOutput.value = 0;
+  }
+});
+
+classConsistentInput.addEventListener('change', () => {
+  if (classConsistentInput.checked === true){
+    classFieldSet.disabled = true;
+    classInput.value = 0;
+    neutralInput.value = 0;
+    classOutput.value = 0;
+    neutralOutput.value = 0;
   }
 });
 
@@ -253,40 +295,6 @@ typeConsistentInput.addEventListener('change', () => {
   }
 });
 
-// Enable/Disable Class Checkbox/Slider
-const classFieldSet = document.getElementById("class-fieldset");
-const classCustomInput = document.getElementById("class-custom-input");
-const classChaosInput = document.getElementById("class-chaos-input");
-const classConsistentInput = document.getElementById("class-consistent-input");
-
-
-classCustomInput.addEventListener('change', () => {
-  if (classCustomInput.checked === true){
-    classFieldSet.disabled = false;
-  } else {
-    classFieldSet.disabled = true;
-  }
-});
-
-classChaosInput.addEventListener('change', () => {
-  if (classChaosInput.checked === true){
-    classFieldSet.disabled = true;
-    classInput.value = 0;
-    neutralInput.value = 0;
-    classOutput.value = 0;
-    neutralOutput.value = 0;
-  }
-});
-
-classConsistentInput.addEventListener('change', () => {
-  if (classConsistentInput.checked === true){
-    classFieldSet.disabled = true;
-    classInput.value = 0;
-    neutralInput.value = 0;
-    classOutput.value = 0;
-    neutralOutput.value = 0;
-  }
-});
 
 
 // Enable/Disable Rarity Checkbox/Slider

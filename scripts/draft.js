@@ -9,26 +9,36 @@
 //   'spellCount': NaN,
 //   'specifiedClass': "Mage"
 // };
-
+// const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
 
 
 
 ///////////////////////// GLOBAL VARIABLES /////////////////////////
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
-const heroes = JSON.parse(localStorage.getItem("heroes"));
+let heroes = JSON.parse(localStorage.getItem("heroes"));
 const customRules = JSON.parse(localStorage.getItem("customRules"));
+
+const heroFilterSetting = customRules.heroFilterSetting;
+const heroArray = customRules.heroArray;
+const setFilterSetting = customRules.setFilterSetting;
+const setArray = customRules.setArray;
+const costFilterSetting = customRules.costFilterSetting;
+const costArray = customRules.costArray;
 const classSetting = customRules.classSetting;
+const classCount = customRules.classCount;
 const raritySetting = customRules.raritySetting;
+const legendaryCount = customRules.legendaryCount;
+const epicCount = customRules.epicCount;
+const rareCount = customRules.rareCount;
 const typeSetting = customRules.typeSetting;
+const spellCount = customRules.spellCount;
+
 let heroCard = {};
 let selectedClass = ''; // User selected class
 let filteredPool = masterPool.slice(0); // Pool of only Neutral and class cards matching selected class
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
-//const setArray = ["Basic", "Classic", "Hall of Fame", "Naxxramas", "Goblins vs Gnomes", "Blackrock Mountain", "The Grand Tournament", "The League of Explorers", "Whispers of the Old Gods", "One Night in Karazhan", "Mean Streets of Gadgetzan", "Journey to Un'Goro", "Knights of the Frozen Throne", "Kobolds & Catacombs", "The Witchwood", "The Boomsday Project"]; // Stores sets chosen by user
-const setArray = JSON.parse(localStorage.getItem("chosenSets"));
-const costArray = JSON.parse(localStorage.getItem("chosenCosts"));
 let pools = {
   'neutral': {
     'minion': {
@@ -104,27 +114,24 @@ const randomClass = [];
 const randomType = [];
 const randomRarity = [];
 const blankCard = {
-            "cardId": "",
-            "dbfId": "",
             "name": "Blank Card",
-            "cardSet": "The League of Explorers",
-            "type": "Minion",
-            "rarity": "Legendary",
             "cost": 0,
             "attack": 2,
             "health": 4,
-            "text": "Your <b>Battlecries</b> trigger twice.",
-            "flavor": "Contains 75% more fiber than his brother Magni!",
-            "artist": "Sam Nielson",
-            "collectible": true,
-            "elite": true,
             "playerClass": "Neutral",
-            "howToGet": "Unlocked in Uldaman, in the League of Explorers adventure.",
-            "howToGetGold": "Crafting unlocked in Uldaman, in the League of Explorers adventure.",
             "img": "./blank_card.png",
-            "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/LOE_077_premium.gif",
-            "locale": "enUS",
-            "mechanics": []
+            "mechanics": [],
+            "disable": true
+        };
+const blankHero = {
+            "name": "Blank Hero",
+            "cost": 0,
+            "attack": 2,
+            "health": 4,
+            "playerClass": "Neutral",
+            "img": "./blank_hero.png",
+            "mechanics": [],
+            "disable": true
         };
 
 
@@ -134,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (setArray[0] && setArray[0] !== "All") {
     filterPoolBySet(setArray);
   }
-
 
 
   classPick();
@@ -159,7 +165,6 @@ function filterPoolByCost(costArray) {
 }
 
 function setupCustom() {
-
     // Go through each card in the filteredPool and place it in the appropriate sub-pool
     for (let i = 0, numCards = filteredPool.length; i < numCards; i++) {
       const currentCard = filteredPool[0];
@@ -191,7 +196,7 @@ function setupCustom() {
 
     // Fill an array with the appropriate number of "spell" and "minion"
     if (typeSetting === "custom") {
-      for (let i = 0; i < customRules.spellCount; i++) {
+      for (let i = 0; i < spellCount; i++) {
         randomType.push("spell");
       }
       while (randomType.length < 30) {
@@ -212,13 +217,13 @@ function setupCustom() {
 
     // Fill an array with the appropriate number of each rarity
     if (raritySetting === "custom") {
-      for (let i = 0; i < customRules.legendaryCount; i++) {
+      for (let i = 0; i < legendaryCount; i++) {
         randomRarity.push("Legendary");
       }
-      for (let i = 0; i < customRules.epicCount; i++) {
+      for (let i = 0; i < epicCount; i++) {
         randomRarity.push("Epic");
       }
-      for (let i = 0; i < customRules.rareCount; i++) {
+      for (let i = 0; i < rareCount; i++) {
         randomRarity.push("Rare");
       }
       while (randomRarity.length < 30) {
@@ -231,7 +236,7 @@ function setupCustom() {
       }
     } else {
       for (let i = 0; i < 30; i++) {
-        randomClassType.push("chaos");
+        randomRarity.push("chaos");
       }
     }
 }
@@ -258,28 +263,41 @@ function renderPick(array) {
 function classPick() {
   pickOptions = [];
 
-  if (custom && customRules.specifiedClass) {
-    for (const hero of heroes) {
-      if (hero.playerClass === customRules.specifiedClass) {
-        for (let i = 0; i < 3; i++) {
-          pickOptions.push(hero);
-        }
-        break;
+  if (heroFilterSetting === "custom") {
+    // for (const hero of heroes) {
+    //   if (hero.playerClass === specifiedClass) {
+    //     for (let i = 0; i < 3; i++) {
+    //       pickOptions.push(hero);
+    //     }
+    //     break;
+    //   }
+    // }
+    heroes = heroes.filter(hero => {
+      for (const specifiedClass of heroArray) {
+          if (hero.playerClass === specifiedClass) {
+            return true;
+          }
       }
-    }
-  } else {
-    const selectedIndices = []; // To log indices and avoid duplicates
-    let currentSelection = 0;
-   // Build array of options for pick
-    for (let i = 0; i < 3; i++) {
-      do {
-        currentSelection = Math.floor(Math.random() * 9);
-      } while (selectedIndices.includes(currentSelection)); // Verify index has not already been selected
-      selectedIndices.push(currentSelection);
-      // Add randomly selected hero to pick
-      pickOptions.push(heroes[currentSelection]);
-    }
+      return false;
+    });
   }
+
+
+  const selectedIndices = []; // To log indices and avoid duplicates
+  let currentSelection = 0;
+ // Build array of options for pick
+  for (let i = 0; i < Math.min(3, heroes.length); i++) {
+    do {
+      currentSelection = Math.floor(Math.random() * heroes.length);
+    } while (selectedIndices.includes(currentSelection)); // Verify index has not already been selected
+    selectedIndices.push(currentSelection);
+    // Add randomly selected hero to pick
+    pickOptions.push(heroes[currentSelection]);
+  }
+  for (let i = 0; i < 3 - heroes.length; i++) {
+    pickOptions.push(blankHero);
+  }
+
 
 
   hide = document.getElementById('hide');
@@ -290,7 +308,7 @@ function classPick() {
 
 function classPickHandler(e) {
   // Ensure target is a card image
-  if (e.target && e.target.id.includes("img")) {
+  if (e.target && e.target.id.includes("img") && !pickOptions[+e.target.id.slice(-1)].disable) {
     // Remove event listener so it only triggers once
     cardDisplay.removeEventListener('click', classPickHandler);
     // Use id of target to determine which option was selected
@@ -299,9 +317,14 @@ function classPickHandler(e) {
     heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
     filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
+
+
+
     if (costArray[0] && costArray[0] !== "All") {
       filterPoolByCost(costArray);
     }
+
+
     setupCustom();
 
     renderClassName();
@@ -333,9 +356,11 @@ function randomPickSettings() {
 
 // User chooses a card
 function cardPick() {
-  if (custom) {
+  if (classSetting !== "chaos" || raritySetting !== "chaos" || typeSetting !== "chaos") {
     const pickDetails = randomPickSettings();
     filteredPool = pools[pickDetails[0]][pickDetails[1]][pickDetails[2]];
+  } else {
+    filteredPool = pools.chaos.chaos.chaos;
   }
   pickOptions = [];
   const selectedIndices = []; // To log indices and avoid duplicates
@@ -378,7 +403,7 @@ function maxxedAlready(proposedCard) {
 }
 function cardPickHandler(e) {
   // Ensure target is a card image
-  if (e.target && e.target.id.includes("img")) {
+  if (e.target && e.target.id.includes("img") && !pickOptions[+e.target.id.slice(-1)].disable) {
     // Remove event listener to avoid multiple triggers
     cardDisplay.removeEventListener('click', cardPickHandler);
     // Use id of target to determine which option was selected
@@ -448,9 +473,6 @@ function renderDeck(array) {
   let hackyNumber = 0;
 
   array.forEach(function(card) {
-
-    // console.log(array)
-
     cardName.innerHTML += `
       <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
         ${card.name}
