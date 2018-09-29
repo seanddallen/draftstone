@@ -1,11 +1,7 @@
-@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 
 /****************************** GENERAL ******************************/
-
-.null {
-  width: 100%;
-}
 
 .responsive {
   width: 100%;
@@ -517,19 +513,19 @@ a:link {
 }
 
 #deck-display {
-  width: 20vw;
+  width: 23vw;
   background-color: #ddd8cc;
-  margin: 0 10px;
+  margin: 0 -32px;
   margin-bottom: 40px;
   min-height: 607px;
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
 #card-cost {
-  width: 12%;
-  border-right: solid 2px rgba(0,0,0,0.2);
+  width: 8%;
+  /* border-right: solid 2px rgba(0,0,0,0.2);
   border-radius: 6px;
-  padding-left: 4%;
+  padding-left: 4%; */
   margin-right: 0px;
 }
 
@@ -545,6 +541,12 @@ a:link {
 
 .cost-style {
   font-weight: bold;
+  color: white;
+  background-image: url(mana-bg.png);
+  background-repeat: no-repeat;
+  background-position: 0px;
+  position: relative;
+  justify-content: center;
 }
 
 /****************************** MODAL ******************************/
@@ -580,13 +582,20 @@ a:link {
 }
 
 #select-hero {
+  background-color: white;
   margin: 10% auto;
   /* outline-color: green; */
   width: 66px;
   text-align: center;
 }
 
+#select-set {
+  background-color: white;
+  margin-top: 7%;
+}
+
 #select-cost {
+  background-color: white;
   margin: 10% auto;
   /* outline-color: green; */
   width: 66px;
@@ -658,8 +667,8 @@ a:link {
 }
 
 .faded {
-  background-color: #ddd8cc;
-  opacity: .4;
+  background-color: #fff;
+  opacity: .6;
 }
 
 hr{
@@ -803,11 +812,11 @@ input[type=radio]:disabled + .label-text:before {
   text-align: center;
 }
 
-.deck-pick{
-  height: 100%;
-  width: 40%;
+/* .deck-pick{
+  height: 24px;
+  width: 85px;
   float: right !important;
-}
+} */
 
 .costs {
   flex-basis: 50%;

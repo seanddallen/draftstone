@@ -4,7 +4,7 @@ window.onscroll = function() {
   const draftstone = document.getElementById("draftstone");
 
   // Add the sticky class to the navbar on scroll. Remove "sticky" when you leave the scroll position
-    if (window.pageYOffset > 60) {
+    if (window.pageYOffset > 50) {
       navbar.classList.add("sticky")
       draftstone.classList.remove("draftstone-text")
       draftstone.classList.add("draftstone-text-sticky")

@@ -452,24 +452,33 @@ function renderDeck(array) {
 
     // console.log(array)
 
-    cardName.innerHTML += `
-      <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-        ${card.name}
-      </div>
-    `;
-
     // cardName.innerHTML += `
     //   <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
-    //     <div class="deck-pick" style="background: url('${card.img}'); background-repeat: no-repeat; background-position: -55px -45px;">
-    //       ${card.name}
-    //     </div>
+    //     ${card.name}
     //   </div>
     // `;
+
+    cardName.innerHTML += `
+      <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
+        <div id="cards" class="deck-pick" style="width:100%; height:24px;">
+          <div class="flex">
+            <div id="cardsname" style="width:60%;">
+              ${card.name}
+            </div>
+              <!--<img src="${card.img}" style="height:24px; width:40%; clip-path: inset(-45px -120px);">-->
+            <div id="cardsimg" style="background: url('${card.img}'); background-position: -62px -110px; height:30px; width:55%; background-repeat: no-repeat; zoom:80%; float:right; z-index:1;">
+              <div style="z-index:99; background: linear-gradient(to right, rgb(221,216,204) 6%, rgba(255, 255, 255, 0) 30%), linear-gradient(to left, rgb(221,216,204) -1%, rgba(255, 255, 255, 0) 30%), linear-gradient(to top, rgb(221,216,204) 0%, rgba(255, 255, 255, 0) 20%), linear-gradient(to bottom, rgb(221,216,204) 0%, rgba(255, 255, 255, 0) 20%); height: 30px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
 
     hackyNumber++;
 
     cardCost.innerHTML += `
-      <div class="flex cost-style">
+      <div class="flex cost-style" style="height:24px; font-weight: bold; text-shadow: -1px 0px rgb(0, 0, 0), 0px 1px rgb(0, 0, 0), 1px 0px rgb(0, 0, 0), 0px -1px rgb(0, 0, 0);">
         ${card.cost}
       </div>
     `;
