@@ -32,7 +32,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="nav navbar-nav navbar-right">
-                <li><button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20">Game Modes</button></li>
+                <li><a href="/modes"><button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20">Game Modes</button></a></li>
                 <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#exampleModalLong">Instructions</button></li>
                 <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10">Sign In</button></li>
             </ul>
@@ -43,126 +43,430 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <main id="main" class="flex mt-50">
+  <main id="main" class="flex mode-main mt-50">
 
     <!-- ~~ CONTAINER ~~ -->
 
-    <div id="modes-container" class="container flex mt-50">
-      <div class="col-md-4">
+    <div id="modes-container" class="container mode-main flex-col mt-50">
 
-        <div class="panel panel-default mode-heading">
-          <div class="panel-body text-center mode-gradient">
-            Basic Game Modes
-          </div>
-        </div>
+      <!-- ~~ MODE TABS ~~ -->
 
-
-        <div class="panel panel-default mode-panel flex-col">
-          <div class="panel-heading mode-panel-header">
-            <h3 class="panel-title bold">Wildest Dreams</h3>
-          </div>
-          <div class="panel-body panel-body-top">
-            <div>
-              Hero:
+      <div class="row">
+        <div class="col-md-12">
+          <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default mode-option-btn">Basic Game Modes</button>
             </div>
-            <div>
-              Set:
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default mode-option-btn">Community Game Modes</button>
             </div>
-            <div>
-              Cost:
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default mode-option-btn">User Game Modes</button>
             </div>
-            <div>
-              Class:
-            </div>
-            <div>
-              Rarity:
-            </div>
-            <div>
-              Type:
-            </div>
-          </div>
-          <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
-        </div>
-
-        <div class="panel panel-default mode-panel flex-col">
-          <div class="panel-heading mode-panel-header">
-            <h3 class="panel-title bold">Standard Procedures</h3>
-          </div>
-          <div class="panel-body panel-body-top">
-            <div>
-              Hero:
-            </div>
-            <div>
-              Set:
-            </div>
-            <div>
-              Cost:
-            </div>
-            <div>
-              Class:
-            </div>
-            <div>
-              Rarity:
-            </div>
-            <div>
-              Type:
-            </div>
-          </div>
-          <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
-        </div>
-
-        <div class="panel panel-default mode-panel flex-col">
-          <div class="panel-heading mode-panel-header">
-            <h3 class="panel-title bold">Classically Trained</h3>
-          </div>
-          <div class="panel-body panel-body-top">
-            <div>
-              Hero:
-            </div>
-            <div>
-              Set:
-            </div>
-            <div>
-              Cost:
-            </div>
-            <div>
-              Class:
-            </div>
-            <div>
-              Rarity:
-            </div>
-            <div>
-              Type:
-            </div>
-          </div>
-          <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
-        </div>
-
-      </div>
-
-      <div class="col-md-4">
-
-        <div class="panel panel-default mode-heading">
-          <div class="panel-body text-center mode-gradient">
-            Community Game Modes
           </div>
         </div>
 
       </div>
 
-      <div class="col-md-4">
+      <!-- ~~ MODE LIST ~~ -->
 
-        <div class="panel panel-default mode-heading">
-          <div class="panel-body text-center mode-gradient">
-            User Game Modes
+      <div class="row mt-20">
+        <!-- <% books.forEach((book)=>{ %> -->
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Wildest Dreams</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Standard Procedures</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Classically Trained</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Feeling Adventurous</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">New Cards on the Block</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Living Legends</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Spellbound</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Wisp Me Away</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">Aggro-a-phobic</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
+          <div class="panel panel-default mode-panel flex-col">
+            <div class="panel-heading mode-panel-header">
+              <h3 class="panel-title bold">??????</h3>
+            </div>
+            <div class="panel-body panel-body-top">
+              <div>
+                Hero:
+              </div>
+              <div>
+                Set:
+              </div>
+              <div>
+                Cost:
+              </div>
+              <div>
+                Class:
+              </div>
+              <div>
+                Rarity:
+              </div>
+              <div>
+                Type:
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
           </div>
         </div>
 
       </div>
 
+      <!-- <div class="col-sm-12">
+        <div class="flex">
+          <div class="col-md-4">
+            <div class="panel panel-default mode-panel flex-col">
+              <div class="panel-heading mode-panel-header">
+                <h3 class="panel-title bold">Wildest Dreams</h3>
+              </div>
+              <div class="panel-body panel-body-top">
+                <div>
+                  Hero:
+                </div>
+                <div>
+                  Set:
+                </div>
+                <div>
+                  Cost:
+                </div>
+                <div>
+                  Class:
+                </div>
+                <div>
+                  Rarity:
+                </div>
+                <div>
+                  Type:
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+            </div>
+          </div>
+        </div>
+
+            <div class="panel panel-default mode-panel flex-col">
+              <div class="panel-heading mode-panel-header">
+                <h3 class="panel-title bold">Standard Procedures</h3>
+              </div>
+              <div class="panel-body panel-body-top">
+                <div>
+                  Hero:
+                </div>
+                <div>
+                  Set:
+                </div>
+                <div>
+                  Cost:
+                </div>
+                <div>
+                  Class:
+                </div>
+                <div>
+                  Rarity:
+                </div>
+                <div>
+                  Type:
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+            </div>
+
+            <div class="panel panel-default mode-panel flex-col">
+              <div class="panel-heading mode-panel-header">
+                <h3 class="panel-title bold">Classically Trained</h3>
+              </div>
+              <div class="panel-body panel-body-top">
+                <div>
+                  Hero:
+                </div>
+                <div>
+                  Set:
+                </div>
+                <div>
+                  Cost:
+                </div>
+                <div>
+                  Class:
+                </div>
+                <div>
+                  Rarity:
+                </div>
+                <div>
+                  Type:
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary panel-modes-btn">Start Draft</button>
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
 
 
 
+          </div>
+
+          <div class="col-md-4">
+
+
+
+
+          </div> -->
+
+        </div>
+      </div>
     </div>
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->

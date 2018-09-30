@@ -121,6 +121,7 @@ main {
 
 #modes-container {
   width: 90vw;
+  margin-top: 5%;
   /* border: solid red 2px; */
 }
 
@@ -420,6 +421,7 @@ a:link {
   margin: 0 auto;
   margin-top: 5vh;
   align-content:center;
+  font-size: 1.6vw;
 }
 
 .flow-btn:hover {
@@ -428,6 +430,7 @@ a:link {
   outline: none;
   margin: 0 auto;
   margin-top: 5vh;
+  font-size: 1.6vw;
 }
 
 .flow-btn:focus {
@@ -436,6 +439,7 @@ a:link {
   outline-color: green;
   margin: 0 auto;
   margin-top: 5vh;
+  font-size: 1.6vw;
 }
 
 .flow-btn:active {
@@ -445,6 +449,7 @@ a:link {
   margin: 0 auto;
   margin-top: 5vh;
   outline: none !important;
+  font-size: 1.6vw;
 }
 
 #save-btn {
@@ -453,6 +458,7 @@ a:link {
   border: 2px solid green;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #save-btn:hover {
@@ -461,6 +467,7 @@ a:link {
   outline: none;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #save-btn:focus {
@@ -469,6 +476,7 @@ a:link {
   outline-color: green;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #save-btn:active {
@@ -477,6 +485,7 @@ a:link {
   outline-color: green;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #import-btn {
@@ -485,6 +494,7 @@ a:link {
   border: 2px solid green;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #import-btn:hover {
@@ -493,6 +503,7 @@ a:link {
   outline: none;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #import-btn:focus {
@@ -501,6 +512,7 @@ a:link {
   outline-color: green;
   margin: 0 auto;
   margin-top: 3vh;
+  font-size: 1.2vw;
 }
 
 #import-btn:active {
@@ -510,6 +522,7 @@ a:link {
   margin: 0 auto;
   margin-top: 3vh;
   outline: none !important;
+  font-size: 1.2vw;
 }
 
 /****************************** RIGHT CARD ******************************/
@@ -881,14 +894,65 @@ input[type=radio]:disabled + .label-text:before {
 
 /****************************** MODES PAGE ******************************/
 
+.mode-main{
+  margin-bottom: 80px;
+}
+
+.mode-options{
+  width: 100% !important;
+}
+
 .mode-heading{
   font-size: 2em;
   background-color: #ddd8cc;
   border: 4px solid green;
   box-shadow: 0px 8px 16px 2px rgba(0,0,0,0.4);
+  }
+
+.mode-option-btn{
+  width: 30%;
+  height: 10%;
+  font-size: 2vw;
+  background-color: #8e8770;
+  border: 3px solid rgba(0,0,0,0.6);
+  /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,0.4); */
+}
+
+.mode-option-btn:hover{
+  width: 30%;
+  height: 10%;
+  font-size: 2vw;
+  background-color: #ddd8cc !important;
+  border: 3px solid rgba(0,0,0,0.3);
+  outline: none;
+  /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,0.4); */
+}
+
+.mode-option-btn:focus{
+  width: 30%;
+  height: 10%;
+  font-size: 2vw;
+  color: white;
+  background-color: green !important;
+  border: 3px solid rgba(0,0,0,0.3);
+  outline: none;
+  /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,0.4); */
+}
+
+.mode-option-btn:active{
+  width: 30%;
+  height: 10%;
+  font-size: 2vw;
+  color: white !important;
+  background-color: green !important;
+  border: 3px solid rgba(0,0,0,0.3);
+  outline: none !important;
+  /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,0.4); */
 }
 
 .mode-gradient{
+  background: -webkit-linear-gradient(left, green -30%, rgba(221,216,204, 0) 30%), -webkit-linear-gradient(right, green -30%, rgba(221,216,204, 0) 30%);
+  background: -o-linear-gradient(left, green -30%, rgba(221,216,204, 0) 30%), -o-linear-gradient(right, green -30%, rgba(221,216,204, 0) 30%);
   background: linear-gradient(to right, green -30%, rgba(221,216,204, 0) 30%), linear-gradient(to left, green -30%, rgba(221,216,204, 0) 30%);
   z-index: 99;
 }
@@ -914,36 +978,38 @@ input[type=radio]:disabled + .label-text:before {
 
 .panel-modes-btn{
   width: 40%;
-  background-color: green;
+  background-color: #ddd8cc;
+  color: rgba(0,0,0,0.6);
   outline: green;
+  border: 3px solid green;
   margin: 0 auto;
   margin-bottom: 8%;
   align-content:center;
-  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .panel-modes-btn:hover {
   background-color: #8e8770;
-  border: 2px dashed rgba(0,0,0,0.8);
+  border: 3px dashed rgba(0,0,0,0.8);
   color: rgba(0,0,0,0.8);
   outline: none;
-  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .panel-modes-btn:active {
   background-color: #8e8770 !important;
   font-weight: bold;
-  border: 2px solid rgba(0,0,0,0.6);
+  border: 3px solid rgba(0,0,0,0.6);
   color: rgba(0,0,0,0.6);
   outline: none !important;
-  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .panel-modes-btn:focus {
   background-color: #8e8770;
   font-weight: bold;
-  border: 2px solid rgba(0,0,0,0.6);
+  border: 3px solid rgba(0,0,0,0.6);
   color: rgba(0,0,0,0.6);
   outline: none;
-  font-weight: bold;
+  font-size: 1.1em;
 }
