@@ -562,7 +562,7 @@ a:link {
 .cost-style {
   font-weight: bold;
   color: white;
-  background-image: url(mana-bg.png);
+  background-image: url(../images/mana-bg.png);
   background-repeat: no-repeat;
   background-position: 0px;
   position: relative;
