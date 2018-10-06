@@ -33,9 +33,11 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav navbar-right">
-              <li><button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20">Game Modes</button></li>
-              <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#exampleModalLong">Instructions</button></li>
-              <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10">Sign In</button></li>
+            <li>
+              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='./modes.html'">Game Modes</button>
+            </li>
+            <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
+            <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
           </ul>
       </div>
     </div>
@@ -367,24 +369,25 @@
 
           <div id="full-display-buttons" class="card-deck flex-col">
 
-            <div class="flex-col flex-justify start-btn">
+            <div class="flex-col flex-justify start-btn mt-40">
               <button id="draft-btn" type="button" class="btn btn-primary btn-lg flow-btn inactive">Start Draft</button>
               <div class="flex">
                 <p class="center">click to start your custom draft</p>
               </div>
             </div>
             <div class="flex-col flex-justify start-btn">
-              <button id="save-btn" type="button" class="btn btn-primary btn-lg">Save Game Mode</button>
+              <button id="save-btn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#draftModal">Save Game Mode</button>
               <div class="flex">
-                <p class="center">click to save your game mode to your account</p>
-              </div>            </div>
-            <div class="flex-col flex-justify start-btn">
+                <p class="center">Click to save your game mode to your account or the community</p>
+              </div>
+            </div>
+            <!-- <div class="flex-col flex-justify start-btn">
               <button id="import-btn" type="button" class="btn btn-primary btn-lg">Import Game Mode</button>
               <div class="flex">
                 <p class="center">click to import your game mode to Draftstone</p>
               </div>
               <br>
-            </div>
+            </div> -->
           </div>
 
 
@@ -394,9 +397,49 @@
       </div>
     </main>
 
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ SAVE DRAFT MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="draftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Save / Publish</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
+              <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Save to Account</h3>
+              <form action="" method="post">
+                <div class="form-group">
+                  <input type="text" name="user" class="form-control" placeholder="Creative Game Mode Name" style="margin-top:20px;">
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Save</button>
+              </form>
+            </div>
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center;">
+              <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Publish to Community</h3>
+              <form action="/register" method="post">
+                <div class="form-group">
+                  <input type="text" name="community" class="form-control" placeholder="Creative Game Mode Name" style="margin-top:20px;">
+                  <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:20px auto;">Save & Publish</button>
+              </form>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ INSTRUCTIONS MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -433,6 +476,51 @@
         </div>
       </div>
     </div>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ LOGIN MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Login / Register</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
+              <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Login</h2>
+              <form action="/login" method="post">
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:20px;">
+                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Login</button>
+              </form>
+            </div>
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center;">
+              <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Register</h2>
+              <form action="/register" method="post">
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="User Name" style="margin-top:20px;">
+                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:10px;">
+                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
+                  <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Register</button>
+              </form>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   <script type="text/javascript" src="resources/js/setup.js"></script>
   <script type="text/javascript" src="resources/js/header.js"></script>

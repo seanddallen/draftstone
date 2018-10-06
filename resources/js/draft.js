@@ -561,9 +561,9 @@ const xbtn03 = document.getElementById('xbtn3');
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {
     // Use id of target to determine which option was selected
-    const position = +e.target.id.slice(-2);
+    const position = +e.target.parentNode.parentNode.parentNode.id.slice(-2);
 
-    // console.log(deck[position].img)
+    console.log(position)
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');

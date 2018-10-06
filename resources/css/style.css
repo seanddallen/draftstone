@@ -458,7 +458,7 @@ a:link {
   border: 2px solid green;
   margin: 0 auto;
   margin-top: 3vh;
-  font-size: 1.2vw;
+  font-size: 1.6vw;
 }
 
 #save-btn:hover {
@@ -467,7 +467,7 @@ a:link {
   outline: none;
   margin: 0 auto;
   margin-top: 3vh;
-  font-size: 1.2vw;
+  font-size: 1.6vw;
 }
 
 #save-btn:focus {
@@ -476,7 +476,7 @@ a:link {
   outline-color: green;
   margin: 0 auto;
   margin-top: 3vh;
-  font-size: 1.2vw;
+  font-size: 1.6vw;
 }
 
 #save-btn:active {
@@ -485,10 +485,10 @@ a:link {
   outline-color: green;
   margin: 0 auto;
   margin-top: 3vh;
-  font-size: 1.2vw;
+  font-size: 1.6vw;
 }
 
-#import-btn {
+/* #import-btn {
   width: 16vw;
   background-color: #8e8770;
   border: 2px solid green;
@@ -523,7 +523,7 @@ a:link {
   margin-top: 3vh;
   outline: none !important;
   font-size: 1.2vw;
-}
+} */
 
 /****************************** RIGHT CARD ******************************/
 
@@ -579,6 +579,17 @@ a:link {
 
 .modal-btn:hover {
   background-color: green;
+  border: 2px solid rgba(0,0,0,0.4);
+}
+
+.login-btn {
+  background-color: green;
+  border: 2px solid green;
+  outline: none;
+}
+
+.login-btn:hover {
+  background-color: #8e8770;
   border: 2px solid rgba(0,0,0,0.4);
 }
 
@@ -687,7 +698,7 @@ a:link {
 }
 
 .faded {
-  background-color: #fff;
+  background-color: #ddd8cc;
   opacity: .6;
 }
 
