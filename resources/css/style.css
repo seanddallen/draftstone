@@ -170,12 +170,19 @@ main {
   outline-color: green;
 } */
 
+.navcontainer{
+  width: 82vw;
+  margin: 0 auto;
+}
+
 .draftstone-text {
   font-family: 'Piedra';
   color: rgba(0,0,0,0.6) !important;
   font-size: 1.8em;
   margin-top: 28px;
   padding-top: 6px;
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 .draftstone-text-sticky {
@@ -1023,4 +1030,19 @@ input[type=radio]:disabled + .label-text:before {
   color: rgba(0,0,0,0.6);
   outline: none;
   font-size: 1.1em;
+}
+
+#favorite{
+
+}
+
+#vote{
+
+}
+
+.green {
+  color:green;
+}
+.grey {
+  color:grey;
 }
