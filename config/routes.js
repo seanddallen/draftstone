@@ -9,9 +9,9 @@ module.exports = function(app){
   //USER ROUTES
   app.get('/', users.index);
   app.get('/setup', users.setup);
-  app.get('/draft', users.draft)
-  app.get('/export', users.setup)
-  app.get('/modes', users.modes)
+  app.get('/draft', users.draft);
+  app.get('/export', users.setup);
+  app.get('/modes', users.modes);
 
   //MODES ROUTES
 
@@ -20,4 +20,4 @@ module.exports = function(app){
   //FAVORITES ROUTES
 
 
-}
+};
