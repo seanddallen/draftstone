@@ -1033,11 +1033,11 @@ input[type=radio]:disabled + .label-text:before {
 }
 
 #favorite{
-
+  cursor: pointer;
 }
 
 #vote{
-
+  cursor: pointer;
 }
 
 .green {
