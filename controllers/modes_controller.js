@@ -11,7 +11,6 @@ module.exports = {
     if (tab === "user") {
       subtab = req.params.subtab || 'created';
     }
-
       knex('modes')
         .where('type', tab)
       .then(modes => {
