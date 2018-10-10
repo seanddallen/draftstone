@@ -26,14 +26,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="./index.html">Draftstone</a>
+        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="/">Draftstone</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='./modes.html'">Game Modes</button>
+              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='/modes'">Game Modes</button>
             </li>
             <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
             <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
@@ -147,24 +147,28 @@
               <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Login</h2>
               <form action="/login" method="post">
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:20px;">
-                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
-                  <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Login</button>
+                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:20px;" required>
+                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;" required>
+                  <button type="submit" class="btn btn-primary login-btn" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Login</button>
                 </div>
               </form>
             </div>
 
             <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
               <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Register</h2>
-              <form action="/register" method="post">
+              <form id="register" action="/register" method="post">
                 <div class="form-group">
-                  <input type="text" name="username" class="form-control" placeholder="User Name" style="margin-top:20px;">
-                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:10px;">
-                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
-                  <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
-                  <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Register</button>
+                  <input type="text" name="username" class="form-control" placeholder="User Name" style="margin-top:20px;" required>
+                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:10px;" required>
+                  <input id="register-password" type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;" required>
+                  <input id="register-confirm" type="password" name= "confirm" class="form-control" placeholder="Confirm Password" style="margin-top:10px;" required>
+                  <button type="submit" class="btn btn-primary login-btn"  style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Register</button>
                 </div>
               </form>
+              <p id="mismatch" class="warning hidden">Passwords do not match</p>
+              <% for (const err of errors.register) { %>
+                <p class="warning"><%= err %></p>
+              <% } %>
             </div>
 
           </div>
@@ -177,6 +181,7 @@
 
   <script type="text/javascript" src="/js/index.js"></script>
   <script type="text/javascript" src="/js/header.js"></script>
+  <script type="text/javascript" src="/js/login.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

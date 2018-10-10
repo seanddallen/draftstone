@@ -10,6 +10,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/spacing.css">
+  <style>
+      #<%= type %> {
+         background-color: green;
+         color: white;
+      }
+    </style>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navigation">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='./modes.html'">Game Modes</button>
+              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='/modes'">Game Modes</button>
             </li>
             <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
             <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
@@ -58,18 +64,18 @@
         <div class="col-md-12">
           <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <a href="">
-                <button type="button" class="btn btn-default mode-option-btn" style="border-radius: 6px 0px 0px 6px;">Basic Game Modes</button>
+              <a href="/modes/basic">
+                <button id="basic" type="button" class="btn btn-default mode-option-btn" style="border-radius: 6px 0px 0px 6px;">Basic Game Modes</button>
               </a>
             </div>
             <div class="btn-group" role="group">
-              <a href="">
-                <button type="button" class="btn btn-default mode-option-btn" style="border-radius: 0px 0px 0px 0px;">Community Game Modes</button>
+              <a href="/modes/community">
+                <button id="community" type="button" class="btn btn-default mode-option-btn" style="border-radius: 0px 0px 0px 0px;">Community Game Modes</button>
               </a>
             </div>
             <div class="btn-group" role="group">
-              <a href="">
-                <button type="button" class="btn btn-default mode-option-btn" style="border-radius: 0px 6px 6px 0px;">User Game Modes</button>
+              <a href="/modes/user">
+                <button id="user" type="button" class="btn btn-default mode-option-btn" style="border-radius: 0px 6px 6px 0px;">User Game Modes</button>
               </a>
             </div>
           </div>

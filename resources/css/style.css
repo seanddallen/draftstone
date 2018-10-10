@@ -91,6 +91,11 @@
   font-weight: bold;
 }
 
+.warning {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
 /****************************** LAYOUT ******************************/
 
 body {
