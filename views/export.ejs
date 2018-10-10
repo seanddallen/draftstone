@@ -45,52 +45,88 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <main id="main" class="flex mt-50">
-      <div class="x-squish"></div>
+<main id="main" class="flex mt-50">
+    <div class="x-squish"></div>
 
-      <!-- ~~ CONTAINER ~~ -->
+    <!-- ~~ CONTAINER ~~ -->
 
-      <div id="full-container" class="flex">
+    <div id="full-container" class="flex">
 
-        <!-- ~~ LEFT CARD ~~ -->
+      <!-- ~~ LEFT CARD ~~ -->
 
-        <div id="full-card">
-          <div class="y-squish">
+      <div id="full-card">
+        <div class="y-squish">
+        </div>
+
+        <!-- ~~ DRAFT DISPLAY ~~ -->
+
+        <div id="full-display" class="card-deck flex-col">
+          <div class="text-center flow-text mt-30">
+            <br>
+            <h3>You're done, go have some fun!</h3>
           </div>
-
-          <!-- ~~ DRAFT DISPLAY ~~ -->
-
-          <div id="full-display" class="card-deck flex-col">
-            <div class="flow-text text-center">
-              <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Draft custom Hearthstone decks <br>to play against friends!</h3>
-              <br>
-              <h4 class="bold">Step 1: Setup Draft</h4>
-              <p>(Setup your own custom draft parameters)</p>
-              <h4 class="bold">Step 2: Select Draft</h4>
-              <p>(Select your custom 30 card deck)</p>
-              <h4 class="bold">Step 3: Send Draft</h4>
-              <p>(Send/export your custom draft directly to Hearthstone)</p>
-            </div>
-            <div class="flex-col center" style="margin:0 auto;">
-              <a href="./setup.html">
-                <div class="center flex">
-                  <button type="button" class="btn btn-primary btn-lg flow-btn">Setup Draft</button>
-                </div>
-              </a>
-              <div class="flex" style="margin-bottom:30px;">
-                <p class="center">click button to setup your custom draft</p>
-              </div>
-            </div>
+          <div class="flex-col flex-just-center center">
+            <a href="#" class="flex-col">
+              <button type="button" class="btn btn-primary btn-lg flow-btn flex-center">Send Draft</button>
+            </a>
+            <p class="flex-center mt-20">click button to export your custom draft to Hearthstone!</p>
           </div>
-
-          <div class="y-squish">
+          <div class="flex-col flex-justify start-btn">
+            <button id="save-btn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#draftModal">Save Game Mode</button>
+            <div class="flex">
+              <p class="center">Click to save your game mode to your account or the community</p>
+            </div>
           </div>
         </div>
+
+        <div class="y-squish">
+        </div>
       </div>
-    </main>
+    </div>
+  </main>
 
 
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ INSTRUCTIONS MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ SAVE DRAFT MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <div class="modal fade" id="draftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle">Save / Publish</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
+            <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Save to Account</h3>
+            <form action="" method="post">
+              <div class="form-group">
+                <input type="text" name="user" class="form-control" placeholder="Creative Game Mode Name" style="margin-top:20px;">
+              <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:20px auto;">Save</button>
+            </form>
+          </div>
+
+          <div class="flex" style="display:flex; flex-direction: column; justify-content:center;">
+            <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Publish to Community</h3>
+            <form action="/register" method="post">
+              <div class="form-group">
+                <input type="text" name="community" class="form-control" placeholder="Creative Game Mode Name" style="margin-top:20px;">
+                <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
+              <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:20px auto;">Save & Publish</button>
+            </form>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
     <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -129,6 +165,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ LOGIN MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -173,7 +210,7 @@
       </div>
     </div>
 
-  <script type="text/javascript" src="resources/js/index.js"></script>
+  <script type="text/javascript" src="resources/js/export.js"></script>
   <script type="text/javascript" src="resources/js/header.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

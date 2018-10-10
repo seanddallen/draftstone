@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DraftStone</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="resources/css/spacing.css">
+</head>
+
+<body>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<header id="navbar" class="test">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navcontainer">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="./index.html">Draftstone</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='./modes.html'">Game Modes</button>
+            </li>
+            <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
+            <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <main id="main" class="flex mt-50">
+      <div class="x-squish"></div>
+
+      <!-- ~~ CONTAINER ~~ -->
+
+      <div id="full-container" class="flex">
+
+        <!-- ~~ LEFT CARD ~~ -->
+
+        <div id="full-card">
+          <div class="y-squish">
+          </div>
+
+          <!-- ~~ DRAFT DISPLAY ~~ -->
+
+          <div id="full-display-top" class="card-deck flex-col">
+
+            <form action="" type="">
+              <div class="pad-slider">
+              </div>
+              <fieldset id="main-fieldset-top">
+                <div class="text-center flow-text flex">
+
+                  <!-- ~~ Multi-Selects ~~ -->
+
+                  <div class="flex-col type-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="radio" id="hero-all-input" name="hero" value="all" checked>
+                          <span class="label-text">All</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="hero-custom-input" name="hero" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <h4 class="hero-filter">Filter by Hero</h4>
+                    <select id="select-hero" class="custom-select faded" multiple size="11">
+                      <option value="Warrior" disabled>Warrior</option>
+                      <option value="Shaman" disabled>Shaman</option>
+                      <option value="Rogue" disabled>Rogue</option>
+                      <option value="Paladin" disabled>Paladin</option>
+                      <option value="Hunter" disabled>Hunter</option>
+                      <option value="Druid" disabled>Druid</option>
+                      <option value="Warlock" disabled>Warlock</option>
+                      <option value="Mage" disabled>Mage</option>
+                      <option value="Priest" disabled>Priest</option>
+                    </select>
+
+                  </div>
+
+                  <div class="flex-col type-filter" style="text-align: left;">
+                    <div style="padding-left: 3vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="radio" id="set-all-input" name="set" value="all" checked>
+                          <span class="label-text">All</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <label>
+                          <input type="radio" id="set-custom-input" name="set" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="set-filter">Filter by Set</h4>
+                    <select id="select-set" class="custom-select faded" multiple size="11">
+                      <option value="Basic" disabled>Basic</option>
+                      <option value="Classic" disabled>Classic</option>
+                      <option value="Hall of Fame" disabled>Hall of Fame</option>
+                      <option value="Naxxramas" disabled>Naxxramas</option>
+                      <option value="Goblins vs Gnomes" disabled>Goblins vs Gnomes</option>
+                      <option value="Blackrock Mountain" disabled>Blackrock Mountain</option>
+                      <option value="The Grand Tournament" disabled>The Grand Tournament</option>
+                      <option value="The League of Explorers" disabled>The League of Explorers</option>
+                      <option value="Whispers of the Old Gods" disabled>Whispers of the Old Gods</option>
+                      <option value="One Night in Karazhan" disabled>One Night in Karazhan</option>
+                      <option value="Mean Streets of Gadgetzan" disabled>Mean Streets of Gadgetzan</option>
+                      <option value="Journey to Un'Goro" disabled>Journey to Un'Goro</option>
+                      <option value="Knights of the Frozen Throne" disabled>Knights of the Frozen Throne</option>
+                      <option value="Kobolds & Catacombs" disabled>Kobolds & Catacombs</option>
+                      <option value="The Witchwood" disabled>The Witchwood</option>
+                      <option value="The Boomsday Project" disabled>The Boomsday Project</option>
+                    </select>
+
+                  </div>
+
+                  <div class="flex-col type-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="radio" id="cost-all-input" name="cost" value="all" checked>
+                          <span class="label-text">All</span>
+                        </label>
+                      </div>
+
+                      <div>
+                        <label>
+                          <input type="radio" id="cost-custom-input" name="cost" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="cost-filter">Filter by Cost</h4>
+                    <select id="select-cost" class="custom-select faded" multiple size="11">
+                      <option value="0" disabled>0</option>
+                      <option value="1" disabled>1</option>
+                      <option value="2" disabled>2</option>
+                      <option value="3" disabled>3</option>
+                      <option value="4" disabled>4</option>
+                      <option value="5" disabled>5</option>
+                      <option value="6" disabled>6</option>
+                      <option value="7" disabled>7</option>
+                      <option value="8" disabled>8</option>
+                      <option value="9" disabled>9</option>
+                      <option value="10+" disabled>10+</option>
+                    </select>
+                  </div>
+            </div>
+          </div>
+
+
+          <div id="full-display-bottom" class="card-deck flex-col">
+
+            <form action="" type="">
+              <div class="pad-slider">
+              </div>
+              <fieldset id="main-fieldset-bottom">
+                <div class="text-center flow-text flex">
+
+                  <!-- ~~ Class Filter ~~ -->
+
+                <div class="type-filter" style="text-align:left;">
+                    <br>
+                    <div style="padding-left: 2.6vw">
+                      <div>
+                        <label>
+                          <input type="radio" id="class-chaos-input" name="class" value="chaos" checked>
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="class-consistent-input" name="class" value="consistent">
+                          <span class="label-text">Consistent</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="class-custom-input" name="class" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h4 class="class-filter">Filter By Class</h4>
+                    <br>
+                    <fieldset id="class-fieldset" disabled>
+                      <form name="classSlider">
+                          <label for="class-range">Class</label>
+                          <div class="flex">
+                            <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="handleClassInput()" onchange="handleClassInput()">
+                            <output name="classOutput" id="classOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="classSlider">
+                          <label for="neutral-range">Neutral</label>
+                          <div class="flex">
+                            <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="handleNeutralInput()" onchange="handleNeutralInput()">
+                            <output name="neutralOutput" id="neutralOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+                    </fieldset>
+                  </div>
+
+                  <!-- ~~ Rarity Filter ~~ -->
+
+                  <div class="rarity-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="radio" id="rarity-chaos-input" name="rarity" value="chaos" checked>
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="rarity-consistent-input" name="rarity" value="consistent">
+                          <span class="label-text">Consistent</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="rarity-custom-input" name="rarity" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <h4 class="rarity-filter">Filter By Rarity</h4>
+                    <br>
+
+                    <fieldset id="rarity-fieldset" disabled>
+                      <form name="raritySlider">
+                          <label for="legend-range">Legendary</label>
+                          <div class="flex">
+                            <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="handleLegendInput()" onchange="handleLegendInput()">
+                            <output name="legendOutput" id="legendOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="raritySlider">
+                          <label for="epic-range">Epic</label>
+                          <div class="flex">
+                            <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="handleEpicInput()" onchange="handleEpicInput()">
+                            <output name="epicOutput" id="epicOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="raritySlider">
+                          <label for="rare-range">Rare</label>
+                          <div class="flex">
+                            <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="handleRareInput()" onchange="handleRareInput()">
+                            <output name="rareOutput" id="rareOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="raritySlider">
+                          <label for="common-range">Common</label>
+                          <div class="flex">
+                            <input type="range" name="commonInput" id="commonInput" class="input-value" value="0" min="0" max="30" oninput="handleCommonInput()" onchange="handleCommonInput()">
+                            <output name="commonOutput" id="commonOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                    </fieldset>
+                  </div>
+
+                  <!-- ~~ Type Filter ~~ -->
+
+                  <div class="type-filter" style="text-align: left;">
+                    <div style="padding-left: 2.6vw">
+                      <br>
+                      <div>
+                        <label>
+                          <input type="radio" id="type-chaos-input" name="type" value="chaos" checked>
+                          <span class="label-text">Chaos</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="type-consistent-input" name="type" value="consistent">
+                          <span class="label-text">Consistent</typespan>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <input type="radio" id="type-custom-input" name="type" value="custom">
+                          <span class="label-text">Custom</span>
+                        </label>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <h4 class="type-filter">Filter By Type</h4>
+                    <br>
+
+                    <fieldset id="type-fieldset" disabled>
+                      <form name="typeSlider">
+                          <label for="minion-range">Minion</label>
+                          <div class="flex">
+                            <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="handleMinionInput()" onchange="handleMinionInput()">
+                            <output name="minionOutput" id="minionOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+
+                      <form name="typeSlider">
+                          <label for="spell-range">Spell/Weapon</label>
+                          <div class="flex">
+                            <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="handleSpellInput()" onchange="handleSpellInput()">
+                            <output name="spellOutput" id="spellOutput" class="output-value">0</output>
+                          </div>
+                      </form>
+                    <fieldset disabled>
+                  </div>
+
+                </form>
+              </div>
+            </fieldset>
+          </div>
+
+
+          <div id="full-display-buttons" class="card-deck flex-col">
+
+            <div class="flex-col flex-justify start-btn mt-40">
+              <button id="draft-btn" type="button" class="btn btn-primary btn-lg flow-btn inactive">Start Draft</button>
+              <div class="flex">
+                <p class="center">click to start your custom draft</p>
+              </div>
+            </div>
+            <div class="flex-col flex-justify start-btn">
+              <button id="save-btn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#draftModal">Save Game Mode</button>
+              <div class="flex">
+                <p class="center">Click to save your game mode to your account or the community</p>
+              </div>
+            </div>
+            <!-- <div class="flex-col flex-justify start-btn">
+              <button id="import-btn" type="button" class="btn btn-primary btn-lg">Import Game Mode</button>
+              <div class="flex">
+                <p class="center">click to import your game mode to Draftstone</p>
+              </div>
+              <br>
+            </div> -->
+          </div>
+
+
+
+          <div class="y-squish">
+          </div>
+      </div>
+    </main>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ SAVE DRAFT MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="draftModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Save / Publish</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
+              <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Save to Account</h3>
+              <form action="" method="post">
+                <div class="form-group">
+                  <input type="text" name="user" class="form-control" placeholder="Creative Game Mode Name" style="margin-top:20px;">
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Save</button>
+              </form>
+            </div>
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center;">
+              <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Publish to Community</h3>
+              <form action="/register" method="post">
+                <div class="form-group">
+                  <input type="text" name="community" class="form-control" placeholder="Creative Game Mode Name" style="margin-top:20px;">
+                  <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:20px auto;">Save & Publish</button>
+              </form>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ INSTRUCTIONS MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Draftstone Instructions</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>General</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Setup Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Select Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+            <h3>Send Draft</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ LOGIN MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">Login / Register</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
+              <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Login</h2>
+              <form action="/login" method="post">
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:20px;">
+                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Login</button>
+              </form>
+            </div>
+
+            <div class="flex" style="display:flex; flex-direction: column; justify-content:center;">
+              <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Register</h2>
+              <form action="/register" method="post">
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="User Name" style="margin-top:20px;">
+                  <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:10px;">
+                  <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
+                  <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
+                <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Register</button>
+              </form>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <script type="text/javascript" src="resources/js/setup.js"></script>
+  <script type="text/javascript" src="resources/js/header.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>
