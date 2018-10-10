@@ -10,7 +10,7 @@ module.exports = function(app){
   app.get('/', users.index);
   app.get('/setup', users.setup);
   app.get('/draft', users.draft);
-  app.get('/export', users.setup);
+  app.get('/export', users.export);
   app.get('/modes', users.modes);
 
   //MODES ROUTES
