@@ -564,7 +564,7 @@ a:link {
   color: white;
   background-image: url(../images/mana-bg.png);
   background-repeat: no-repeat;
-  background-position: 0px;
+  background-position: center center;
   position: relative;
   justify-content: center;
 }
