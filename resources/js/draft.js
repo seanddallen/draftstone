@@ -536,7 +536,7 @@ function renderDeck(array) {
 function deckComplete() {
   localStorage.setItem('deck', JSON.stringify(deck));
   localStorage.setItem('heroCard', JSON.stringify(heroCard));
-  setTimeout(function(){window.open("./export.html", "_self");}, 2000);
+  setTimeout(function(){window.open("/export", "_self");}, 2000);
 
 }
 

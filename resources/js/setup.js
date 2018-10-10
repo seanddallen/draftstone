@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
      localStorage.setItem("customRules", JSON.stringify(customRules));
 
-     window.location.href = "draft.html";
+     window.location.href = "/draft"
 
 
    });
