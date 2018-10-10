@@ -50,7 +50,7 @@
 
     <!-- ~~ CONTAINER ~~ -->
 
-    <div id="modes-container" class="container mode-main flex-col mt-50">
+    <div id="modes-container" class="container mode-main flex-col mt-50" style="align-content: center;">
 
       <!-- ~~ MODE TABS ~~ -->
 
@@ -75,11 +75,36 @@
           </div>
         </div>
 
+        <!-- ~~ MODE SUBTABS ~~ -->
+
+
+        <div class="row" style="width:60vw; margin: 0 auto;">
+          <div class="col-md-12">
+            <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <a href="">
+                  <button type="button" class="btn btn-default submode-option-btn" style="border-radius: 6px 0px 0px 6px; width: 100%;">All Time</button>
+                </a>
+              </div>
+              <div class="btn-group" role="group" style="margin: 0px;">
+                <a href="">
+                  <button type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 0px 0px 0px; width: 100%;">Trending</button>
+                </a>
+              </div>
+              <div class="btn-group" role="group" style="margin: 0px;">
+                <a href="">
+                  <button type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 6px 6px 0px; width: 100%;">Newest</button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
       </div>
 
       <!-- ~~ MODE LIST ~~ -->
 
-      <div class="row mt-20">
+      <div class="row mt-40">
         <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
           <div class="panel panel-default mode-panel flex-col">
             <div class="panel-heading mode-panel-header">
