@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/seantayler/draftstone#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "connect-session-knex": "^1.4.0",
     "deckstrings": "^2.0.0",
     "ejs": "^2.6.1",

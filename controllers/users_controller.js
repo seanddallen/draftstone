@@ -2,24 +2,96 @@ const knex = require("../db/knex.js");
 
 module.exports = {
   index: (req, res) => {
-    res.render('index', {errors: req.session.errors});
-    req.session.errors = {
-      login: [],
-      register: []
-    };
-    req.session.save();
+    if (!req.session.user_id) {
+      res.render('index', {errors: req.session.errors, username: null});
+      req.session.errors = {
+        login: [],
+        register: []
+      };
+      req.session.save();
+    } else {
+      knex('users')
+        .where('id', req.session.user_id)
+      .then(results => {
+        const user = results[0];
+        res.render('index', {errors: req.session.errors, username: user.user_name});
+        req.session.errors = {
+          login: [],
+          register: []
+        };
+        req.session.save();
+      });
+    }
+
   },
 
   setup: (req, res) => {
-    res.render('setup');
+    if (!req.session.user_id) {
+      res.render('setup', {errors: req.session.errors, username: null});
+      req.session.errors = {
+        login: [],
+        register: []
+      };
+      req.session.save();
+    } else {
+      knex('users')
+        .where('id', req.session.user_id)
+      .then(results => {
+        const user = results[0];
+        res.render('setup', {errors: req.session.errors, username: user.user_name});
+        req.session.errors = {
+          login: [],
+          register: []
+        };
+        req.session.save();
+      });
+    }
   },
 
   draft: (req, res) => {
-    res.render('draft');
+    if (!req.session.user_id) {
+      res.render('draft', {errors: req.session.errors, username: null});
+      req.session.errors = {
+        login: [],
+        register: []
+      };
+      req.session.save();
+    } else {
+      knex('users')
+        .where('id', req.session.user_id)
+      .then(results => {
+        const user = results[0];
+        res.render('draft', {errors: req.session.errors, username: user.user_name});
+        req.session.errors = {
+          login: [],
+          register: []
+        };
+        req.session.save();
+      });
+    }
   },
 
   export: (req, res) => {
-    res.render('export');
+    if (!req.session.user_id) {
+      res.render('export', {errors: req.session.errors, username: null});
+      req.session.errors = {
+        login: [],
+        register: []
+      };
+      req.session.save();
+    } else {
+      knex('users')
+        .where('id', req.session.user_id)
+      .then(results => {
+        const user = results[0];
+        res.render('export', {errors: req.session.errors, username: user.user_name});
+        req.session.errors = {
+          login: [],
+          register: []
+        };
+        req.session.save();
+      });
+    }
   },
 
   register: (req, res) => {
@@ -39,7 +111,39 @@ module.exports = {
         res.redirect('/');
       });
     });
-  }
+  },
 
+  login: (req, res) => {
+    knex('users')
+      .where('email', req.body.email)
+    .then(results => {
+      const user = results[0];
+      if (!user) {
+        req.session.errors.login.push("Email or password incorrect.");
+        req.session.save(() => {
+          res.redirect('/');
+          return;
+        });
+      }
+      if (req.body.password === user.password) {
+        req.session.user_id = user.id;
+        req.session.save(() => {
+          res.redirect('/');
+        });
+      } else {
+        req.session.errors.login.push("Email or password incorrect.");
+        req.session.save(() => {
+          res.redirect('/');
+          return;
+        });
+      }
+    });
+  },
+
+  logout: (req, res) => {
+    req.session.destroy(() => {
+      res.redirect('/');
+    });
+  }
 
 };

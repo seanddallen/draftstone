@@ -10,7 +10,8 @@ module.exports = function(app){
   //USER ROUTES
   app.get('/', users.index);
   app.post('/register', users.register);
-
+  app.post('/login', users.login);
+  app.get('/logout', users.logout);
 
   app.get('/setup', users.setup);
   app.get('/draft', users.draft);

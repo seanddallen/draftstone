@@ -1,0 +1,41 @@
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<header id="navbar" class="test">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navcontainer">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="/">Draftstone</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li style="font-size: 0.45em; color: black; margin-right: 15px; font-family: playfair">
+              <% if (username) { %>
+                Worthy opponent: <b><%= username %></b>
+              <% } %>
+            </li>
+            <li>
+              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='/modes'">Game Modes</button>
+            </li>
+            <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
+            <li>
+              <% if (!username) { %>
+              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">LOG IN</button>
+              <% } else { %>
+              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" onclick="window.location.href='/logout'">LOG OUT</button>
+              <% } %>
+
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>

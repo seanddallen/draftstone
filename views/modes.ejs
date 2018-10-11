@@ -21,34 +21,7 @@
 <body>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-<header id="navbar" class="test">
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navcontainer">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="./index.html">Draftstone</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navigation">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='/modes'">Game Modes</button>
-            </li>
-            <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
-            <li><button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">Sign In</button></li>
-          </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+<%- include partials/header.ejs %>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -533,91 +506,7 @@
       </div>
     </div>
 
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-    <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLongTitle">Draftstone Instructions</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h3>General</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-
-            <h3>Setup Draft</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-
-            <h3>Select Draft</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-
-            <h3>Send Draft</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque dolore laborum, ad quasi reprehenderit suscipit facilis, ea quas ipsa! Velit!</p>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ LOGIN MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLongTitle">Login / Register</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-                <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
-                  <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Login</h2>
-                  <form action="/login" method="post">
-                    <div class="form-group">
-                      <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:20px;">
-                      <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
-                    <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Login</button>
-                    </div>
-                  </form>
-                </div>
-
-                <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
-                  <h2 style="display:flex; flex-direction: column; justify-content:center; max-width: 30%;">Register</h2>
-                  <form action="/register" method="post">
-                    <div class="form-group">
-                      <input type="text" name="username" class="form-control" placeholder="User Name" style="margin-top:20px;">
-                      <input type="email" name="email" class="form-control" placeholder="Email" style="margin-top:10px;">
-                      <input type="password" name="password" class="form-control" placeholder="Password" style="margin-top:10px;">
-                      <!-- <input type="password" class="form-control" id="passwordinput2" placeholder="Password" style="margin-top:20px;"> -->
-                    <button type="submit" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Register</button>
-                    </div>
-                  </form>
-                </div>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
+    <%- include partials/modals.ejs %>
 
   <script type="text/javascript" src="/js/index.js"></script>
   <script type="text/javascript" src="/js/header.js"></script>
