@@ -18,7 +18,8 @@ module.exports = function(app){
 
 
   app.get('/modes', modes.browse);
-  app.get('/modes/:type', modes.browse);
+  app.get('/modes/:tab', modes.browse);
+  app.get('/modes/:tab/:subtab', modes.browse);
 
   //MODES ROUTES
 
