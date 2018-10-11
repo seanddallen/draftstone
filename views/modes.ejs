@@ -53,86 +53,90 @@
             </div>
           </div>
         </div>
-
-        <!-- ~~ MODE SUBTABS ~~ -->
-
-        <% if (tab === "community") { %>
-          <div class="row" style="width:60vw; margin: 0 auto;">
-            <div class="col-md-12">
-              <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                  <a href="/modes/community/alltime">
-                    <button id="alltime" type="button" class="btn btn-default submode-option-btn" style="border-radius: 6px 0px 0px 6px; width: 100%;">All Time</button>
-                  </a>
-                </div>
-                <div class="btn-group" role="group" style="margin: 0px;">
-                  <a href="/modes/community/trending">
-                    <button id="trending" type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 0px 0px 0px; width: 100%;">Trending</button>
-                  </a>
-                </div>
-                <div class="btn-group" role="group" style="margin: 0px;">
-                  <a href="/modes/community/newest">
-                    <button id="newest" type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 6px 6px 0px; width: 100%;">Newest</button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% } %>
-
-
-        <% if (tab === "user") { %>
-          <div class="row" style="width:60vw; margin: 0 auto;">
-            <div class="col-md-12">
-              <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
-                <div class="btn-group" role="group" style="margin: 0px;">
-                  <a href="/modes/user/created">
-                    <button id="created" type="button" class="btn btn-default submode-option-btn" style="border-radius: 6px 0px 0px 6px; width: 100%;">Created</button>
-                  </a>
-                </div>
-                <div class="btn-group" role="group" style="margin: 0px;">
-                  <a href="/modes/user/favorites">
-                    <button id="favorites" type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 6px 6px 0px; width: 100%;">Favorites</button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% } %>
-
       </div>
+
+      <!-- ~~ MODE SUBTABS ~~ -->
+
+      <% if (tab === "community") { %>
+      <div class="row" style="width:60vw; margin: 0 auto;">
+        <div class="col-md-12">
+          <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <a href="/modes/community/alltime">
+                <button id="alltime" type="button" class="btn btn-default submode-option-btn" style="border-radius: 20px 0px 0px 20px; width: 100%;">All Time</button>
+              </a>
+            </div>
+            <div class="btn-group" role="group" style="margin: 0px;">
+              <a href="/modes/community/trending">
+                <button id="trending" type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 0px 0px 0px; width: 100%;">Trending</button>
+              </a>
+            </div>
+            <div class="btn-group" role="group" style="margin: 0px;">
+              <a href="/modes/community/newest">
+                <button id="newest" type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 20px 20px 0px; width: 100%;">Newest</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
+      <% if (tab === "user") { %>
+      <div class="row" style="width:60vw; margin: 0 auto;">
+        <div class="col-md-12">
+          <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
+            <div class="btn-group" role="group" style="margin: 0px;">
+              <a href="/modes/user/created">
+                <button id="created" type="button" class="btn btn-default submode-option-btn" style="border-radius: 20px 0px 0px 20px; width: 100%;">Created</button>
+              </a>
+            </div>
+            <div class="btn-group" role="group" style="margin: 0px;">
+              <a href="/modes/user/favorites">
+                <button id="favorites" type="button" class="btn btn-default submode-option-btn" style="border-radius: 0px 20px 20px 0px; width: 100%;">Favorites</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
 
       <!-- ~~ MODE LIST ~~ -->
 
       <div class="row mt-40">
 
         <% modes.forEach(mode => { %>
-        <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
-          <div class="panel panel-default mode-panel flex-col">
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-5" style="">
+          <div class="panel panel-default mode-panel flex-col" style="overflow:hidden; max-height:300px;">
             <div class="panel-heading mode-panel-header">
               <h3 class="panel-title bold"> <%= mode.mode_name %> </h3>
             </div>
-            <div class="panel-body panel-body-top">
-              <div>
-                Hero: <pre><%= mode.heroList %></pre>
+
+            <div class="panel-body panel-body-top text-center" style="overflow:scroll; height:100%;">
+              <div class="">
+                <b style="font-size:1.1em;">Hero</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
               </div>
-              <div>
-                Set: <%= mode.mode_name %>
+              <div style="margin-top:5px;">
+                <b style="font-size:1.1em;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
               </div>
-              <div>
-                Cost: <%= mode.mode_name %>
+              <div style="margin-top:5px;">
+                <b style="font-size:1.1em;">Cost</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
               </div>
-              <div>
-                Class: <%= mode.mode_name %>
+              <div style="margin-top:5px;">
+                <b style="font-size:1.1em;">Class / Neutral</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %> (<%= mode.settings.classSetting %>) </pre>
               </div>
-              <div>
-                Rarity: <%= mode.mode_name %>
+              <div style="margin-top:5px;">
+                <b style="font-size:1.1em;">Minion / Spell</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %> (<%= mode.settings.raritySetting %>) </pre>
               </div>
-              <div>
-                Type: <%= mode.mode_name %>
+              <div style="margin-top:5px;">
+                <b style="font-size:1.1em;"> Legendary / Epic / Rare / Common</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %> (<%= mode.settings.typeSetting %>) </pre>
               </div>
             </div>
-            <div style="margin: 0 auto;">
+
+
+
+            <div style="margin: 20px auto 0px auto;">
               <i id="favorite" class="fas fa-star fa-2x grey mr-20"></i>
               <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px;">Start Draft</button>
               <i id="vote" class="fas fa-thumbs-up fa-2x grey ml-20"></i>
@@ -144,8 +148,6 @@
       </div>
 
 
-        </div>
-      </div>
     </div>
 
     <%- include partials/modals.ejs %>
