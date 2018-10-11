@@ -14,6 +14,13 @@ module.exports = {
       knex('modes')
         .where('type', tab)
       .then(modes => {
+        let heroList = ''
+          for (const mode of modes) {
+            for (const hero of mode.settings.heroArray) {
+              heroList += `\n${hero}`;
+            }
+            mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
+          }
         res.render('modes', { modes: modes, tab: tab, subtab: subtab });
       });
   }

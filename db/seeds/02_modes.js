@@ -94,7 +94,21 @@ exports.seed = function(knex, Promise) {
           mode_name: 'userTest3',
           type: "user",
           creator_id: 2,
-          settings: {"heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"consistent","classCount":null,"raritySetting":"consistent","legendaryCount":null,"epicCount":null,"rareCount":null,"typeSetting":"consistent","spellCount":null}
+          settings: {
+            "heroFilterSetting":"all",
+            "heroArray":[],
+            "setFilterSetting":"all",
+            "setArray":[],
+            "costFilterSetting":"all",
+            "costArray":[],
+            "classSetting":"consistent",
+            "classCount":null,
+            "raritySetting":"consistent",
+            "legendaryCount":null,
+            "epicCount":null,
+            "rareCount":null,
+            "typeSetting":"consistent",
+            "spellCount":null}
         },
       ]);
     });
