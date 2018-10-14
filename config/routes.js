@@ -17,17 +17,21 @@ module.exports = function(app){
   app.get('/draft', users.draft);
   app.get('/export', users.export);
 
+  //MODES ROUTES
 
   app.get('/modes', modes.browse);
   app.get('/modes/:tab', modes.browse);
   app.get('/modes/:tab/:subtab', modes.browse);
 
-  //MODES ROUTES
+
 
   //VOTES ROUTES
 
+  app.post('/modes/vote/:id/:tab/:subtab', votes.modeVote); //COMPLETE
+
   //FAVORITES ROUTES
 
+  app.post('/modes/favorite/:id/:tab/:subtab', favorites.modeFavorite); //COMPLETE
 
 };
 
