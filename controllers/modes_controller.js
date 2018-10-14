@@ -96,4 +96,11 @@ module.exports = {
     .then(() => res.sendStatus(201));
   }
 
+  // browsemore: (req, res) => {
+  //   knex.select('modes.*', 'votes.user_id as hasVoted').from('modes').leftJoin('votes', 'modes.id', 'votes.mode_id').where('votes.user_id', req.session.user_id).orWhere('votes.user_id', null).then(votes => {
+  //     knex.select('modes.*', 'favorites.user_id as hasFavorited').from('modes').leftJoin('favorites', 'modes.id', 'favorites.mode_id').where('favorites.user_id', req.session.user_id).orWhere('favorites.user_id', null).then(favorites => {
+  //       res.render('modes', {votes:votes, favorites: favorites})
+  //     })
+  //   })
+  // }
 };

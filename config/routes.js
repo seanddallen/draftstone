@@ -17,21 +17,25 @@ module.exports = function(app){
   app.get('/draft', users.draft);
   app.get('/export', users.export);
 
+  //MODES ROUTES
 
-  app.get('/modes', modes.browse);
-  app.get('/modes/:tab', modes.browse);
+  app.get('/modes', modes.browse);           //NOT NEEDED?
+  app.get('/modes/:tab', modes.browse);      //NOT NEEDED?
   app.get('/modes/:tab/:subtab', modes.browse);
 
   app.use(authenticateUser);
   app.post('/modes', modes.create);
   app.post('/modes/publish/:id', modes.publish);
 
-  //MODES ROUTES
+
 
   //VOTES ROUTES
 
+  app.post('/modes/vote/:id/:tab/:subtab', votes.modeVote); //COMPLETE
+
   //FAVORITES ROUTES
 
+  app.post('/modes/favorite/:id/:tab/:subtab', favorites.modeFavorite); //COMPLETE
 
 };
 

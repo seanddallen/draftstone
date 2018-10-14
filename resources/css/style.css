@@ -1117,12 +1117,22 @@ input[type=radio]:disabled + .label-text:before {
   font-size: 1.1em;
 }
 
-#favorite{
+.favorite{
   cursor: pointer;
+  outline:none;
+  border:none;
+  background-color: #ddd8cc;
+  margin-right:0px;
+  display:inline-block;
 }
 
-#vote{
+.vote{
   cursor: pointer;
+  outline:none;
+  border:none;
+  background-color: #ddd8cc;
+  margin-left:0px;
+  display:inline-block;
 }
 
 .green {
