@@ -69,7 +69,7 @@ saveModeBtn.addEventListener('click', e => {
       mode_name: modeNameValue,
       settings: customRules
     }).then(() => {
-      window.location.href = "/modes/user";
+      window.location.href = "/modes/user/created";
     });
   }
 });
@@ -89,7 +89,7 @@ savePublishBtn.addEventListener('click', e => {
       const mode_id = results.data;
       axios.post(`/modes/publish/${mode_id}`)
       .then(() => {
-        window.location.href = "/modes/user";
+        window.location.href = "/modes/user/created";
       }) ;
     });
   }

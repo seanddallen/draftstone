@@ -3,14 +3,8 @@ const knex = require("../db/knex.js");
 module.exports = {
 
   browse: (req, res) => {
-    const tab = req.params.tab || 'community';
-    let subtab = null;
-    if (tab === "community") {
-      subtab = req.params.subtab || 'trending';
-    }
-    if (tab === "user") {
-      subtab = req.params.subtab || 'created';
-    }
+    const tab = req.params.tab;
+    const subtab = req.params.subtab;
 
     if (!req.session.user_id) {
       knex('modes')
@@ -36,17 +30,18 @@ module.exports = {
       .then(results => {
         const user = results[0];
         knex.select('modes.*', 'votes.user_id as hasVoted', 'favorites.user_id as hasFavorited')
-          .from('modes').leftJoin('votes','modes.id','votes.mode_id')
-          .leftJoin('favorites', 'modes.id', 'favorites.mode_id')
-          .where(function() {
-            this.where('votes.user_id', req.session.user_id)
-            .orWhere('votes.user_id', null);
-          })
-          .where(function() {
-            this.where('favorites.user_id', req.session.user_id)
-            .orWhere('favorites.user_id', null);
-          })
-          .where('modes.type', req.params.tab)
+          .from('modes')
+          .leftJoin(
+            knex('votes')
+              .where('votes.user_id', req.session.user_id)
+              .as('votes'),
+            'modes.id','votes.mode_id')
+          .leftJoin(
+            knex('favorites')
+              .where('favorites.user_id', req.session.user_id)
+              .as('favorites'),
+              'modes.id','favorites.mode_id')
+          .where('modes.type',tab)
         .then(modes => {
           let heroList = '';
           for (const mode of modes) {
@@ -55,6 +50,7 @@ module.exports = {
             }
             mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
           }
+          console.log(modes);
           res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: user.user_name });
           req.session.errors = {
             login: [],

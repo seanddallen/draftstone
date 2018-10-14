@@ -37,17 +37,17 @@
         <div class="col-md-12">
           <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <a href="/modes/basic">
+              <a href="/modes/basic/all">
                 <button id="basic" type="button" class="btn btn-default mode-option-btn" style="border-radius: 6px 0px 0px 6px;">Basic Game Modes</button>
               </a>
             </div>
             <div class="btn-group" role="group">
-              <a href="/modes/community">
+              <a href="/modes/community/trending">
                 <button id="community" type="button" class="btn btn-default mode-option-btn" style="border-radius: 0px 0px 0px 0px;">Community Game Modes</button>
               </a>
             </div>
             <div class="btn-group" role="group">
-              <a href="/modes/user">
+              <a href="/modes/user/created">
                 <button id="user" type="button" class="btn btn-default mode-option-btn" style="border-radius: 0px 6px 6px 0px;">User Game Modes</button>
               </a>
             </div>
@@ -139,23 +139,20 @@
 
             <div style="margin: 20px auto 0px auto;">
 
-              <%# favorites.forEach(favorite => { %>
-              <%# if (favorites.hasFavorited){ %>
-              <%# } else{ %>
+
+
               <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
-                <button id="" class="favorite fas fa-star fa-2x grey mr-20"></button>
+                <button id="" class="favorite fas fa-star fa-2x mr-20 <%= mode.hasFavorited ? "green" : "grey" %>"></button>
               </form>
-              <%# } %>
+
 
               <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px; margin-left: 0px; margin-right: 0px;">Start Draft</button>
 
-              <%# votes.forEach(vote => { %>
-              <%# if (votes.hasVoted){ %>
-              <%# } else{ %>
+
               <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
-                <button type="submit" id="" class="vote fas fa-thumbs-up fa-2x grey ml-20"></i>
+                <button type="submit" id="" class="vote fas fa-thumbs-up fa-2x ml-20 <%= mode.hasVoted ? "green" : "grey" %>"></i>
               </form>
-              <%# }}) %>
+
 
             </div>
 
