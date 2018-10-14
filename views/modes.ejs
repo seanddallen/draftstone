@@ -105,6 +105,55 @@
       <!-- ~~ MODE LIST ~~ -->
 
       <div class="row mt-40">
+          <% modes.forEach(mode => { %>
+          <div class="col-xl-6 col-xs-12 mt-5" style="margin:0px;">
+            <div class="panel panel-default mode-panel flex-col" style="overflow:hidden; max-height:300px;">
+              <div class="panel-heading mode-panel-header flex flex-between">
+                <h3 class="panel-title bold flex-center"> <%= mode.mode_name %></h3>
+                <div class="flex flex-center">
+                  <p class="" style="font-size:1.4rem; color: green; margin:3px 0px 0px;"><%= mode.votes %></p>
+                  <button type="submit" id="" class="vote fas fa-thumbs-up <%= mode.hasVoted ? "green" : "grey" %>"></button>
+                  <button id="" class="favorite fas fa-star <%= mode.hasFavorited ? "green" : "grey" %>"></button>
+                </div>
+              </div>
+
+              <div class="panel-body panel-body-top text-center flex flex-around" style="overflow:scroll; height:100%;">
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0px auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Hero</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Cost</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Class / Neutral</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %> (<%= mode.settings.classSetting %>) </pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Minion / Spell</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %> (<%= mode.settings.raritySetting %>) </pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <b style="font-size:1em;"> Legend / Epic <br>Rare / Common</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %> (<%= mode.settings.typeSetting %>) </pre>
+                </div>
+              </div>
+
+              <div style="margin: 20px auto 0px auto;">
+                <div>
+                  <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px; margin-left: 0px; margin-right: 0px;">Start Draft</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <% }) %>
+
+        </div>
+
+
+
+
+      <div class="row mt-40">
 
         <% modes.forEach(mode => { %>
         <div class="col-lg-3 col-md-4 col-sm-6 mt-5" style="">
@@ -138,32 +187,20 @@
             </div>
 
             <div style="margin: 20px auto 0px auto;">
-
-              <%# favorites.forEach(favorite => { %>
-              <%# if (favorites.hasFavorited){ %>
-              <%# } else{ %>
               <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
                 <button id="" class="favorite fas fa-star fa-2x grey mr-20"></button>
               </form>
-              <%# } %>
-
               <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px; margin-left: 0px; margin-right: 0px;">Start Draft</button>
-
-              <%# votes.forEach(vote => { %>
-              <%# if (votes.hasVoted){ %>
-              <%# } else{ %>
               <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
                 <button type="submit" id="" class="vote fas fa-thumbs-up fa-2x grey ml-20"></i>
               </form>
-              <%# }}) %>
-
             </div>
-
           </div>
         </div>
         <% }) %>
 
       </div>
+    </div>
 
 
     </div>
