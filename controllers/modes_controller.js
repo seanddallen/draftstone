@@ -35,8 +35,18 @@ module.exports = {
         .where('id', req.session.user_id)
       .then(results => {
         const user = results[0];
-        knex('modes')
-          .where('type', tab)
+        knex.select('modes.*', 'votes.user_id as hasVoted', 'favorites.user_id as hasFavorited')
+          .from('modes').leftJoin('votes','modes.id','votes.mode_id')
+          .leftJoin('favorites', 'modes.id', 'favorites.mode_id')
+          .where(function() {
+            this.where('votes.user_id', req.session.user_id)
+            .orWhere('votes.user_id', null);
+          })
+          .where(function() {
+            this.where('favorites.user_id', req.session.user_id)
+            .orWhere('favorites.user_id', null);
+          })
+          .where('modes.type', req.params.tab)
         .then(modes => {
           let heroList = '';
           for (const mode of modes) {
