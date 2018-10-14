@@ -22,6 +22,8 @@ module.exports = function(app){
   app.get('/modes', modes.browse);           //NOT NEEDED?
   app.get('/modes/:tab', modes.browse);      //NOT NEEDED?
   app.get('/modes/:tab/:subtab', modes.browse);
+  app.post('/modes', modes.create);
+  app.post('/modes/publish/:id', modes.publish);
 
 
 
