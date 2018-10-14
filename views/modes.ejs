@@ -137,35 +137,28 @@
               </div>
             </div>
 
-
-
             <div style="margin: 20px auto 0px auto;">
 
-              <% if (mode.hasFavorited){ %>
-              <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
-                <button id="" class="favorite fas fa-star fa-2x green mr-20" disabled></button>
-              </form>
-              <% } else { %>
+              <%# favorites.forEach(favorite => { %>
+              <%# if (favorites.hasFavorited){ %>
+              <%# } else{ %>
               <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
                 <button id="" class="favorite fas fa-star fa-2x grey mr-20"></button>
               </form>
-              <% } %>
-
+              <%# } %>
 
               <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px; margin-left: 0px; margin-right: 0px;">Start Draft</button>
 
-              <% if (mode.hasVoted){ %>
-              <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
-                <button type="submit" id="" class="vote fas fa-thumbs-up fa-2x green ml-20" disabled></i>
-              </form>
-              <% } else{ %>
+              <%# votes.forEach(vote => { %>
+              <%# if (votes.hasVoted){ %>
+              <%# } else{ %>
               <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
                 <button type="submit" id="" class="vote fas fa-thumbs-up fa-2x grey ml-20"></i>
               </form>
-              <% } %>
-
+              <%# }}) %>
 
             </div>
+
           </div>
         </div>
         <% }) %>
