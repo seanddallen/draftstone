@@ -54,6 +54,36 @@ module.exports = {
         });
       });
     }
+  },
+
+  create: (req, res) => {
+    knex('modes')
+      .returning('modes.id')
+      .insert({
+        mode_name: req.body.mode_name,
+        type: "user",
+        creator_id: req.session.user_id,
+        settings: req.body.settings
+      })
+    .then((results) => {
+      res.json(results[0]);
+    });
+  },
+
+  publish: (req, res) => {
+    knex('modes')
+      .where('id', req.params.id)
+    .then(results => {
+      const mode = results[0];
+      return knex('modes')
+        .insert({
+          mode_name: mode.mode_name,
+          type: 'community',
+          creator_id: mode.creator_id,
+          settings: mode.settings
+        });
+    })
+    .then(() => res.sendStatus(201));
   }
 
 };

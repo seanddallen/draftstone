@@ -1,6 +1,7 @@
 localStorage.clear();
 const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
+let customRules = {};
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,90 +34,148 @@ document.addEventListener('DOMContentLoaded', () => {
    // this too will probably become unnecessary once we have our own server
    const draftBtn =  document.getElementById('draft-btn');
    draftBtn.classList.remove("inactive");
+   const saveBtn =  document.getElementById('save-btn');
+   saveBtn.classList.remove("inactive");
 
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
    draftBtn.addEventListener('click', e => {
-
-     // Retrieve and store heroes chosen by user
-     const heroFilterSetting = document.querySelector('input[name="hero"]:checked').value;
-     const heroArray = [];
-     if (heroFilterSetting === "custom") {
-       let heroOptions = document.getElementById('select-hero').options;
-       for (const hero of heroOptions) {
-         if (hero.selected) {
-           heroArray.push(hero.value);
-         }
-       }
-     }
-
-     // Retrieve and store sets chosen by user
-     const setFilterSetting = document.querySelector('input[name="set"]:checked').value;
-     const setArray = [];
-     if (setFilterSetting === "custom") {
-       let setOptions = document.getElementById('select-set').options;
-       for (const set of setOptions) {
-         if(set.selected) {
-           setArray.push(set.value);
-         }
-       }
-     }
-
-     // Retrieve and store sets chosen by user
-     const costFilterSetting = document.querySelector('input[name="cost"]:checked').value;
-     const costArray = [];
-     if (costFilterSetting === "custom") {
-       let costOptions = document.getElementById('select-cost').options;
-       for (const cost of costOptions) {
-         if (cost.selected) {
-           costArray.push(cost.value);
-         }
-       }
-     }
-
-
-     const classSetting = document.querySelector('input[name="class"]:checked').value;
-     const raritySetting = document.querySelector('input[name="rarity"]:checked').value;
-     const typeSetting = document.querySelector('input[name="type"]:checked').value;
-
-     let classCount = classSetting !== "custom" ? NaN : document.getElementById('classInput').value;
-
-     let legendaryCount = raritySetting !== "custom" ? NaN : document.getElementById('legendInput').value;
-     let epicCount = raritySetting !== "custom" ? NaN : document.getElementById('epicInput').value;
-     let rareCount = raritySetting !== "custom" ? NaN : document.getElementById('rareInput').value;
-
-     let spellCount = typeSetting !== "custom" ? NaN : document.getElementById('spellInput').value;
-
-     let specifiedClasses = document.getElementById('select-hero').value;
-
-
-
-     const customRules = {
-       'heroFilterSetting': heroFilterSetting,
-       'heroArray': heroArray,
-       'setFilterSetting': setFilterSetting,
-       'setArray': setArray,
-       'costFilterSetting': costFilterSetting,
-       'costArray': costArray,
-       'classSetting': classSetting,
-       'classCount': classCount,
-       'raritySetting': raritySetting,
-       'legendaryCount': legendaryCount,
-       'epicCount': epicCount,
-       'rareCount': rareCount,
-       'typeSetting': typeSetting,
-       'spellCount': spellCount
-     };
-
-
-     localStorage.setItem("customRules", JSON.stringify(customRules));
-
-     window.location.href = "/draft"
-
-
+     buildSettings();
+     window.location.href = "/draft";
    });
+
+   saveBtn.addEventListener('click', e => {
+     buildSettings();
+   });
+
+
+
  });
 });
+
+const modeName = document.getElementById('mode-name-input');
+const saveModeBtn = document.getElementById('save-mode-btn');
+const savePublishBtn = document.getElementById('save-publish-btn');
+
+
+saveModeBtn.addEventListener('click', e => {
+  const modeNameValue = modeName.value;
+  if (!modeNameValue) {
+    modeName.insertAdjacentHTML('afterend', `
+      <p>Please enter a creative game mode name</p>
+    `);
+  } else {
+    axios.post('/modes', {
+      mode_name: modeNameValue,
+      settings: customRules
+    }).then(() => {
+      window.location.href = "/modes/user";
+    });
+  }
+});
+
+savePublishBtn.addEventListener('click', e => {
+  const modeNameValue = modeName.value;
+  if (!modeNameValue) {
+    modeName.insertAdjacentHTML('afterend', `
+      <p>Please enter a creative game mode name</p>
+    `);
+  } else {
+    axios.post('/modes', {
+      mode_name: modeNameValue,
+      settings: customRules
+    })
+    .then(results => {
+      const mode_id = results.data;
+      axios.post(`/modes/publish/${mode_id}`)
+      .then(() => {
+        window.location.href = "/modes/user";
+      }) ;
+    });
+  }
+});
+
+
+
+function buildSettings() {
+
+  // Retrieve and store heroes chosen by user
+  const heroFilterSetting = document.querySelector('input[name="hero"]:checked').value;
+  const heroArray = [];
+  if (heroFilterSetting === "custom") {
+    let heroOptions = document.getElementById('select-hero').options;
+    for (const hero of heroOptions) {
+      if (hero.selected) {
+        heroArray.push(hero.value);
+      }
+    }
+  }
+
+  // Retrieve and store sets chosen by user
+  const setFilterSetting = document.querySelector('input[name="set"]:checked').value;
+  const setArray = [];
+  if (setFilterSetting === "custom") {
+    let setOptions = document.getElementById('select-set').options;
+    for (const set of setOptions) {
+      if(set.selected) {
+        setArray.push(set.value);
+      }
+    }
+  }
+
+  // Retrieve and store sets chosen by user
+  const costFilterSetting = document.querySelector('input[name="cost"]:checked').value;
+  const costArray = [];
+  if (costFilterSetting === "custom") {
+    let costOptions = document.getElementById('select-cost').options;
+    for (const cost of costOptions) {
+      if (cost.selected) {
+        costArray.push(cost.value);
+      }
+    }
+  }
+
+
+  const classSetting = document.querySelector('input[name="class"]:checked').value;
+  const raritySetting = document.querySelector('input[name="rarity"]:checked').value;
+  const typeSetting = document.querySelector('input[name="type"]:checked').value;
+
+  let classCount = classSetting !== "custom" ? NaN : document.getElementById('classInput').value;
+
+  let legendaryCount = raritySetting !== "custom" ? NaN : document.getElementById('legendInput').value;
+  let epicCount = raritySetting !== "custom" ? NaN : document.getElementById('epicInput').value;
+  let rareCount = raritySetting !== "custom" ? NaN : document.getElementById('rareInput').value;
+
+  let spellCount = typeSetting !== "custom" ? NaN : document.getElementById('spellInput').value;
+
+  let specifiedClasses = document.getElementById('select-hero').value;
+
+
+
+  customRules = {
+    'heroFilterSetting': heroFilterSetting,
+    'heroArray': heroArray,
+    'setFilterSetting': setFilterSetting,
+    'setArray': setArray,
+    'costFilterSetting': costFilterSetting,
+    'costArray': costArray,
+    'classSetting': classSetting,
+    'classCount': classCount,
+    'raritySetting': raritySetting,
+    'legendaryCount': legendaryCount,
+    'epicCount': epicCount,
+    'rareCount': rareCount,
+    'typeSetting': typeSetting,
+    'spellCount': spellCount
+  };
+
+
+  localStorage.setItem("customRules", JSON.stringify(customRules));
+
+
+
+
+}
 
 //Multi-Select Click Function
 window.onmousedown = function (e) {

@@ -21,6 +21,8 @@ module.exports = function(app){
   app.get('/modes', modes.browse);
   app.get('/modes/:tab', modes.browse);
   app.get('/modes/:tab/:subtab', modes.browse);
+  app.post('/modes', modes.create);
+  app.post('/modes/publish/:id', modes.publish);
 
   //MODES ROUTES
 

@@ -464,7 +464,7 @@ a:link {
   font-size: 1.6vw;
 }
 
-#save-btn {
+.save-btn {
   width: 16vw;
   background-color: #8e8770;
   border: 2px solid green;
@@ -473,7 +473,7 @@ a:link {
   font-size: 1.6vw;
 }
 
-#save-btn:hover {
+.save-btn:hover {
   background-color: green;
   border: 2px dashed black;
   outline: none;
@@ -482,7 +482,7 @@ a:link {
   font-size: 1.6vw;
 }
 
-#save-btn:focus {
+.save-btn:focus {
   background-color: green;
   border: 2px dashed black;
   outline-color: green;
@@ -491,7 +491,43 @@ a:link {
   font-size: 1.6vw;
 }
 
-#save-btn:active {
+.save-btn:active {
+  background-color: green;
+  border: 2px dashed black;
+  outline-color: green;
+  margin: 0 auto;
+  margin-top: 3vh;
+  font-size: 1.6vw;
+}
+
+.save-btn-hover {
+  width: 16vw;
+  background-color: #8e8770;
+  border: 2px solid green;
+  margin: 0 auto;
+  margin-top: 3vh;
+  font-size: 1.6vw;
+}
+
+.save-btn-hover:hover {
+  background-color: #8e8770 !important;
+  border: 2px dashed black;
+  outline: none;
+  margin: 0 auto;
+  margin-top: 3vh;
+  font-size: 1.6vw;
+}
+
+.save-btn-hover:focus {
+  background-color: green;
+  border: 2px dashed black;
+  outline-color: green;
+  margin: 0 auto;
+  margin-top: 3vh;
+  font-size: 1.6vw;
+}
+
+.save-btn-hover:active {
   background-color: green;
   border: 2px dashed black;
   outline-color: green;
