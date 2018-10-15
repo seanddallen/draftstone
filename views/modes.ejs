@@ -21,7 +21,46 @@
 <body>
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<%- include partials/header.ejs %>
+<header id="navbar" class="test">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navcontainer">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="/">Draftstone</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li style="font-size: 16px; color: black; margin-right: 15px; font-family: playfair">
+              <% if (username) { %>
+                Worthy opponent: <b><%= username %></b>
+              <% } %>
+            </li>
+            <li>
+              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='/setup'"><i class="fas fa-plus" style="margin-right: 4px;"></i>New Mode</button>
+            </li>
+            <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
+            <li>
+              <% if (!username) { %>
+              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">LOG IN</button>
+              <% } else { %>
+              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" onclick="window.location.href='/logout'">LOG OUT</button>
+              <% } %>
+
+            </li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -113,18 +152,18 @@
                 <h3 class="panel-title bold flex-center" style="font-size:1.9rem"> <%= mode.mode_name %></h3>
                 <div class="flex flex-center">
 
-                  <%# if(BASIC || CREATED not COMMUNITY) { %>
+                  <% if(tab === 'community') { %>
                   <p class="" style="font-size:1.6rem; font-family:Playfair; font-weight: bold; color: green; margin:8px 5px 0px 0px;"><%= mode.votes %></p>
                   <button type="submit" id="" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
-                  <%# } %>
+                  <% } %>
 
 
                   <button id="" class="favorite fas fa-star fa-lg <%= mode.hasFavorited ? "green" : "grey" %>"></button>
 
-                  <%# if(BASIC || CREATED not COMMUNITY) { %>
-                  <button type="button" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Delete</b></button>
-                  <button type="button" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
-                  <%# } %>
+                  <% if(subtab === 'created') { %>
+                  <button type="button" onclick="window.location.href='/modes/delete/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Delete</b></button>
+                  <button type="button" onclick="window.location.href='/modes/publish/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
+                  <% } %>
 
                   <button type="button" class="btn btn-primary start-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Start</b></button>
                 </div>

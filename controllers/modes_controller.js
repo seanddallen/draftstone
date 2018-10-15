@@ -87,7 +87,7 @@ module.exports = {
       .where('id', req.params.id)
       .del()
     .then(() => {
-      res.render('/modes/user/created');
+      res.redirect('/modes/user/created');
     });
   }
 

@@ -26,8 +26,6 @@ module.exports = function(app){
   app.post('/modes/publish/:id', modes.publish);
   app.post('/modes/delete/:id', modes.delete);
 
-
-
   //VOTES ROUTES
 
   app.post('/modes/vote/:id/:tab/:subtab', votes.modeVote); //COMPLETE
