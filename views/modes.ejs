@@ -29,7 +29,7 @@
 
     <!-- ~~ CONTAINER ~~ -->
 
-    <div id="modes-container" class="container mode-main flex-col mt-50" style="align-content: center;">
+    <div id="modes-container" class="container mode-main flex-col mt-50" style="align-content: center; margin-bottom:40px;">
 
       <!-- ~~ MODE TABS ~~ -->
 
@@ -58,7 +58,7 @@
       <!-- ~~ MODE SUBTABS ~~ -->
 
       <% if (tab === "community") { %>
-      <div class="row" style="width:60vw; margin: 0 auto;">
+      <div class="row" style="width:60vw; margin: 1px auto 0 auto;">
         <div class="col-md-12">
           <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
             <div class="btn-group" role="group">
@@ -83,7 +83,7 @@
 
 
       <% if (tab === "user") { %>
-      <div class="row" style="width:60vw; margin: 0 auto;">
+      <div class="row" style="width:60vw; margin: 1px auto 0 auto;">
         <div class="col-md-12">
           <div class="btn-group btn-group-justified mode-options" role="group" aria-label="...">
             <div class="btn-group" role="group" style="margin: 0px;">
@@ -108,101 +108,58 @@
           <% modes.forEach(mode => { %>
           <div class="col-xl-6 col-xs-12 mt-5" style="margin:0px;">
             <div class="panel panel-default mode-panel flex-col" style="overflow:hidden; max-height:300px;">
-              <div class="panel-heading mode-panel-header flex flex-between">
-                <h3 class="panel-title bold flex-center"> <%= mode.mode_name %></h3>
+
+              <div class="panel-heading mode-panel-header flex flex-between" style="">
+                <h3 class="panel-title bold flex-center" style="font-size:1.9rem"> <%= mode.mode_name %></h3>
                 <div class="flex flex-center">
-                  <p class="" style="font-size:1.4rem; color: green; margin:3px 0px 0px;"><%= mode.votes %></p>
-                  <button type="submit" id="" class="vote fas fa-thumbs-up <%= mode.hasVoted ? "green" : "grey" %>"></button>
-                  <button id="" class="favorite fas fa-star <%= mode.hasFavorited ? "green" : "grey" %>"></button>
+
+                  <%# if(BASIC || CREATED not COMMUNITY) { %>
+                  <p class="" style="font-size:1.6rem; font-family:Playfair; font-weight: bold; color: green; margin:8px 5px 0px 0px;"><%= mode.votes %></p>
+                  <button type="submit" id="" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
+                  <%# } %>
+
+
+                  <button id="" class="favorite fas fa-star fa-lg <%= mode.hasFavorited ? "green" : "grey" %>"></button>
+
+                  <%# if(BASIC || CREATED not COMMUNITY) { %>
+                  <button type="button" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Delete</b></button>
+                  <button type="button" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
+                  <%# } %>
+
+                  <button type="button" class="btn btn-primary start-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Start</b></button>
                 </div>
               </div>
 
-              <div class="panel-body panel-body-top text-center flex flex-around" style="overflow:scroll; height:100%;">
+              <div class="panel-body panel-body-top text-center flex flex-around" style="overflow:scroll; height:100%; margin: 0px 0px 40px 0px">
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0px auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
+                  <br><b style="font-size:1em;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0px auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Hero</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
+                  <br><b style="font-size:1em;">Hero</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Cost</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
-                </div>
-                <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Class / Neutral</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %> (<%= mode.settings.classSetting %>) </pre>
-                </div>
-                <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Minion / Spell</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %> (<%= mode.settings.raritySetting %>) </pre>
-                </div>
-                <div class="col-xs-2" style="margin-top:5px;">
-                  <b style="font-size:1em;"> Legend / Epic <br>Rare / Common</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %> (<%= mode.settings.typeSetting %>) </pre>
-                </div>
-              </div>
-
-              <div style="margin: 20px auto 0px auto;">
-                <div>
-                  <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px; margin-left: 0px; margin-right: 0px;">Start Draft</button>
+                  <br><b style="font-size:1em;">Cost</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
                 </div>
 
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Class / Neutral</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.classSetting === 'custom'){ %><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %><% } else { %><%= mode.settings.classSetting %><% } %></pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <br><b style="font-size:1em;">Minion / Spell</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom'){ %><%= mode.settings.spellCount || 0 %> / <%= 30 - mode.settings.spellCount || 0 %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
+                </div>
+                <div class="col-xs-2" style="margin-top:5px;">
+                  <b style="font-size:1em;"> Legend / Epic <br>Rare / Common</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
+                </div>
               </div>
             </div>
           </div>
           <% }) %>
-
         </div>
-
-
-
-
-      <div class="row mt-40">
-
-        <% modes.forEach(mode => { %>
-        <div class="col-lg-3 col-md-4 col-sm-6 mt-5" style="">
-          <div class="panel panel-default mode-panel flex-col" style="overflow:hidden; max-height:300px;">
-            <div class="panel-heading mode-panel-header">
-              <h3 class="panel-title bold"> <%= mode.mode_name %> </h3>
-            </div>
-
-            <div class="panel-body panel-body-top text-center" style="overflow:scroll; height:100%;">
-              <div class="">
-                <b style="font-size:1.1em;">Votes</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.votes %></pre>
-              </div>
-              <div style="margin-top:5px;">
-                <b style="font-size:1.1em;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
-              </div>
-              <div style="margin-top:5px;">
-                <b style="font-size:1.1em;">Hero</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
-              </div>
-              <div style="margin-top:5px;">
-                <b style="font-size:1.1em;">Cost</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
-              </div>
-              <div style="margin-top:5px;">
-                <b style="font-size:1.1em;">Class / Neutral</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %> (<%= mode.settings.classSetting %>) </pre>
-              </div>
-              <div style="margin-top:5px;">
-                <b style="font-size:1.1em;">Minion / Spell</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %> (<%= mode.settings.raritySetting %>) </pre>
-              </div>
-              <div style="margin-top:5px;">
-                <b style="font-size:1.1em;"> Legendary / Epic / Rare / Common</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:80%; margin:0 auto;"><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %> (<%= mode.settings.typeSetting %>) </pre>
-              </div>
-            </div>
-
-            <div style="margin: 20px auto 0px auto;">
-              <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
-                <button id="" class="favorite fas fa-star fa-2x mr-20 <%= mode.hasFavorited ? "green" : "grey" %>"></button>
-              </form>
-              <button type="button" class="btn btn-primary panel-modes-btn" style="width: 120px; margin-left: 0px; margin-right: 0px;">Start Draft</button>
-              <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" style="display:inline-block">
-                <button type="submit" id="" class="vote fas fa-thumbs-up fa-2x ml-20 <%= mode.hasVoted ? "green" : "grey" %>"></i>
-              </form>
-            </div>
-          </div>
-        </div>
-        <% }) %>
-
-      </div>
-    </div>
-
-
     </div>
 
     <%- include partials/modals.ejs %>

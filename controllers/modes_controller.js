@@ -50,7 +50,6 @@ module.exports = {
             }
             mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
           }
-          console.log(modes);
           res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: user.user_name });
           req.session.errors = {
             login: [],

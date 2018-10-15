@@ -38,7 +38,6 @@ module.exports = {
       knex('modes')
         .where('id', req.params.id)
       .then(mode => {
-        console.log(mode[0]);
       });
     });
   }
