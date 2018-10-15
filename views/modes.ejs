@@ -154,15 +154,22 @@
 
                   <% if(tab === 'community') { %>
                   <p class="" style="font-size:1.6rem; font-family:Playfair; font-weight: bold; color: green; margin:8px 5px 0px 0px;"><%= mode.votes %></p>
-                  <button type="submit" id="" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
+                  <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" class="flex flex-center ">
+                    <button type="submit" id="" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
+                  </form>
                   <% } %>
 
-
-                  <button id="" class="favorite fas fa-star fa-lg <%= mode.hasFavorited ? "green" : "grey" %>"></button>
+                  <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" class="flex flex-center ">
+                    <button id="" class="favorite fas fa-star fa-lg <%= mode.hasFavorited ? "green" : "grey" %>"></button>
+                  </form>
 
                   <% if(subtab === 'created') { %>
-                  <button type="button" onclick="window.location.href='/modes/delete/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Delete</b></button>
-                  <button type="button" onclick="window.location.href='/modes/publish/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
+                  <form action="/modes/delete/<%= mode.id %>" method="post">
+                    <button type="submit" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Delete</b></button>
+                  </form>
+                  <form action="/modes/publish/<%= mode.id %>" method="post">
+                    <button type="submit" onclick="window.location.href='/modes/publish/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
+                  </form>
                   <% } %>
 
                   <button type="button" class="btn btn-primary start-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Start</b></button>

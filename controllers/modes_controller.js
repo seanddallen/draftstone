@@ -79,7 +79,7 @@ module.exports = {
           settings: mode.settings
         });
     })
-    .then(() => res.sendStatus(201));
+    .then(() => res.redirect('/modes/user/created'));
   },
 
   delete: (req, res) => {
