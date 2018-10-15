@@ -19,8 +19,6 @@ module.exports = function(app){
 
   //MODES ROUTES
 
-  app.get('/modes', modes.browse);           //NOT NEEDED?
-  app.get('/modes/:tab', modes.browse);      //NOT NEEDED?
   app.get('/modes/:tab/:subtab', modes.browse);
 
   app.use(authenticateUser);

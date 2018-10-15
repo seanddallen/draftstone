@@ -59,7 +59,7 @@ savePublishBtn.addEventListener('click', e => {
       const mode_id = results.data;
       axios.post(`/modes/publish/${mode_id}`)
       .then(() => {
-        window.location.href = "/modes/user";
+        window.location.href = "/modes/user/created";
       }) ;
     });
   }
