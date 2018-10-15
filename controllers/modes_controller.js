@@ -1,65 +1,55 @@
 const knex = require("../db/knex.js");
+const moment = require("moment");
 
 module.exports = {
-
   browse: (req, res) => {
+    const trendingDaysRange = 30;
+    const user_id = req.session.user_id || null;
     const tab = req.params.tab;
     const subtab = req.params.subtab;
-
-    if (!req.session.user_id) {
-      knex('modes')
-        .where('type', tab)
-      .then(modes => {
-        let heroList = '';
-        for (const mode of modes) {
-          for (const hero of mode.settings.heroArray) {
-             heroList += `\n${hero}`;
-          }
-          mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
+    knex.select('modes.*', 'votes.user_id as hasVoted', 'favorites.user_id as hasFavorited')
+      .from('modes')
+      .leftJoin(
+        knex('votes')
+          .where('votes.user_id', user_id)
+          .as('votes'),
+        'modes.id','votes.mode_id')
+      .leftJoin(
+        knex('favorites')
+          .where('favorites.user_id', user_id)
+          .as('favorites'),
+          'modes.id','favorites.mode_id')
+      .orderBy('created_at', 'desc')
+    .then(modes => {
+      if (tab === "basic") {
+        modes = modes.filter(mode => mode.type === "basic");
+      } else if (tab === "community") {
+        modes = modes.filter(mode => mode.type === "community");
+        if (subtab !== "newest") {
+          modes.sort((modeA, modeB) => modeB.votes - modeA.votes);
         }
-        res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: null });
-        req.session.errors = {
-          login: [],
-          register: []
-        };
-        req.session.save();
-      });
-    } else {
-      knex('users')
-        .where('id', req.session.user_id)
-      .then(results => {
-        const user = results[0];
-        knex.select('modes.*', 'votes.user_id as hasVoted', 'favorites.user_id as hasFavorited')
-          .from('modes')
-          .leftJoin(
-            knex('votes')
-              .where('votes.user_id', req.session.user_id)
-              .as('votes'),
-            'modes.id','votes.mode_id')
-          .leftJoin(
-            knex('favorites')
-              .where('favorites.user_id', req.session.user_id)
-              .as('favorites'),
-              'modes.id','favorites.mode_id')
-          .where('modes.type',tab)
-        .then(modes => {
-          let heroList = '';
-          for (const mode of modes) {
-            for (const hero of mode.settings.heroArray) {
-               heroList += `\n${hero}`;
-            }
-            mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
-          }
-          console.log(modes);
-          res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: user.user_name });
-          req.session.errors = {
-            login: [],
-            register: []
-          };
-          req.session.save();
-        });
-      });
-    }
+        if (subtab === "trending") {
+          modes = modes.filter(mode => moment(mode.created_at).isAfter(moment().subtract(trendingDaysRange, 'd')));
+        }
+      } else if (subtab === "created") {
+        modes = modes.filter(mode => mode.creator_id === user_id && mode.type === "user");
+      } else {
+        modes = modes.filter(mode => mode.hasFavorited);
+      }
+      let heroList = '';
+      for (const mode of modes) {
+        for (const hero of mode.settings.heroArray) {
+           heroList += `\n${hero}`;
+        }
+        mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
+      }
+      res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: req.session.user_name });
+      req.session.errors = {
+        login: [],
+        register: []
+      };
+      req.session.save();
+    });
   },
 
   create: (req, res) => {
@@ -90,6 +80,15 @@ module.exports = {
         });
     })
     .then(() => res.sendStatus(201));
+  },
+
+  delete: (req, res) => {
+    knex('modes')
+      .where('id', req.params.id)
+      .del()
+    .then(() => {
+      res.render('/modes/user/created');
+    });
   }
 
   // browsemore: (req, res) => {

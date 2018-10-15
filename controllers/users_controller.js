@@ -2,96 +2,40 @@ const knex = require("../db/knex.js");
 
 module.exports = {
   index: (req, res) => {
-    if (!req.session.user_id) {
-      res.render('index', {errors: req.session.errors, username: null});
+      res.render('index', {errors: req.session.errors, username: req.session.user_name});
       req.session.errors = {
         login: [],
         register: []
       };
       req.session.save();
-    } else {
-      knex('users')
-        .where('id', req.session.user_id)
-      .then(results => {
-        const user = results[0];
-        res.render('index', {errors: req.session.errors, username: user.user_name});
-        req.session.errors = {
-          login: [],
-          register: []
-        };
-        req.session.save();
-      });
-    }
-
   },
 
   setup: (req, res) => {
-    if (!req.session.user_id) {
-      res.render('setup', {errors: req.session.errors, username: null});
-      req.session.errors = {
-        login: [],
-        register: []
-      };
-      req.session.save();
-    } else {
-      knex('users')
-        .where('id', req.session.user_id)
-      .then(results => {
-        const user = results[0];
-        res.render('setup', {errors: req.session.errors, username: user.user_name});
-        req.session.errors = {
-          login: [],
-          register: []
-        };
-        req.session.save();
-      });
-    }
+    res.render('setup', {errors: req.session.errors, username: req.session.user_name});
+    req.session.errors = {
+      login: [],
+      register: []
+    };
+    req.session.save();
+
   },
 
   draft: (req, res) => {
-    if (!req.session.user_id) {
-      res.render('draft', {errors: req.session.errors, username: null});
-      req.session.errors = {
-        login: [],
-        register: []
-      };
-      req.session.save();
-    } else {
-      knex('users')
-        .where('id', req.session.user_id)
-      .then(results => {
-        const user = results[0];
-        res.render('draft', {errors: req.session.errors, username: user.user_name});
-        req.session.errors = {
-          login: [],
-          register: []
-        };
-        req.session.save();
-      });
-    }
+    res.render('draft', {errors: req.session.errors, username: req.session.user_name});
+    req.session.errors = {
+      login: [],
+      register: []
+    };
+    req.session.save();
   },
 
   export: (req, res) => {
-    if (!req.session.user_id) {
-      res.render('export', {errors: req.session.errors, username: null});
-      req.session.errors = {
-        login: [],
-        register: []
-      };
-      req.session.save();
-    } else {
-      knex('users')
-        .where('id', req.session.user_id)
-      .then(results => {
-        const user = results[0];
-        res.render('export', {errors: req.session.errors, username: user.user_name});
-        req.session.errors = {
-          login: [],
-          register: []
-        };
-        req.session.save();
-      });
-    }
+    res.render('export', {errors: req.session.errors, username: req.session.user_name});
+    req.session.errors = {
+      login: [],
+      register: []
+    };
+    req.session.save();
   },
 
   register: (req, res) => {
@@ -127,6 +71,7 @@ module.exports = {
       }
       if (req.body.password === user.password) {
         req.session.user_id = user.id;
+        req.session.user_name = user.user_name;
         req.session.save(() => {
           res.redirect('/');
         });

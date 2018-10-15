@@ -24,6 +24,7 @@ module.exports = function(app){
   app.use(authenticateUser);
   app.post('/modes', modes.create);
   app.post('/modes/publish/:id', modes.publish);
+  app.post('/modes/delete/:id', modes.delete);
 
 
 
