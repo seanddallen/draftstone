@@ -153,7 +153,9 @@
                 <div class="flex flex-center">
 
                   <% if(tab === 'community') { %>
-                  <p class="" style="font-size:1.6rem; font-family:Playfair; font-weight: bold; color: green; margin:8px 5px 0px 0px;"><%= mode.votes %></p>
+                  <div class="badge" style="background-color:#F7F7F7; margin-right:5px; padding-right:3px;">
+                    <p style="font-size:1.6rem; font-family:Playfair; font-weight: bold; color: green; margin:8px 5px 0px 0px;"><%= mode.votes %></p>
+                  </div>
                   <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" class="flex flex-center ">
                     <button type="submit" id="" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
                   </form>
