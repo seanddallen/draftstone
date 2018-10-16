@@ -1,4 +1,5 @@
 const knex = require("../db/knex.js");
+const hasher = require("../config/hasher.js");
 
 module.exports = {
   index: (req, res) => {
@@ -39,6 +40,7 @@ module.exports = {
   },
 
   register: (req, res) => {
+    hasher.hash(req.body).then((user)=>{
     knex('users')
       .insert({
         user_name: req.body.username,
@@ -55,6 +57,7 @@ module.exports = {
         res.redirect('/');
       });
     });
+  });
   },
 
   login: (req, res) => {
@@ -69,12 +72,16 @@ module.exports = {
           return;
         });
       }
-      if (req.body.password === user.password) {
-        req.session.user_id = user.id;
-        req.session.user_name = user.user_name;
-        req.session.save(() => {
-          res.redirect('/');
-        });
+      if(user){
+        hasher.check(user, req.body).then((isMatch)=>{
+          if(isMatch){
+            req.session.user_id = user.id;
+            req.session.user_name = user.user_name;
+            req.session.save(() => {
+              res.redirect('/');
+            })
+            }
+          })
       } else {
         req.session.errors.login.push("Email or password incorrect.");
         req.session.save(() => {
@@ -82,13 +89,21 @@ module.exports = {
           return;
         });
       }
-    });
+    })
   },
 
   logout: (req, res) => {
     req.session.destroy(() => {
       res.redirect('/');
     });
+  },
+
+  draftcount: (req, res) => {
+    knex('analytics').where('id', 1).increment('drafts', 1)
+    .then((drafts)=>{
+      console.log(drafts)
+    })
   }
+
 
 };

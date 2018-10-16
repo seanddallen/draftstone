@@ -534,10 +534,11 @@ function renderDeck(array) {
 ///////////////////////// COMPLETE DECK /////////////////////////
 
 function deckComplete() {
-  localStorage.setItem('deck', JSON.stringify(deck));
-  localStorage.setItem('heroCard', JSON.stringify(heroCard));
-  setTimeout(function(){window.open("/export", "_self");}, 2000);
-
+  axios.post('/draftcount').then(()=>{
+    localStorage.setItem('deck', JSON.stringify(deck));
+    localStorage.setItem('heroCard', JSON.stringify(heroCard));
+    setTimeout(function(){window.open("/export", "_self");}, 2000);
+  })
 }
 
 

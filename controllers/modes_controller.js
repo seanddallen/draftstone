@@ -7,6 +7,10 @@ module.exports = {
     const user_id = req.session.user_id || null;
     const tab = req.params.tab;
     const subtab = req.params.subtab;
+
+
+
+
     knex.select('modes.*', 'votes.user_id as hasVoted', 'favorites.user_id as hasFavorited')
       .from('modes')
       .leftJoin(
@@ -43,6 +47,7 @@ module.exports = {
         }
         mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
       }
+
       res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: req.session.user_name });
       req.session.errors = {
         login: [],
