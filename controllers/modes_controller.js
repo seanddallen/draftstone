@@ -76,13 +76,15 @@ module.exports = {
       .where('id', req.params.id)
     .then(results => {
       const mode = results[0];
-      return knex('modes')
+      if (mode.creator_id === req.session.user_id) {
+        return knex('modes')
         .insert({
           mode_name: mode.mode_name,
           type: 'community',
           creator_id: mode.creator_id,
           settings: mode.settings
         });
+      }
     })
     .then(() => res.redirect('/modes/user/created'));
   },
@@ -90,9 +92,15 @@ module.exports = {
   delete: (req, res) => {
     knex('modes')
       .where('id', req.params.id)
-      .del()
-    .then(() => {
-      res.redirect('/modes/user/created');
+    .then(results => {
+      if (results[0].creator_id === req.session.user_id) {
+        knex('modes')
+        .where('id', req.params.id)
+        .del()
+        .then(() => {
+          res.redirect('/modes/user/created');
+        });
+      }
     });
   },
 
