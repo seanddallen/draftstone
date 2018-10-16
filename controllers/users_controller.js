@@ -1,13 +1,14 @@
 const knex = require("../db/knex.js");
 
+
 module.exports = {
   index: (req, res) => {
-      res.render('index', {errors: req.session.errors, username: req.session.user_name});
-      req.session.errors = {
-        login: [],
-        register: []
-      };
-      req.session.save();
+    res.render('index', {errors: req.session.errors, username: req.session.user_name});
+    req.session.errors = {
+      login: [],
+      register: []
+    };
+    req.session.save();
   },
 
   setup: (req, res) => {
