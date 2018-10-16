@@ -44,9 +44,9 @@ module.exports = {
     hasher.hash(req.body).then((user)=>{
     knex('users')
       .insert({
-        user_name: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
+        user_name: user.username,
+        email: user.email,
+        password: user.password,
       })
     .then(() => res.redirect('/'))
     .catch(err =>  {
@@ -81,13 +81,13 @@ module.exports = {
             req.session.save(() => {
               res.redirect('/');
             })
-            }
-          })
-      } else {
-        req.session.errors.login.push("Email or password incorrect.");
-        req.session.save(() => {
-          res.redirect('/');
-          return;
+          } else {
+            req.session.errors.login.push("Email or password incorrect.");
+            req.session.save(() => {
+              res.redirect('/');
+              return;
+            });
+          }
         });
       }
     })
@@ -102,7 +102,7 @@ module.exports = {
   draftcount: (req, res) => {
     knex('analytics').where('id', 1).increment('drafts', 1)
     .then((drafts)=>{
-      console.log(drafts)
+      res.sendStatus(201);
     })
   }
 

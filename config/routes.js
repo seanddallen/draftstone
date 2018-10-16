@@ -35,7 +35,7 @@ module.exports = function(app){
   app.post('/modes/favorite/:id/:tab/:subtab', favorites.modeFavorite); //COMPLETE
 
   //ANALYTICS ROUTES
-  app.post('/modes/draftcount', users.draftcount);
+  app.post('/draftcount', users.draftcount);
 };
 
 function authenticateUser(req, res, next) {
