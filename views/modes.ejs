@@ -143,7 +143,7 @@
 
       <!-- ~~ MODE LIST ~~ -->
 
-      <div class="row mt-40">
+      <div id="mode-list" class="row mt-40">
           <% modes.forEach(mode => { %>
           <div class="col-xl-6 col-xs-12 mt-5" style="margin:0px;">
             <div class="panel panel-default mode-panel flex-col" style="overflow:hidden; max-height:300px;">
@@ -157,12 +157,12 @@
                     <p style="font-size:1.6rem; font-family:Playfair; font-weight: bold; color: green; margin:8px 5px 0px 0px;"><%= mode.votes %></p>
                   </div>
                   <form action="/modes/vote/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" class="flex flex-center ">
-                    <button type="submit" id="" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
+                    <button type="submit" style="" class="vote fas fa-thumbs-up fa-lg <%= mode.hasVoted ? "green" : "grey" %>"></button>
                   </form>
                   <% } %>
 
                   <form action="/modes/favorite/<%= mode.id %>/<%= tab %>/<%= subtab %>" method="post" class="flex flex-center ">
-                    <button id="" class="favorite fas fa-star fa-lg <%= mode.hasFavorited ? "green" : "grey" %>"></button>
+                    <button class="favorite fas fa-star fa-lg <%= mode.hasFavorited ? "green" : "grey" %>"></button>
                   </form>
 
                   <% if(subtab === 'created') { %>
@@ -174,7 +174,8 @@
                   </form>
                   <% } %>
 
-                  <button type="button" class="btn btn-primary start-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Start</b></button>
+                  <input id="mode<%= mode.id %>-input" type="hidden" value="<%= JSON.stringify(mode.settings) %>">
+                  <button id="mode<%= mode.id %>" type="button" class="btn btn-primary start-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Start</b></button>
                 </div>
               </div>
 

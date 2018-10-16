@@ -94,7 +94,7 @@ module.exports = {
     .then(() => {
       res.redirect('/modes/user/created');
     });
-  }
+  },
 
   // browsemore: (req, res) => {
   //   knex.select('modes.*', 'votes.user_id as hasVoted').from('modes').leftJoin('votes', 'modes.id', 'votes.mode_id').where('votes.user_id', req.session.user_id).orWhere('votes.user_id', null).then(votes => {
