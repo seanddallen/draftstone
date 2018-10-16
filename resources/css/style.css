@@ -586,7 +586,7 @@ a:link {
   background-color: #ddd8cc;
   margin: 0 -32px;
   margin-bottom: 40px;
-  min-height: 607px;
+  min-height: 720px;
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
@@ -1142,6 +1142,19 @@ input[type=radio]:disabled + .label-text:before {
 .grey {
   color:grey;
 }
+.brown{
+  background-color: #3d3934;
+}
+.light {
+  color:#ddd8cc;
+}
+.dark {
+  background-color:#8e8770;
+}
+.darker {
+  color:rgba(0,0,0,0.8);
+}
+
 
 .start-btn {
   background-color: green;

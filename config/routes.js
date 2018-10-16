@@ -12,6 +12,9 @@ module.exports = function(app){
   app.post('/register', users.register);
   app.post('/login', users.login);
   app.get('/logout', users.logout);
+  app.get('/user', users.account);
+  app.post('/user/delete', users.delete);
+  app.post('/user/resetpassword', users.password);
 
   app.get('/setup', users.setup);
   app.get('/draft', users.draft);
