@@ -16,6 +16,15 @@
          color: white;
       }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-127642798-1');
+    </script>
 </head>
 
 <body>
@@ -40,7 +49,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li style="font-size: 16px; color: black; margin-right: 15px; font-family: playfair">
               <% if (username) { %>
-                Worthy opponent: <b><%= username %></b>
+                <div id="username" class="darker">Worthy opponent: <b><%= username %></b></div>
               <% } %>
             </li>
             <li>
@@ -51,9 +60,9 @@
               <% if (!username) { %>
               <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">LOG IN</button>
               <% } else { %>
-              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" onclick="window.location.href='/logout'">LOG OUT</button>
+              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" onclick="window.location.href='/logout'" style="margin-right:0px;">LOG OUT</button>
+              <button id="account-icon" class="fas fa-user-circle dark" onclick="window.location.href='/user'" style="color:green; font-size:3.3rem; margin-right:10px; margin-left:0px; border:none;"></button>
               <% } %>
-
             </li>
           </ul>
       </div>

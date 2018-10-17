@@ -104,7 +104,51 @@ module.exports = {
     .then((drafts)=>{
       res.sendStatus(201);
     })
-  }
+  },
 
+  account: (req, res) => {
+    knex('users').where('id', req.session.user_id).then((users)=>{
+      res.render('account', {users: users, errors: req.session.errors, username: req.session.user_name});
+      req.session.errors = {
+        login: [],
+        register: []
+      };
+    })
+  },
+
+  delete: (req, res) => {
+    knex('users').del().where('id', req.session.user_id).then(()=>{
+      req.session.destroy(() => {
+        res.redirect('/');
+      });
+    })
+  },
+
+  password: (req, res) => {
+    knex('users').where('id', req.session.user_id).then((results)=>{
+      let user = results[0];
+      hasher.check(user, req.body).then((isMatch)=>{
+        if(isMatch){
+          req.session.user_id = user.id;
+          req.session.user_name = user.user_name;
+          req.session.save(() => {
+            res.redirect('/');
+          })
+        } else {
+          req.session.errors.login.push("Email or password incorrect.");
+          req.session.save(() => {
+            res.redirect('/');
+            return;
+          });
+        }
+      });
+    }).then(()=>{
+      knex('users').where('id', req.session.user_id).update({
+          password: a,
+        }).then((users)=>{
+          res.redirect('/');
+      })
+    })
+  },
 
 };
