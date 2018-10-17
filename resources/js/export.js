@@ -1,25 +1,26 @@
 const deck = JSON.parse(localStorage.getItem('deck'));
 const heroCard = JSON.parse(localStorage.getItem('heroCard'));
 
-const url = "http://localhost:8000/encodeDeck";
 const data = {
   "deck": deck,
   "heroCard": heroCard
 };
 
-console.log(JSON.stringify(data));
-console.log(data.heroCard);
-fetch(url, {
-  method: "POST",
-  mode: "no-cors",
-  body: JSON.stringify(data)
-}).then(response => response.JSON).then(deckstring => console.log(deckstring));
+const exportDeck = document.getElementById('export-deck');
+const deckstringInput = document.getElementById('deckstring-input');
+
+axios.post('/export', data)
+.then(deckstring => {
+  console.log(deckstring);
+  exportDeck.addEventListener('click', () => {
+    deckstringInput.innerHTML = JSON.stringify(deckstring.data).slice(1,-1);
+  });
+});
 
 
 
-// copy code to clipboard
-// in hearthstone, create new deck while code is in clipboard
-// hearthstone will automatically detect the code and offer to craete deck
+
+
 
 const customRules = JSON.parse(localStorage.getItem("customRules"));
 

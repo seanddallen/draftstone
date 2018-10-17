@@ -50,10 +50,9 @@
             <h3>You're done, go have some fun!</h3>
           </div>
           <div class="flex-col flex-just-center center">
-            <a href="#" class="flex-col">
-              <button type="button" class="btn btn-primary btn-lg flow-btn flex-center">Send Draft</button>
-            </a>
-            <p class="flex-center mt-20">click button to export your custom draft to Hearthstone!</p>
+            <pre style="height:3em;" id="deckstring-input"></pre>
+            <button id="export-deck" type="button" class="btn btn-primary btn-lg flow-btn flex-center">Export Deck</button>
+            <p class="flex-center mt-20">Click button to see your destring for easy import into Hearthstone!</p>
           </div>
           <div class="flex-col flex-justify">
             <button id="save-btn" type="button" class="btn btn-primary btn-lg <% if (!username) { %>save-btn-hover<% } else { %>save-btn<%}%>" data-toggle="modal" data-target="#draftModal" <% if (!username) { %> disabled <% } %> >Save Game Mode</button>
@@ -73,9 +72,9 @@
 
   <%- include partials/modals.ejs %>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script type="text/javascript" src="/js/export.js"></script>
   <script type="text/javascript" src="/js/header.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>

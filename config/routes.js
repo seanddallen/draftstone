@@ -6,6 +6,8 @@ const favorites  = require("../controllers/favorites_controller.js");
 module.exports = function(app){
   app.use(createMessageArr);
 
+  //ANALYTICS ROUTES
+  app.post('/draftcount', users.draftcount);
 
   //USER ROUTES
   app.get('/', users.index);
@@ -16,6 +18,7 @@ module.exports = function(app){
   app.get('/setup', users.setup);
   app.get('/draft', users.draft);
   app.get('/export', users.export);
+  app.post('/export', users.encode);
 
   //MODES ROUTES
 
@@ -37,8 +40,6 @@ module.exports = function(app){
 
   app.post('/modes/favorite/:id/:tab/:subtab', favorites.modeFavorite); //COMPLETE
 
-  //ANALYTICS ROUTES
-  app.post('/draftcount', users.draftcount);
 };
 
 function authenticateUser(req, res, next) {

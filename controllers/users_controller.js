@@ -1,5 +1,6 @@
 const knex = require("../db/knex.js");
 const hasher = require("../config/hasher.js");
+const deckstrings = require("deckstrings");
 
 
 module.exports = {
@@ -171,5 +172,30 @@ module.exports = {
       });
     });
   },
+
+  encode: (req, res) => {
+    const deck = req.body.deck;
+    const heroCard = req.body.heroCard;
+    const cards = [];
+    for (let i = 0; i < 30; i++) {
+     if (i < 29 && deck[i].dbfId === deck[i + 1].dbfId) {
+       cards.push([+ deck[i].dbfId, 2]);
+       i++;
+     }
+     else {
+       cards.push([+ deck[i].dbfId, 1]);
+     }
+    }
+    const encodableDeck = {
+     'cards': cards,
+     heroes: [+ heroCard.dbfId],
+     format: 1
+    };
+
+
+    const deckstring = deckstrings.encode(encodableDeck);
+    res.json(deckstring);
+    // console.log(deckstrings.decode('AAECAfe5AgaKB70BzfQCIKfuAsLOAgzZB7DwAvAHsQiU7wKRwQL27AKW6AL+BZvLApkC0wEA'));
+  }
 
 };
