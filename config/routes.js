@@ -4,7 +4,7 @@ const votes  = require("../controllers/votes_controller.js");
 const favorites  = require("../controllers/favorites_controller.js");
 
 module.exports = function(app){
-  app.use(createErrorArr);
+  app.use(createMessageArr);
 
 
   //USER ROUTES
@@ -12,9 +12,6 @@ module.exports = function(app){
   app.post('/register', users.register);
   app.post('/login', users.login);
   app.get('/logout', users.logout);
-  app.get('/user', users.account);
-  app.post('/user/delete', users.delete);
-  app.post('/user/resetpassword', users.password);
 
   app.get('/setup', users.setup);
   app.get('/draft', users.draft);
@@ -25,6 +22,9 @@ module.exports = function(app){
   app.get('/modes/:tab/:subtab', modes.browse);
 
   app.use(authenticateUser);
+  app.get('/user', users.account);
+  app.post('/user/delete', users.delete);
+  app.post('/user/resetpassword', users.password);
   app.post('/modes', modes.create);
   app.post('/modes/publish/:id', modes.publish);
   app.post('/modes/delete/:id', modes.delete);
@@ -49,11 +49,13 @@ function authenticateUser(req, res, next) {
   }
 }
 
-function createErrorArr(req, res, next){
-  if(!req.session.errors){
-    req.session.errors = {
-      login: [],
-      register: [],
+function createMessageArr(req, res, next){
+  if(!req.session.messages){
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
     };
   }
   next();

@@ -4,38 +4,46 @@ const hasher = require("../config/hasher.js");
 
 module.exports = {
   index: (req, res) => {
-    res.render('index', {errors: req.session.errors, username: req.session.user_name});
-    req.session.errors = {
-      login: [],
-      register: []
+    res.render('index', {messages: req.session.messages, username: req.session.user_name});
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
     };
     req.session.save();
   },
 
   setup: (req, res) => {
-    res.render('setup', {errors: req.session.errors, username: req.session.user_name});
-    req.session.errors = {
-      login: [],
-      register: []
+    res.render('setup', {messages: req.session.messages, username: req.session.user_name});
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
     };
     req.session.save();
 
   },
 
   draft: (req, res) => {
-    res.render('draft', {errors: req.session.errors, username: req.session.user_name});
-    req.session.errors = {
-      login: [],
-      register: []
+    res.render('draft', {messages: req.session.messages, username: req.session.user_name});
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
     };
     req.session.save();
   },
 
   export: (req, res) => {
-    res.render('export', {errors: req.session.errors, username: req.session.user_name});
-    req.session.errors = {
-      login: [],
-      register: []
+    res.render('export', {messages: req.session.messages, username: req.session.user_name});
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
     };
     req.session.save();
   },
@@ -52,7 +60,7 @@ module.exports = {
     .catch(err =>  {
       console.log(err);
       if (err.code == 23505) {
-        req.session.errors.register.push("User with that email already exists.");
+        req.session.messages.registerErrors.push("User with that email already exists.");
       }
       req.session.save(() => {
         res.redirect('/');
@@ -67,7 +75,7 @@ module.exports = {
     .then(results => {
       const user = results[0];
       if (!user) {
-        req.session.errors.login.push("Email or password incorrect.");
+        req.session.messages.loginErrors.push("Email or password incorrect.");
         req.session.save(() => {
           res.redirect('/');
           return;
@@ -80,9 +88,9 @@ module.exports = {
             req.session.user_name = user.user_name;
             req.session.save(() => {
               res.redirect('/');
-            })
+            });
           } else {
-            req.session.errors.login.push("Email or password incorrect.");
+            req.session.messages.loginErrors.push("Email or password incorrect.");
             req.session.save(() => {
               res.redirect('/');
               return;
@@ -90,7 +98,7 @@ module.exports = {
           }
         });
       }
-    })
+    });
   },
 
   logout: (req, res) => {
@@ -103,17 +111,20 @@ module.exports = {
     knex('analytics').where('id', 1).increment('drafts', 1)
     .then((drafts)=>{
       res.sendStatus(201);
-    })
+    });
   },
 
   account: (req, res) => {
     knex('users').where('id', req.session.user_id).then((users)=>{
-      res.render('account', {users: users, errors: req.session.errors, username: req.session.user_name});
-      req.session.errors = {
-        login: [],
-        register: []
+      res.render('account', {users: users, messages: req.session.messages, username: req.session.user_name});
+      req.session.messages = {
+        loginErrors: [],
+        registerErrors: [],
+        resetError: [],
+        resetSuccess: []
       };
-    })
+      req.session.save();
+    });
   },
 
   delete: (req, res) => {
@@ -121,34 +132,44 @@ module.exports = {
       req.session.destroy(() => {
         res.redirect('/');
       });
-    })
+    });
   },
 
   password: (req, res) => {
-    knex('users').where('id', req.session.user_id).then((results)=>{
+    knex('users')
+      .where('id', req.session.user_id)
+    .then((results)=>{
       let user = results[0];
-      hasher.check(user, req.body).then((isMatch)=>{
+      hasher.check(user, req.body)
+      .then((isMatch) => {
         if(isMatch){
-          req.session.user_id = user.id;
-          req.session.user_name = user.user_name;
-          req.session.save(() => {
-            res.redirect('/');
-          })
+          unhashedUser = {
+            password: req.body.newpassword
+          };
+          hasher.hash(unhashedUser)
+          .then((updatedUser) => {
+            knex('users')
+              .where('id', req.session.user_id)
+              .update({
+                password: updatedUser.password
+              })
+            .then(() => {
+              req.session.messages.resetSuccess.push("Password updated!");
+              req.session.save(() => {
+                res.redirect('/user');
+                return;
+              });
+            });
+          });
         } else {
-          req.session.errors.login.push("Email or password incorrect.");
+          req.session.messages.resetError.push("Password incorrect.");
           req.session.save(() => {
-            res.redirect('/');
+            res.redirect('/user');
             return;
           });
         }
       });
-    }).then(()=>{
-      knex('users').where('id', req.session.user_id).update({
-          password: a,
-        }).then((users)=>{
-          res.redirect('/');
-      })
-    })
+    });
   },
 
 };

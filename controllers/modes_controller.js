@@ -48,10 +48,12 @@ module.exports = {
         mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
       }
 
-      res.render('modes', { modes: modes, tab: tab, subtab: subtab, errors: req.session.errors, username: req.session.user_name });
-      req.session.errors = {
-        login: [],
-        register: []
+      res.render('modes', { modes: modes, tab: tab, subtab: subtab, messages: req.session.messages, username: req.session.user_name });
+      req.session.messages = {
+        loginErrors: [],
+        registerErrors: [],
+        resetError: [],
+        resetSuccess: []
       };
       req.session.save();
     });

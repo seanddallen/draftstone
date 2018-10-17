@@ -54,14 +54,21 @@
               </div>
               <div class="flow-text text-center col-5-md">
                 <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Change Password</h3>
-                <form action="/login" method="post" class="mt-40">
+                <form id="password-change" action="/user/resetpassword" method="post" class="mt-40">
                   <div class="form-group">
-                    <input type="password" name="currentpassword" class="form-control" placeholder="Current Password" style="margin:10px auto 0 auto; width:50%;" required>
-                    <input type="password" name="newpassword" class="form-control" placeholder="New Password" style="margin:10px auto 0 auto; width:50%;" required>
-                    <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm New Password" style="margin:10px auto 0 auto; width:50%;" required>
+                    <input type="password" name="password" class="form-control" placeholder="Current Password" style="margin:10px auto 0 auto; width:50%;" required>
+                    <input id="newpassword" type="password" name="newpassword" class="form-control" placeholder="New Password" style="margin:10px auto 0 auto; width:50%;" required>
+                    <input id="confirmpassword" type="password" name="confirmpassword" class="form-control" placeholder="Confirm New Password" style="margin:10px auto 0 auto; width:50%;" required>
                     <button type="submit" class="btn btn-primary login-btn" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Change</button>
                   </div>
                 </form>
+                <p id="mismatch" class="warning hidden">Passwords do not match</p>
+                <% for (const err of messages.resetError) { %>
+                  <p class="warning"><%= err %></p>
+                <% } %>
+                <% for (const suc of messages.resetSuccess) { %>
+                  <p class="success"><%= suc %></p>
+                <% } %>
               </div>
 
 
