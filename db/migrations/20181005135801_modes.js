@@ -5,12 +5,9 @@ exports.up = function(knex, Promise) {
     table.string('mode_name');
     table.string('type');
     table.integer('votes').defaultTo(0);
-    table.integer('creator_id')
-      .notNullable()
-      .references('id')
-      .inTable('users')
-      .index();
+    table.integer('creator_id');
     table.json('settings');
+    table.boolean('published').defaultTo('false');
     table.timestamps(true, true);
   });
 };

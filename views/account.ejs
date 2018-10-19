@@ -66,10 +66,10 @@
                 </form>
                 <p id="mismatch" class="warning hidden">Passwords do not match</p>
                 <% for (const err of messages.resetError) { %>
-                  <p class="warning"><%= err %></p>
+                  <p id="error" class="warning"><%= err %></p>
                 <% } %>
                 <% for (const suc of messages.resetSuccess) { %>
-                  <p class="success"><%= suc %></p>
+                  <p id="success" class="success"><%= suc %></p>
                 <% } %>
                 <br>
                 <div class="flex-col center" style="margin:0 auto;">
@@ -107,7 +107,7 @@
         <div class="modal-body">
 
           <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 75%; margin:0px auto;">
-            <h4 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Are You sure you want to delete your account and lose all of your custom and favorited game modes? This cannot be undone.</h4>
+            <h4 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Are you sure you want to delete your account and lose all of your custom and favorited game modes? This cannot be undone.</h4>
 
               <div>
                 <form action="/user/delete" method="post" class="center flex">

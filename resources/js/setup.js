@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
    draftBtn.classList.remove("inactive");
    const saveBtn =  document.getElementById('save-btn');
    saveBtn.classList.remove("inactive");
+   saveBtn.disabled = false;
 
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
@@ -61,9 +62,8 @@ const savePublishBtn = document.getElementById('save-publish-btn');
 saveModeBtn.addEventListener('click', e => {
   const modeNameValue = modeName.value;
   if (!modeNameValue) {
-    modeName.insertAdjacentHTML('afterend', `
-      <p>Please enter a creative game mode name</p>
-    `);
+    const requireText = document.getElementById('require-text');
+    requireText.innerText = "Please enter a creative game mode name";
   } else {
     axios.post('/modes', {
       mode_name: modeNameValue,
@@ -77,9 +77,8 @@ saveModeBtn.addEventListener('click', e => {
 savePublishBtn.addEventListener('click', e => {
   const modeNameValue = modeName.value;
   if (!modeNameValue) {
-    modeName.insertAdjacentHTML('afterend', `
-      <p>Please enter a creative game mode name</p>
-    `);
+    const requireText = document.getElementById('require-text');
+    requireText.innerText = "Please enter a creative game mode name";
   } else {
     axios.post('/modes', {
       mode_name: modeNameValue,
