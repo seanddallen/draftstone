@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DraftStone</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="/js/popover.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -187,18 +190,24 @@
                         <label>
                           <input type="radio" id="class-chaos-input" name="class" value="chaos" checked>
                           <span class="label-text">Chaos</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="Completely random option. Both draft itself (total offered) and picks (3 card options) are fully random for this setting. See instructions for more details. "></button>
+
                         </label>
                       </div>
                       <div>
                         <label>
                           <input type="radio" id="class-consistent-input" name="class" value="consistent">
                           <span class="label-text">Consistent</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Partially random option. Drafts (total offered) is random, but picks (3 card options) are consistent for this setting. See instructions for more details."></button>
+
                         </label>
                       </div>
                       <div>
                         <label>
                           <input type="radio" id="class-custom-input" name="class" value="custom">
                           <span class="label-text">Custom</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Fully customized option. Both the draft itself (total offered) and the picks (3 card options) are customized. You will only be offered the amount of each you select within this setting. See instructions for more details."></button>
+
                         </label>
                       </div>
                     </div>
@@ -237,18 +246,21 @@
                         <label>
                           <input type="radio" id="rarity-chaos-input" name="rarity" value="chaos" checked>
                           <span class="label-text">Chaos</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="Completely random option. Both draft itself (total offered) and picks (3 card options) are fully random for this setting. See instructions for more details. "></button>
                         </label>
                       </div>
                       <div>
                         <label>
                           <input type="radio" id="rarity-consistent-input" name="rarity" value="consistent">
                           <span class="label-text">Consistent</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Partially random option. Drafts (total offered) is random, but picks (3 card options) are consistent for this setting. See instructions for more details."></button>
                         </label>
                       </div>
                       <div>
                         <label>
                           <input type="radio" id="rarity-custom-input" name="rarity" value="custom">
                           <span class="label-text">Custom</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Fully customized option. Both the draft itself (total offered) and the picks (3 card options) are customized. You will only be offered the amount of each you select within this setting. See instructions for more details."></button>
                         </label>
                       </div>
                     </div>
@@ -303,18 +315,21 @@
                         <label>
                           <input type="radio" id="type-chaos-input" name="type" value="chaos" checked>
                           <span class="label-text">Chaos</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="Completely random option. Both draft itself (total offered) and picks (3 card options) are fully random for this setting. See instructions for more details. "></button>
                         </label>
                       </div>
                       <div>
                         <label>
                           <input type="radio" id="type-consistent-input" name="type" value="consistent">
                           <span class="label-text">Consistent</typespan>
+                            <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Partially random option. Drafts (total offered) is random, but picks (3 card options) are consistent for this setting. See instructions for more details."></button>
                         </label>
                       </div>
                       <div>
                         <label>
                           <input type="radio" id="type-custom-input" name="type" value="custom">
                           <span class="label-text">Custom</span>
+                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Fully customized option. Both the draft itself (total offered) and the picks (3 card options) are customized. You will only be offered the amount of each you select within this setting. See instructions for more details."></button>
                         </label>
                       </div>
                     </div>

@@ -8,6 +8,8 @@ const data = {
 
 const exportDeck = document.getElementById('export-deck');
 const deckstringInput = document.getElementById('deckstring-input');
+const clipboard = document.getElementById('clipboard');
+
 
 axios.post('/export', data)
 .then(deckstring => {
@@ -17,8 +19,21 @@ axios.post('/export', data)
   });
 });
 
-
-
+//copy to clipboard
+function copyToClipboard(id){
+  // Create an auxiliary hidden input
+  var aux = document.createElement("input");
+  // Get the text from the element passed into the input
+  aux.setAttribute("value", deckstringInput.innerHTML);
+  // Append the aux input to the body
+  document.body.appendChild(aux);
+  // Highlight the content
+  aux.select();
+  // Execute the copy command
+  document.execCommand("copy");
+  // Remove the input from the body
+  document.body.removeChild(aux);
+}
 
 
 

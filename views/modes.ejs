@@ -178,9 +178,13 @@
                   <form action="/modes/delete/<%= mode.id %>" method="post">
                     <button type="submit" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Delete</b></button>
                   </form>
-                  <form action="/modes/publish/<%= mode.id %>" method="post">
-                    <button type="submit" onclick="window.location.href='/modes/publish/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
-                  </form>
+
+                    <%# if () { %>
+                    <form action="/modes/publish/<%= mode.id %>" method="post">
+                      <button type="submit" onclick="window.location.href='/modes/publish/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
+                    </form>
+                    <%# } %>
+
                   <% } %>
 
                   <input id="mode<%= mode.id %>-input" type="hidden" value="<%= JSON.stringify(mode.settings) %>">
@@ -207,11 +211,11 @@
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
                   <br><b style="font-size:1em;">Minion / Spell</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom'){ %><%= mode.settings.spellCount || 0 %> / <%= 30 - mode.settings.spellCount || 0 %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom'){ %><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
                   <b style="font-size:1em;"> Legend / Epic <br>Rare / Common</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
                 </div>
               </div>
             </div>
