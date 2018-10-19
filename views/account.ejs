@@ -50,8 +50,10 @@
                 <p class="" style="font-size:1.6rem;"><%= users[0].user_name %></p>
                 <h4 class="bold">Email:</h4>
                 <p class="" style="font-size:1.6rem;"><%= users[0].email %></p>
-
+                <hr style="width:30%; margin: 40px auto;">
+                <p style="font-size:2rem; width:60%; margin: 0px auto;">For questions, comments, or to report errors/issues, please contact us at draftstonebeta@gmail.com</p>
               </div>
+
               <div class="flow-text text-center col-5-md">
                 <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Change Password</h3>
                 <form id="password-change" action="/user/resetpassword" method="post" class="mt-40">
@@ -69,17 +71,18 @@
                 <% for (const suc of messages.resetSuccess) { %>
                   <p class="success"><%= suc %></p>
                 <% } %>
+                <br>
+                <div class="flex-col center" style="margin:0 auto;">
+                  <button type="submit" data-toggle="modal" data-target="#deleteAccountModal" class="btn btn-primary btn-lg created-mode-btn" style="font-size: 1.6rem; width:30%;">Delete Account</button>
+                  <div class="flex" style="margin-bottom:30px;">
+                    <p class="center">click button to delete your user account</p>
+                  </div>
+                </div>
               </div>
-
 
             </div>
 
-            <div class="flex-col center" style="margin:0 auto;">
-              <button type="submit" data-toggle="modal" data-target="#deleteAccountModal" class="btn btn-primary btn-lg created-mode-btn" style="width:200px;">Delete Account</button>
-              <div class="flex" style="margin-bottom:30px;">
-                <p class="center">click button to delete your user account</p>
-              </div>
-            </div>
+
           </div>
 
           <div class="y-squish">
