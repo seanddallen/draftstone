@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.integer('votes').defaultTo(0);
     table.integer('creator_id');
     table.json('settings');
+    table.boolean('published').defaultTo('false');
     table.timestamps(true, true);
   });
 };

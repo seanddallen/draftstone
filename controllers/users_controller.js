@@ -200,7 +200,7 @@ module.exports = {
 
     const deckstring = deckstrings.encode(encodableDeck);
     res.json(deckstring);
-    
+
   }
 
 };

@@ -59,7 +59,15 @@ module.exports = {
   },
 
   create: (req, res) => {
-    knex('modes')
+    // Logic for preventing duplicate modes
+    // knex('modes')
+    // .then((modes) => {
+    //   for (const mode of modes) {
+    //     if (JSON.stringify(mode.settings) == JSON.stringify(req.body.settings)) {
+    //
+    //     }
+    //   }
+      knex('modes')
       .returning('modes.id')
       .insert({
         mode_name: req.body.mode_name,
@@ -67,14 +75,19 @@ module.exports = {
         creator_id: req.session.user_id,
         settings: req.body.settings
       })
-    .then((results) => {
-      res.json(results[0]);
-    });
+      .then((results) => {
+        res.json(results[0]);
+      });
+    // });
   },
 
   publish: (req, res) => {
     knex('modes')
       .where('id', req.params.id)
+      .returning('*')
+      .update({
+        'published': 'true'
+      })
     .then(results => {
       const mode = results[0];
       if (mode.creator_id === req.session.user_id) {

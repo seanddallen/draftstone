@@ -28,7 +28,18 @@ const passwordForm = document.getElementById('password-change');
 const newPassword = document.getElementById('newpassword');
 const newConfirm = document.getElementById('confirmpassword');
 
+const error = document.getElementById('error');
+const success = document.getElementById('success');
+
+
 passwordForm.addEventListener('submit', (e) => {
+  if (error) {
+    error.classList.add('hidden');
+  }
+  if (success) {
+    success.classList.add('hidden');
+  }
+
   if (newPassword.value !== newConfirm.value) {
     e.preventDefault();
     newPassword.value = '';

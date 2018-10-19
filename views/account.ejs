@@ -64,10 +64,10 @@
                 </form>
                 <p id="mismatch" class="warning hidden">Passwords do not match</p>
                 <% for (const err of messages.resetError) { %>
-                  <p class="warning"><%= err %></p>
+                  <p id="error" class="warning"><%= err %></p>
                 <% } %>
                 <% for (const suc of messages.resetSuccess) { %>
-                  <p class="success"><%= suc %></p>
+                  <p id="success" class="success"><%= suc %></p>
                 <% } %>
               </div>
 
