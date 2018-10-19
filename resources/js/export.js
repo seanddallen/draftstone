@@ -47,9 +47,8 @@ const savePublishBtn = document.getElementById('save-publish-btn');
 saveModeBtn.addEventListener('click', e => {
   const modeNameValue = modeName.value;
   if (!modeNameValue) {
-    modeName.insertAdjacentHTML('afterend', `
-      <p>Please enter a creative game mode name</p>
-    `);
+    const requireText = document.getElementById('require-text');
+    requireText.innerText = "Please enter a creative game mode name";
   } else {
     axios.post('/modes', {
       mode_name: modeNameValue,
@@ -63,9 +62,8 @@ saveModeBtn.addEventListener('click', e => {
 savePublishBtn.addEventListener('click', e => {
   const modeNameValue = modeName.value;
   if (!modeNameValue) {
-    modeName.insertAdjacentHTML('afterend', `
-      <p>Please enter a creative game mode name</p>
-    `);
+    const requireText = document.getElementById('require-text');
+    requireText.innerText = "Please enter a creative game mode name";
   } else {
     axios.post('/modes', {
       mode_name: modeNameValue,

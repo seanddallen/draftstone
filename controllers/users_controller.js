@@ -129,9 +129,14 @@ module.exports = {
   },
 
   delete: (req, res) => {
-    knex('users').del().where('id', req.session.user_id).then(()=>{
-      req.session.destroy(() => {
-        res.redirect('/');
+    knex('modes')
+      .where({"type": "user", "creator_id": req.session.user_id})
+      .del()
+    .then(() => {
+      knex('users').del().where('id', req.session.user_id).then(()=>{
+        req.session.destroy(() => {
+          res.redirect('/');
+        });
       });
     });
   },
@@ -195,7 +200,7 @@ module.exports = {
 
     const deckstring = deckstrings.encode(encodableDeck);
     res.json(deckstring);
-    // console.log(deckstrings.decode('AAECAfe5AgaKB70BzfQCIKfuAsLOAgzZB7DwAvAHsQiU7wKRwQL27AKW6AL+BZvLApkC0wEA'));
+    
   }
 
 };

@@ -119,7 +119,7 @@ const blankCard = {
             "attack": 2,
             "health": 4,
             "playerClass": "Neutral",
-            "img": "./blank_card.png",
+            "img": "/images/blank_card.png",
             "mechanics": [],
             "disable": true
         };
@@ -129,7 +129,7 @@ const blankHero = {
             "attack": 2,
             "health": 4,
             "playerClass": "Neutral",
-            "img": "./blank_hero.png",
+            "img": "/images/blank_hero.png",
             "mechanics": [],
             "disable": true
         };
