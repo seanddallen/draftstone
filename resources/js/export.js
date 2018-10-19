@@ -13,7 +13,6 @@ const clipboard = document.getElementById('clipboard');
 
 axios.post('/export', data)
 .then(deckstring => {
-  console.log(deckstring);
   exportDeck.addEventListener('click', () => {
     deckstringInput.innerHTML = JSON.stringify(deckstring.data).slice(1,-1);
   });

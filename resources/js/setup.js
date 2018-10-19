@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
    draftBtn.classList.remove("inactive");
    const saveBtn =  document.getElementById('save-btn');
    saveBtn.classList.remove("inactive");
+   saveBtn.disabled = false;
 
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft

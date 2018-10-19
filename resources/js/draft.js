@@ -316,7 +316,8 @@ function classPickHandler(e) {
     selectedClass = pickOptions[position].playerClass;
     heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
-    filteredPool = filteredPool.filter(card => card.playerClass === "Neutral" || card.playerClass === selectedClass);
+  
+    filteredPool = filteredPool.filter(card => (card.playerClass === "Neutral" && (!card.classes || card.classes.includes(selectedClass))) || card.playerClass === selectedClass);
 
 
 

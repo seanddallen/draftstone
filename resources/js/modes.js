@@ -39,5 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open("/draft", "_self");
       }
     });
+
+    const startBtns = document.querySelectorAll('.start-btn');
+    for (const btn of startBtns) {
+      btn.disabled = false;
+      btn.classList.remove('inactive');
+    }
   });
 });
