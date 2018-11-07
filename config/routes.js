@@ -15,7 +15,8 @@ module.exports = function(app){
   app.post('/login', users.login);
   app.get('/logout', users.logout);
 
-  app.get('/setup', users.setup);
+  app.get('/setup/relative', users.setupRelative);
+  app.get('/setup/absolute', users.setupAbsolute);
   app.get('/draft', users.draft);
   app.get('/export', users.export);
   app.post('/export', users.encode);

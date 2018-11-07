@@ -15,8 +15,19 @@ module.exports = {
     req.session.save();
   },
 
-  setup: (req, res) => {
-    res.render('setup', {messages: req.session.messages, username: req.session.user_name});
+  setupRelative: (req, res) => {
+    res.render('setup-relative', {messages: req.session.messages, username: req.session.user_name});
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
+    };
+    req.session.save();
+  },
+
+  setupAbsolute: (req, res) => {
+    res.render('setup-absolute', {messages: req.session.messages, username: req.session.user_name});
     req.session.messages = {
       loginErrors: [],
       registerErrors: [],

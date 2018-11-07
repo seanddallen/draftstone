@@ -404,6 +404,17 @@ a:link {
   box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
+#master-sliders {
+  width: 20vw;
+  height: 15vh;
+  font-family: Playfair Display;
+  font-weight: bold;
+  background-color: #ddd8cc;
+  padding-top: 0px;
+  margin: 10px auto 40px auto;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
 .card-display {
   background-color: #ddd8cc;
   margin: 0 auto;
