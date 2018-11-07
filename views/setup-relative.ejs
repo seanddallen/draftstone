@@ -45,6 +45,21 @@
           </div>
 
           <!-- ~~ DRAFT DISPLAY ~~ -->
+          <h4 class="text-center">Draft Mode</h4>
+          <div id="master-sliders" class="card-deck flex">
+            <div class="col-md-12 mt-30">
+              <label class="flex flex-just-center">
+                <input type="radio" id="relative-input" name="hero" value="all" onclick="window.location.href='/setup/relative'" checked>
+                <span class="label-text">Relative</span>
+                <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This sets the entire draft to a relative percentage based system (1-100 percent) for each of the filters. This is the default mode because this mode will allow for a higher chance of being able to complete a draft without running out of cards in the pool. However, picks will not be consistent (see instructions for more details)"></button>
+              </label>
+              <label class="flex flex-just-center">
+                <input type="radio" id="absolute-input" name="hero" value="all" onclick="window.location.href='/setup/absolute'">
+                <span class="label-text">Absolute</span>
+                <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This sets the entire draft to an absolute based system (between 1-30 cards) for each of the filters. This mode has a higher chance of not being able to complete a draft if the filters are too narrow. In this mode all picks will be consistent (see instruction for more details)"></button>
+              </label>
+            </div>
+          </div>
 
           <div id="full-display-top" class="card-deck flex-col">
 
@@ -195,11 +210,10 @@
                         </label>
                       </div>
                       <div>
-                        <label>
-                          <input type="radio" id="class-consistent-input" name="class" value="consistent">
-                          <span class="label-text">Consistent</span>
-                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Partially random option. Drafts (total offered) is random, but picks (3 card options) are consistent for this setting. See instructions for more details."></button>
 
+                        <label>
+                          <input type="radio" id="class-consistent-input" name="class" value="consistent" disabled>
+                          <span class="label-text">Consistent</span>
                         </label>
                       </div>
                       <div>
@@ -222,16 +236,16 @@
                       <form name="classSlider">
                           <label for="class-range">Class</label>
                           <div class="flex">
-                            <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="30" oninput="handleClassInput()" onchange="handleClassInput()">
-                            <output name="classOutput" id="classOutput" class="output-value">0</output>
+                            <input type="range" name="classInput" id="classInput" class="input-value" value="0" min="0" max="100" oninput="handleClassInputRelative()" onchange="handleClassInputRelative()">
+                            <output name="classOutput" id="classOutput" class="output-value">0%</output>
                           </div>
                       </form>
 
                       <form name="classSlider">
                           <label for="neutral-range">Neutral</label>
                           <div class="flex">
-                            <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="30" oninput="handleNeutralInput()" onchange="handleNeutralInput()">
-                            <output name="neutralOutput" id="neutralOutput" class="output-value">0</output>
+                            <input type="range" name="neutralInput" id="neutralInput" class="input-value" value="0" min="0" max="100" oninput="handleNeutralInputRelative()" onchange="handleNeutralInputRelative()">
+                            <output name="neutralOutput" id="neutralOutput" class="output-value">0%</output>
                           </div>
                       </form>
                     </fieldset>
@@ -251,9 +265,8 @@
                       </div>
                       <div>
                         <label>
-                          <input type="radio" id="rarity-consistent-input" name="rarity" value="consistent">
+                          <input type="radio" id="rarity-consistent-input" name="rarity" value="consistent" disabled>
                           <span class="label-text">Consistent</span>
-                          <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Partially random option. Drafts (total offered) is random, but picks (3 card options) are consistent for this setting. See instructions for more details."></button>
                         </label>
                       </div>
                       <div>
@@ -274,32 +287,32 @@
                       <form name="raritySlider">
                           <label for="legend-range">Legendary</label>
                           <div class="flex">
-                            <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="30" oninput="handleLegendInput()" onchange="handleLegendInput()">
-                            <output name="legendOutput" id="legendOutput" class="output-value">0</output>
+                            <input type="range" name="legendInput" id="legendInput" class="input-value" value="0" min="0" max="100" oninput="handleLegendInputRelative()" onchange="handleLegendInputRelative()">
+                            <output name="legendOutput" id="legendOutput" class="output-value">0%</output>
                           </div>
                       </form>
 
                       <form name="raritySlider">
                           <label for="epic-range">Epic</label>
                           <div class="flex">
-                            <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="30" oninput="handleEpicInput()" onchange="handleEpicInput()">
-                            <output name="epicOutput" id="epicOutput" class="output-value">0</output>
+                            <input type="range" name="epicInput" id="epicInput" class="input-value" value="0" min="0" max="100" oninput="handleEpicInputRelative()" onchange="handleEpicInputRelative()">
+                            <output name="epicOutput" id="epicOutput" class="output-value">0%</output>
                           </div>
                       </form>
 
                       <form name="raritySlider">
                           <label for="rare-range">Rare</label>
                           <div class="flex">
-                            <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="30" oninput="handleRareInput()" onchange="handleRareInput()">
-                            <output name="rareOutput" id="rareOutput" class="output-value">0</output>
+                            <input type="range" name="rareInput" id="rareInput" class="input-value" value="0" min="0" max="100" oninput="handleRareInputRelative()" onchange="handleRareInputRelative()">
+                            <output name="rareOutput" id="rareOutput" class="output-value">0%</output>
                           </div>
                       </form>
 
                       <form name="raritySlider">
                           <label for="common-range">Common</label>
                           <div class="flex">
-                            <input type="range" name="commonInput" id="commonInput" class="input-value" value="0" min="0" max="30" oninput="handleCommonInput()" onchange="handleCommonInput()">
-                            <output name="commonOutput" id="commonOutput" class="output-value">0</output>
+                            <input type="range" name="commonInput" id="commonInput" class="input-value" value="100" min="0" max="100" oninput="handleCommonInputRelative()" onchange="handleCommonInputRelative()">
+                            <output name="commonOutput" id="commonOutput" class="output-value">0%</output>
                           </div>
                       </form>
 
@@ -320,9 +333,8 @@
                       </div>
                       <div>
                         <label>
-                          <input type="radio" id="type-consistent-input" name="type" value="consistent">
+                          <input type="radio" id="type-consistent-input" name="type" value="consistent" disabled>
                           <span class="label-text">Consistent</typespan>
-                            <button type="button" class="far fa-question-circle question-popup" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Partially random option. Drafts (total offered) is random, but picks (3 card options) are consistent for this setting. See instructions for more details."></button>
                         </label>
                       </div>
                       <div>
@@ -343,16 +355,16 @@
                       <form name="typeSlider">
                           <label for="minion-range">Minion</label>
                           <div class="flex">
-                            <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="30" oninput="handleMinionInput()" onchange="handleMinionInput()">
-                            <output name="minionOutput" id="minionOutput" class="output-value">0</output>
+                            <input type="range" name="minionInput" id="minionInput" class="input-value" value="0" min="0" max="100" oninput="handleMinionInputRelative()" onchange="handleMinionInputRelative()">
+                            <output name="minionOutput" id="minionOutput" class="output-value">0%</output>
                           </div>
                       </form>
 
                       <form name="typeSlider">
                           <label for="spell-range">Spell/Weapon</label>
                           <div class="flex">
-                            <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="30" oninput="handleSpellInput()" onchange="handleSpellInput()">
-                            <output name="spellOutput" id="spellOutput" class="output-value">0</output>
+                            <input type="range" name="spellInput" id="spellInput" class="input-value" value="0" min="0" max="100" oninput="handleSpellInputRelative()" onchange="handleSpellInputRelative()">
+                            <output name="spellOutput" id="spellOutput" class="output-value">0%</output>
                           </div>
                       </form>
                     <fieldset disabled>

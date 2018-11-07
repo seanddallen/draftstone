@@ -3,8 +3,9 @@ const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
 let customRules = {};
 
-
+console.log('setup.js')
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DCL')
  axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
    headers: {
      'X-Mashape-Key': 'gAeuReVzM3mshLLX97GlEfieDYDep1H5yDOjsn5z5VlqqZie5Q'
@@ -422,9 +423,21 @@ function handleClassInput() {
   neutralOutput.value = neutralInput.value;
 }
 
+function handleClassInputRelative() {
+  classOutput.value = classInput.value;
+  neutralInput.value = 100 - classInput.value;
+  neutralOutput.value = neutralInput.value;
+}
+
 function handleNeutralInput() {
   neutralOutput.value = neutralInput.value;
   classInput.value = 30 - neutralInput.value;
+  classOutput.value = classInput.value;
+}
+
+function handleNeutralInputRelative() {
+  neutralOutput.value = neutralInput.value;
+  classInput.value = 100 - neutralInput.value;
   classOutput.value = classInput.value;
 }
 
@@ -440,8 +453,8 @@ const commonOutput = document.getElementById('commonOutput');
 legendInput.value = 0;
 epicInput.value = 0;
 rareInput.value = 0;
-commonInput.value = 30;
-commonOutput.value = 30;
+// commonInput.value = 30;
+// commonOutput.value = 30;
 function handleLegendInput() {
   const remainingSlots = 30 - (Number(epicInput.value) + Number(rareInput.value));
   if (legendInput.value > remainingSlots) {
@@ -450,6 +463,16 @@ function handleLegendInput() {
   legendOutput.value = legendInput.value;
 
   handleCommonInput();
+}
+
+function handleLegendInputRelative() {
+  const remainingSlots = 100 - (Number(epicInput.value) + Number(rareInput.value));
+  if (legendInput.value > remainingSlots) {
+    legendInput.value = remainingSlots;
+  }
+  legendOutput.value = legendInput.value;
+
+  handleCommonInputRelative();
 }
 
 function handleEpicInput() {
@@ -462,6 +485,16 @@ function handleEpicInput() {
   handleCommonInput();
 }
 
+function handleEpicInputRelative() {
+  const remainingSlots = 100 - (Number(legendInput.value) + Number(rareInput.value));
+  if (epicInput.value > remainingSlots) {
+    epicInput.value = remainingSlots;
+  }
+  epicOutput.value = epicInput.value;
+
+  handleCommonInputRelative();
+}
+
 function handleRareInput() {
   const remainingSlots = 30 - (Number(legendInput.value) + Number(epicInput.value));
   if (rareInput.value > remainingSlots) {
@@ -472,12 +505,31 @@ function handleRareInput() {
   handleCommonInput();
 }
 
+function handleRareInputRelative() {
+  const remainingSlots = 100 - (Number(legendInput.value) + Number(epicInput.value));
+  if (rareInput.value > remainingSlots) {
+    rareInput.value = remainingSlots;
+  }
+  rareOutput.value = rareInput.value;
+
+  handleCommonInputRelative();
+}
+
 function handleCommonInput() {
+  commonInput.value = 30;
+  commonOutput.value = 30;
   const remainingSlots = 30 - (Number(legendInput.value) + Number(epicInput.value) + Number(rareInput.value));
   commonInput.value = remainingSlots;
   commonOutput.value = commonInput.value;
 }
 
+function handleCommonInputRelative() {
+  commonInput.value = 100;
+  commonOutput.value = 100;
+  const remainingSlots = 100 - (Number(legendInput.value) + Number(epicInput.value) + Number(rareInput.value));
+  commonInput.value = remainingSlots;
+  commonOutput.value = commonInput.value;
+}
 
 
 const minionInput = document.getElementById('minionInput');
@@ -493,8 +545,29 @@ function handleMinionInput() {
   spellOutput.value = spellInput.value;
 }
 
+function handleMinionInputRelative() {
+  minionOutput.value = minionInput.value;
+  spellInput.value = 100 - minionInput.value;
+  spellOutput.value = spellInput.value;
+}
+
 function handleSpellInput() {
   spellOutput.value = spellInput.value;
   minionInput.value = 30 - spellInput.value;
   minionOutput.value = minionInput.value;
 }
+
+function handleSpellInputRelative() {
+  spellOutput.value = spellInput.value;
+  minionInput.value = 100 - spellInput.value;
+  minionOutput.value = minionInput.value;
+}
+
+//Routes for absolute/relative modes
+
+const relative = document.getElementById('relative-input');
+const absolute = document.getElementById('absolute-input');
+
+relative.addEventListener('onClick', () => {
+  axios.get('/setup/relative').then(res => res.json())
+})
