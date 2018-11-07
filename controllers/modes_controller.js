@@ -7,6 +7,7 @@ module.exports = {
     const user_id = req.session.user_id || null;
     const tab = req.params.tab;
     const subtab = req.params.subtab;
+    let isSingle = false;
 
 
 
@@ -25,7 +26,10 @@ module.exports = {
           'modes.id','favorites.mode_id')
       .orderBy('created_at', 'desc')
     .then(modes => {
-      if (tab === "basic") {
+      if (tab === "single") {
+        isSingle = true;
+        modes = modes.filter(mode => mode.id === + req.params.subtab)
+      } else if (tab === "basic") {
         modes = modes.filter(mode => mode.type === "basic");
       } else if (tab === "community") {
         modes = modes.filter(mode => mode.type === "community");
@@ -47,7 +51,7 @@ module.exports = {
         }
         mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
       }
-      res.render('modes', { modes: modes, tab: tab, subtab: subtab, messages: req.session.messages, username: req.session.user_name });
+      res.render('modes', { modes: modes, tab: tab, subtab: subtab, messages: req.session.messages, username: req.session.user_name, isSingle: isSingle });
       req.session.messages = {
         loginErrors: [],
         registerErrors: [],
@@ -59,26 +63,31 @@ module.exports = {
   },
 
   create: (req, res) => {
-    // Logic for preventing duplicate modes
-    // knex('modes')
-    // .then((modes) => {
-    //   for (const mode of modes) {
-    //     if (JSON.stringify(mode.settings) == JSON.stringify(req.body.settings)) {
-    //
-    //     }
-    //   }
-      knex('modes')
-      .returning('modes.id')
-      .insert({
-        mode_name: req.body.mode_name,
-        type: "user",
-        creator_id: req.session.user_id,
-        settings: req.body.settings
-      })
-      .then((results) => {
-        res.json(results[0]);
-      });
-    // });
+    let dupe = false;
+    knex('modes')
+    .then((modes) => {
+      for (const mode of modes) {
+        if (mode.type !== "user" && JSON.stringify(mode.settings) == JSON.stringify(req.body.settings)) {
+          res.json({dupe: true, id: mode.id})
+          dupe = true;
+          return;
+        }
+      }
+
+      if (!dupe) {
+        knex('modes')
+        .returning('modes.id')
+        .insert({
+          mode_name: req.body.mode_name,
+          type: "user",
+          creator_id: req.session.user_id,
+          settings: req.body.settings
+        })
+        .then((results) => {
+          res.json(results[0])
+        });
+      }
+    });
   },
 
   publish: (req, res) => {
@@ -89,18 +98,68 @@ module.exports = {
         'published': 'true'
       })
     .then(results => {
-      const mode = results[0];
-      if (mode.creator_id === req.session.user_id) {
-        return knex('modes')
-        .insert({
-          mode_name: mode.mode_name,
-          type: 'community',
-          creator_id: mode.creator_id,
-          settings: mode.settings
-        });
-      }
+      let dupe = false;
+      knex('modes')
+      .then((modes) => {
+        for (const mode of modes) {
+          if (mode.type === "community" && JSON.stringify(mode.settings) == JSON.stringify(results[0].settings)) {
+            res.json({dupe: true, id: mode.id})
+            dupe = true;
+            return Promise.reject();
+          }
+        }
+
+        if (!dupe) {
+          const mode = results[0];
+          if (mode.creator_id === req.session.user_id) {
+            return knex('modes')
+            .insert({
+              mode_name: mode.mode_name,
+              type: 'community',
+              creator_id: mode.creator_id,
+              settings: mode.settings
+            });
+          }
+        }      
+      })
+      .then(() => res.redirect('/modes/user/created'))
     })
-    .then(() => res.redirect('/modes/user/created'));
+  },
+
+  publishExisting: (req, res) => {
+    knex('modes')
+    .where('id', req.params.id)
+    .returning('*')
+    .update({
+      'published': 'true'
+    })
+  .then(results => {
+    let dupe = false;
+    knex('modes')
+    .then((modes) => {
+      for (const mode of modes) {
+        if (mode.type === "community" && JSON.stringify(mode.settings) == JSON.stringify(results[0].settings)) {
+          res.redirect(`/modes/single/${mode.id}`)
+          dupe = true;
+          return Promise.reject();
+        }
+      }
+
+      if (!dupe) {
+        const mode = results[0];
+        if (mode.creator_id === req.session.user_id) {
+          return knex('modes')
+          .insert({
+            mode_name: mode.mode_name,
+            type: 'community',
+            creator_id: mode.creator_id,
+            settings: mode.settings
+          });
+        }
+      }      
+    })
+    .then(() => res.redirect('/modes/user/created'))
+  })
   },
 
   delete: (req, res) => {

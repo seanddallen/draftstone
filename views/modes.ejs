@@ -152,6 +152,12 @@
 
 
       <!-- ~~ MODE LIST ~~ -->
+      
+
+      <% if (isSingle)  { %>
+      <br>
+      <h3>The game mode you are trying to create or publish has already been published. Here it is:</h3>
+      <% } %>
 
       <div id="mode-list" class="row mt-40">
           <% modes.forEach(mode => { %>
@@ -181,7 +187,7 @@
                   </form>
 
                     <% if (!mode.published) { %>
-                    <form action="/modes/publish/<%= mode.id %>" method="post">
+                    <form action="/modes/publish_existing/<%= mode.id %>" method="post">
                       <button type="submit" onclick="window.location.href='/modes/publish/<%= mode.id %>'" class="btn btn-primary created-mode-btn" style="width: 120px; margin:0 10px 0 20px; font-family:Playfair; font-size:1.6rem; padding-top:5px; padding-bottom:5px;"><b>Publish</b></button>
                     </form>
                     <% } %>

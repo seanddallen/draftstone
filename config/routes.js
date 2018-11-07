@@ -30,6 +30,7 @@ module.exports = function(app){
   app.post('/user/resetpassword', users.password);
   app.post('/modes', modes.create);
   app.post('/modes/publish/:id', modes.publish);
+  app.post('/modes/publish_existing/:id', modes.publishExisting);
   app.post('/modes/delete/:id', modes.delete);
 
   //VOTES ROUTES

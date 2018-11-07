@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
    // Iterate through all cards in data and push non-Hero cards to the master pool
    for (const set in response.data) {
      for (const card of response.data[set]) {
+       if (card.type === "Hero" && card.cardSet !== "Basic" && card.cardSet !== "Hero Skins") {
+         card.type = "Spell"
+       }
        if (card.type !== "Hero") {
          masterPool.push(card);
        }
@@ -68,8 +71,12 @@ saveModeBtn.addEventListener('click', e => {
     axios.post('/modes', {
       mode_name: modeNameValue,
       settings: customRules
-    }).then(() => {
-      window.location.href = "/modes/user/created";
+    }).then(({data}) => {
+      if (data.dupe) {
+        window.location.href = `/modes/single/${data.id}`;
+      } else {
+        window.location.href = "/modes/user/created";
+      }
     });
   }
 });
@@ -85,11 +92,15 @@ savePublishBtn.addEventListener('click', e => {
       settings: customRules
     })
     .then(results => {
-      const mode_id = results.data;
-      axios.post(`/modes/publish/${mode_id}`)
-      .then(() => {
-        window.location.href = "/modes/user/created";
-      }) ;
+      if (results.data.dupe) {
+        window.location.href = `/modes/single/${results.data.id}`;
+      } else {
+        const mode_id = results.data;
+        axios.post(`/modes/publish/${mode_id}`)
+        .then(() => {
+          window.location.href = "/modes/user/created";
+        }) ;
+      }
     });
   }
 });
