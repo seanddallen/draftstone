@@ -132,16 +132,19 @@ module.exports = {
   },
 
   sendemail: (req, res) => {
+    let temporary = Math.floor(Math.random() * (999999 - 100000 + 1) ) + 100000
+
     let output = `
       <h3>Instructions</h3>
       <p>You may now login to your account with your email and the new temporary password.</p>
       <p>***IMPORTANT*** Make sure you go in right away and change this to your new password. You can do this by loggin in and clicking your account icon in the upper right corner and then resetting your password.</p>
       <br>
-      <b>Temporary Password:</b><span>password</span>
+      <b>Temporary Password:</b><span>${temporary}</span>
     `
     // create reusable transporter object using the default SMTP transport
+
      let transporter = nodemailer.createTransport({
-         host: 'draftstonebeta@gmail.com',
+         host: 'smtp.gmail.com',
          port: 587,
          secure: false, // true for 465, false for other ports
          auth: {
@@ -172,7 +175,7 @@ module.exports = {
      });
 
      const unhashedUser = {
-       password: `${Math.floor(Math.random() * (999999 - 100000 + 1) ) + 100000}`
+       password: `${temporary}`
      };
      hasher.hash(unhashedUser)
      .then((updatedUser) => {
