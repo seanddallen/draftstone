@@ -30,6 +30,7 @@
     "express-session": "^1.15.6",
     "knex": "^0.15.2",
     "moment": "^2.22.2",
+    "nodemailer": "^4.6.8",
     "pg": "^7.5.0"
   }
 }

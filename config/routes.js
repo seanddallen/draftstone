@@ -14,6 +14,8 @@ module.exports = function(app){
   app.post('/register', users.register);
   app.post('/login', users.login);
   app.get('/logout', users.logout);
+  app.get('/forgotpassword', users.forgotpassword);
+  app.post('/sendemail', users.sendemail);
 
   app.get('/setup/relative', users.setupRelative);
   app.get('/setup/absolute', users.setupAbsolute);

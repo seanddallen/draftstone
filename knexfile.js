@@ -1,3 +1,4 @@
+console.log(process.env)
 module.exports = {
   development: {
       client: 'pg',
@@ -18,7 +19,7 @@ module.exports = {
         host: process.env.RDS_HOSTNAME,
         user: process.env.RDS_USERNAME,
         password: process.env.RDS_PASSWORD,
-        port: process.env.RDS_PORT
+        port: 5432
       },
       migrations: {
           directory: __dirname + '/db/migrations',

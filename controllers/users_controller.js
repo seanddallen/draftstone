@@ -1,6 +1,7 @@
 const knex = require("../db/knex.js");
 const hasher = require("../config/hasher.js");
 const deckstrings = require("deckstrings");
+const nodemailer = require("nodemailer");
 
 
 module.exports = {
@@ -117,6 +118,77 @@ module.exports = {
     req.session.destroy(() => {
       res.redirect('/');
     });
+  },
+
+  forgotpassword: (req, res) => {
+    res.render('password', {messages: req.session.messages});
+    req.session.messages = {
+      loginErrors: [],
+      registerErrors: [],
+      resetError: [],
+      resetSuccess: []
+    };
+    req.session.save();
+  },
+
+  sendemail: (req, res) => {
+    let output = `
+      <h3>Instructions</h3>
+      <p>You may now login to your account with your email and the new temporary password.</p>
+      <p>***IMPORTANT*** Make sure you go in right away and change this to your new password. You can do this by loggin in and clicking your account icon in the upper right corner and then resetting your password.</p>
+      <br>
+      <b>Temporary Password:</b><span>password</span>
+    `
+    // create reusable transporter object using the default SMTP transport
+     let transporter = nodemailer.createTransport({
+         host: 'draftstonebeta@gmail.com',
+         port: 587,
+         secure: false, // true for 465, false for other ports
+         auth: {
+             user: 'draftstonebeta@gmail.com', // generated ethereal user
+             pass: 'g100rocks!' // generated ethereal password
+         },
+         tls:{
+           rejectUnauthorized: false
+         }
+     });
+
+     // setup email data with unicode symbols
+     let mailOptions = {
+         from: '"Draftstone Team" <draftstonebeta@gmail.com>', // sender address
+         to: `${req.body.email}`, // list of receivers
+         subject: 'Temporary Password', // Subject line
+         text: '', // plain text body
+         html: output // html body
+     };
+
+     // send mail with defined transport object
+     transporter.sendMail(mailOptions, (error, info) => {
+         if (error) {
+             return console.log(error);
+         }
+         console.log('Message sent: %s', info.messageId);
+         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+     });
+
+     const unhashedUser = {
+       password: `${Math.floor(Math.random() * (999999 - 100000 + 1) ) + 100000}`
+     };
+     hasher.hash(unhashedUser)
+     .then((updatedUser) => {
+       knex('users')
+         .where('email', req.body.email)
+         .update({
+           password: updatedUser.password
+         })
+         .then(() => {
+           req.session.messages.resetSuccess.push("Email Sent!");
+           req.session.save(() => {
+             res.redirect('/forgotpassword');
+             return;
+           })
+         });
+       })
   },
 
   draftcount: (req, res) => {
