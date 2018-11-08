@@ -18,7 +18,7 @@ module.exports = {
       connection: {
         host: process.env.RDS_HOSTNAME,
         user: process.env.RDS_USERNAME,
-        database: 'draftstone_prod',
+        database: 'ebdb',
         password: process.env.RDS_PASSWORD,
         port: 5432
       },
