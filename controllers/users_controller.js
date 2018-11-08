@@ -1,8 +1,8 @@
 const knex = require("../db/knex.js");
 const hasher = require("../config/hasher.js");
 const deckstrings = require("deckstrings");
-const nodemailer = require("nodemailer");
-
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
 
 module.exports = {
   index: (req, res) => {
@@ -144,22 +144,33 @@ module.exports = {
     // create reusable transporter object using the default SMTP transport
 
      let transporter = nodemailer.createTransport({
-         host: 'smtp.gmail.com',
-         port: 587,
-         secure: false, // true for 465, false for other ports
-         auth: {
-             user: 'draftstonebeta@gmail.com', // generated ethereal user
-             pass: 'g100rocks!' // generated ethereal password
-         },
-         tls:{
-           rejectUnauthorized: false
-         }
+
+       // service: 'gmail',
+       // auth: {
+       //   xoauth2: xoauth2.createXOAuth2Generator({
+       //     user: 'draftstonebeta@gmail.com',
+       //     clientId: '',
+       //     clientSecret: '',
+       //     refreshToken: '',
+       //   })
+       // }
+
+       host: 'smtp.gmail.com',
+       port: 465,
+       secure: true, // true for 465, false for other ports
+       auth: {
+           user: 'draftstonebeta@gmail.com', // generated ethereal user
+           pass: 'g100rocks!' // generated ethereal password
+       },
+       tls:{
+         rejectUnauthorized: false
+       }
      });
 
      // setup email data with unicode symbols
      let mailOptions = {
          from: '"Draftstone Team" <draftstonebeta@gmail.com>', // sender address
-         to: `${req.body.email}`, // list of receivers
+         to: 'seanjtayler@gmail.com', // list of receivers  `${req.body.email}`
          subject: 'Temporary Password', // Subject line
          text: '', // plain text body
          html: output // html body
