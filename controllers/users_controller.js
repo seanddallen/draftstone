@@ -152,12 +152,13 @@ module.exports = {
        //     clientId: '',
        //     clientSecret: '',
        //     refreshToken: '',
+       //
        //   })
        // }
 
        host: 'smtp.gmail.com',
-       port: 465,
-       secure: true, // true for 465, false for other ports
+       port: 587,
+       secure: false, // true for 465, false for other ports
        auth: {
            user: 'draftstonebeta@gmail.com', // generated ethereal user
            pass: 'g100rocks!' // generated ethereal password
