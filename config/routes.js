@@ -2,6 +2,7 @@ const users  = require("../controllers/users_controller.js");
 const modes  = require("../controllers/modes_controller.js");
 const votes  = require("../controllers/votes_controller.js");
 const favorites  = require("../controllers/favorites_controller.js");
+const collections  = require("../controllers/collections_controller.js");
 
 module.exports = function(app){
   app.use(createMessageArr);
@@ -35,6 +36,11 @@ module.exports = function(app){
   app.post('/modes/publish/:id', modes.publish);
   app.post('/modes/publish_existing/:id', modes.publishExisting);
   app.post('/modes/delete/:id', modes.delete);
+
+  //COLLECTIONS ROUTES
+  app.post('/user/collections/import/:id', collections.import)
+  app.post('/user/collections/update/:id', collections.update)
+  app.post('/user/collections/delete/:id', collections.delete)
 
   //VOTES ROUTES
 

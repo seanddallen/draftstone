@@ -59,19 +59,69 @@
 
               <div class="flow-text text-center col-5-md">
                 <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Manage Collections</h3>
-                <form action="" class="mt-40">
-                  <button type="button" class="btn btn-primary login-btn" data-toggle="modal" data-target="#importModal" style="display:flex; flex-direction: column; justify-content:center; max-width: 100%; margin:20px auto;">+ Import New</button>
-                </form>
-                <div class="flex flex-between">
+                <div class="flex flex-between mt-20 mb-20">
                   <div>
-                    <h4>Collection Name</h4>
+                    <button type="button" class="btn btn-primary login-btn" data-toggle="modal" data-target="#importModal" style="display:flex; flex-direction: column; max-width: 100%; margin:20px auto;">+ Import New</button>
                   </div>
+                  <div class="flex flex-center">
+                    <div>
+                      <div class="dropdown text-center ml-10">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          Set Selected Collection
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:100%;">
+                          <li><a href="#"><%= users[0].default_collection %></a></li>
+                          <% collections.forEach(collection => { %>
+                          <li><a href="#"><%= collection.name %></a></li>
+                          <% }) %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-between flex-center alert alert-success">
                   <div>
-                    <button class="btn btn-primary login-btn">Update</button>
-                    <button class="btn btn-primary login-btn">Delete</button>
+                    <h4><%= selectedCollection.name %></h4>
+                  </div>
+                  <div class="flex flex-between">
+                    <div class="mr-5">
+                      <% if (selectedCollection.id !== 1) { %>
+                      <form method="post" action="/user/collections/update/<%= users[0].selected_collection_id %>">
+                        <button class="btn btn-primary login-btn">Update</button>
+                      </form>
+                      <% } %>
+
+                    </div>
                   </div>
                 </div>
                 <hr style="width: 100%;">
+
+
+                <% collections.forEach(collection => { %>
+                <div class="flex flex-between alert alert-success" style="background-color: white !important;">
+                  <div>
+                    <h4><%= collection.name %></h4>
+                  </div>
+                  <% if (collection.id !== 1) { %>
+                  <div class="flex flex-between">
+                    <div class="mr-5">
+                      <form method="post" action="/user/collections/update/<%= collection.id %>">
+                        <button class="btn btn-primary login-btn">Update</button>
+                      </form>
+                    </div>
+                    <div>
+                      <form method="post" action="/user/collections/delete/<%=collection.id%>">
+                        <button class="btn btn-primary login-btn">Delete</button>
+                      </form>
+                    </div>
+                  </div>
+                  <% } %>
+                </div>
+                <% }) %>
+
+
               </div>
 
               <div class="flow-text text-center col-5-md">
