@@ -1,92 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DraftStone</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="/js/popover.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/spacing.css">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DraftStone</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/popover.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/spacing.css" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'UA-127642798-1');
-  </script>
-</head>
+      gtag("config", "UA-127642798-1");
+    </script>
+  </head>
 
-<body>
+  <body>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <%- include partials/header.ejs %>
 
-<%- include partials/header.ejs %>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <main id="main" class="flex mt-50">
+      <div class="x-squish"></div>
 
-<main id="main" class="flex mt-50">
-    <div class="x-squish"></div>
+      <!-- ~~ CONTAINER ~~ -->
 
-    <!-- ~~ CONTAINER ~~ -->
+      <div id="full-container" class="flex">
+        <!-- ~~ LEFT CARD ~~ -->
 
-    <div id="full-container" class="flex">
+        <div id="full-card">
+          <div class="y-squish"></div>
 
-      <!-- ~~ LEFT CARD ~~ -->
+          <!-- ~~ DRAFT DISPLAY ~~ -->
 
-      <div id="full-card">
-        <div class="y-squish">
-        </div>
+          <div id="full-display" class="card-deck flex-col">
+            <div class="text-center flow-text mt-30">
+              <br />
+              <h3>You're done, go have some fun!</h3>
+            </div>
+            <div class="flex flex-just-center center">
+              <pre
+                style="height:3em; min-width:400px;"
+                id="deckstring-input"
+              ></pre>
 
-        <!-- ~~ DRAFT DISPLAY ~~ -->
+              <button
+                id="clipboard"
+                onclick="copyToClipboard('deckstring-input')"
+                type="button"
+                class="fas fa-clipboard-list fa-2x"
+                style="display:inline-block; background-color: #ddd8cc; border:none; margin-bottom:8px; outline:none;"
+              ></button>
 
-        <div id="full-display" class="card-deck flex-col">
-          <div class="text-center flow-text mt-30">
-            <br>
-            <h3>You're done, go have some fun!</h3>
-          </div>
-          <div class="flex flex-just-center center">
-            <pre style="height:3em; min-width:400px;" id="deckstring-input"></pre>
-
-
-            <button id="clipboard" onclick="copyToClipboard('deckstring-input')" type="button" class="fas fa-clipboard-list fa-2x" style="display:inline-block; background-color: #ddd8cc; border:none; margin-bottom:8px; outline:none;"></button>
-
-
-            <button type="button" class="far fa-question-circle question-popup" style="font-size:2rem; margin-bottom:5px;" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Press clipboard icon or copy (control/command + c) text. Then open Hearthstone, go to collection, and click button to create new deck. Hearthstone will offer to automatically populate the deck for you."></button>
-          </div>
-          <div class="flex-col flex-just-center center">
-            <button id="export-deck" type="button" class="btn btn-primary btn-lg flow-btn flex-center">Send Deck</button>
-            <p class="flex-center mt-20">Click to access your custom deckstring for easy import into Hearthstone!</p>
-          </div>
-          <div class="flex-col flex-justify">
-            <button id="save-btn" type="button" class="btn btn-primary btn-lg <% if (!username) { %>save-btn-hover<% } else { %>save-btn<%}%>" data-toggle="modal" data-target="#draftModal" <% if (!username) { %> disabled <% } %> >Save Game Mode</button>
-            <div class="flex-col flex-center mb-40">
-              <p class="center">Click to save your game mode to your account or the community</p>
-              <p class="center mt-0">(Log in to save/publish game modes)</p>
-
+              <button
+                type="button"
+                class="far fa-question-circle question-popup"
+                style="font-size:2rem; margin-bottom:5px;"
+                data-container="body"
+                data-trigger="hover"
+                data-toggle="popover"
+                data-placement="right"
+                data-content="Press clipboard icon or copy (control/command + c) text. Then open Hearthstone, go to collection, and click button to create new deck. Hearthstone will offer to automatically populate the deck for you."
+              ></button>
+            </div>
+            <div class="flex-col flex-just-center center">
+              <button
+                id="export-deck"
+                type="button"
+                class="btn btn-primary btn-lg flow-btn flex-center"
+              >
+                Send Deck
+              </button>
+              <p class="flex-center mt-20">
+                Click to access your custom deckstring for easy import into
+                Hearthstone!
+              </p>
+            </div>
+            <div class="flex-col flex-justify">
+              <button
+                id="save-btn"
+                type="button"
+                class="btn btn-primary btn-lg <% if (!username) { %>save-btn-hover<% } else { %>save-btn<%}%>"
+                data-toggle="modal"
+                data-target="#draftModal"
+                <%
+                if
+                (!username)
+                {
+                %
+              >
+                disabled <% } %> >Save Game Mode
+              </button>
+              <div class="flex-col flex-center mb-40">
+                <p class="center">
+                  Click to save your game mode to your account or the community
+                </p>
+                <p class="center mt-0">(Log in to save/publish game modes)</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="y-squish">
+          <div class="y-squish"></div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <%- include partials/modals.ejs %>
+    <%- include partials/modals.ejs %>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  <script type="text/javascript" src="/js/export.js"></script>
-  <script type="text/javascript" src="/js/header.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"
+    ></script>
+    <script type="text/javascript" src="/js/export.js"></script>
+    <script type="text/javascript" src="/js/header.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

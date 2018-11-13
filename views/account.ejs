@@ -1,135 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DraftStone</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/spacing.css">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DraftStone</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/spacing.css" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'UA-127642798-1');
-  </script>
-</head>
+      gtag("config", "UA-127642798-1");
+    </script>
+  </head>
 
-<body>
+  <body>
+    <%- include partials/header.ejs %>
 
-<%- include partials/header.ejs %>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <main id="main" class="flex mt-50">
+    <main id="main" class="flex mt-50">
       <div class="x-squish"></div>
 
       <!-- ~~ CONTAINER ~~ -->
 
       <div id="full-container" class="flex">
-
         <div id="full-card">
-          <div class="y-squish">
-          </div>
+          <div class="y-squish"></div>
 
           <!-- ~~ DRAFT DISPLAY ~~ -->
 
           <div id="full-display" class="card-deck flex-col">
             <div class="flex flex-around">
-
               <div class="flow-text text-center col-5-md">
-                <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Account Details</h3>
-                <br>
+                <h3
+                  id="value-prop"
+                  class="bold"
+                  style="font-family:playfair display; font-size:2.5em;"
+                >
+                  Account Details
+                </h3>
+                <br />
                 <h4 class="bold">Username:</h4>
-                <p class="" style="font-size:1.6rem;"><%= users[0].user_name %></p>
+                <p class="" style="font-size:1.6rem;">
+                  <%= users[0].user_name %>
+                </p>
                 <h4 class="bold">Email:</h4>
                 <p class="" style="font-size:1.6rem;"><%= users[0].email %></p>
-                <hr style="width:30%; margin: 40px auto;">
-                <p style="font-size:2rem; width:60%; margin: 0px auto;">For questions, comments, or to report errors/issues, please contact us at draftstonebeta@gmail.com</p>
+                <hr style="width:30%; margin: 40px auto;" />
+                <p style="font-size:2rem; width:60%; margin: 0px auto;">
+                  For questions, comments, or to report errors/issues, please
+                  contact us at draftstonebeta@gmail.com
+                </p>
               </div>
 
               <div class="flow-text text-center col-5-md">
-                <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Change Password</h3>
-                <form id="password-change" action="/user/resetpassword" method="post" class="mt-40">
+                <h3
+                  id="value-prop"
+                  class="bold"
+                  style="font-family:playfair display; font-size:2.5em;"
+                >
+                  Change Password
+                </h3>
+                <form
+                  id="password-change"
+                  action="/user/resetpassword"
+                  method="post"
+                  class="mt-40"
+                >
                   <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Current Password" style="margin:10px auto 0 auto; width:50%;" required>
-                    <input id="newpassword" type="password" name="newpassword" class="form-control" placeholder="New Password" style="margin:10px auto 0 auto; width:50%;" required>
-                    <input id="confirmpassword" type="password" name="confirmpassword" class="form-control" placeholder="Confirm New Password" style="margin:10px auto 0 auto; width:50%;" required>
-                    <button type="submit" class="btn btn-primary login-btn" style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;">Change</button>
+                    <input
+                      type="password"
+                      name="password"
+                      class="form-control"
+                      placeholder="Current Password"
+                      style="margin:10px auto 0 auto; width:50%;"
+                      required
+                    />
+                    <input
+                      id="newpassword"
+                      type="password"
+                      name="newpassword"
+                      class="form-control"
+                      placeholder="New Password"
+                      style="margin:10px auto 0 auto; width:50%;"
+                      required
+                    />
+                    <input
+                      id="confirmpassword"
+                      type="password"
+                      name="confirmpassword"
+                      class="form-control"
+                      placeholder="Confirm New Password"
+                      style="margin:10px auto 0 auto; width:50%;"
+                      required
+                    />
+                    <button
+                      type="submit"
+                      class="btn btn-primary login-btn"
+                      style="display:flex; flex-direction: column; justify-content:center; max-width: 30%; margin:20px auto;"
+                    >
+                      Change
+                    </button>
                   </div>
                 </form>
-                <p id="mismatch" class="warning hidden">Passwords do not match</p>
+                <p id="mismatch" class="warning hidden">
+                  Passwords do not match
+                </p>
                 <% for (const err of messages.resetError) { %>
-                  <p id="error" class="warning"><%= err %></p>
-                <% } %>
-                <% for (const suc of messages.resetSuccess) { %>
-                  <p id="success" class="success"><%= suc %></p>
-                <% } %>
-                <br>
+                <p id="error" class="warning"><%= err %></p>
+                <% } %> <% for (const suc of messages.resetSuccess) { %>
+                <p id="success" class="success"><%= suc %></p>
+                <% } %> <br />
                 <div class="flex-col center" style="margin:0 auto;">
-                  <button type="submit" data-toggle="modal" data-target="#deleteAccountModal" class="btn btn-primary btn-lg created-mode-btn" style="font-size: 1.6rem; width:30%;">Delete Account</button>
+                  <button
+                    type="submit"
+                    data-toggle="modal"
+                    data-target="#deleteAccountModal"
+                    class="btn btn-primary btn-lg created-mode-btn"
+                    style="font-size: 1.6rem; width:30%;"
+                  >
+                    Delete Account
+                  </button>
                   <div class="flex" style="margin-bottom:30px;">
-                    <p class="center">click button to delete your user account</p>
+                    <p class="center">
+                      click button to delete your user account
+                    </p>
                   </div>
                 </div>
               </div>
-
             </div>
-
-
           </div>
 
-          <div class="y-squish">
-          </div>
+          <div class="y-squish"></div>
         </div>
       </div>
     </main>
 
-  <%- include partials/modals.ejs %>
+    <%- include partials/modals.ejs %>
 
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ DELETE ACCOUNT MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!--
+      ~~~~~~~~~~~~~~~~~~~~~~~~~ DELETE ACCOUNT MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~
+    -->
 
-  <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLongTitle">Delete Account</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-
-          <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 75%; margin:0px auto;">
-            <h4 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Are you sure you want to delete your account and lose all of your custom and favorited game modes? This cannot be undone.</h4>
+    <div
+      class="modal fade"
+      id="deleteAccountModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLongTitle">
+              Delete Account
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div
+              class="flex"
+              style="display:flex; flex-direction: column; justify-content:center; max-width: 75%; margin:0px auto;"
+            >
+              <h4
+                style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;"
+              >
+                Are you sure you want to delete your account and lose all of
+                your custom and favorited game modes? This cannot be undone.
+              </h4>
 
               <div>
                 <form action="/user/delete" method="post" class="center flex">
-                  <button id="" class="btn btn-primary login-btn" style="display:flex; flex-direction: column; justify-content:center; margin:20px auto;">Yes, Delete Account</button>
+                  <button
+                    id=""
+                    class="btn btn-primary login-btn"
+                    style="display:flex; flex-direction: column; justify-content:center; margin:20px auto;"
+                  >
+                    Yes, Delete Account
+                  </button>
                 </form>
-                  <button id="" class="btn btn-primary login-btn" data-dismiss="modal" style="display:flex; flex-direction: column; justify-content:center; margin:20px auto;">Cancel</button>
+                <button
+                  id=""
+                  class="btn btn-primary login-btn"
+                  data-dismiss="modal"
+                  style="display:flex; flex-direction: column; justify-content:center; margin:20px auto;"
+                >
+                  Cancel
+                </button>
               </div>
+            </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary modal-btn"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script type="text/javascript" src="/js/index.js"></script>
-  <script type="text/javascript" src="/js/header.js"></script>
-  <script type="text/javascript" src="/js/login.js"></script>
-  <script type="text/javascript" src="/js/passwordChange.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/header.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
+    <script type="text/javascript" src="/js/passwordChange.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

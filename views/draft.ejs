@@ -1,61 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DraftStone</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/spacing.css">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DraftStone</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/spacing.css" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'UA-127642798-1');
-  </script>
-</head>
+      gtag("config", "UA-127642798-1");
+    </script>
+  </head>
 
-<body>
-<%- include partials/header.ejs %>
+  <body>
+    <%- include partials/header.ejs %>
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <main id="main" class="flex mt-50">
+    <main id="main" class="flex mt-50">
       <div class="x-squish"></div>
 
       <!-- ~~ CONTAINER ~~ -->
 
       <div id="container" class="flex">
-
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ LEFT ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
         <!-- ~~ LEFT CARD ~~ -->
 
         <div id="left">
-          <div id="class-div" class="y-squish flex">
-
-          </div>
+          <div id="class-div" class="y-squish flex"></div>
 
           <!-- ~~ CARD DISPLAY ~~ -->
 
           <div id="card-display" class="card-deck flex">
             <div id="hide" class="hidden flex card-display">
-
               <div class="card center mt-0 pt-0">
                 <div class="card-body flex-col">
                   <button class="imgbtn">
                     <div id="img0">
-                      <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                      <img
+                        class="responsive"
+                        src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png"
+                        alt=""
+                      />
                     </div>
                   </button>
                   <button class="xbtn center">
-                      <img id="xbtn1" src="/images/redbtn.png" class="responsive" alt="">
+                    <img
+                      id="xbtn1"
+                      src="/images/redbtn.png"
+                      class="responsive"
+                      alt=""
+                    />
                   </button>
                 </div>
               </div>
@@ -65,15 +88,28 @@
                   <button class="imgbtn">
                     <!-- ~~~~~~ HIDDEN CARD ~~~~~~ -->
                     <div id="hidden-card">
-                      <img class="responsive card-position hidden-card opaque" src="" alt="">
+                      <img
+                        class="responsive card-position hidden-card opaque"
+                        src=""
+                        alt=""
+                      />
                     </div>
 
                     <div id="img1">
-                      <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                      <img
+                        class="responsive"
+                        src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png"
+                        alt=""
+                      />
                     </div>
                   </button>
                   <button class="xbtn center">
-                    <img id="xbtn2" src="/images/redbtn.png" class="responsive" alt="">
+                    <img
+                      id="xbtn2"
+                      src="/images/redbtn.png"
+                      class="responsive"
+                      alt=""
+                    />
                   </button>
                 </div>
               </div>
@@ -82,23 +118,30 @@
                 <div class="card-body flex-col">
                   <button class="imgbtn">
                     <div id="img2">
-                      <img class="responsive" src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png" alt="">
+                      <img
+                        class="responsive"
+                        src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_751.png"
+                        alt=""
+                      />
                     </div>
                   </button>
                   <button class="xbtn center">
-                    <img id="xbtn3" src="/images/redbtn.png" class="responsive" alt="">
+                    <img
+                      id="xbtn3"
+                      src="/images/redbtn.png"
+                      class="responsive"
+                      alt=""
+                    />
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
 
           <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ BOTTOM ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
           <div id="left" class="mb-50">
-            <div class="y-squish-min">
-            </div>
+            <div class="y-squish-min"></div>
 
             <!-- ~~ STAT DISPLAY ~~ -->
             <div id="stat-display" class="flex">
@@ -107,83 +150,64 @@
                 <div class="flex flex-around">
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar1" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar1" class="cost-bar"></div>
                     </div>
                     <div>1</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar2" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar2" class="cost-bar"></div>
                     </div>
                     <div>2</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar3" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar3" class="cost-bar"></div>
                     </div>
                     <div>3</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar4" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar4" class="cost-bar"></div>
                     </div>
                     <div>4</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar5" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar5" class="cost-bar"></div>
                     </div>
                     <div>5</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar6" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar6" class="cost-bar"></div>
                     </div>
                     <div>6</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar7" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar7" class="cost-bar"></div>
                     </div>
                     <div>7</div>
                   </div>
                   <div>
                     <div class="margin cost-column flex-col">
-                      <div id="cost-bar8" class="cost-bar">
-
-                      </div>
+                      <div id="cost-bar8" class="cost-bar"></div>
                     </div>
                     <div>8+</div>
                   </div>
-
                 </div>
               </div>
-              <div class="divider">
-              </div>
+              <div class="divider"></div>
               <div class="text-center flex-col stats">
                 <h4>STATS</h4>
                 <div class="flex flex-around">
-
                   <div class="flex-col stats">
                     <div class="flex">
                       <div id="statMinion" class="stat-box">0</div>
                       <div class="flex-start pad">Minions</div>
                     </div>
-                    <div  class="flex">
+                    <div class="flex">
                       <div id="statSpell" class="stat-box">0</div>
                       <div class="flex-start pad">Spells</div>
                     </div>
@@ -222,38 +246,38 @@
                       <div class="flex-start pad">Secret</div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ RIGHT ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
         <!-- ~~ RIGHT CARD ~~ -->
 
         <div id="right">
-          <div id="deck-div" class="y-squish flex">
-
-          </div>
+          <div id="deck-div" class="y-squish flex"></div>
 
           <!-- ~~ DECK DISPLAY ~~ -->
 
           <div id="deck-display" class="card-deck flex">
             <!-- <div id="card-div" class="card-deck flex"> -->
-              <div id="card-cost">
-                <!-- <div class="flex">
+            <div id="card-cost">
+              <!--
+                <div class="flex">
 
-                </div> -->
-              </div>
+                </div>
+              -->
+            </div>
 
-              <div id="card-name">
-                <!-- <div class="flex">
+            <div id="card-name">
+              <!--
+                <div class="flex">
 
-                </div> -->
-              </div>
+                </div>
+              -->
+            </div>
           </div>
         </div>
       </div>
@@ -261,12 +285,18 @@
 
     <%- include partials/modals.ejs %>
 
-
-  <script type="text/javascript" src="/js/draft.js"></script>
-  <script type="text/javascript" src="/js/header.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+    <script type="text/javascript" src="/js/draft.js"></script>
+    <script type="text/javascript" src="/js/header.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

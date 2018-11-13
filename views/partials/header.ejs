@@ -5,37 +5,84 @@
     <div class="navcontainer">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#navigation"
+        >
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a id="draftstone" class="navbar-brand text-uppercase draftstone-text" href="/">Draftstone</a>
+        <a
+          id="draftstone"
+          class="navbar-brand text-uppercase draftstone-text"
+          href="/"
+          >Draftstone</a
+        >
         <span style="color:green; font-size: 1.4rem;">BETA</span>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navigation">
-          <ul class="nav navbar-nav navbar-right">
-            <li style="font-size: 16px; color: black; margin-right: 15px; font-family: playfair; color:white;">
-              <% if (username) { %>
-                <div id="username" class="darker">Worthy opponent: <b><%= username %></b></div>
-              <% } %>
-            </li>
-            <li>
-              <button type="button" class="btn btn-success navbar-btn btn-circle modes-btn mr-20" onclick="window.location.href='/modes/community/trending'">Game Modes</button>
-            </li>
-            <li><button type="button" class="btn btn-success navbar-btn btn-circle instructions-btn mr-20" data-toggle="modal" data-target="#instructionsModal">Instructions</button></li>
-            <li>
-              <% if (!username) { %>
-              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">LOG IN</button>
-              <% } else { %>
-              <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" onclick="window.location.href='/logout'" style="margin-right:0px;">LOG OUT</button>
-              <button id="account-icon" class="fas fa-user-circle dark" onclick="window.location.href='/user'" style="color:green; font-size:3.3rem; margin-right:10px; margin-left:0px; border:none;"></button>
-              <% } %>
-            </li>
-          </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li
+            style="font-size: 16px; color: black; margin-right: 15px; font-family: playfair; color:white;"
+          >
+            <% if (username) { %>
+            <div id="username" class="darker">
+              Worthy opponent: <b><%= username %></b>
+            </div>
+            <% } %>
+          </li>
+          <li>
+            <button
+              type="button"
+              class="btn btn-success navbar-btn btn-circle modes-btn mr-20"
+              onclick="window.location.href='/modes/community/trending'"
+            >
+              Game Modes
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              class="btn btn-success navbar-btn btn-circle instructions-btn mr-20"
+              data-toggle="modal"
+              data-target="#instructionsModal"
+            >
+              Instructions
+            </button>
+          </li>
+          <li>
+            <% if (!username) { %>
+            <button
+              type="button"
+              class="btn btn-success navbar-btn btn-circle signin-btn mr-10"
+              data-toggle="modal"
+              data-target="#loginModal"
+            >
+              LOG IN
+            </button>
+            <% } else { %>
+            <button
+              type="button"
+              class="btn btn-success navbar-btn btn-circle signin-btn mr-10"
+              onclick="window.location.href='/logout'"
+              style="margin-right:0px;"
+            >
+              LOG OUT
+            </button>
+            <button
+              id="account-icon"
+              class="fas fa-user-circle dark"
+              onclick="window.location.href='/user'"
+              style="color:green; font-size:3.3rem; margin-right:10px; margin-left:0px; border:none;"
+            ></button>
+            <% } %>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
