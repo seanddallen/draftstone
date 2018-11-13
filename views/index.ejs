@@ -1,51 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DraftStone</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/spacing.css">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DraftStone</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/spacing.css" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'UA-127642798-1');
-  </script>
-</head>
+      gtag("config", "UA-127642798-1");
+    </script>
+  </head>
 
-<body>
+  <body>
+    <%- include partials/header.ejs %>
 
-<%- include partials/header.ejs %>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <main id="main" class="flex mt-50">
+    <main id="main" class="flex mt-50">
       <div class="x-squish"></div>
 
       <!-- ~~ CONTAINER ~~ -->
 
       <div id="full-container" class="flex">
-
         <!-- ~~ LEFT CARD ~~ -->
 
         <div id="full-card">
-          <div class="y-squish">
-          </div>
+          <div class="y-squish"></div>
 
           <!-- ~~ DRAFT DISPLAY ~~ -->
 
           <div id="full-display" class="card-deck flex-col">
             <div class="flow-text text-center">
-              <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Draft custom Hearthstone decks <br>to play against friends!</h3>
-              <br>
+              <h3
+                id="value-prop"
+                class="bold"
+                style="font-family:playfair display; font-size:2.5em;"
+              >
+                Draft custom Hearthstone decks <br />to play against friends!
+              </h3>
+              <br />
               <h4 class="bold">Step 1: Setup Draft</h4>
               <p>(Setup your own custom draft parameters)</p>
               <h4 class="bold">Step 2: Select Draft</h4>
@@ -56,7 +77,9 @@
             <div class="flex-col center" style="margin:0 auto;">
               <a href="/setup/relative">
                 <div class="center flex">
-                  <button type="button" class="btn btn-primary btn-lg flow-btn">Setup Draft</button>
+                  <button type="button" class="btn btn-primary btn-lg flow-btn">
+                    Setup Draft
+                  </button>
                 </div>
               </a>
               <div class="flex" style="margin-bottom:30px;">
@@ -65,19 +88,25 @@
             </div>
           </div>
 
-          <div class="y-squish">
-          </div>
+          <div class="y-squish"></div>
         </div>
       </div>
     </main>
 
-  <%- include partials/modals.ejs %>
+    <%- include partials/modals.ejs %>
 
-  <script type="text/javascript" src="/js/index.js"></script>
-  <script type="text/javascript" src="/js/header.js"></script>
-  <script type="text/javascript" src="/js/login.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</body>
+    <script type="text/javascript" src="/js/index.js"></script>
+    <script type="text/javascript" src="/js/header.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
