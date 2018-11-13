@@ -44,22 +44,64 @@
           <div class="y-squish">
           </div>
 
-          <!-- ~~ DRAFT DISPLAY ~~ -->
-          <h4 class="text-center">Draft Mode</h4>
-          <div id="master-sliders" class="card-deck flex">
-            <div class="col-md-12 mt-30">
-              <label class="flex flex-just-center">
-                <input type="radio" id="relative-input" name="hero" value="all" onclick="window.location.href='/setup/relative'">
-                <span class="label-text">Relative</span>
-                <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This sets the entire draft to a relative percentage based system (1-100 percent) for each of the filters. This is the default mode because this mode will allow for a higher chance of being able to complete a draft without running out of cards in the pool. However, picks will not be consistent (see instructions for more details)"></button>
-              </label>
-              <label class="flex flex-just-center">
-                <input type="radio" id="absolute-input" name="hero" value="all" onclick="window.location.href='/setup/absolute'" checked>
-                <span class="label-text">Absolute</span>
-                <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This sets the entire draft to an absolute based system (between 1-30 cards) for each of the filters. This mode has a higher chance of not being able to complete a draft if the filters are too narrow. In this mode all picks will be consistent (see instruction for more details)"></button>
-              </label>
+          <div class="flex flex-just-center">
+            <!-- ~~ DRAFT MODE DISPLAY ~~ -->
+            <div id="full-display2">
+              <div id="master-panel" class="card-deck flex-col">
+                <h4 class="text-center">Draft Mode</h4>
+                <div class="col-md-12 mt-30">
+                  <label class="flex flex-just-center">
+                    <input type="radio" id="relative-input" name="hero" value="all" onclick="window.location.href='/setup/relative'">
+                    <span class="label-text">Relative</span>
+                    <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This sets the entire draft to a relative percentage based system (1-100 percent) for each of the filters. This is the default mode because this mode will allow for a higher chance of being able to complete a draft without running out of cards in the pool. However, picks will not be consistent (see instructions for more details)"></button>
+                  </label>
+                  <label class="flex flex-just-center">
+                    <input type="radio" id="absolute-input" name="hero" value="all" onclick="window.location.href='/setup/absolute'" checked>
+                    <span class="label-text">Absolute</span>
+                    <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This sets the entire draft to an absolute based system (between 1-30 cards) for each of the filters. This mode has a higher chance of not being able to complete a draft if the filters are too narrow. In this mode all picks will be consistent (see instruction for more details)"></button>
+                  </label>
+                </div>
+              </div>
             </div>
+
+            <!-- ~~ DRAFT MODE DISPLAY ~~ -->
+            <!-- <div id="full-display3">
+              <div id="collection-panel" class="card-deck flex" style="border: solid 1px red">
+                <div class="col-md-6 mt-30" style="border: solid 1px red">
+                  <label class="flex flex-just-center">
+                    <div>
+                      <span class="label-text">Select Collection</span>
+                      <div class="dropdown text-center">
+                        <button class="btn btn-default dropdown-toggle mt-10" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          All
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                          <li><a href="#">My Collection</a></li>
+                          <li><a href="#">Friend Collection #1</a></li>
+                          <li><a href="#">Friend Collection #2</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div class="col-md-6 mt-30" style="border: solid 1px red">
+                  <label class="flex flex-just-center">
+                    <div>
+                      <div class="label-text text-center">Add Collection</div>
+                      <button class="btn btn-success mt-10" style="background-color: green;">
+                        Add Collection
+                      </button>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div> -->
+
+
           </div>
+
+          <!-- ~~ MAIN SETTINGS PANELS ~~ -->
 
           <div id="full-display-top" class="card-deck flex-col">
 
@@ -420,5 +462,6 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script>$('.dropdown-toggle').dropdown()</script>
 </body>
 </html>

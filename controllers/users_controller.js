@@ -2,7 +2,7 @@ const knex = require("../db/knex.js");
 const hasher = require("../config/hasher.js");
 const deckstrings = require("deckstrings");
 const nodemailer = require('nodemailer');
-const xoauth2 = require('xoauth2');
+// const xoauth2 = require('xoauth2');
 
 module.exports = {
   index: (req, res) => {
