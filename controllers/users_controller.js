@@ -40,7 +40,7 @@ module.exports = {
   },
 
   draft: (req, res) => {
-    knex.select('users.default_collection', 'users.id')
+    knex.select('users.selected_collection_id', 'users.id')
       .from('users')
       .where('users.id', req.session.user_id)
       .then(results => {
