@@ -43,10 +43,15 @@ module.exports = {
     knex.select('users.selected_collection_id', 'users.id')
       .from('users')
       .where('users.id', req.session.user_id)
-      .then(results => {
-        res.render('draft', {messages: req.session.messages, username: req.session.user_name, collection: results
-        })
+    .then(results => {
+      console.log(results);
+      knex('collections')
+        .where('id', + results[0].selected_collection_id)
+      .then(results2 => {
+        console.log(results2);
+        res.render('draft', {messages: req.session.messages, username: req.session.user_name, collection: results2[0].name})
       })
+    })
     req.session.messages = {
       loginErrors: [],
       registerErrors: [],

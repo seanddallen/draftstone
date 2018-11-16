@@ -234,7 +234,7 @@ function setupCustom() {
 
     }
 
-    
+
 }
 
 ///////////////////////// PICK CLASS /////////////////////////
@@ -258,6 +258,10 @@ function renderPick(array) {
 // User chooses class
 function classPick() {
   pickOptions = [];
+
+  xbtn01.classList.toggle('hidden');
+  xbtn02.classList.toggle('hidden');
+  xbtn03.classList.toggle('hidden');
 
   if (heroFilterSetting === "custom") {
     // for (const hero of heroes) {
@@ -312,7 +316,7 @@ function classPickHandler(e) {
     selectedClass = pickOptions[position].playerClass;
     heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
-  
+
     filteredPool = filteredPool.filter(card => (card.playerClass === "Neutral" && (!card.classes || card.classes.includes(selectedClass))) || card.playerClass === selectedClass);
 
 
@@ -326,6 +330,11 @@ function classPickHandler(e) {
     setupCustom()
 
     renderClassName();
+
+    xbtn01.classList.toggle('hidden');
+    xbtn02.classList.toggle('hidden');
+    xbtn03.classList.toggle('hidden');
+
     // Move flow of program to card picking stage
     cardPick();
   }
@@ -374,7 +383,7 @@ function cardPick() {
         }
         currentSelection = Math.floor(Math.random() * filteredPool.length);
       } while (selectedIndices.includes(currentSelection) || maxxedAlready(filteredPool[currentSelection])); // Verify index has not already been selected and that two copies of card are not already in deck
-  
+
       if (picksTried > 30) {
         selectedIndices.push(-1);
         pickOptions.push(blankCard);
@@ -384,9 +393,9 @@ function cardPick() {
         pickOptions.push(filteredPool[currentSelection]);
       }
     }
-    
+
   } else {
-    
+
   }
 
 
@@ -394,7 +403,7 @@ function cardPick() {
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
 
-  
+
 }
 // Function that determines if given card is already a 2-of in the deck
 function maxxedAlready(proposedCard) {
@@ -410,6 +419,7 @@ function maxxedAlready(proposedCard) {
   return false;
 }
 function cardPickHandler(e) {
+  console.log(e.target)
   // Ensure target is a card image
   if (e.target && e.target.id.includes("img") && !pickOptions[+e.target.id.slice(-1)].disable) {
     // Remove event listener to avoid multiple triggers
@@ -721,7 +731,7 @@ buildPObjCum()
 
 function redistribute(emptyCategory) {
   for (const category in pObj) {
-    pObj[category] /= 1 - pObj[emptyCategory] 
+    pObj[category] /= 1 - pObj[emptyCategory]
   }
   pObj[emptyCategory] = 0
   buildPObjCum()
@@ -863,7 +873,7 @@ const blankHero = {
 class collection {
   constructor(arrayOfCards) {
     this.cards = arrayOfCards.map(card => ({
-      ...card, 
+      ...card,
       quantity: card.rarity === "Legendary" ? 1 : 2
     }))
     this.sorted = {
@@ -895,10 +905,10 @@ class collection {
   //filters THIS collection
   filterClassSetCost(heroArray, setArray, costArray) {
     heroArray.push("Neutral")
-    this.cards = this.cards.filter(card => 
+    this.cards = this.cards.filter(card =>
       ( !heroArray[1] || heroArray.includes(card.playerClass) ) &&
       ( !setArray[0] || setArray.includes(card.cardSet) ) &&
-      ( !costArray[0] || costArray.includes(card.cost + "") || 
+      ( !costArray[0] || costArray.includes(card.cost + "") ||
         (costArray.includes("10+") && card.cost > 9) )
     )
   }
@@ -918,7 +928,7 @@ class collection {
         category += card.rarity[0]
         // this.count[card.rarity] += card.quantity
       }
-      
+
       if (card.type === "Minion") {
         category += "M"
         // this.count.Minion += card.quantity
@@ -934,7 +944,7 @@ class collection {
         category += "C"
         // this.count.Class += card.quantity
       }
-    
+
       card.category = category
       this.sorted[category].push(card)
     }
@@ -1031,7 +1041,7 @@ function classPickHandler(e) {
     selectedClass = pickOptions[position].playerClass;
     heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
-  
+
     filteredCollection.filterByClass(selectedClass)
 
     filteredCollection.sortIntoCategories()
@@ -1049,7 +1059,7 @@ function classPickHandler(e) {
     //       filteredCollection.count.spell < spellCount ||
     //       filteredCollection.count.minion < (30 - spellCount) ||
     //       filteredCollection.count.class < classCount ||
-    //       filteredCollection.count.neutral < (30 - classCount)   
+    //       filteredCollection.count.neutral < (30 - classCount)
     //     ) {
     //       invalidDraft()
     //     }
@@ -1081,12 +1091,12 @@ function cardPick() {
     }
     pickOptions.push(randomCard)
   }
-  
+
 
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
 
-  
+
 }
 
 function cardPickHandler(e) {
@@ -1100,7 +1110,7 @@ function cardPickHandler(e) {
     const selectedCard = pickOptions[position]
     deck.push(selectedCard);
     filteredCollection.removeCard(selectedCard)
-    
+
     if (filteredCollection.sorted[selectedCard.category].length === 0) {
       redistribute(selectedCard.category)
     }
@@ -1250,6 +1260,9 @@ const xbtn01 = document.getElementById('xbtn1');
 const xbtn02 = document.getElementById('xbtn2');
 const xbtn03 = document.getElementById('xbtn3');
 
+xbtn01.classList.toggle('hidden');
+xbtn02.classList.toggle('hidden');
+xbtn03.classList.toggle('hidden');
 
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {

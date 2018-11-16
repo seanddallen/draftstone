@@ -152,7 +152,7 @@
 
 
       <!-- ~~ MODE LIST ~~ -->
-      
+
 
       <% if (isSingle)  { %>
       <br>
@@ -165,7 +165,9 @@
             <div class="panel panel-default mode-panel flex-col" style="overflow:hidden; max-height:300px;">
 
               <div class="panel-heading mode-panel-header flex flex-between" style="">
-                <h3 class="panel-title bold flex-center" style="font-size:1.9rem"> <%= mode.mode_name %></h3>
+                <h3 class="panel-title bold flex-center" style="font-size:1.9rem; padding-right:20px;"> <%= mode.mode_name %>
+                  <span class="text-muted" style="font-family: playfair display; font-size:1.2rem; display: inline-block; margin-left: 10px;"> <%= (mode.settings.filterType) %> <span>
+                </h3>
                 <div class="flex flex-center">
 
                   <% if(tab === 'community') { %>
@@ -214,15 +216,15 @@
 
                 <div class="col-xs-2" style="margin-top:5px;">
                   <br><b style="font-size:1em;">Class / Neutral</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.classSetting === 'custom'){ %><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %><% } else { %><%= mode.settings.classSetting %><% } %></pre>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.classSetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %><% } else if (mode.settings.classSetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (mode.settings.classCount || 0) + "%" %> / <%= (100 - mode.settings.classCount || 0) + "%" %><% } else { %><%= mode.settings.classSetting %><% } %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
                   <br><b style="font-size:1em;">Minion / Spell</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom'){ %><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %><% } else if (mode.settings.typeSetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (100 - mode.settings.spellCount || 0) + "%" %> / <%= (mode.settings.spellCount || 0) + "%" %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
                   <b style="font-size:1em;"> Legend / Epic <br>Rare / Common</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else if (mode.settings.raritySetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (mode.settings.legendaryCount || 0) + "%" %> / <%= (mode.settings.epicCount || 0) + "%" %> / <%= (mode.settings.rareCount || 0) + "%" %> / <%= (100 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0) + "%" %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
                 </div>
               </div>
             </div>

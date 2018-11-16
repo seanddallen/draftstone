@@ -469,12 +469,25 @@ a:link {
 }
 
 .xbtn {
-  background-color: #ddd8cc;
+  background-color: red;
+  opacity: 0.9;
   border: none;
   max-height: 60px;
-  max-width: 60px;
+  width: 60px;
   cursor: grab;
-  outline: none;
+  outline: none !important;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
+}
+
+.xbtn:focus {
+  background-color: red;
+  opacity: 0.9;
+  border: none;
+  max-height: 60px;
+  width: 60px;
+  cursor: grab;
+  outline: none !important;
+  box-shadow: 0 8px 16px 4px rgba(0,0,0,0.4);
 }
 
 .imgbtn {
