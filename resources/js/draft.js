@@ -754,6 +754,9 @@ function randomCategory() {
 
 
 
+
+
+
 let heroCard = {};
 let selectedClass = ''; // User selected class
 let filteredPool = masterPool.slice(0); // Pool of only Neutral and class cards matching selected class
