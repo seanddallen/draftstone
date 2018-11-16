@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('user_name');
     table.string('password');
     table.string('email').unique();
-    table.json('collection');
+    table.integer('selected_collection_id').defaultTo(1);
     table.timestamps(true, true);
   });
 };
