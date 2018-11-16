@@ -160,7 +160,7 @@ module.exports = {
       hasher.check(user, req.body)
       .then((isMatch) => {
         if(isMatch){
-          unhashedUser = {
+          const unhashedUser = {
             password: req.body.newpassword
           };
           hasher.hash(unhashedUser)

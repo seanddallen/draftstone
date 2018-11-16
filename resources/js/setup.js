@@ -3,9 +3,7 @@ const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
 let customRules = {};
 
-console.log('setup.js')
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DCL')
  axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
    headers: {
      'X-Mashape-Key': 'gAeuReVzM3mshLLX97GlEfieDYDep1H5yDOjsn5z5VlqqZie5Q'
@@ -162,8 +160,10 @@ function buildSettings() {
   let specifiedClasses = document.getElementById('select-hero').value;
 
 
+  const filterType = document.querySelector('input[name="mode"]:checked').value;
 
   customRules = {
+    'filterType': filterType,
     'heroFilterSetting': heroFilterSetting,
     'heroArray': heroArray,
     'setFilterSetting': setFilterSetting,
@@ -424,9 +424,9 @@ function handleClassInput() {
 }
 
 function handleClassInputRelative() {
-  classOutput.value = classInput.value;
+  classOutput.value = classInput.value + '%';
   neutralInput.value = 100 - classInput.value;
-  neutralOutput.value = neutralInput.value;
+  neutralOutput.value = neutralInput.value + '%';
 }
 
 function handleNeutralInput() {
@@ -436,9 +436,9 @@ function handleNeutralInput() {
 }
 
 function handleNeutralInputRelative() {
-  neutralOutput.value = neutralInput.value;
+  neutralOutput.value = neutralInput.value + '%';
   classInput.value = 100 - neutralInput.value;
-  classOutput.value = classInput.value;
+  classOutput.value = classInput.value + '%';
 }
 
 
@@ -470,7 +470,7 @@ function handleLegendInputRelative() {
   if (legendInput.value > remainingSlots) {
     legendInput.value = remainingSlots;
   }
-  legendOutput.value = legendInput.value;
+  legendOutput.value = legendInput.value + '%';
 
   handleCommonInputRelative();
 }
@@ -490,7 +490,7 @@ function handleEpicInputRelative() {
   if (epicInput.value > remainingSlots) {
     epicInput.value = remainingSlots;
   }
-  epicOutput.value = epicInput.value;
+  epicOutput.value = epicInput.value + '%';
 
   handleCommonInputRelative();
 }
@@ -510,7 +510,7 @@ function handleRareInputRelative() {
   if (rareInput.value > remainingSlots) {
     rareInput.value = remainingSlots;
   }
-  rareOutput.value = rareInput.value;
+  rareOutput.value = rareInput.value + '%';
 
   handleCommonInputRelative();
 }
@@ -525,10 +525,10 @@ function handleCommonInput() {
 
 function handleCommonInputRelative() {
   commonInput.value = 100;
-  commonOutput.value = 100;
+  commonOutput.value = 100 + '%';
   const remainingSlots = 100 - (Number(legendInput.value) + Number(epicInput.value) + Number(rareInput.value));
   commonInput.value = remainingSlots;
-  commonOutput.value = commonInput.value;
+  commonOutput.value = commonInput.value + '%';
 }
 
 
@@ -546,9 +546,9 @@ function handleMinionInput() {
 }
 
 function handleMinionInputRelative() {
-  minionOutput.value = minionInput.value;
+  minionOutput.value = minionInput.value + '%';
   spellInput.value = 100 - minionInput.value;
-  spellOutput.value = spellInput.value;
+  spellOutput.value = spellInput.value + '%';
 }
 
 function handleSpellInput() {
@@ -558,9 +558,9 @@ function handleSpellInput() {
 }
 
 function handleSpellInputRelative() {
-  spellOutput.value = spellInput.value;
+  spellOutput.value = spellInput.value + '%';
   minionInput.value = 100 - spellInput.value;
-  minionOutput.value = minionInput.value;
+  minionOutput.value = minionInput.value + '%';
 }
 
 //Routes for absolute/relative modes
