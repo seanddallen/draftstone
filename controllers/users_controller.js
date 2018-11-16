@@ -44,7 +44,6 @@ module.exports = {
       .from('users')
       .where('users.id', req.session.user_id)
       .then(results => {
-        console.log(results)
         res.render('draft', {messages: req.session.messages, username: req.session.user_name, collection: results
         })
       })
@@ -229,9 +228,6 @@ module.exports = {
           .where('id', req.session.user_id)
           .then((users)=>{
             const selectedCollection = collectionsArray.filter(collection => collection.id === users[0].selected_collection_id)[0]
-            console.log(users[0].selected_collection_id)
-            console.log(collectionsArray);
-            console.log(selectedCollection);
             res.render('account', {users: users, messages: req.session.messages, collections:collectionsArray, username: req.session.user_name, selectedCollection: selectedCollection});
             req.session.messages = {
               loginErrors: [],
