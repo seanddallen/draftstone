@@ -361,7 +361,7 @@ function randomPickSettings() {
   if (settingsArray[0] === "neutral" && settingsArray[1] === "spell") {
     let randomTypeIndex = randomType.indexOf("minion");
     if (randomTypeIndex === -1) {
-      console.log("not enough class spells");
+      // console.log("not enough class spells");
       settingsArray[1] = "minion";
     } else {
       settingsArray[1] = randomType.splice(randomTypeIndex, 1, "spell")[0];
@@ -428,7 +428,6 @@ function maxxedAlready(proposedCard) {
   return false;
 }
 function cardPickHandler(e) {
-  console.log(e.target)
   // Ensure target is a card image
   if (e.target && e.target.id.includes("img") && !pickOptions[+e.target.id.slice(-1)].disable) {
     // Remove event listener to avoid multiple triggers
@@ -1285,7 +1284,7 @@ deckCon.addEventListener('mouseover', (e) => {
     // Use id of target to determine which option was selected
     const position = +e.target.parentNode.parentNode.parentNode.id.slice(-2);
 
-    console.log(position)
+    // console.log(position)
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
