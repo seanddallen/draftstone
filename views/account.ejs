@@ -71,10 +71,17 @@
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:100%;">
-                          <li><a href="#"><%= users[0].default_collection %></a></li>
+
+                          <%# %>
+                          <li><a href="/user/collections/selected/<%= users[0].selected_collection_id %>"><%# users[0].default_collection %></a></li>
+                          <%# %>
+
                           <% collections.forEach(collection => { %>
-                          <li><a href="#"><%= collection.name %></a></li>
+                          <li>
+                              <a href="/user/collections/selected/<%= collection.id %>"><%= collection.name %></a>
+                          </li>
                           <% }) %>
+
                         </ul>
                       </div>
                     </div>
@@ -88,7 +95,7 @@
                   <div class="flex flex-between">
                     <div class="mr-5">
                       <% if (selectedCollection.id !== 1) { %>
-                      <form method="post" action="/user/collections/update/<%= users[0].selected_collection_id %>">
+                      <form method="post" action="/user/collections/update/<%= selectedCollection.id %>">
                         <button class="btn btn-primary login-btn">Update</button>
                       </form>
                       <% } %>

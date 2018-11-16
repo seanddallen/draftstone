@@ -38,9 +38,11 @@ module.exports = function(app){
   app.post('/modes/delete/:id', modes.delete);
 
   //COLLECTIONS ROUTES
-  app.post('/user/collections/import/:id', collections.import)
+  app.post('/user/collections/import/', collections.import)
   app.post('/user/collections/update/:id', collections.update)
   app.post('/user/collections/delete/:id', collections.delete)
+  app.get('/user/collections/selected/:id', collections.selected)
+
 
   //VOTES ROUTES
 
