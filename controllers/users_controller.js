@@ -148,7 +148,8 @@ module.exports = {
     let output = `
       <h3>Instructions</h3>
       <p>You may now login to your account with your email and the new temporary password.</p>
-      <p>***IMPORTANT*** Make sure you go in right away and change this to your new password. You can do this by loggin in and clicking your account icon in the upper right corner and then resetting your password.</p>
+      <p>***IMPORTANT*** Make sure you go in right away and create a new password.</p>
+      <p>You can do this by logging in and clicking your account icon in the upper right corner and then resetting your password.</p>
       <br>
       <b>Temporary Password:</b><span>${temporary}</span>
     `
@@ -172,7 +173,7 @@ module.exports = {
        secure: false, // true for 465, false for other ports
        auth: {
            user: 'draftstonebeta@gmail.com', // generated ethereal user
-           pass: 'g100rocks!' // generated ethereal password
+           pass: process.env.NODE_MAILER_PASSWORD // generated ethereal password
        },
        tls:{
          rejectUnauthorized: false
