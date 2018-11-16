@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 // const xoauth2 = require('xoauth2');
 const port = process.env.PORT || 8000;
-app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "50mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.static('resources'));
 
 require('./config/sessions')(app);

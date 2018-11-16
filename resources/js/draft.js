@@ -1,9 +1,18 @@
 const customRules = JSON.parse(localStorage.getItem("customRules"));
 const filterType = customRules.filterType;
 
+userCollection = JSON.parse(userCollection.split("&#34;").join('"'))
+const masterPool = JSON.parse(localStorage.getItem("masterPool"));
+const userPool = masterPool.filter(card => {
+  if (userCollection[card.name]) {
+    card.quantity = userCollection[card.name]
+    return true
+  }
+  return false
+})
+
 function absolute() {
   ///////////////////////// GLOBAL VARIABLES /////////////////////////
-const masterPool = JSON.parse(localStorage.getItem("masterPool"));
 let heroes = JSON.parse(localStorage.getItem("heroes"));
 
 const heroFilterSetting = customRules.heroFilterSetting;
@@ -651,7 +660,6 @@ function renderClassName(){
 
 function relative() {
 ///////////////////////// GLOBAL VARIABLES /////////////////////////
-const masterPool = JSON.parse(localStorage.getItem("masterPool"));
 
 
 let heroes = JSON.parse(localStorage.getItem("heroes"));
@@ -873,8 +881,7 @@ const blankHero = {
 class collection {
   constructor(arrayOfCards) {
     this.cards = arrayOfCards.map(card => ({
-      ...card,
-      quantity: card.rarity === "Legendary" ? 1 : 2
+      ...card
     }))
     this.sorted = {
       LSC: [],
@@ -959,7 +966,7 @@ class collection {
 }
 
 const masterCollection = new collection(masterPool)
-const filteredCollection = new collection(masterCollection.cards)
+const filteredCollection = new collection(userPool)
 filteredCollection.filterClassSetCost(heroArray, setArray, costArray)
 
 if (filteredCollection.cards.length < 30) {
@@ -998,6 +1005,10 @@ function renderPick(array) {
 // User chooses class
 function classPick() {
   pickOptions = [];
+
+  xbtn01.classList.toggle('hidden');
+  xbtn02.classList.toggle('hidden');
+  xbtn03.classList.toggle('hidden');
 
   if (heroFilterSetting === "custom") {
     heroes = heroes.filter(hero => {
@@ -1069,6 +1080,9 @@ function classPickHandler(e) {
     renderClassName();
     // Move flow of program to card picking stage
 
+    xbtn01.classList.toggle('hidden');
+    xbtn02.classList.toggle('hidden');
+    xbtn03.classList.toggle('hidden');
     cardPick();
   }
 }
@@ -1260,9 +1274,11 @@ const xbtn01 = document.getElementById('xbtn1');
 const xbtn02 = document.getElementById('xbtn2');
 const xbtn03 = document.getElementById('xbtn3');
 
-xbtn01.classList.toggle('hidden');
-xbtn02.classList.toggle('hidden');
-xbtn03.classList.toggle('hidden');
+if (userCollectionId !== 1) {
+  xbtn01.classList.toggle('hidden');
+  xbtn02.classList.toggle('hidden');
+  xbtn03.classList.toggle('hidden');
+}
 
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {

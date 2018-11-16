@@ -48,8 +48,8 @@ module.exports = {
       knex('collections')
         .where('id', + results[0].selected_collection_id)
       .then(results2 => {
-        console.log(results2);
-        res.render('draft', {messages: req.session.messages, username: req.session.user_name, collection: results2[0].name})
+        results2[0].collection = JSON.stringify(results2[0].collection)
+        res.render('draft', {messages: req.session.messages, username: req.session.user_name, collection: results2[0]})
       })
     })
     req.session.messages = {
