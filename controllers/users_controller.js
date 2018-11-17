@@ -157,17 +157,6 @@ module.exports = {
 
      let transporter = nodemailer.createTransport({
 
-       // service: 'gmail',
-       // auth: {
-       //   xoauth2: xoauth2.createXOAuth2Generator({
-       //     user: 'draftstonebeta@gmail.com',
-       //     clientId: '',
-       //     clientSecret: '',
-       //     refreshToken: '',
-       //
-       //   })
-       // }
-
        host: 'smtp.gmail.com',
        port: 587,
        secure: false, // true for 465, false for other ports
