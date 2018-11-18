@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
     filterPoolBySet(setArray);
   }
 
-
   classPick();
 });
 
@@ -268,9 +267,11 @@ function renderPick(array) {
 function classPick() {
   pickOptions = [];
 
-  xbtn01.classList.toggle('hidden');
-  xbtn02.classList.toggle('hidden');
-  xbtn03.classList.toggle('hidden');
+  if (userCollectionId === 1) {
+    xbtn01.classList.toggle('hidden');
+    xbtn02.classList.toggle('hidden');
+    xbtn03.classList.toggle('hidden');
+  }
 
   if (heroFilterSetting === "custom") {
     // for (const hero of heroes) {
@@ -340,9 +341,11 @@ function classPickHandler(e) {
 
     renderClassName();
 
-    xbtn01.classList.toggle('hidden');
-    xbtn02.classList.toggle('hidden');
-    xbtn03.classList.toggle('hidden');
+    if (userCollectionId === 1) {
+      xbtn01.classList.toggle('hidden');
+      xbtn02.classList.toggle('hidden');
+      xbtn03.classList.toggle('hidden');
+    }
 
     // Move flow of program to card picking stage
     cardPick();
@@ -1005,9 +1008,11 @@ function renderPick(array) {
 function classPick() {
   pickOptions = [];
 
-  xbtn01.classList.toggle('hidden');
-  xbtn02.classList.toggle('hidden');
-  xbtn03.classList.toggle('hidden');
+  if (userCollectionId === 1) {
+    xbtn01.classList.toggle('hidden');
+    xbtn02.classList.toggle('hidden');
+    xbtn03.classList.toggle('hidden');
+  }
 
   if (heroFilterSetting === "custom") {
     heroes = heroes.filter(hero => {
@@ -1079,9 +1084,11 @@ function classPickHandler(e) {
     renderClassName();
     // Move flow of program to card picking stage
 
-    xbtn01.classList.toggle('hidden');
-    xbtn02.classList.toggle('hidden');
-    xbtn03.classList.toggle('hidden');
+    if (userCollectionId === 1) {
+      xbtn01.classList.toggle('hidden');
+      xbtn02.classList.toggle('hidden');
+      xbtn03.classList.toggle('hidden');
+    }
     cardPick();
   }
 }
@@ -1137,6 +1144,7 @@ function cardPickHandler(e) {
       deckComplete();
     }
   }
+
   // If user clicks red x indicating they don't own the card
     if (e.target && e.target.id.includes("xbtn")) {
       // Removed unowned card and replace with new random card
@@ -1273,11 +1281,11 @@ const xbtn01 = document.getElementById('xbtn1');
 const xbtn02 = document.getElementById('xbtn2');
 const xbtn03 = document.getElementById('xbtn3');
 
-if (userCollectionId !== 1) {
-  xbtn01.classList.toggle('hidden');
-  xbtn02.classList.toggle('hidden');
-  xbtn03.classList.toggle('hidden');
-}
+// if (userCollectionId !== 1) {
+//   xbtn01.classList.toggle('hidden');
+//   xbtn02.classList.toggle('hidden');
+//   xbtn03.classList.toggle('hidden');
+// }
 
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {
