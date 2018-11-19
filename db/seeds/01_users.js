@@ -12,8 +12,8 @@ exports.seed = function(knex, Promise) {
       };
       const sean = {
         user_name: 'sean',
-        password: 'yes',
-        email: 'sean@gmail.com',
+        password: 'asdf',
+        email: 'seanjtayler@gmail.com',
       };
 
       const promiseArr = [];
