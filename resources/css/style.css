@@ -194,7 +194,7 @@ main {
 .draftstone-text {
   font-family: 'Piedra';
   color: rgba(0,0,0,0.6) !important;
-  font-size: 1.8em;
+  font-size: 4vw;
   margin-top: 28px;
   padding-top: 6px;
   margin-left: 0px;
@@ -204,7 +204,7 @@ main {
 
 .draftstone-text-sticky {
   font-family: 'Piedra';
-  font-size: 1.2em;
+  font-size: 2vw;
   margin-top: 14px;
   padding-top: 4px;
   color: #ddd8cc !important;
