@@ -1,10 +1,11 @@
+
 console.log(process.env)
 module.exports = {
   development: {
       client: 'pg',
       connection: {
-        database: "draftstone",
-        host: "localhost"
+        database: 'draftstone',
+        host: 'localhost'
       },
       migrations: {
           directory: __dirname + '/db/migrations',
