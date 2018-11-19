@@ -1,9 +1,10 @@
-///////////////////////// GLOBAL VARIABLES /////////////////////////
-const masterPool = JSON.parse(localStorage.getItem("masterPool"));
-
-
-let heroes = JSON.parse(localStorage.getItem("heroes"));
+//Grab data from local storage
 const customRules = JSON.parse(localStorage.getItem("customRules"));
+const masterPool = JSON.parse(localStorage.getItem("masterPool"));
+let heroes = JSON.parse(localStorage.getItem("heroes"));
+
+//saved in the ejs
+userCollection = JSON.parse(userCollection.split("&#34;").join('"'))
 
 let {
   filterType,
@@ -20,7 +21,16 @@ let {
   epicCount,
   rareCount,
   typeSetting,
-  spellCount } = customRules
+  spellCount } = customRules;
+
+//Filter cards based on user collection (also adds quantity property to card)
+const userPool = masterPool.filter(card => {
+  if (userCollection[card.name]) {
+    card.quantity = userCollection[card.name]
+    return true
+  }
+  return false
+})
 
 if (classSetting === "chaos") {
   classCount = 40;
@@ -81,7 +91,7 @@ buildPObjCum()
 
 function redistribute(emptyCategory) {
   for (const category in pObj) {
-    pObj[category] /= 1 - pObj[emptyCategory] 
+    pObj[category] /= 1 - pObj[emptyCategory]
   }
   pObj[emptyCategory] = 0
   buildPObjCum()
@@ -111,8 +121,6 @@ function randomCategory() {
 //  }
 //  return empiricalP;
 // }
-
-
 
 let heroCard = {};
 let selectedClass = ''; // User selected class
@@ -147,8 +155,7 @@ const blankHero = {
 class collection {
   constructor(arrayOfCards) {
     this.cards = arrayOfCards.map(card => ({
-      ...card, 
-      quantity: card.rarity === "Legendary" ? 1 : 2
+      ...card
     }))
     this.sorted = {
       LSC: [],
@@ -176,13 +183,23 @@ class collection {
     // }
   }
 
+  cardsLeft() {
+    let total = 0;
+    for (const category in this.sorted) {
+      for (const card in this.sorted[category]) {
+        total += card.quantity
+      }
+    }
+    return total
+  }
+
   //filters THIS collection
   filterClassSetCost(heroArray, setArray, costArray) {
     heroArray.push("Neutral")
-    this.cards = this.cards.filter(card => 
+    this.cards = this.cards.filter(card =>
       ( !heroArray[1] || heroArray.includes(card.playerClass) ) &&
       ( !setArray[0] || setArray.includes(card.cardSet) ) &&
-      ( !costArray[0] || costArray.includes(card.cost + "") || 
+      ( !costArray[0] || costArray.includes(card.cost + "") ||
         (costArray.includes("10+") && card.cost > 9) )
     )
   }
@@ -202,7 +219,7 @@ class collection {
         category += card.rarity[0]
         // this.count[card.rarity] += card.quantity
       }
-      
+
       if (card.type === "Minion") {
         category += "M"
         // this.count.Minion += card.quantity
@@ -218,22 +235,22 @@ class collection {
         category += "C"
         // this.count.Class += card.quantity
       }
-    
+
       card.category = category
       this.sorted[category].push(card)
     }
   }
 
-  removeCard(selectedCard) {
-    selectedCard.quantity -= 1
-    if (selectedCard.quantity === 0) {
+  removeCard(selectedCard, amountToRemove) {
+    selectedCard.quantity -= amountToRemove
+    if (selectedCard.quantity < 1) {
       this.sorted[selectedCard.category] = this.sorted[selectedCard.category].filter(card => card.dbfId !== selectedCard.dbfId)
     }
   }
 }
 
 const masterCollection = new collection(masterPool)
-const filteredCollection = new collection(masterCollection.cards)
+const filteredCollection = new collection(userPool)
 filteredCollection.filterClassSetCost(heroArray, setArray, costArray)
 
 if (filteredCollection.cards.length < 30) {
@@ -264,14 +281,17 @@ function renderPick(array) {
   img0.childNodes[1].setAttribute('id', 'img0');
   img1.childNodes[1].setAttribute('id', 'img1');
   img2.childNodes[1].setAttribute('id', 'img2');
-
-  // img0.innerHTML = `<img id="img0" class="responsive" src="${array[0].img}" alt="">`;
-  // img1.innerHTML = `<img id="img1" class="responsive" src="${array[1].img}" alt="">`;
-  // img2.innerHTML = `<img id="img2" class="responsive" src="${array[2].img}" alt="">`;
 }
+
 // User chooses class
 function classPick() {
   pickOptions = [];
+
+  if (userCollectionId === 1) {
+    xbtn01.classList.toggle('hidden');
+    xbtn02.classList.toggle('hidden');
+    xbtn03.classList.toggle('hidden');
+  }
 
   if (heroFilterSetting === "custom") {
     heroes = heroes.filter(hero => {
@@ -315,7 +335,7 @@ function classPickHandler(e) {
     selectedClass = pickOptions[position].playerClass;
     heroCard = pickOptions[position];
     // Filter the master pool down to exclude all class cards that are not of chosen class
-  
+
     filteredCollection.filterByClass(selectedClass)
 
     filteredCollection.sortIntoCategories()
@@ -333,7 +353,7 @@ function classPickHandler(e) {
     //       filteredCollection.count.spell < spellCount ||
     //       filteredCollection.count.minion < (30 - spellCount) ||
     //       filteredCollection.count.class < classCount ||
-    //       filteredCollection.count.neutral < (30 - classCount)   
+    //       filteredCollection.count.neutral < (30 - classCount)
     //     ) {
     //       invalidDraft()
     //     }
@@ -343,6 +363,11 @@ function classPickHandler(e) {
     renderClassName();
     // Move flow of program to card picking stage
 
+    if (userCollectionId === 1) {
+      xbtn01.classList.toggle('hidden');
+      xbtn02.classList.toggle('hidden');
+      xbtn03.classList.toggle('hidden');
+    }
     cardPick();
   }
 }
@@ -359,18 +384,15 @@ function cardPick() {
       const category = randomCategory()
       const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
       randomCard = filteredCollection.sorted[category][randomIndex]
-      if ((pickOptions[0] && pickOptions[0].dbfId === randomCard.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === randomCard.dbfId)) {
+      if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === randomCard.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === randomCard.dbfId)) {
         duped = true
       }
     }
     pickOptions.push(randomCard)
   }
-  
 
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
-
-  
 }
 
 function cardPickHandler(e) {
@@ -383,8 +405,8 @@ function cardPickHandler(e) {
     // Add choosen card to deck
     const selectedCard = pickOptions[position]
     deck.push(selectedCard);
-    filteredCollection.removeCard(selectedCard)
-    
+    filteredCollection.removeCard(selectedCard, 1)
+
     if (filteredCollection.sorted[selectedCard.category].length === 0) {
       redistribute(selectedCard.category)
     }
@@ -398,18 +420,42 @@ function cardPickHandler(e) {
       deckComplete();
     }
   }
+
   // If user clicks red x indicating they don't own the card
     if (e.target && e.target.id.includes("xbtn")) {
+
       // Removed unowned card and replace with new random card
-      let newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
-      // TODO: Ensure that the newOption is not the same as one of the curent options
-      while (maxxedAlready(newOption)) {
-        newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
+      let pickIndex = +e.target.id.slice(-1) - 1
+
+      filteredCollection.removeCard(pickOptions[pickIndex], 2)
+
+      if (30 - deck.length  > filteredCollection.cardsLeft()) {
+        window.alert("There are not enough cards left based on your settings and collection in order to complete this draft. We recommend going back and choosing new settings.")
       }
-      pickOptions.splice(+e.target.id.slice(-1) - 1, 1, newOption);
+
+      const categoryOfRemoved = pickOptions[pickIndex].category
+
+      if(!filteredCollection.sorted[categoryOfRemoved].length) {
+        redistribute(categoryOfRemoved)
+      }
+
+      let duped = true
+      let newOption = {}
+      while (duped) {
+        duped = false
+        const category = randomCategory()
+        const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
+        newOption = filteredCollection.sorted[category][randomIndex]
+        if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === newOption.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === newOption.dbfId) | (pickOptions[2] && pickOptions[2].dbfId === newOption.dbfId)) {
+          duped = true
+        }
+      }  
+      pickOptions.splice(pickIndex, 1, newOption)
+      
       renderPick(pickOptions);
     }
 }
+
 // Sort first by cost, and then alphabetically by card name
 function sortDeck() {
   deck.sort((cardA, cardB) => {
@@ -422,7 +468,6 @@ function sortDeck() {
     return cardA.name.localeCompare(cardB.name);
   });
 }
-
 
 function renderDeck(array) {
   cardName = document.getElementById('card-name');
@@ -496,9 +541,7 @@ function renderDeck(array) {
       }
     }
 
-
     //Update Mana Curve
-    // NEEDS TO BE NUMBER OF CARDS AT THAT COST (NOT SIMPLY CARD.COST)
     if (card.cost > 0) {
       let currentHeight = document.getElementById(`cost-bar${card.cost > 8 ? 8 : card.cost}`).style.height;
       document.getElementById(`cost-bar${card.cost > 8 ? 8 : card.cost}`).style.height = (+currentHeight.slice(0,-2) + 8) + 'px';
@@ -506,9 +549,7 @@ function renderDeck(array) {
   });
 }
 
-
 ///////////////////////// COMPLETE DECK /////////////////////////
-
 function deckComplete() {
   axios.post('/draftcount').then(()=>{
     localStorage.setItem('deck', JSON.stringify(deck));
@@ -517,13 +558,7 @@ function deckComplete() {
   })
 }
 
-
-
-///////////////////////// RECENTLY ADDED /////////////////////////
-
-
 //Display Image on hover
-
 const deckCon = document.getElementById('deck-display');
 const pickDisplay = document.getElementById('card-display');
 const hiddenCard = document.getElementById('hidden-card');
@@ -534,13 +569,12 @@ const xbtn01 = document.getElementById('xbtn1');
 const xbtn02 = document.getElementById('xbtn2');
 const xbtn03 = document.getElementById('xbtn3');
 
-
 deckCon.addEventListener('mouseover', (e) => {
   if (e.target && e.target.id.includes("cards")) {
     // Use id of target to determine which option was selected
     const position = +e.target.parentNode.parentNode.parentNode.id.slice(-2);
 
-    console.log(position)
+    // console.log(position)
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
@@ -597,11 +631,3 @@ function renderClassName(){
     </div>
   `;
 }
-
-
-
-
-////////////////////////////////////////////////////////////
-
-
-// img0.childNodes[1].setAttribute('src', array[0].img);

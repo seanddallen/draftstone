@@ -31,7 +31,11 @@
     <div class="flex mt-30 container">
       <div>
         <h4 style="font-family: Playfair Display;"><b>Collection: </b><span class="badge"><%= collection.name %><span> </h4>
-        <h4 style="font-family: Playfair Display;">Click <a href="/user" style="cursor: pointer; color: green;">HERE</a> to use different collection</h4>
+        <% if (username) { %>
+          <h4 style="font-family: Playfair Display;">Click <a href="/user" style="cursor: pointer; color: green;">HERE</a> to use different collection</h4>
+        <% }  else { %>
+          <h4 style="font-family: Playfair Display;">Log in to change collection.</h4>
+        <% } %>
       </div>
     </div>
   </header>

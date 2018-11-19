@@ -40,13 +40,15 @@ module.exports = {
   },
 
   draft: (req, res) => {
+    const user_id = req.session.user_id || null;
     knex.select('users.selected_collection_id', 'users.id')
       .from('users')
-      .where('users.id', req.session.user_id)
+      .where('users.id', user_id)
     .then(results => {
       // console.log(results);
+      const selected_collection_id = results[0] ? results[0].selected_collection_id : 1
       knex('collections')
-        .where('id', + results[0].selected_collection_id)
+        .where('id', + selected_collection_id)
       .then(results2 => {
         results2[0].collection = JSON.stringify(results2[0].collection)
         // console.log('results2_id', results2[0].id)

@@ -783,80 +783,7 @@ let filteredPool = masterPool.slice(0); // Pool of only Neutral and class cards 
 const deck = []; // Drafted deck
 let pickOptions = []; // The three cards in any one pick
 const cardDisplay = document.getElementById('card-display');
-let pools = {
-  'neutral': {
-    'minion': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    },
-    'spell': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    },
-    'chaos': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    }
-  },
-  'class': {
-    'minion': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    },
-    'spell': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    },
-    'chaos': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    }
-  },
-  'chaos': {
-    'minion': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    },
-    'spell': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    },
-    'chaos': {
-      'Legendary': [],
-      'Epic': [],
-      'Rare': [],
-      'Common': [],
-      'chaos': []
-    }
-  }
-};
-const randomClass = [];
-const randomType = [];
-const randomRarity = [];
+
 const blankCard = {
             "name": "Blank Card",
             "cost": 0,
@@ -911,6 +838,16 @@ class collection {
     // }
   }
 
+  cardsLeft() {
+    let total = 0;
+    for (const category in this.sorted) {
+      for (const card in this.sorted[category]) {
+        total += card.quantity
+      }
+    }
+    return total
+  }
+
   //filters THIS collection
   filterClassSetCost(heroArray, setArray, costArray) {
     heroArray.push("Neutral")
@@ -959,9 +896,9 @@ class collection {
     }
   }
 
-  removeCard(selectedCard) {
-    selectedCard.quantity -= 1
-    if (selectedCard.quantity === 0) {
+  removeCard(selectedCard, amountToRemove) {
+    selectedCard.quantity -= amountToRemove
+    if (selectedCard.quantity < 1) {
       this.sorted[selectedCard.category] = this.sorted[selectedCard.category].filter(card => card.dbfId !== selectedCard.dbfId)
     }
   }
@@ -1105,18 +1042,15 @@ function cardPick() {
       const category = randomCategory()
       const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
       randomCard = filteredCollection.sorted[category][randomIndex]
-      if ((pickOptions[0] && pickOptions[0].dbfId === randomCard.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === randomCard.dbfId)) {
+      if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === randomCard.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === randomCard.dbfId)) {
         duped = true
       }
     }
     pickOptions.push(randomCard)
   }
 
-
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
-
-
 }
 
 function cardPickHandler(e) {
@@ -1129,7 +1063,7 @@ function cardPickHandler(e) {
     // Add choosen card to deck
     const selectedCard = pickOptions[position]
     deck.push(selectedCard);
-    filteredCollection.removeCard(selectedCard)
+    filteredCollection.removeCard(selectedCard, 1)
 
     if (filteredCollection.sorted[selectedCard.category].length === 0) {
       redistribute(selectedCard.category)
@@ -1147,13 +1081,35 @@ function cardPickHandler(e) {
 
   // If user clicks red x indicating they don't own the card
     if (e.target && e.target.id.includes("xbtn")) {
+
       // Removed unowned card and replace with new random card
-      let newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
-      // TODO: Ensure that the newOption is not the same as one of the curent options
-      while (maxxedAlready(newOption)) {
-        newOption = filteredPool[Math.floor(Math.random() * filteredPool.length)];
+      let pickIndex = +e.target.id.slice(-1) - 1
+
+      filteredCollection.removeCard(pickOptions[pickIndex], 2)
+
+      if (30 - deck.length  > filteredCollection.cardsLeft()) {
+        window.alert("There are not enough cards left based on your settings and collection in order to complete this draft. We recommend going back and choosing new settings.")
       }
-      pickOptions.splice(+e.target.id.slice(-1) - 1, 1, newOption);
+
+      const categoryOfRemoved = pickOptions[pickIndex].category
+
+      if(!filteredCollection.sorted[categoryOfRemoved].length) {
+        redistribute(categoryOfRemoved)
+      }
+
+      let duped = true
+      let newOption = {}
+      while (duped) {
+        duped = false
+        const category = randomCategory()
+        const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
+        newOption = filteredCollection.sorted[category][randomIndex]
+        if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === newOption.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === newOption.dbfId) | (pickOptions[2] && pickOptions[2].dbfId === newOption.dbfId)) {
+          duped = true
+        }
+      }  
+      pickOptions.splice(pickIndex, 1, newOption)
+      
       renderPick(pickOptions);
     }
 }
