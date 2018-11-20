@@ -115,6 +115,8 @@
                   </div>
                   <% if (collection.id !== 1 && collection.id !== selectedCollection.id) { %>
                   <div class="flex flex-between">
+                    <button data-toggle="modal" data-target="#updateModal" class="btn btn-primary login-btn mr-5">Update
+                      </button>
                     <div>
                       <form method="post" action="/user/collections/delete/<%=collection.id%>">
                         <button class="btn btn-primary login-btn">Delete</button>
