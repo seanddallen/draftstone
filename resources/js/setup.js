@@ -2,6 +2,7 @@ localStorage.clear();
 const masterPool = []; // All collectible cards
 const heroes = []; // The nine original heroes to represent classes
 let customRules = {};
+let notEnoughSpells = false
 
 document.addEventListener('DOMContentLoaded', () => {
  axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1', {
@@ -43,15 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
    draftBtn.addEventListener('click', e => {
-     buildSettings();
-     window.location.href = "/draft";
+     if(buildSettings()) {
+       window.location.href = "/draft";
+     }
    });
 
    saveBtn.addEventListener('click', e => {
-     buildSettings();
+     notEnoughSpells = !buildSettings()
    });
-
-
 
  });
 });
@@ -62,45 +62,54 @@ const savePublishBtn = document.getElementById('save-publish-btn');
 
 
 saveModeBtn.addEventListener('click', e => {
-  const modeNameValue = modeName.value;
-  if (!modeNameValue) {
-    const requireText = document.getElementById('require-text');
-    requireText.innerText = "Please enter a creative game mode name";
+  if (notEnoughSpells) {
+    window.alert('You cannot have more spell cards than class cards. Please fix your settings.')
   } else {
-    axios.post('/modes', {
-      mode_name: modeNameValue,
-      settings: customRules
-    }).then(({data}) => {
-      if (data.dupe) {
-        window.location.href = `/modes/single/${data.id}`;
-      } else {
-        window.location.href = "/modes/user/created";
-      }
-    });
+    const modeNameValue = modeName.value;
+    if (!modeNameValue) {
+      const requireText = document.getElementById('require-text');
+      requireText.innerText = "Please enter a creative game mode name";
+    } else {
+      axios.post('/modes', {
+        mode_name: modeNameValue,
+        settings: customRules
+      }).then(({data}) => {
+        if (data.dupe) {
+          window.location.href = `/modes/single/${data.id}`;
+        } else {
+          window.location.href = "/modes/user/created";
+        }
+      });
+    }
   }
+  
 });
 
 savePublishBtn.addEventListener('click', e => {
-  const modeNameValue = modeName.value;
-  if (!modeNameValue) {
-    const requireText = document.getElementById('require-text');
-    requireText.innerText = "Please enter a creative game mode name";
+  if (notEnoughSpells) {
+    window.alert('You cannot have more spell cards than class cards. Please fix your settings.')
   } else {
-    axios.post('/modes', {
-      mode_name: modeNameValue,
-      settings: customRules
-    })
-    .then(results => {
-      if (results.data.dupe) {
-        window.location.href = `/modes/single/${results.data.id}`;
-      } else {
-        const mode_id = results.data;
-        axios.post(`/modes/publish/${mode_id}`)
-        .then(() => {
-          window.location.href = "/modes/user/created";
-        }) ;
-      }
-    });
+    const modeNameValue = modeName.value;
+    if (!modeNameValue) {
+      const requireText = document.getElementById('require-text');
+      requireText.innerText = "Please enter a creative game mode name";
+    } else {
+      axios.post('/modes', {
+        mode_name: modeNameValue,
+        settings: customRules
+      })
+      .then(results => {
+        if (results.data.dupe) {
+          window.location.href = `/modes/single/${results.data.id}`;
+        } else {
+          const mode_id = results.data;
+          axios.post(`/modes/publish/${mode_id}`)
+          .then(() => {
+            window.location.href = "/modes/user/created";
+          }) ;
+        }
+      });
+    }
   }
 });
 
@@ -162,6 +171,12 @@ function buildSettings() {
 
   const filterType = document.querySelector('input[name="mode"]:checked').value;
 
+  console.log('built settings')
+  if (filterType === "absolute" && classSetting === "custom" && typeSetting === "custom" && +spellCount > +classCount) {
+    window.alert('You cannot have more spell cards than class cards. Please fix your settings.')
+    return false
+  }
+
   customRules = {
     'filterType': filterType,
     'heroFilterSetting': heroFilterSetting,
@@ -183,7 +198,7 @@ function buildSettings() {
 
   localStorage.setItem("customRules", JSON.stringify(customRules));
 
-
+  return true
 
 
 }

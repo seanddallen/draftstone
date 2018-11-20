@@ -32,23 +32,46 @@ const userPool = masterPool.filter(card => {
   return false
 })
 
-if (classSetting === "chaos") {
-  classCount = 40;
+//code taken from statck overflow for normal dist
+function randn_bm() {
+  var u = 0, v = 0;
+  while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+  while(v === 0) v = Math.random();
+  let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+  num = num / 10.0 + 0.5; // Translate to 0 -> 1
+  if (num > 1 || num < 0) return randn_bm(); // resample between 0 and 1
+  return num;
 }
 
-if (raritySetting === "chaos") {
-  legendaryCount = 15.6;
-  epicCount = 16.5
-  rareCount = 25.7
+if (filterType === "relative") {
+  if (classSetting === "chaos") {
+    classCount = 40;
+  }
+  if (raritySetting === "chaos") {
+    legendaryCount = 8.6;
+    epicCount = 16.5
+    rareCount = 27.7
+  }
+  if (typeSetting === "chaos") {
+    spellCount = 31
+  }
+} else {
+  if (classSetting !== "custom") {
+    classCount = Math.round(randn_bm() * 3) + 12
+  }
+  if (raritySetting !== "custom") {
+    legendaryCount = Math.max(Math.round(randn_bm() * 1) + 2, 0)
+    epicCount = Math.max(Math.round(randn_bm() * 2) + 5, 0)
+    rareCount = Math.min(Math.max(Math.round(randn_bm() * 2.5) + 10, 0),30 - legendaryCount - rareCount)
+  }
+  if (typeSetting !== "custom") {
+    spellCount = Math.max(Math.round(randn_bm() * 3) + 10, 0, classCount)
+  }
 }
 
-if (typeSetting === "chaos") {
-  spellCount = 31
-}
-
-const commonCount = 100 - (Number(legendaryCount) + Number(epicCount) + Number(rareCount))
-const minionCount = 100 - spellCount
-const neutralCount = 100 - classCount
+const commonCount = (filterType === "relative" ? 100 : 30) - (Number(legendaryCount) + Number(epicCount) + Number(rareCount))
+const minionCount = (filterType === "relative" ? 100 : 30) - spellCount
+const neutralCount = (filterType === "relative" ? 100 : 30) - classCount
 
 const pObj = {
   LSC: legendaryCount / 100 * spellCount / 100,
@@ -96,7 +119,6 @@ function redistribute(emptyCategory) {
   pObj[emptyCategory] = 0
   buildPObjCum()
 }
-
 
 function randomCategory() {
   let randomNumber = Math.random()
@@ -150,8 +172,6 @@ const blankHero = {
             "disable": true
         };
 
-
-
 class collection {
   constructor(arrayOfCards) {
     this.cards = arrayOfCards.map(card => ({
@@ -171,22 +191,26 @@ class collection {
       CMN: [],
       CMC: [],
     }
-    // this.count = {
-    //   Legendary: 0,
-    //   Epic: 0,
-    //   Rare: 0,
-    //   Common: 0,
-    //   Spell: 0,
-    //   Minion: 0,
-    //   Class: 0,
-    //   Neutral: 0,
-    // }
+    
+    this.count = {
+      Legendary: 0,
+      Epic: 0,
+      Rare: 0,
+      Common: 0,
+      Spell: 0,
+      Minion: 0,
+      Class: 0,
+      Neutral: 0,
+    }
   }
 
-  cardsLeft() {
+  cardsLeft(...categories) {
+    if(!categories[0]) {
+      categories = Object.keys(this.sorted)
+    }
     let total = 0;
-    for (const category in this.sorted) {
-      for (const card in this.sorted[category]) {
+    for (const category of categories) {
+      for (const card of this.sorted[category]) {
         total += card.quantity
       }
     }
@@ -214,26 +238,26 @@ class collection {
       let category = ''
       if (card.rarity === "Free") {
         category += "C"
-        // this.count.Common += card.quantity
+        this.count.Common += card.quantity
       } else {
         category += card.rarity[0]
-        // this.count[card.rarity] += card.quantity
+        this.count[card.rarity] += card.quantity
       }
 
       if (card.type === "Minion") {
         category += "M"
-        // this.count.Minion += card.quantity
+        this.count.Minion += card.quantity
       } else {
         category += "S"
-        // this.count.Spell += card.quantity
+        this.count.Spell += card.quantity
       }
 
       if (card.playerClass === "Neutral") {
         category += "N"
-        // this.count.Neutral += card.quantity
+        this.count.Neutral += card.quantity
       } else {
         category += "C"
-        // this.count.Class += card.quantity
+        this.count.Class += card.quantity
       }
 
       card.category = category
@@ -345,19 +369,19 @@ function classPickHandler(e) {
       }
     }
 
-    // if (filterType === "absolute") {
-    //   if ( filteredCollection.count.legendary < legendaryCount ||
-    //       filteredCollection.count.epic < epicCount ||
-    //       filteredCollection.count.rare < rareCount ||
-    //       filteredCollection.count.common < (30 - (legendaryCount + epicCount + rareCount ) ) ||
-    //       filteredCollection.count.spell < spellCount ||
-    //       filteredCollection.count.minion < (30 - spellCount) ||
-    //       filteredCollection.count.class < classCount ||
-    //       filteredCollection.count.neutral < (30 - classCount)
-    //     ) {
-    //       invalidDraft()
-    //     }
-    // }
+    if (filterType === "absolute") {
+      if ( filteredCollection.count.legendary < legendaryCount ||
+          filteredCollection.count.epic < epicCount ||
+          filteredCollection.count.rare < rareCount ||
+          filteredCollection.count.common < (30 - (legendaryCount + epicCount + rareCount ) ) ||
+          filteredCollection.count.spell < spellCount ||
+          filteredCollection.count.minion < (30 - spellCount) ||
+          filteredCollection.count.class < classCount ||
+          filteredCollection.count.neutral < (30 - classCount)
+        ) {
+          invalidDraft()
+        }
+    }
 
 
     renderClassName();
@@ -368,20 +392,111 @@ function classPickHandler(e) {
       xbtn02.classList.toggle('hidden');
       xbtn03.classList.toggle('hidden');
     }
+
+    if (filterType === "absolute") {
+      setupAbsolute()
+    }
+
+
     cardPick();
   }
 }
+
+let picTypes = []
+
+function setupAbsolute() {
+
+  if (filterType === "absolute") {
+    const SC = spellCount
+    const MC = classCount - spellCount
+    const MN = minionCount - MC
+    if (filteredCollection.cardsLeft('LSC', 'ESC', 'RSC', 'CSC') < SC ||
+    filteredCollection.cardsLeft('LMC', 'EMC', 'RMC', 'CMC') < MC ||
+    filteredCollection.cardsLeft('LMN', 'EMN', 'RMN', 'CMN') < MN) {
+      invalidDraft()
+    }
+    const combinations = []
+
+    const maxLSC = Math.min(SC, legendaryCount, filteredCollection.cardsLeft('LSC'))
+    const maxRSC = Math.min(rareCount, filteredCollection.cardsLeft('RSC'))
+    const maxESC = Math.min(epicCount, filteredCollection.cardsLeft('ESC'))
+    const maxCSC = Math.min(commonCount, filteredCollection.cardsLeft('CSC'))
+
+    const maxLMC = Math.min(MC, legendaryCount, filteredCollection.cardsLeft('LMC'))
+    const maxEMC = Math.min(epicCount, filteredCollection.cardsLeft('EMC'))
+    const maxRMC = Math.min(rareCount, filteredCollection.cardsLeft('RMC'))
+    const maxCMC = Math.min(commonCount, filteredCollection.cardsLeft('CMC'))
+
+    const maxLMN = Math.min(MN, legendaryCount, filteredCollection.cardsLeft('LMN'))
+    const maxEMN = Math.min(epicCount, filteredCollection.cardsLeft('EMN'))
+    const maxRMN = Math.min(rareCount, filteredCollection.cardsLeft('RMN'))
+    const maxCMN = Math.min(commonCount, filteredCollection.cardsLeft('CMN'))
+
+
+    for(let LSC = 0; LSC <= maxLSC; LSC++) {
+      for(let ESC = 0; ESC <= Math.min(SC - LSC, maxESC); ESC++) {
+        for (let RSC = 0; RSC <= Math.min(SC - LSC - ESC, maxRSC); RSC++) {
+          let CSC = SC - LSC - ESC - RSC
+          if (CSC <= maxCSC) {
+            for (let LMC = 0; LMC <= Math.min(legendaryCount - LSC,maxLMC); LMC++) {
+              let LMN = legendaryCount - LSC - LMC
+              if (LMN <= maxLMN) {
+                for (let EMC = 0; EMC <= Math.min(MC - LMC, epicCount - ESC, maxEMC); EMC++) {
+                  let EMN = epicCount - ESC - EMC
+                  if(EMN <= maxEMN) {
+                    for (let RMC = 0; RMC <= Math.min(MC - LMC - EMC, rareCount - RSC, maxRMC); RMC++) {
+                      let RMN = rareCount - RSC - RMC
+                      if (RMN <= maxRMN) {
+                        let CMC = MC - LMC - EMC - RMC
+                        if (CMC <= maxCMC) {
+                          let CMN = MN - LMN - EMN - RMN
+                          if (CMN === commonCount - CSC - CMC && CMN <= maxCMN) {
+                            combinations.push({LSC, LMN, LMC, ESC, EMN, EMC, RSC, RMN, RMC, CSC, CMN, CMC})
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    const chosenCombnation = combinations[Math.floor(Math.random() * combinations.length)]
+    for (const category in chosenCombnation) {
+      for (let i = 0; i < chosenCombnation[category]; i++) {
+        picTypes.push(category)
+      }
+    }
+  }
+}
+
 ///////////////////////// PICK DECK /////////////////////////
 
 // User chooses a card
 function cardPick() {
   pickOptions = []
+  let category = ""
+  if (filterType === "absolute") {
+    category = picTypes.splice(Math.floor(Math.random() * picTypes.length), 1)[0]
+  }
   for (let i = 0; i < 3; i++) {
     let duped = true
     let randomCard = {}
     while (duped) {
       duped = false
-      const category = randomCategory()
+      if (filterType === "relative") {
+        category = randomCategory()
+      } else if ([classSetting, raritySetting, typeSetting].includes("chaos")) {
+        let individualCategory = ""
+        individualCategory += raritySetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][0] : category[0] 
+        individualCategory += typeSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][1] : category[1]
+        individualCategory += classSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][2] : category[2]
+        category = filteredCollection.sorted[individualCategory].length ? individualCategory : category
+      }
       const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
       randomCard = filteredCollection.sorted[category][randomIndex]
       if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === randomCard.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === randomCard.dbfId)) {
@@ -390,6 +505,9 @@ function cardPick() {
     }
     pickOptions.push(randomCard)
   }
+  
+
+  console.log('pickOptions', pickOptions)
 
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
@@ -443,7 +561,11 @@ function cardPickHandler(e) {
       let newOption = {}
       while (duped) {
         duped = false
-        const category = randomCategory()
+        if (filterType === "relative") {
+          const category = randomCategory()
+        } else {
+          category = pickOptions[pickIndex].category
+        }
         const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
         newOption = filteredCollection.sorted[category][randomIndex]
         if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === newOption.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === newOption.dbfId) | (pickOptions[2] && pickOptions[2].dbfId === newOption.dbfId)) {
