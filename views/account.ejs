@@ -44,15 +44,15 @@
 
           <div id="full-display-top-account" class="flex flex-around">
             <div class="flex-col flex-center">
-              <h4 class="bold">Username:</h4>
-              <p class="" style="font-size:1.6rem;"><%= users[0].user_name %></p>
+              <h4 class="bold" style="font-size:1.3vw;">Username:</h4>
+              <p class="" style="font-size:1vw;"><%= users[0].user_name %></p>
             </div>
             <div class="flex-col flex-center">
-              <h4 class="bold">Email:</h4>
-              <p class="" style="font-size:1.6rem;"><%= users[0].email %></p>
+              <h4 class="bold" style="font-size:1.3vw;">Email:</h4>
+              <p class="" style="font-size:1vw;"><%= users[0].email %></p>
             </div>
             <div class="flex-col flex-center">
-              <p class="text-center" style="font-size:1.8rem; width: 400px; margin: 10px auto;">For questions, comments, or to report errors/issues, please contact us at draftstonebeta@gmail.com</p>
+              <p class="text-center" style="font-size:1.4vw; max-width: 400px; margin: 10px auto;">For questions, comments, or to report errors/issues, please contact us at draftstonebeta@gmail.com</p>
             </div>
           </div>
 
@@ -60,10 +60,11 @@
             <div class="flex flex-around">
 
               <div class="flow-text text-center col-5-md">
-                <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Manage Collections</h3>
+                <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.6vw;">Manage Collections</h3>
                 <div class="flex flex-between mt-20 mb-20">
-                  <div>
+                  <div class="flex">
                     <button type="button" class="btn btn-primary login-btn" data-toggle="modal" data-target="#importModal" style="display:flex; flex-direction: column; max-width: 100%; margin:20px auto;">+ Import New</button>
+                    <button type="button" class="far fa-question-circle question-popup" data-toggle="popover" data-container="body" data-placement="right" data-trigger="hover" data-content="This feature will allow the user to upload their actual Hearthstone collection, so then in any draft they will only be offered cards they actually own. After import the user can then set their selected collection to their imported collection (default is all cards). The import collection feature is optional but very useful; it is a process that involves several steps to complete. See instructions for more details."></button>
                   </div>
                   <div class="flex flex-center">
                     <div>
@@ -128,7 +129,7 @@
               </div>
 
               <div class="flow-text text-center col-5-md">
-                <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.5em;">Change Password</h3>
+                <h3 id="value-prop" class="bold" style="font-family:playfair display; font-size:2.6vw;">Change Password</h3>
                 <form id="password-change" action="/user/resetpassword" method="post" class="mt-40">
                   <div class="form-group">
                     <input type="password" name="password" class="form-control" placeholder="Current Password" style="margin:10px auto 0 auto; width:50%;" required>
@@ -146,7 +147,7 @@
                 <% } %>
                 <br>
                 <div class="flex-col center" style="margin:0 auto;">
-                  <button type="submit" data-toggle="modal" data-target="#deleteAccountModal" class="btn btn-primary btn-lg created-mode-btn" style="font-size: 1.6rem; width:40%;">Delete Account</button>
+                  <button type="submit" data-toggle="modal" data-target="#deleteAccountModal" class="btn btn-primary btn-lg created-mode-btn" style="font-size: 1.2vw; width:40%;">Delete Account</button>
                   <div class="flex" style="margin-bottom:30px;">
                     <p class="center">click button to delete your user account</p>
                   </div>
@@ -235,5 +236,6 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="/js/popover.js"></script>
 </body>
 </html>

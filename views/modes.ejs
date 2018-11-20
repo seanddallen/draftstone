@@ -64,7 +64,7 @@
               <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" data-toggle="modal" data-target="#loginModal">LOG IN</button>
               <% } else { %>
               <button type="button" class="btn btn-success navbar-btn btn-circle signin-btn mr-10" onclick="window.location.href='/logout'" style="margin-right:0px;">LOG OUT</button>
-              <button id="account-icon" class="fas fa-user-circle dark" onclick="window.location.href='/user'" style="color:green; font-size:3.3rem; margin-right:10px; margin-left:0px; border:none;"></button>
+              <button id="account-icon" class="fas fa-user-circle dark" onclick="window.location.href='/user'" style="color:green; font-size:3.3rem; margin-right:10px; margin-left:0px; border:none; background-color: transparent;"></button>
               <% } %>
             </li>
           </ul>
@@ -205,28 +205,28 @@
 
               <div class="panel-body panel-body-top text-center flex flex-around" style="overflow:scroll; height:100%; margin: 0px 0px 40px 0px">
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0px auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
+                  <br><b style="font-size:1vw;">Set</b> <pre style="border: 3px double green; font-family:Playfair; font-size:1vw; width:100%; margin:0px auto;"><%= mode.settings.setArray.length === 0 ? "All" : mode.settings.setArray %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Hero</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
+                  <br><b style="font-size:1vw;">Hero</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1vw; width:100%; margin:0 auto;"><%= mode.settings.heroArray.length === 0 ? "All" : mode.settings.heroArray %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Cost</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
+                  <br><b style="font-size:1vw;">Cost</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1vw; width:100%; margin:0 auto;"><%= mode.settings.costArray.length === 0 ? "All" : mode.settings.costArray %></pre>
                 </div>
 
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Class / Neutral</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.classSetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %><% } else if (mode.settings.classSetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (mode.settings.classCount || 0) + "%" %> / <%= (100 - mode.settings.classCount || 0) + "%" %><% } else { %><%= mode.settings.classSetting %><% } %></pre>
+                  <br><b style="font-size:1vw;">Class / Neutral</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1vw; width:100%; margin:0 auto;"><% if(mode.settings.classSetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= mode.settings.classCount || 0 %> / <%= 30 - mode.settings.classCount || 0 %><% } else if (mode.settings.classSetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (mode.settings.classCount || 0) + "%" %> / <%= (100 - mode.settings.classCount || 0) + "%" %><% } else { %><%= mode.settings.classSetting %><% } %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <br><b style="font-size:1em;">Minion / Spell</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %><% } else if (mode.settings.typeSetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (100 - mode.settings.spellCount || 0) + "%" %> / <%= (mode.settings.spellCount || 0) + "%" %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
+                  <br><b style="font-size:1vw;">Minion / Spell</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1vw; width:100%; margin:0 auto;"><% if(mode.settings.typeSetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= 30 - mode.settings.spellCount || 0 %> / <%= mode.settings.spellCount || 0 %><% } else if (mode.settings.typeSetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (100 - mode.settings.spellCount || 0) + "%" %> / <%= (mode.settings.spellCount || 0) + "%" %><% } else { %><%= mode.settings.typeSetting %><% } %></pre>
                 </div>
                 <div class="col-xs-2" style="margin-top:5px;">
-                  <b style="font-size:1em;"> Legend / Epic <br>Rare / Common</b>
-                  <pre style="border: 3px double green; font-family:Playfair; font-size:1em; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else if (mode.settings.raritySetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (mode.settings.legendaryCount || 0) + "%" %> / <%= (mode.settings.epicCount || 0) + "%" %> / <%= (mode.settings.rareCount || 0) + "%" %> / <%= (100 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0) + "%" %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
+                  <b style="font-size: 1vw;"> Legend / Epic <br>Rare / Common</b>
+                  <pre style="border: 3px double green; font-family:Playfair; font-size:1vw; width:100%; margin:0 auto;"><% if(mode.settings.raritySetting === 'custom' && mode.settings.filterType === 'absolute'){ %><%= mode.settings.legendaryCount || 0 %> / <%= mode.settings.epicCount || 0 %> / <%= mode.settings.rareCount || 0 %> / <%= 30 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0 %><% } else if (mode.settings.raritySetting === 'custom' && mode.settings.filterType === 'relative'){ %><%= (mode.settings.legendaryCount || 0) + "%" %> / <%= (mode.settings.epicCount || 0) + "%" %> / <%= (mode.settings.rareCount || 0) + "%" %> / <%= (100 - mode.settings.legendaryCount - mode.settings.epicCount - mode.settings.rareCount || 0) + "%" %><% } else { %><%= mode.settings.raritySetting %><% } %></pre>
                 </div>
               </div>
             </div>
