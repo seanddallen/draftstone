@@ -506,9 +506,6 @@ function cardPick() {
     pickOptions.push(randomCard)
   }
   
-
-  console.log('pickOptions', pickOptions)
-
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
 }

@@ -56,7 +56,8 @@ module.exports = {
         loginErrors: [],
         registerErrors: [],
         resetError: [],
-        resetSuccess: []
+        resetSuccess: [],
+        importError: []
       };
       req.session.save();
     });
@@ -173,6 +174,9 @@ module.exports = {
         .then(() => {
           res.redirect('/modes/user/created');
         });
+      }
+      else {
+        res.redirect('/')
       }
     });
   },

@@ -214,12 +214,12 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ IMPORT COLLECTION MODAL ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal <%= messages.importError.length ? "show" : "fade" %>" id="importModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Import Collection</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="document.getElementById('importModal').classList.remove('show');">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -229,9 +229,12 @@
           <h5 class="text-center" style="display:flex; flex-direction: column;">See Instructions for Import Details</h5>
 
           <form method="post" action="/user/collections/import/">
-            <input type="text" name="name" class="form-control" placeholder="Collection Name" style="margin-top:20px;">
+            <input type="text" name="name" class="form-control" placeholder="Collection Name" style="margin-top:20px;" required>
             <p style="color: red"></p>
-            <input type="text" name="collection" class="form-control" placeholder="Paste Collection Here" style="margin-top:20px;">
+            <input type="text" name="collection" class="form-control" placeholder="Paste Collection Here" style="margin-top:20px;" required>
+            <% for (const err of messages.importError) { %>
+              <p class="warning"><%= err %></p>
+            <% } %>
             <button class="btn btn-primary login-btn" style="display:flex; flex-direction: column; justify-content:center; margin:20px auto;">Submit</button>
           </form>
         </div>

@@ -11,7 +11,8 @@ module.exports = {
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
     req.session.save();
   },
@@ -22,7 +23,8 @@ module.exports = {
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
     req.session.save();
   },
@@ -33,7 +35,8 @@ module.exports = {
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
     req.session.save();
 
@@ -59,7 +62,8 @@ module.exports = {
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
     req.session.save();
   },
@@ -70,7 +74,8 @@ module.exports = {
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
     req.session.save();
   },
@@ -140,7 +145,8 @@ module.exports = {
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
     req.session.save();
   },
@@ -231,7 +237,8 @@ module.exports = {
               loginErrors: [],
               registerErrors: [],
               resetError: [],
-              resetSuccess: []
+              resetSuccess: [],
+              importError: []
             };
       req.session.save();
       })

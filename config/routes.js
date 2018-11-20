@@ -68,7 +68,8 @@ function createMessageArr(req, res, next){
       loginErrors: [],
       registerErrors: [],
       resetError: [],
-      resetSuccess: []
+      resetSuccess: [],
+      importError: []
     };
   }
   next();

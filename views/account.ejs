@@ -113,7 +113,7 @@
                   <div>
                     <h4><%= collection.name %></h4>
                   </div>
-                  <% if (collection.id !== 1) { %>
+                  <% if (collection.id !== 1 && collection.id !== selectedCollection.id) { %>
                   <div class="flex flex-between">
                     <div>
                       <form method="post" action="/user/collections/delete/<%=collection.id%>">

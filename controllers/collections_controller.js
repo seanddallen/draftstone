@@ -3,28 +3,38 @@ const knex = require("../db/knex.js");
 module.exports = {
 
   import: (req, res) => {
-    const parsed = JSON.parse(req.body.collection)
-    const collection = {}
-    for (const playerClass in parsed) {
-      for (const rarity in parsed[playerClass].cards) {
-        for (const cardKey in parsed[playerClass].cards[rarity]) {
-          const card = parsed[playerClass].cards[rarity][cardKey]
-          const quantity = Math.min(card.normal + card.golden, 2)
-          if (quantity) {
-            collection[card.name] = quantity
+    try {
+      const parsed = JSON.parse(req.body.collection)
+      const collection = {}
+      for (const playerClass in parsed) {
+        for (const rarity in parsed[playerClass].cards) {
+          for (const cardKey in parsed[playerClass].cards[rarity]) {
+            const card = parsed[playerClass].cards[rarity][cardKey]
+            const quantity = Math.min(card.normal + card.golden, 2)
+            if (quantity) {
+              collection[card.name] = quantity
+            }
           }
         }
       }
-    }
-    knex('collections')
-      .insert({
-        name: req.body.name,
-        collection: JSON.stringify(collection),
-        user_id: req.session.user_id,
+      knex('collections')
+        .insert({
+          name: req.body.name,
+          collection: JSON.stringify(collection),
+          user_id: req.session.user_id,
+        })
+      .then(() => {
+        res.redirect('/user')
       })
-    .then(() => {
-      res.redirect('/user')
-    })
+    }
+    catch(error) {
+      console.log(error)
+      req.session.messages.importError.push("Collection is not formatted correctly.")
+      req.session.save(() => {
+        res.redirect('/user')
+        return
+      })
+    }
   },
 
   update: (req, res) => {
