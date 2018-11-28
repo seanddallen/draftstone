@@ -494,7 +494,7 @@ function cardPick() {
         let individualCategory = ""
         individualCategory += raritySetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][0] : category[0] 
         individualCategory += typeSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][1] : category[1]
-        individualCategory += classSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][2] : category[2]
+        individualCategory += individualCategory[1] === "S" ? "C" : (classSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][2] : category[2])
         category = filteredCollection.sorted[individualCategory].length ? individualCategory : category
       }
       const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
