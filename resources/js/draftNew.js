@@ -464,10 +464,17 @@ function setupAbsolute() {
         }
       }
     }
+<<<<<<< HEAD
 
     const chosenCombnation = combinations[Math.floor(Math.random() * combinations.length)]
     for (const category in chosenCombnation) {
       for (let i = 0; i < chosenCombnation[category]; i++) {
+=======
+    
+    const chosenCombination = combinations[Math.floor(Math.random() * combinations.length)]
+    for (const category in chosenCombination) {
+      for (let i = 0; i < chosenCombination[category]; i++) {
+>>>>>>> b5f36c212de3c83c620021d910379a7abcfde634
         picTypes.push(category)
       }
     }
@@ -491,11 +498,21 @@ function cardPick() {
       if (filterType === "relative") {
         category = randomCategory()
       } else if ([classSetting, raritySetting, typeSetting].includes("chaos")) {
+<<<<<<< HEAD
         let individualCategory = ""
         individualCategory += raritySetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][0] : category[0]
         individualCategory += typeSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][1] : category[1]
         individualCategory += classSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][2] : category[2]
         category = filteredCollection.sorted[individualCategory].length ? individualCategory : category
+=======
+        if (deck.length < 29) {
+          let individualCategory = ""
+          individualCategory += raritySetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][0] : category[0] 
+          individualCategory += typeSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][1] : category[1]
+          individualCategory += individualCategory[1] === "S" ? "C" : (classSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][2] : category[2])
+          category = filteredCollection.sorted[individualCategory].length ? individualCategory : category
+        }
+>>>>>>> b5f36c212de3c83c620021d910379a7abcfde634
       }
       const randomIndex = Math.floor(Math.random() * filteredCollection.sorted[category].length)
       randomCard = filteredCollection.sorted[category][randomIndex]
@@ -697,9 +714,18 @@ deckCon.addEventListener('mouseover', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
+<<<<<<< HEAD
     // xbtn01.classList.toggle('faded');
     // xbtn02.classList.toggle('faded');
     // xbtn03.classList.toggle('faded');
+=======
+
+    if(xbtn01) {
+      xbtn01.classList.toggle('faded');
+      xbtn02.classList.toggle('faded');
+      xbtn03.classList.toggle('faded');
+    }
+>>>>>>> b5f36c212de3c83c620021d910379a7abcfde634
 
     // hiddenCard.childNodes[1].classList.remove('faded');
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
@@ -718,9 +744,17 @@ deckCon.addEventListener('mouseout', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
+<<<<<<< HEAD
     // xbtn01.classList.toggle('faded');
     // xbtn02.classList.toggle('faded');
     // xbtn03.classList.toggle('faded');
+=======
+    if (xbtn01) {
+      xbtn01.classList.toggle('faded');
+      xbtn02.classList.toggle('faded');
+      xbtn03.classList.toggle('faded');
+    }
+>>>>>>> b5f36c212de3c83c620021d910379a7abcfde634
     hiddenCard.childNodes[1].classList.add('hidden-card');
 
     // console.log(hiddenCard.childNodes[1])
