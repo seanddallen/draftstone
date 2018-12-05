@@ -561,7 +561,7 @@ function cardPickHandler(e) {
       while (duped) {
         duped = false
         if (filterType === "relative") {
-          const category = randomCategory()
+          category = randomCategory()
         } else {
           category = pickOptions[pickIndex].category
         }
