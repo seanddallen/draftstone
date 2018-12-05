@@ -191,7 +191,7 @@ class collection {
       CMN: [],
       CMC: [],
     }
-    
+
     this.count = {
       Legendary: 0,
       Epic: 0,
@@ -464,7 +464,7 @@ function setupAbsolute() {
         }
       }
     }
-    
+
     const chosenCombnation = combinations[Math.floor(Math.random() * combinations.length)]
     for (const category in chosenCombnation) {
       for (let i = 0; i < chosenCombnation[category]; i++) {
@@ -492,7 +492,7 @@ function cardPick() {
         category = randomCategory()
       } else if ([classSetting, raritySetting, typeSetting].includes("chaos")) {
         let individualCategory = ""
-        individualCategory += raritySetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][0] : category[0] 
+        individualCategory += raritySetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][0] : category[0]
         individualCategory += typeSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][1] : category[1]
         individualCategory += classSetting === "chaos" ? picTypes[Math.floor(Math.random() * picTypes.length)][2] : category[2]
         category = filteredCollection.sorted[individualCategory].length ? individualCategory : category
@@ -505,7 +505,7 @@ function cardPick() {
     }
     pickOptions.push(randomCard)
   }
-  
+
   renderPick(pickOptions);
   cardDisplay.addEventListener('click', cardPickHandler);
 }
@@ -568,9 +568,9 @@ function cardPickHandler(e) {
         if ((filteredCollection.cardsLeft() > 3) && (pickOptions[0] && pickOptions[0].dbfId === newOption.dbfId) || (pickOptions[1] && pickOptions[1].dbfId === newOption.dbfId) | (pickOptions[2] && pickOptions[2].dbfId === newOption.dbfId)) {
           duped = true
         }
-      }  
+      }
       pickOptions.splice(pickIndex, 1, newOption)
-      
+
       renderPick(pickOptions);
     }
 }
@@ -697,9 +697,9 @@ deckCon.addEventListener('mouseover', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
-    xbtn01.classList.toggle('faded');
-    xbtn02.classList.toggle('faded');
-    xbtn03.classList.toggle('faded');
+    // xbtn01.classList.toggle('faded');
+    // xbtn02.classList.toggle('faded');
+    // xbtn03.classList.toggle('faded');
 
     // hiddenCard.childNodes[1].classList.remove('faded');
     hiddenCard.childNodes[1].setAttribute('src', deck[position].img);
@@ -718,9 +718,9 @@ deckCon.addEventListener('mouseout', (e) => {
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
-    xbtn01.classList.toggle('faded');
-    xbtn02.classList.toggle('faded');
-    xbtn03.classList.toggle('faded');
+    // xbtn01.classList.toggle('faded');
+    // xbtn02.classList.toggle('faded');
+    // xbtn03.classList.toggle('faded');
     hiddenCard.childNodes[1].classList.add('hidden-card');
 
     // console.log(hiddenCard.childNodes[1])
