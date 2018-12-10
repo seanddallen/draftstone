@@ -4,7 +4,21 @@ const masterPool = JSON.parse(localStorage.getItem("masterPool"));
 let heroes = JSON.parse(localStorage.getItem("heroes"));
 
 //saved in the ejs
-userCollection = JSON.parse(userCollection.split("&#34;").join('"'))
+userCollection = JSON.parse(userCollection.split("&#34;").join('"').split("&#39;").join("'"))
+
+if(customRules.filterType === "relative") {
+  for (let count in customRules) {
+    if (count.includes("Count")) {
+      if (+customRules[count] === 100) {
+        customRules[count] = "99.99"
+      }
+      if (+customRules[count] === 0) {
+        customRules[count] = "0.01"
+      }
+    }
+  }
+}
+
 
 let {
   filterType,
@@ -69,9 +83,13 @@ if (filterType === "relative") {
   }
 }
 
+
+
 const commonCount = (filterType === "relative" ? 100 : 30) - (Number(legendaryCount) + Number(epicCount) + Number(rareCount))
 const minionCount = (filterType === "relative" ? 100 : 30) - spellCount
 const neutralCount = (filterType === "relative" ? 100 : 30) - classCount
+
+
 
 const pObj = {
   LSC: legendaryCount / 100 * spellCount / 100,
@@ -88,6 +106,7 @@ const pObj = {
   CMC: commonCount / 100 * minionCount / 100 * classCount / 100
 }
 
+
 const pObjCum = {}
 
 // function totalP() {
@@ -102,7 +121,7 @@ function buildPObjCum() {
   let cumulativeP = 0
   for (const category in pObj) {
     cumulativeP += pObj[category]
-    if (pObj[category] === 0 && pObjCum.hasOwnProperty(category)) {
+    if (pObj[category] <= 0 && pObjCum.hasOwnProperty(category)) {
       delete pObjCum[category]
     } else {
       pObjCum[category] = cumulativeP
@@ -113,8 +132,11 @@ function buildPObjCum() {
 buildPObjCum()
 
 function redistribute(emptyCategory) {
+  const upForGrabs = pObj[emptyCategory]
   for (const category in pObj) {
-    pObj[category] /= 1 - pObj[emptyCategory]
+    if(pObj[category] > 0) {
+      pObj[category] /= 1 - upForGrabs
+    }
   }
   pObj[emptyCategory] = 0
   buildPObjCum()
@@ -616,7 +638,6 @@ function renderDeck(array) {
 
   array.forEach(function(card) {
 
-    // console.log(array)
 
     // cardName.innerHTML += `
     //   <div id="cards${hackyNumber < 10 ? ('0' + hackyNumber) : hackyNumber}" class="flex name-style">
@@ -695,7 +716,6 @@ deckCon.addEventListener('mouseover', (e) => {
     // Use id of target to determine which option was selected
     const position = +e.target.parentNode.parentNode.parentNode.id.slice(-2);
 
-    // console.log(position)
     pick1.classList.toggle('faded');
     pick2.classList.toggle('faded');
     pick3.classList.toggle('faded');
@@ -730,8 +750,6 @@ deckCon.addEventListener('mouseout', (e) => {
     }
     hiddenCard.childNodes[1].classList.add('hidden-card');
 
-    // console.log(hiddenCard.childNodes[1])
-    // console.log(hiddenCard.childNodes[1].classList)
 
   }
 });
