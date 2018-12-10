@@ -46,6 +46,10 @@ const userPool = masterPool.filter(card => {
   return false
 })
 
+for (let card of userPool) {
+  card.img = `https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`
+}
+
 //code taken from statck overflow for normal dist
 function randn_bm() {
   var u = 0, v = 0;
