@@ -972,13 +972,13 @@ input[type=radio]:disabled + .label-text:before {
 
 #hidden-card {
   position: absolute;
-  top: 60px;
+  top: 160px;
   z-index: 99;
   min-height: 200px;
   min-width: 307px;
   outline: none;
   border: none;
-  cursor: default; 
+  cursor: default;
 }
 
 .card-position {

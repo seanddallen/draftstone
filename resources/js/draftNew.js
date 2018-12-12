@@ -657,7 +657,7 @@ function renderDeck(array) {
               ${card.name}
             </div>
               <!--<img src="${card.img}" style="height:24px; width:40%; clip-path: inset(-45px -120px);">-->
-            <div id="cardsimg" style="background: url('${card.img}'); background-position: -62px -110px; height:30px; width:55%; background-repeat: no-repeat; zoom:80%; float:right; z-index:1;">
+            <div id="cardsimg" style="background: url('${card.img}'); background-position: -32px -80px; height:30px; width:55%; background-repeat: no-repeat; zoom:80%; float:right; z-index:1;">
               <div style="z-index:99; background: linear-gradient(to right, rgb(221,216,204) 6%, rgba(255, 255, 255, 0) 30%), linear-gradient(to left, rgb(221,216,204) -1%, rgba(255, 255, 255, 0) 30%), linear-gradient(to top, rgb(221,216,204) 0%, rgba(255, 255, 255, 0) 20%), linear-gradient(to bottom, rgb(221,216,204) 0%, rgba(255, 255, 255, 0) 20%); height: 30px;">
               </div>
             </div>
