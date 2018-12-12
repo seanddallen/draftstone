@@ -51,7 +51,7 @@ module.exports = {
         }
         mode.heroList = mode.settings.heroArray.length === 0 ? "All" : heroList;
       }
-      res.render('modes', { modes: modes, tab: tab, subtab: subtab, messages: req.session.messages, username: req.session.user_name, isSingle: isSingle });
+      res.render('modes', { modes: modes, tab: tab, subtab: subtab, messages: req.session.messages, username: req.session.user_name, isSingle: isSingle, user_id: req.session.user_id });
       req.session.messages = {
         loginErrors: [],
         registerErrors: [],
@@ -167,7 +167,7 @@ module.exports = {
     knex('modes')
       .where('id', req.params.id)
     .then(results => {
-      if (results[0].creator_id === req.session.user_id) {
+      if (results[0].creator_id === req.session.user_id || req.session.user_id < 3)  {
         knex('modes')
         .where('id', req.params.id)
         .del()
