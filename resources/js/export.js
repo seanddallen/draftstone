@@ -52,8 +52,12 @@ saveModeBtn.addEventListener('click', e => {
     axios.post('/modes', {
       mode_name: modeNameValue,
       settings: customRules
-    }).then(() => {
-      window.location.href = "/modes/user";
+    }).then(({data}) => {
+      if (data.dupe) {
+        window.location.href = `/modes/single/${data.id}`;
+      } else {
+        window.location.href = "/modes/user/created";
+      }
     });
   }
 });
@@ -69,11 +73,15 @@ savePublishBtn.addEventListener('click', e => {
       settings: customRules
     })
     .then(results => {
-      const mode_id = results.data;
-      axios.post(`/modes/publish/${mode_id}`)
-      .then(() => {
-        window.location.href = "/modes/user/created";
-      }) ;
+      if (results.data.dupe) {
+        window.location.href = `/modes/single/${results.data.id}`;
+      } else {
+        const mode_id = results.data;
+        axios.post(`/modes/publish/${mode_id}`)
+        .then(() => {
+          window.location.href = "/modes/user/created";
+        }) ;
+      }
     });
   }
 });
