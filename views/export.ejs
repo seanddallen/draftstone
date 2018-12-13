@@ -64,7 +64,7 @@
             <button type="button" class="far fa-question-circle question-popup" style="font-size:2rem; margin-bottom:5px; background-color: transparent;" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Press clipboard icon or copy (control/command + c) text. Then open Hearthstone, go to collection, and click button to create new deck. Hearthstone will offer to automatically populate the deck for you."></button>
           </div>
           <div class="flex-col flex-just-center center">
-            <button id="export-deck" type="button" class="btn btn-primary btn-lg flow-btn flex-center">Send Deck</button>
+            <button id="export-deck" type="button" class="btn btn-primary btn-lg flow-btn flex-center" data-toggle="modal" data-target="#deckstringModal">Post Deckstring</button>
             <p class="flex-center mt-20">Click to access your custom deckstring for easy import into Hearthstone!</p>
           </div>
           <div class="flex-col flex-justify">
@@ -84,6 +84,36 @@
   </main>
 
   <%- include partials/modals.ejs %>
+
+  <div class="modal fade" id="deckstringModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Tournament Mode</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="flex" style="display:flex; flex-direction: column; justify-content:center; max-width: 50%; margin:0px auto;">
+          <h3 style="display:flex; flex-direction: column; justify-content:center; max-width: 100%;">Post Deckstring</h3>
+
+            <div>
+                <input id="deck-name-input" type="text" name="deck_name" class="form-control" placeholder="Unique Deck Name" style="margin-top:20px;">
+                <p id="require-text" style="color: red"></p>
+                <input id="deckstring-input-modal" type="text" name="deckstring" class="form-control" placeholder="deckstring" style="margin-top:20px;" disabled>
+                <p id="require-text" style="color: red"></p>
+                <button id="post-deckstring-btn" class="btn btn-primary login-btn" style="display:flex; flex-direction: column; justify-content:center; margin:20px auto;">Post</button>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary modal-btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script type="text/javascript" src="/js/export.js"></script>

@@ -6,17 +6,24 @@ const data = {
   "heroCard": heroCard
 };
 
+let deckstring
 const exportDeck = document.getElementById('export-deck');
 const deckstringInput = document.getElementById('deckstring-input');
 const clipboard = document.getElementById('clipboard');
 
+//tourney
+const deckstringInputModal = document.getElementById('deckstring-input-modal');
 
 axios.post('/export', data)
-.then(deckstring => {
-  exportDeck.addEventListener('click', () => {
-    deckstringInput.innerHTML = JSON.stringify(deckstring.data).slice(1,-1);
-  });
+.then(response => {
+  deckstring = response.data
+  // exportDeck.addEventListener('click', () => {
+    deckstringInput.innerHTML = JSON.stringify(deckstring).slice(1,-1);
+  //tourney
+    deckstringInputModal.value = JSON.stringify(deckstring).slice(1,-1);
+  //});
 });
+
 
 //copy to clipboard
 function copyToClipboard(id){
@@ -84,4 +91,18 @@ savePublishBtn.addEventListener('click', e => {
       }
     });
   }
+});
+
+
+//tourney
+const postDeckBtn = document.getElementById('post-deckstring-btn');
+const deckName = document.getElementById('deck-name-input')
+
+postDeckBtn.addEventListener('click', e => {
+   axios.post('/deckstrings', {
+      deck_name: deckName.value,
+      string: deckstring
+    }).then(({data}) => {
+        window.location.href = "/deckstrings";
+    });
 });

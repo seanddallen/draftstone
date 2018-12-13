@@ -3,6 +3,7 @@ const modes  = require("../controllers/modes_controller.js");
 const votes  = require("../controllers/votes_controller.js");
 const favorites  = require("../controllers/favorites_controller.js");
 const collections  = require("../controllers/collections_controller.js");
+const deckstrings  = require("../controllers/deckstrings_controller.js");
 
 module.exports = function(app){
   app.use(createMessageArr);
@@ -27,6 +28,11 @@ module.exports = function(app){
   //MODES ROUTES
 
   app.get('/modes/:tab/:subtab', modes.browse);
+
+
+  //tourney
+  app.post('/deckstrings', deckstrings.create)
+  app.get('/deckstrings', deckstrings.index)
 
   app.use(authenticateUser);
   app.get('/user', users.account);

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DraftStone</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Piedra|Playfair+Display|Poppins|Raleway|Titillium+Web|Trade+Winds" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/spacing.css">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127642798-1"></script>
+  <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5bf1c8a50a768a0011e747ef&product=inline-share-buttons' async='async'></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-127642798-1');
+  </script>
+  <style>
+    .collapsible {
+      background-color: #777;
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+      background-color: #555;
+    }
+
+    .content {
+      padding: 0 18px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+
+<body>
+
+<%- include partials/header.ejs %>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ MAIN ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <main id="main" class="flex mt-50">
+    <div class="x-squish"></div>
+
+    <!-- ~~ CONTAINER ~~ -->
+
+    <div id="full-container" class="flex">
+
+      <!-- ~~ LEFT CARD ~~ -->
+
+      <div id="full-card">
+        <div class="y-squish">
+        </div>
+
+        <!-- ~~ DRAFT DISPLAY ~~ -->
+
+        <div id="full-display" class="card-deck flex-col">
+          <div class="text-center flow-text mt-30">
+            <br>
+            <h3>Launch Tournament</h3>
+            <h4>Posted Decks</h4>
+              <% for (const deck of deckstrings) { %>
+                <button class="collapsible"><%= deck.deck_name %></button>
+                <div class="content">
+                  <p id=<%= `deck${deck.id}` %>><%= deck.string %></p>
+                  <button id="clipboard" onclick=<%= `copyToClipboard('deck${deck.id}')` %> type="button" class="fas fa-clipboard-list fa-2x" style="display:inline-block; background-color: transparent; border:none; margin-bottom:8px; outline:none;"></button>
+                </div>
+              <% } %>
+          </div>
+
+          
+
+          <div class="y-squish">
+          </div>
+        </div>
+      </div>
+    </main>
+
+  <%- include partials/modals.ejs %>
+
+
+  <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        } 
+      });
+    }
+    
+
+    function copyToClipboard(id){
+      console.log('id', id)
+      const deckstringInput = document.getElementById(id);
+      console.log('element', deckstringInput)
+      // Create an auxiliary hidden input
+      var aux = document.createElement("input");
+      // Get the text from the element passed into the input
+      aux.setAttribute("value", deckstringInput.innerHTML);
+      // Append the aux input to the body
+      document.body.appendChild(aux);
+      // Highlight the content
+      aux.select();
+      // Execute the copy command
+      document.execCommand("copy");
+      // Remove the input from the body
+      document.body.removeChild(aux);
+    }
+  </script>
+  <script type="text/javascript" src="/js/index.js"></script>
+  <script type="text/javascript" src="/js/header.js"></script>
+  <script type="text/javascript" src="/js/login.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="/js/popover.js"></script>
+</body>
+</html>
