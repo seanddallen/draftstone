@@ -1088,6 +1088,8 @@ function cardPickHandler(e) {
       filteredCollection.removeCard(pickOptions[pickIndex], 2)
 
       if (30 - deck.length  > filteredCollection.cardsLeft()) {
+        console.log('triggered')
+
         window.alert("There are not enough cards left based on your settings and collection in order to complete this draft. We recommend going back and choosing new settings.")
       }
 

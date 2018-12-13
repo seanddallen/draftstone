@@ -89,9 +89,9 @@ if (filterType === "relative") {
 
 
 
-const commonCount = (filterType === "relative" ? 100 : 30) - (Number(legendaryCount) + Number(epicCount) + Number(rareCount))
-const minionCount = (filterType === "relative" ? 100 : 30) - spellCount
-const neutralCount = (filterType === "relative" ? 100 : 30) - classCount
+let commonCount = (filterType === "relative" ? 100 : 30) - (Number(legendaryCount) + Number(epicCount) + Number(rareCount))
+let minionCount = (filterType === "relative" ? 100 : 30) - spellCount
+let neutralCount = (filterType === "relative" ? 100 : 30) - classCount
 
 
 
@@ -405,6 +405,7 @@ function classPickHandler(e) {
           filteredCollection.count.class < classCount ||
           filteredCollection.count.neutral < (30 - classCount)
         ) {
+          
           invalidDraft()
         }
     }
@@ -433,6 +434,22 @@ let picTypes = []
 function setupAbsolute() {
 
   if (filterType === "absolute") {
+    if(typeSetting !== "custom") {
+      spellCount = Math.min(filteredCollection.cardsLeft('LSC', 'ESC', 'RSC', 'CSC'), spellCount)
+      minionCount = 30 - spellCount
+    }
+    if(raritySetting !== "custom") {
+      legendaryCount = Math.min(filteredCollection.cardsLeft('LSC', 'LMC', 'LMN'), legendaryCount)
+      epicCount = Math.min(filteredCollection.cardsLeft('LSC', 'LMC', 'LMN'), epicCount)
+      rareCount = Math.min(filteredCollection.cardsLeft('LSC', 'LMC', 'LMN'), rareCount)
+      commonCount = 30 - legendaryCount - epicCount - rareCount
+    }
+    if(classSetting !== "custom") {
+      classCount = Math.min(filteredCollection.cardsLeft('LSC', 'LMC', 'ESC', 'EMC', 'RSC', 'RMC', 'CSC', 'CMC'), classCount)
+      neutralCount = 30 - classCount
+    }
+
+
     const SC = spellCount
     const MC = classCount - spellCount
     const MN = minionCount - MC
