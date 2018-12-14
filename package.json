@@ -26,6 +26,7 @@
     "connect-session-knex": "^1.4.0",
     "cors": "^2.8.5",
     "deckstrings": "^2.0.0",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
