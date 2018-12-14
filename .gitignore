@@ -1,5 +1,6 @@
 /node_modules
 local.env
+.DS_Store
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
