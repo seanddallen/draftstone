@@ -22,7 +22,7 @@ module.exports = {
       connection: {
         host: process.env.RDS_HOSTNAME,
         user: process.env.RDS_USERNAME,
-        database: 'ebdb',
+        database: process.env.RDS_DB,
         password: process.env.RDS_PASSWORD,
         port: 5432
       },
