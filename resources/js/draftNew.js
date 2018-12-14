@@ -1,5 +1,8 @@
 //Grab data from local storage
 const customRules = JSON.parse(localStorage.getItem("customRules"));
+// customRules = JSON.parse(`{"filterType":"relative","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"chaos","classCount":"null","raritySetting":"chaos","legendaryCount":"null","epicCount":"null","rareCount":"null","typeSetting":"chaos","spellCount":"null","special":"Deathrattle"}`)
+// console.log(JSON.parse(JSON.stringify(customRules)))
+
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
 let heroes = JSON.parse(localStorage.getItem("heroes"));
 
@@ -35,7 +38,9 @@ let {
   epicCount,
   rareCount,
   typeSetting,
-  spellCount } = customRules;
+  spellCount,
+  special } = customRules;
+
 
 //Filter cards based on user collection (also adds quantity property to card)
 const userPool = masterPool.filter(card => {
@@ -254,6 +259,15 @@ class collection {
     )
   }
 
+  filterSpecial(special) {
+    if (special === "Battlecry") {
+      this.cards = this.cards.filter(card => card.text && (card.text.includes("Battlecry") || card.text.includes("Battlecries")))
+    } else if (special === "Deathrattle") {
+      this.cards = this.cards.filter(card => card.text && (card.text.includes("Deathrattle") || card.text.includes("Deathrattles")))
+    }
+
+  }
+
   //filters based on chosen class
   filterByClass(selectedClass) {
     this.cards = this.cards.filter(card => (card.playerClass === "Neutral" && (!card.classes || card.classes.includes(selectedClass))) || card.playerClass === selectedClass)
@@ -290,6 +304,7 @@ class collection {
       this.sorted[category].push(card)
     }
   }
+  
 
   removeCard(selectedCard, amountToRemove) {
     selectedCard.quantity -= amountToRemove
@@ -302,6 +317,8 @@ class collection {
 const masterCollection = new collection(masterPool)
 const filteredCollection = new collection(userPool)
 filteredCollection.filterClassSetCost(heroArray, setArray, costArray)
+console.log(special)
+filteredCollection.filterSpecial(special)
 
 if (filteredCollection.cards.length < 30) {
   invalidDraft();
