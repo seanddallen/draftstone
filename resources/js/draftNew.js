@@ -1,6 +1,6 @@
 //Grab data from local storage
 const customRules = JSON.parse(localStorage.getItem("customRules"));
-// customRules = JSON.parse(`{"filterType":"relative","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"chaos","classCount":"null","raritySetting":"chaos","legendaryCount":"null","epicCount":"null","rareCount":"null","typeSetting":"chaos","spellCount":"null","special":"Deathrattle"}`)
+// customRules = JSON.parse(`{"filterType":"absolute","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"consistent","classCount":null,"raritySetting":"consistent","legendaryCount":null,"epicCount":null,"rareCount":null,"typeSetting":"consistent","spellCount":null,"special":"Sprinkles"}`)
 // console.log(JSON.parse(JSON.stringify(customRules)))
 
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
@@ -79,16 +79,24 @@ if (filterType === "relative") {
     spellCount = 31
   }
 } else {
-  if (classSetting !== "custom") {
+  if (special === "Sprinkles") {
     classCount = Math.round(randn_bm() * 3) + 12
-  }
-  if (raritySetting !== "custom") {
-    legendaryCount = Math.max(Math.round(randn_bm() * 1) + 2, 0)
-    epicCount = Math.max(Math.round(randn_bm() * 2) + 5, 0)
-    rareCount = Math.min(Math.max(Math.round(randn_bm() * 2.5) + 10, 0),30 - legendaryCount - rareCount)
-  }
-  if (typeSetting !== "custom") {
-    spellCount = Math.max(Math.round(randn_bm() * 3) + 10, 0, classCount)
+    legendaryCount = 25
+    epicCount = 1
+    rareCount = 2
+    spellCount = 5
+  } else {
+    if (classSetting !== "custom") {
+      classCount = Math.round(randn_bm() * 3) + 12
+    }
+    if (raritySetting !== "custom") {
+      legendaryCount = Math.max(Math.round(randn_bm() * 1) + 2, 0)
+      epicCount = Math.max(Math.round(randn_bm() * 2) + 5, 0)
+      rareCount = Math.min(Math.max(Math.round(randn_bm() * 2.5) + 10, 0),30 - legendaryCount - rareCount)
+    }
+    if (typeSetting !== "custom") {
+      spellCount = Math.max(Math.round(randn_bm() * 3) + 10, 0, classCount)
+    }
   }
 }
 
@@ -318,7 +326,9 @@ const masterCollection = new collection(masterPool)
 const filteredCollection = new collection(userPool)
 filteredCollection.filterClassSetCost(heroArray, setArray, costArray)
 console.log(special)
-filteredCollection.filterSpecial(special)
+// if (special === "Battlecry" || special === "Deathrattle") {
+//   filteredCollection.filterSpecial(special)
+// }
 
 if (filteredCollection.cards.length < 30) {
   invalidDraft();
@@ -511,7 +521,13 @@ function setupAbsolute() {
                         if (CMC <= maxCMC) {
                           let CMN = MN - LMN - EMN - RMN
                           if (CMN === commonCount - CSC - CMC && CMN <= maxCMN) {
-                            combinations.push({LSC, LMN, LMC, ESC, EMN, EMC, RSC, RMN, RMC, CSC, CMN, CMC})
+                            if (special === "Sprinkles") {
+                              if (LSC + LMC + LMN === 25 && ESC + RSC + CSC === 5) {
+                                combinations.push({LSC, LMN, LMC, ESC, EMN, EMC, RSC, RMN, RMC, CSC, CMN, CMC})
+                              }
+                            } else {
+                              combinations.push({LSC, LMN, LMC, ESC, EMN, EMC, RSC, RMN, RMC, CSC, CMN, CMC})
+                            }
                           }
                         }
                       }
@@ -524,6 +540,8 @@ function setupAbsolute() {
         }
       }
     }
+
+    console.log(combinations)
 
     const chosenCombination = combinations[Math.floor(Math.random() * combinations.length)]
     for (const category in chosenCombination) {
