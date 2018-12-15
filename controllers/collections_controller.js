@@ -64,10 +64,19 @@ module.exports = {
   delete: (req, res) => {
     knex('collections')
       .where('id', req.params.id)
-      .del()
-    .then(() => {
-      res.redirect('/user')
+    .then(result => {
+      if(result[0].user_id === req.session.user_id) {
+        knex('collections')
+          .where('id', req.params.id)
+          .del()
+        .then(() => {
+          res.redirect('/user')
+        })
+      } else {
+        res.redirect('/user')
+      }
     })
+    
   },
 
   selected: (req, res) => {
