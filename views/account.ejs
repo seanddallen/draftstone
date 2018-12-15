@@ -97,7 +97,7 @@
                   </div>
                   <div class="flex flex-between">
                     <div class="mr-5">
-                      <% if (selectedCollection.id !== 1 || (selectedCollection.id === 1 && users[0].id === 1)) { %>
+                      <% if (selectedCollection.user_id === users[0].id) { %>
                       <button data-toggle="modal" data-target="#updateModal" class="btn btn-primary login-btn">Update
                       </button>
                       <% } %>
@@ -113,7 +113,7 @@
                   <div>
                     <h4><%= collection.name %></h4>
                   </div>
-                  <% if (collection.id !== 1 && collection.id !== selectedCollection.id) { %>
+                  <% if (collection.user_id === users[0].id 1 && collection.id !== selectedCollection.id) { %>
                   <div class="flex flex-between">
                     <div>
                       <form method="post" action="/user/collections/delete/<%=collection.id%>">

@@ -1,6 +1,6 @@
 //Grab data from local storage
-const customRules = JSON.parse(localStorage.getItem("customRules"));
-// customRules = JSON.parse(`{"filterType":"absolute","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"consistent","classCount":null,"raritySetting":"consistent","legendaryCount":null,"epicCount":null,"rareCount":null,"typeSetting":"consistent","spellCount":null,"special":"Sprinkles"}`)
+// const customRules = JSON.parse(localStorage.getItem("customRules"));
+customRules = JSON.parse(`{"filterType":"absolute","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"consistent","classCount":null,"raritySetting":"consistent","legendaryCount":null,"epicCount":null,"rareCount":null,"typeSetting":"consistent","spellCount":null,"special":"Sprinkles"}`)
 // console.log(JSON.parse(JSON.stringify(customRules)))
 
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
