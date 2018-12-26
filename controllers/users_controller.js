@@ -81,24 +81,31 @@ module.exports = {
   },
 
   register: (req, res) => {
-    hasher.hash(req.body).then((user)=>{
-    knex('users')
-      .insert({
-        user_name: user.username,
-        email: user.email,
-        password: user.password,
-      })
-    .then(() => res.redirect('/'))
-    .catch(err =>  {
-      console.log(err);
-      if (err.code == 23505) {
-        req.session.messages.registerErrors.push("User with that email already exists.");
-      }
-      req.session.save(() => {
+    if (req.body.username.length > 17) {
+      req.session.messages.registerErrors.push("Username cannot exceed 17 characters");
+      req.sessions.save(() => {
         res.redirect('/');
       });
-    });
-  });
+    } else {
+      hasher.hash(req.body).then((user)=>{
+        knex('users')
+          .insert({
+            user_name: user.username,
+            email: user.email,
+            password: user.password,
+          })
+        .then(() => res.redirect('/'))
+        .catch(err =>  {
+          console.log(err);
+          if (err.code == 23505) {
+            req.session.messages.registerErrors.push("User with that email already exists.");
+          }
+          req.session.save(() => {
+            res.redirect('/');
+          });
+        });
+      });
+    }
   },
 
   login: (req, res) => {

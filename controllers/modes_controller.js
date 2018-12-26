@@ -68,7 +68,7 @@ module.exports = {
     knex('modes')
     .then((modes) => {
       for (const mode of modes) {
-        if (mode.type !== "user" && JSON.stringify(mode.settings) == JSON.stringify(req.body.settings)) {
+        if (mode.type !== "user" && (JSON.stringify(mode.settings) == JSON.stringify(req.body.settings) || mode.mode_name.toLowerCase() === req.body.mode_name.toLowerCase()))  {
           res.json({dupe: true, id: mode.id})
           dupe = true;
           return;

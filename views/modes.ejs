@@ -52,7 +52,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li style="font-size: 16px; color: black; margin-right: 15px; font-family: playfair">
               <% if (username) { %>
-                <div id="username" class="darker">Worthy opponent: <b><%= username.slice(0,10) + (username.length > 10 ? '...' : '') %></b></div>
+                <div id="username" class="darker">Worthy opponent: <b><%= username %></b></div>
               <% } %>
             </li>
             <li>
@@ -158,7 +158,7 @@
 
       <% if (isSingle)  { %>
       <br>
-      <h3>The game mode you are trying to create or publish has already been published. Here it is:</h3>
+      <h3>The mode you have attempted to create shares a name or exact settings with an already published mode. Here it is:</h3>
       <% } %>
 
       <div id="mode-list" class="row mt-40">
