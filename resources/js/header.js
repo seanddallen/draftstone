@@ -11,17 +11,21 @@ window.onscroll = function() {
       navbar.classList.add("sticky");
       draftstone.classList.remove("draftstone-text");
       draftstone.classList.add("draftstone-text-sticky");
-      username.classList.remove("darker");
-      username.classList.add("light");
-      accounticon.classList.remove("dark");
-      accounticon.classList.add("brown");
+      if (username) {
+        username.classList.remove("darker");
+        username.classList.add("light");
+        accounticon.classList.remove("dark");
+        accounticon.classList.add("brown");
+      }
     } else {
       navbar.classList.remove("sticky");
       draftstone.classList.remove("draftstone-text-sticky");
       draftstone.classList.add("draftstone-text");
-      username.classList.remove("light");
-      username.classList.add("darker");
-      accounticon.classList.remove("brown");
-      accounticon.classList.add("dark");
+      if(username) {
+        username.classList.remove("light");
+        username.classList.add("darker");
+        accounticon.classList.remove("brown");
+        accounticon.classList.add("dark");
+      }
     }
 };
