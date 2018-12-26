@@ -185,10 +185,11 @@ module.exports = {
        }
      });
 
+
      // setup email data with unicode symbols
      let mailOptions = {
          from: '"Draftstone Team" <draftstonebeta@gmail.com>', // sender address
-         to: 'seanjtayler@gmail.com', // list of receivers  `${req.body.email}`
+         to: req.body.email, // list of receivers  
          subject: 'Temporary Password', // Subject line
          text: '', // plain text body
          html: output // html body
