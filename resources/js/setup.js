@@ -37,9 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
    // this too will probably become unnecessary once we have our own server
    const draftBtn =  document.getElementById('draft-btn');
    draftBtn.classList.remove("inactive");
+
+
+   const username = document.getElementById("username");
    const saveBtn =  document.getElementById('save-btn');
-   saveBtn.classList.remove("inactive");
-   saveBtn.disabled = false;
+   if (username) {
+     saveBtn.classList.remove("inactive");
+     saveBtn.disabled = false;
+   }
 
    // Once the user is ready to draft (either they have chosen settings or foregone doing so), they will click this button
    // The button triggers storing of all their settings to localStorage in order to be retrieved during the draft
