@@ -546,7 +546,7 @@ a:link {
 
 .flow-btn:hover {
   background-color: #8e8770;
-  border: 2px dashed black;
+  border: 2px solid black;
   outline: none;
   margin: 0 auto;
   margin-top: 5vh;
@@ -555,7 +555,7 @@ a:link {
 
 .flow-btn:focus {
   background-color: #8e8770;
-  border: 2px dashed black;
+  border: 2px solid black;
   outline-color: green;
   margin: 0 auto;
   margin-top: 5vh;
@@ -564,7 +564,7 @@ a:link {
 
 .flow-btn:active {
   background-color: green;
-  border: 2px dashed black;
+  border: 2px solid black;
   outline-color: green;
   margin: 0 auto;
   margin-top: 5vh;
