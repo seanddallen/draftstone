@@ -60,10 +60,6 @@
             <button type="button" class="far fa-question-circle question-popup" style="font-size:2rem; margin-bottom:5px; background-color: transparent;" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="right" data-content="Press clipboard icon or copy (control/command + c) text. Then open Hearthstone, go to collection, and click button to create new deck. Hearthstone will offer to automatically populate the deck for you."></button>
           </div>
           <h5 class="text-center">Copy Deckstring to export Draft Deck to Hearthstone</h5>
-          <div class="flex-col flex-just-center center">
-            <button id="export-deck" type="button" class="btn btn-primary btn-lg flow-btn flex-center" data-toggle="modal" data-target="#deckstringModal">Post Deckstring</button>
-            <p class="flex-center mt-20">Click to access your custom deckstring for easy import into Hearthstone!</p>
-          </div>
           <div class="flex-col flex-justify">
             <button id="save-btn" type="button" class="btn btn-primary btn-lg <% if (!username) { %>save-btn-hover<% } else { %>save-btn<%}%>" data-toggle="modal" data-target="#draftModal" <% if (!username) { %> disabled <% } %> >Save Game Mode</button>
             <div class="flex-col flex-center mb-40">

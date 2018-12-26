@@ -227,9 +227,6 @@ module.exports = {
     knex('collections')
       .where('user_id', req.session.user_id)
       .orWhere('id', 1)
-      .orWhere('id', 2)
-      .orWhere('id', 6)
-      .orWhere('id', 8)
       .then(collectionsArray => {
         knex('users')
           .where('id', req.session.user_id)
