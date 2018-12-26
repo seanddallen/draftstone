@@ -1,6 +1,6 @@
 //Grab data from local storage
-const customRules = JSON.parse(localStorage.getItem("customRules"));
-// customRules = JSON.parse(`{"filterType":"absolute","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"consistent","classCount":null,"raritySetting":"consistent","legendaryCount":null,"epicCount":null,"rareCount":null,"typeSetting":"consistent","spellCount":null,"special":"Sprinkles"}`)
+// const customRules = JSON.parse(localStorage.getItem("customRules"));
+customRules = JSON.parse(`{"filterType":"relative","heroFilterSetting":"all","heroArray":[],"setFilterSetting":"all","setArray":[],"costFilterSetting":"all","costArray":[],"classSetting":"consistent","classCount":null,"raritySetting":"consistent","legendaryCount":null,"epicCount":null,"rareCount":null,"typeSetting":"consistent","spellCount":null,"special":"Deathrattle"}`)
 // console.log(JSON.parse(JSON.stringify(customRules)))
 
 const masterPool = JSON.parse(localStorage.getItem("masterPool"));
@@ -263,7 +263,8 @@ class collection {
       ( !heroArray[1] || heroArray.includes(card.playerClass) ) &&
       ( !setArray[0] || setArray.includes(card.cardSet) ) &&
       ( !costArray[0] || costArray.includes(card.cost + "") ||
-        (costArray.includes("10+") && card.cost > 9) )
+        (costArray.includes("10+") && card.cost > 9) ) &&
+      (card.dbfId != 50477)
     )
   }
 
@@ -521,7 +522,7 @@ function setupAbsolute() {
                         if (CMC <= maxCMC) {
                           let CMN = MN - LMN - EMN - RMN
                           if (CMN === commonCount - CSC - CMC && CMN <= maxCMN) {
-                            if (special === "Sprinkles") {
+                            if (special && special === "Sprinkles") {
                               if (LSC + LMC + LMN === 25 && ESC + RSC + CSC === 5) {
                                 combinations.push({LSC, LMN, LMC, ESC, EMN, EMC, RSC, RMN, RMC, CSC, CMN, CMC})
                               }
